@@ -1,0 +1,3 @@
+[submodule "plugins/linkedin"]
+	path = plugins/linkedin
+	url = git@github.com:ProLoser/CakePHP-LinkedIn.git
