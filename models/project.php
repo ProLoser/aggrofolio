@@ -12,24 +12,18 @@ class Project extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-	);
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
-
-	var $belongsTo = array(
-		'Category' => array(
-			'className' => 'Category',
-			'foreignKey' => 'category_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
-		'User' => array(
-			'className' => 'User',
-			'foreignKey' => 'user_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
+		'url' => array(
+			'rule' => 'isUnique',
+			'message' => 'This project url already exists',
 		)
 	);
+	var $actsAs = array('Github');
+
+	var $belongsTo = array(
+		'Category',
+		'User',
+		'Account',
+	);   
+	
 }
 ?>

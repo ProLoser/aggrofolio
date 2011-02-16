@@ -6,7 +6,7 @@ class AccountsController extends AppController {
 	
 	function linkedin() {
 		$this->set('profile', $this->Linkedin->profile(null, array(
-			'first-name', 'last-name', 'positions' => 'company', 'educations', 'certifications', 'skills',
+			'first-name', 'last-name', 'positions' => 'company', 'educations', 'certifications', 'skills', 'recommendations-received'
 		)));
 	}
 	
@@ -35,6 +35,27 @@ class AccountsController extends AppController {
 		}
 	}
 	
+	function deviantart() {
+		
+	}
+	
+	function github() {
+		$account = $this->Account->find('first', array('conditions' => array(
+			'type' => 'github',
+		)));
+		$projects = $this->Account->Project->findRepos($account['Account']['username']);
+		$this->set(compact('account', 'projects'));
+		$data = $projects['Repositories']['Repository'];
+		foreach ($data as $i => $project) {
+			$data[$i]['cvs_url'] = $project['url'];
+			$data[$i]['account_id'] = $account['Account']['id'];
+		}
+		if ($this->Account->Project->saveAll($data)) {
+			$this->Session->setFlash(__('The projects have been saved', true));
+		} else {
+			$this->Session->setFlash(__('There was an error saving the projects', true));
+		}
+	}
 	
 
 	function index() {

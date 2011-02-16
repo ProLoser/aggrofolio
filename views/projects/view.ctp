@@ -16,6 +16,11 @@
 			<?php echo $project['Project']['modified']; ?>
 			&nbsp;
 		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Last Updated'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $extra['Repository']['pushed-at']; ?>
+			&nbsp;
+		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Name'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $project['Project']['name']; ?>
@@ -24,6 +29,26 @@
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Description'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $project['Project']['description']; ?>
+			&nbsp;
+		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Homepage'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $extra['Repository']['homepage']; ?>
+			&nbsp;
+		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Watchers'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $extra['Repository']['watchers']; ?>
+			&nbsp;
+		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Forks'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $extra['Repository']['forks']; ?>
+			&nbsp;
+		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Open Issues'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $extra['Repository']['open-issues']; ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Hash Tag'); ?></dt>
@@ -47,6 +72,15 @@
 			&nbsp;
 		</dd>
 	</dl>
+	<h2>Recent Updates</h2>
+	<ol>
+	<?php foreach ($commits['Commits']['Commit'] as $i => $commit): ?>
+		<li>
+			<h4><?php echo $this->Html->link($commit['Author']['name'] . ' at ' . $this->Time->nice($commit['authored-date']), $commit['message'])?></h4>
+			<p><?php echo $commit['message']?></p>
+		</li>
+	<?php endforeach ?>
+	</ol>
 </div>
 <div class="actions">
 	<h3><?php __('Actions'); ?></h3>
@@ -57,5 +91,17 @@
 		<li><?php echo $this->Html->link(__('New Project', true), array('action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Categories', true), array('controller' => 'categories', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Category', true), array('controller' => 'categories', 'action' => 'add')); ?> </li>
+	</ul>
+	<h3><?php __('Related'); ?></h3>
+	<ul>
+		<?php if ($extra['Repository']['has-issues']): ?>
+			<li><?php echo $this->Html->link(__('Issues', true), $project['Project']['cvs_url'] . '/issues'); ?> </li>
+		<?php endif ?>
+		<?php if ($extra['Repository']['has-wiki']): ?>
+			<li><?php echo $this->Html->link(__('Wiki', true), $project['Project']['cvs_url'] . '/wiki'); ?> </li>
+		<?php endif ?>
+		<?php if ($extra['Repository']['has-downloads']): ?>
+			<li><?php echo $this->Html->link(__('Downloads', true), $project['Project']['cvs_url'] . '/downloads'); ?> </li>
+		<?php endif ?>
 	</ul>
 </div>

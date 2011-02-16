@@ -2,6 +2,7 @@
 class ProjectsController extends AppController {
 
 	var $name = 'Projects';
+	var $helpers = array('Time');
 
 	function index() {
 		$this->Project->recursive = 0;
@@ -13,7 +14,15 @@ class ProjectsController extends AppController {
 			$this->Session->setFlash(__('Invalid project', true));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->set('project', $this->Project->read(null, $id));
+		$project = $this->Project->read(null, $id);
+		if ($project['Account']['type'] == 'github') {
+			$extra = $this->Project->findRepos($project['Account']['username'], $project['Project']['name']);
+			$commits = $this->Project->findCommitsList(array(
+				'username' => $project['Account']['username'], 
+				'repo' => $project['Project']['name'],
+			));
+		}
+		$this->set(compact('project', 'extra', 'commits'));
 	}
 
 	function add() {

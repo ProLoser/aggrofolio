@@ -44,6 +44,10 @@ class Account extends AppModel {
 		),
 	);
 	
+	var $hasMany = array(
+		'Project',
+	);
+	
 	var $types = array(
 		'github'		=> 'Github',
 		'codaset'		=> 'Codaset',
