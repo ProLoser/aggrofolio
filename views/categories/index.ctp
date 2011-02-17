@@ -26,9 +26,7 @@
 		<td><?php echo $category['Category']['modified']; ?>&nbsp;</td>
 		<td><?php echo $category['Category']['name']; ?>&nbsp;</td>
 		<td><?php echo $category['Category']['description']; ?>&nbsp;</td>
-		<td>
-			<?php echo $this->Html->link($category['ParentCategory']['name'], array('controller' => 'categories', 'action' => 'view', $category['ParentCategory']['id'])); ?>
-		</td>
+		<td><?php echo $category['Category']['parent_id']; ?>&nbsp;</td>
 		<td><?php echo $category['Category']['lft']; ?>&nbsp;</td>
 		<td><?php echo $category['Category']['rght']; ?>&nbsp;</td>
 		<td class="actions">

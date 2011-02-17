@@ -26,8 +26,8 @@ class CategoriesController extends AppController {
 				$this->Session->setFlash(__('The category could not be saved. Please, try again.', true));
 			}
 		}
-		$parentCategories = $this->Category->ParentCategory->find('list');
-		$this->set(compact('parentCategories'));
+		$parents = $this->Category->find('list');
+		$this->set(compact('parents'));
 	}
 
 	function edit($id = null) {
@@ -46,8 +46,8 @@ class CategoriesController extends AppController {
 		if (empty($this->data)) {
 			$this->data = $this->Category->read(null, $id);
 		}
-		$parentCategories = $this->Category->ParentCategory->find('list');
-		$this->set(compact('parentCategories'));
+		$parents = $this->Category->find('list');
+		$this->set(compact('parents'));
 	}
 
 	function delete($id = null) {

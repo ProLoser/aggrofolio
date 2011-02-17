@@ -4,6 +4,15 @@ class AccountsController extends AppController {
 	var $name = 'Accounts';
 	var $components = array('Linkedin.Linkedin');
 	
+	function test() {
+		$this->loadModel('Resource');
+		$projects = array_merge(
+			$this->Resource->find('all', array('conditions' => array('username' => 'proloser'), 'fields' => 'projects')),
+			$this->Resource->find('all', array('conditions' => array('username' => 'proloser'), 'fields' => 'collaborations'))
+		);
+		debug($projects);
+	}
+	
 	function linkedin() {
 		$this->set('profile', $this->Linkedin->profile(null, array(
 			'first-name', 'last-name', 'positions' => 'company', 'educations', 'certifications', 'skills', 'recommendations-received'
@@ -39,28 +48,30 @@ class AccountsController extends AppController {
 		
 	}
 	
-	function github() {
-		$account = $this->Account->find('first', array('conditions' => array(
-			'type' => 'github',
-		)));
-		$projects = $this->Account->Project->findRepos($account['Account']['username']);
-		$this->set(compact('account', 'projects'));
-		$data = $projects['Repositories']['Repository'];
-		foreach ($data as $i => $project) {
-			$data[$i]['cvs_url'] = $project['url'];
-			$data[$i]['account_id'] = $account['Account']['id'];
+	function scan($id = null) {
+		if (!$id) {
+			$this->Session->setFlash(__('Invalid type', true));
+			$this->redirect(array('action' => 'index'));
 		}
-		if ($this->Account->Project->saveAll($data)) {
+		$account = $this->Account->read(null, $id);
+		if (empty($account)) {
+			$this->Session->setFlash(__('Invalid account', true));
+			$this->redirect(array('action' => 'index'));
+		}
+		if ($this->Account->Project->{'scan' . Inflector::classify($type)}($account)) {
 			$this->Session->setFlash(__('The projects have been saved', true));
 		} else {
 			$this->Session->setFlash(__('There was an error saving the projects', true));
 		}
+		$this->redirect(array('action' => 'index'));
 	}
 	
 
 	function index() {
 		$this->Account->recursive = 0;
-		$this->set('accounts', $this->paginate());
+		$accounts = $this->paginate();
+		$types = $this->Account->types;
+		$this->set(compact('accounts', 'types'));
 	}
 
 	function view($id = null) {

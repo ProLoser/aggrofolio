@@ -1,3 +1,15 @@
 [submodule "plugins/linkedin"]
 	path = plugins/linkedin
 	url = git@github.com:ProLoser/CakePHP-LinkedIn.git
+[submodule "plugins/github"]
+	path = plugins/github
+	url = git@github.com:ProLoser/CakePHP-Github.git
+[submodule "plugins/codaset"]
+	path = plugins/codaset
+	url = git@github.com:ProLoser/Cakephp-Codaset.git
+[submodule "vendors/php-github-api"]
+	path = vendors/php-github-api
+	url = git://github.com/ornicar/php-github-api
+[submodule "plugins/batch"]
+	path = plugins/batch
+	url = git@github.com:ProLoser/CakePHP-Batch.git

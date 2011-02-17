@@ -6,7 +6,9 @@ class ProjectsController extends AppController {
 
 	function index() {
 		$this->Project->recursive = 0;
-		$this->set('projects', $this->paginate());
+		$projects = $this->paginate();
+		$categories = $this->Project->Category->find('list');
+		$this->set(compact('projects', 'categories'));
 	}
 
 	function view($id = null) {

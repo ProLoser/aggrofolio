@@ -32,4 +32,5 @@
  */
 class AppController extends Controller {
 	var $components = array('Session');
+	var $helpers = array('Session', 'Form', 'Html', 'Batch.Batch');
 }
