@@ -29,13 +29,15 @@ class Project extends AppModel {
 	
 	function scanGithub($account) {
 		$projects = $this->findRepos($account['Account']['username']);
-		$this->set(compact('account', 'projects'));
 		$data = $projects['Repositories']['Repository'];
 		foreach ($data as $i => $project) {
-			$data[$i]['cvs_url'] = $project['url'];
-			$data[$i]['account_id'] = $account['Account']['id'];
+			$this->save(array('Project' => array(
+				'cvs_url' => $project['url'],
+				'account_id' => $account['Account']['id'],
+				'name' => $project['name'],
+				'description' => $project['description'],
+			)));
 		}
-		return $this->Account->Project->saveAll($data);
 	}
 	
 	function scanCodaset($account) {
@@ -49,10 +51,10 @@ class Project extends AppModel {
 		
 		foreach ($projects as $i => $project) {
 			$this->save(array('Project' => array(
-				'cvs_url' => $project->url,
+				'cvs_url' => $project['url'],
 				'account_id' => $account['Account']['id'],
-				'name' => $project->title,
-				'description' => $project->description,
+				'name' => $project['title'],
+				'description' => $project['description'],
 			)));
 		}
 	}
