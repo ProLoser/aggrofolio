@@ -17,14 +17,7 @@ class ProjectsController extends AppController {
 			$this->redirect(array('action' => 'index'));
 		}
 		$project = $this->Project->read(null, $id);
-		if ($project['Account']['type'] == 'github') {
-			$extra = $this->Project->findRepos($project['Account']['username'], $project['Project']['name']);
-			$commits = $this->Project->findCommitsList(array(
-				'username' => $project['Account']['username'], 
-				'repo' => $project['Project']['name'],
-			));
-		}
-		$this->set(compact('project', 'extra', 'commits'));
+		$this->set(compact('project'));
 	}
 
 	function add() {

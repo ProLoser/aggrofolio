@@ -16,11 +16,20 @@
 			<?php echo $project['Project']['modified']; ?>
 			&nbsp;
 		</dd>
+	<?php if (!empty($project['repository'])): ?>	
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Last Updated'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $extra['Repository']['pushed-at']; ?>
+			<?php echo $project['repository']['pushed_at']; ?>
 			&nbsp;
 		</dd>
+	<?php endif ?>
+	<?php if (!empty($project['codaset'])): ?>	
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Last Updated'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $project['codaset']['last_pushed_at']; ?>
+			&nbsp;
+		</dd>
+	<?php endif ?>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Name'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $project['Project']['name']; ?>
@@ -31,26 +40,45 @@
 			<?php echo $project['Project']['description']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Homepage'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $extra['Repository']['homepage']; ?>
-			&nbsp;
-		</dd>
+	<?php if (!empty($project['codaset'])): ?>		
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Watchers'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $extra['Repository']['watchers']; ?>
+			<?php echo $project['codaset']['bookmark_count']; ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Forks'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $extra['Repository']['forks']; ?>
+			<?php echo $project['codaset']['fork_count']; ?>
+			&nbsp;
+		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Issues'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $project['codaset']['ticket_count']; ?>
+			&nbsp;
+		</dd>
+	<?php endif ?>
+	<?php if (!empty($project['repository'])): ?>		
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Homepage'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $project['repository']['homepage']; ?>
+			&nbsp;
+		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Watchers'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $project['repository']['watchers']; ?>
+			&nbsp;
+		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Forks'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $project['repository']['forks']; ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Open Issues'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $extra['Repository']['open-issues']; ?>
+			<?php echo $project['repository']['open_issues']; ?>
 			&nbsp;
 		</dd>
+	<?php endif ?>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Hash Tag'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $project['Project']['hash_tag']; ?>
@@ -72,15 +100,17 @@
 			&nbsp;
 		</dd>
 	</dl>
+<?php if (!empty($project['repository'])): ?>
 	<h2>Recent Updates</h2>
 	<ol>
-	<?php foreach ($commits['Commits']['Commit'] as $i => $commit): ?>
+	<?php foreach ($project['commits'] as $i => $commit): ?>
 		<li>
-			<h4><?php echo $this->Html->link($commit['Author']['name'] . ' at ' . $this->Time->nice($commit['authored-date']), $commit['message'])?></h4>
+			<h4><?php echo $this->Html->link($commit['author']['name'] . ' at ' . $this->Time->nice($commit['authored_date']), 'https://github.com' . $commit['url'])?></h4>
 			<p><?php echo $commit['message']?></p>
 		</li>
 	<?php endforeach ?>
 	</ol>
+<?php endif ?>
 </div>
 <div class="actions">
 	<h3><?php __('Actions'); ?></h3>
@@ -92,16 +122,30 @@
 		<li><?php echo $this->Html->link(__('List Categories', true), array('controller' => 'categories', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Category', true), array('controller' => 'categories', 'action' => 'add')); ?> </li>
 	</ul>
+<?php if (!empty($project['repository'])): ?>
 	<h3><?php __('Related'); ?></h3>
 	<ul>
-		<?php if ($extra['Repository']['has-issues']): ?>
+		<?php if ($project['repository']['has_issues']): ?>
 			<li><?php echo $this->Html->link(__('Issues', true), $project['Project']['cvs_url'] . '/issues'); ?> </li>
 		<?php endif ?>
-		<?php if ($extra['Repository']['has-wiki']): ?>
+		<?php if ($project['repository']['has_wiki']): ?>
 			<li><?php echo $this->Html->link(__('Wiki', true), $project['Project']['cvs_url'] . '/wiki'); ?> </li>
 		<?php endif ?>
-		<?php if ($extra['Repository']['has-downloads']): ?>
+		<?php if ($project['repository']['has_downloads']): ?>
 			<li><?php echo $this->Html->link(__('Downloads', true), $project['Project']['cvs_url'] . '/downloads'); ?> </li>
 		<?php endif ?>
 	</ul>
+<?php endif ?>
+<?php if (!empty($project['codaset'])): ?>
+	<h3><?php __('Related'); ?></h3>
+	<ul>
+		<li><?php echo $this->Html->link(__('Issues', true), $project['Project']['cvs_url'] . '/tickets'); ?> </li>
+		<li><?php echo $this->Html->link(__('Wiki', true), $project['Project']['cvs_url'] . '/wiki'); ?> </li>
+		<li><?php echo $this->Html->link(__('Milestones', true), $project['Project']['cvs_url'] . '/milestones'); ?> </li>
+		<li><?php echo $this->Html->link(__('Blog', true), $project['Project']['cvs_url'] . '/blog'); ?> </li>
+	<?php if ($project['codaset']['state'] == 'public'): ?>
+		<li><?php echo $this->Html->link(__('Source', true), $project['Project']['cvs_url'] . '/source'); ?> </li>
+	<?php endif ?>
+	</ul>
+<?php endif ?>
 </div>

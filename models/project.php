@@ -18,7 +18,50 @@ class Project extends AppModel {
 		'Category',
 		'User',
 		'Account',
-	);   
+	);
+	
+	function read($fields = null, $id) {
+		$this->recursive = 1;
+		$project = parent::read($fields, $id);
+		$default = $this->useDbConfig;
+		if ($project['Account']['type'] == 'github') {
+			$this->useDbConfig = 'github';
+			$commits = $this->find('all', array(
+				'conditions' => array(
+					'owner' => $project['Project']['owner'], 
+					'repo' => $project['Project']['name'],
+					'branch' => 'master',
+				),
+				'fields' => 'commits'
+			));
+			$data = $this->find('all', array(
+				'conditions' => array(
+					'owner' => $project['Project']['owner'], 
+					'repo' => $project['Project']['name'],
+				),
+				'fields' => 'repos'
+			));
+			$project = array_merge($project, $data, $commits);
+		} elseif ($project['Account']['type'] == 'codaset') {
+			$this->useDbConfig = 'codaset';
+			$name = str_replace(' ', '-', $project['Project']['name']);
+			$project['codaset'] = $this->find('all', array(
+				'conditions' => array(
+					'username' => $project['Project']['owner'], 
+					'project' => $name,
+				),
+			));
+			$project['blog'] = $this->find('all', array(
+				'conditions' => array(
+					'username' => $project['Project']['owner'], 
+					'project' => $name,
+				),
+				'fields' => 'blog'
+			));
+		}
+		$this->useDbConfig = $default;
+		return $project;
+	}
 	
 	function scanGithub($account) {
 		$default = $this->useDbConfig;
@@ -28,13 +71,13 @@ class Project extends AppModel {
 			'fields' => 'repos'
 		));
 		$this->useDbConfig = $default;
-		cd 
 		foreach ($data as $project) {
 			$this->save(array('Project' => array(
 				'cvs_url' => $project['url'],
 				'account_id' => $account['Account']['id'],
 				'name' => $project['name'],
 				'description' => $project['description'],
+				'owner' => $project['owner'],
 			)));
 		}
 	}
@@ -54,6 +97,7 @@ class Project extends AppModel {
 				'account_id' => $account['Account']['id'],
 				'name' => $project['title'],
 				'description' => $project['description'],
+				'owner' => $project['owner']['login'],
 			)));
 		}
 	}

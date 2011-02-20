@@ -21,15 +21,23 @@
  * @since         CakePHP(tm) v 0.2.9
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
+Router::parseExtensions('json', 'xml', 'rss', 'ajax');
+ 
+Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
+
+/*
+ * Want localization instead?
+ *
+App::import('Lib', 'LocalizedRouter');
+
+LocalizedRouter::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
+
+LocalizedRouter::localize();
+ */
+
 
 /**
- * Here, we are connecting '/' (base path) to controller called 'Pages',
- * its action called 'display', and we pass a param to select the view file
- * to use (in this case, /app/views/pages/home.ctp)...
+ * Asset Compress
  */
-	Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
-
-/**
- * ...and connect the rest of 'Pages' controller's urls.
- */
-	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
+Router::connect('/cache_css/*', array('plugin' => 'asset_compress', 'controller' => 'css_files', 'action' => 'get'));
+Router::connect('/cache_js/*', array('plugin' => 'asset_compress', 'controller' => 'js_files', 'action' => 'get'));

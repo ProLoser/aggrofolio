@@ -30,5 +30,46 @@
  * @package       cake
  * @subpackage    cake.app
  */
-class AppModel extends Model {
+App::import('Lib', 'LazyModel.LazyModel');
+class AppModel extends LazyModel { // TODO Make sure lazymodel is enabled when publishing
+//class AppModel extends Model { // Lazymodel seems to interfere with baking
+
+	var $recursive = -1;
+	
+	var $actsAs = array(
+		'Joinable.Joinable',
+		'Linkable.Linkable', // TODO Possibly causing behavior errors when trying to bake
+		'Containable',
+		'Mi.OneQuery',
+		'Cacheable.Cacheable',
+	);
+	
+	/**
+	 * Repairs a glitch in aliases used with virtual fields
+	 *
+	 * @param string $id 
+	 * @param string $table 
+	 * @param string $ds 
+	 */
+	function __construct($id = false, $table = null, $ds = null) {
+		parent::__construct($id, $table, $ds);
+		foreach ($this->virtualFields as $field => $value) {
+			$this->virtualFields[$field] = str_replace($this->name, $this->alias, $value);
+		}
+	}
+	
+	/**
+	 * Before Validate
+	 *
+	 * @return void
+	 * @author Dean
+	 */
+	public function beforeValidate() {
+		// Makes the HABTM fields validateable
+		foreach($this->hasAndBelongsToMany as $alias => $options) { 
+			if (isset($this->data[$alias][$alias])) { 
+				$this->data[$this->alias][$alias] = $this->data[$alias][$alias]; 
+			} 
+		} 
+	}
 }

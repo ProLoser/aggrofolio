@@ -33,6 +33,7 @@ class AccountsController extends AppController {
 			$this->Account->id = $id;
 			$this->Account->saveField('api_key', '');
 			$this->Session->setFlash('There was an error');
+			$this->redirect(array('action' => 'index'));
 		}
 	}
 	
@@ -42,6 +43,7 @@ class AccountsController extends AppController {
 		} else {
 			$this->Session->setFlash('There was an error');
 		}
+		$this->redirect(array('action' => 'index'));
 	}
 	
 	function deviantart() {

@@ -167,7 +167,7 @@
 	Configure::write('Session.cookie', 'CAKEPHP');
 
 /**
- * Session time out time (in seconds).
+ * Session time out time (in minutes).
  * Actual value depends on 'Security.level' setting.
  */
 	Configure::write('Session.timeout', '120');
@@ -179,8 +179,7 @@
 
 /**
  * When set to false, HTTP_USER_AGENT will not be checked
- * in the session. You might want to set the value to false, when dealing with
- * older versions of IE, Chrome Frame or certain web-browsing devices and AJAX
+ * in the session
  */
 	Configure::write('Session.checkAgent', true);
 
@@ -201,12 +200,12 @@
 /**
  * A random string used in security hashing methods.
  */
-	Configure::write('Security.salt', 'cd425c9716243f5704068aa887e1aa097cf81316');
+	Configure::write('Security.salt', '57ef0378781e8635f20845126a4b1517582e8e81');
 
 /**
  * A random numeric string (digits only) used to encrypt/decrypt strings.
  */
-	Configure::write('Security.cipherSeed', '323862646434663439663339343238');
+	Configure::write('Security.cipherSeed', '346666323638613061663532626364');
 
 /**
  * Apply timestamps with the last modified time to static assets (js, css, images).
