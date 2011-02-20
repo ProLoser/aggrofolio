@@ -5,20 +5,13 @@ class Project extends AppModel {
 		'name' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+				'message' => 'Name must not be left empty',
 			),
 		),
 		'cvs_url' => array(
 			'rule' => 'isUnique',
 			'message' => 'This project url already exists',
 		)
-	);
-	var $actsAs = array(
-		'Github.Github'
 	);
 
 	var $belongsTo = array(
@@ -28,9 +21,15 @@ class Project extends AppModel {
 	);   
 	
 	function scanGithub($account) {
-		$projects = $this->findRepos($account['Account']['username']);
-		$data = $projects['Repositories']['Repository'];
-		foreach ($data as $i => $project) {
+		$default = $this->useDbConfig;
+		$this->useDbConfig = 'github';
+		$projects = $this->find('all', array(
+			'conditions' => array('username' => $account['Account']['username']), 
+			'fields' => 'repos'
+		));
+		$this->useDbConfig = $default;
+		cd 
+		foreach ($data as $project) {
 			$this->save(array('Project' => array(
 				'cvs_url' => $project['url'],
 				'account_id' => $account['Account']['id'],
@@ -49,7 +48,7 @@ class Project extends AppModel {
 		);
 		$this->useDbConfig = $default;
 		
-		foreach ($projects as $i => $project) {
+		foreach ($projects as $project) {
 			$this->save(array('Project' => array(
 				'cvs_url' => $project['url'],
 				'account_id' => $account['Account']['id'],
