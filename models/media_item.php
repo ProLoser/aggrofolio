@@ -44,5 +44,16 @@ class MediaItem extends AppModel {
 			'order' => ''
 		)
 	);
+	
+	
+	public function scanDevArtAlbum($user, $albumId = null) {
+		$path = 'http://backend.deviantart.com/rss.xml?type=deviation&offset=0&q=gallery:' . $user;
+		if ($albumId) {
+			$path .= '/' . $albumId;
+		}
+		$this->useDbConfig = 'deviantart';
+		$this->feedUrl = $path;
+		return $this->find('all');
+	}
 }
 ?>

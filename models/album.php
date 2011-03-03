@@ -32,7 +32,8 @@ class Album extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		)
+		),
+		'Account',
 	);
 
 	var $hasMany = array(
@@ -51,8 +52,7 @@ class Album extends AppModel {
 		)
 	);
 	
-	public function scanDevArtUser($username) {
-		$user = 'thecritique';
+	public function scanDevArtFolders($user) {
 		$page = sprintf('http://%s.deviantart.com/gallery/', $user);
 		$link = array('tag' => 'a', 'class' => 'tv150-cover');
 		$title = array('tag' => 'div', 'class' => 'tv150-tag');
@@ -61,35 +61,27 @@ class Album extends AppModel {
 		$doc = new DOMDocument();
 		$doc->validateOnParse = true;
 		$doc->loadHTMLFile($page);
-		$subset = $doc->getElementById('output');
-		$subset = simplexml_import_dom($subset)->asXML();
-		$subset = simplexml_load_string($subset);
-		$links = $subset->xpath(sprintf(
-		    "//%s[@class='%s']",
-		    $link['tag'],
-		    $link['class']
-		));
-		$titles = $subset->xpath(sprintf(
-		    "//%s[@class='%s']",
-		    $title['tag'],
-		    $title['class']
-		));
-		debug($links[0]);
-		debug($titles);
-		foreach ($links as $i => $link) {
-			$link = $links[$i]->attributes();
-			$title = $titles[$i]->attributes();
-			debug($link);
-			$folders[$link['href']] = $title[0];
+		$xpath = new DOMXPath($doc);
+		foreach($xpath->query("//{$link['tag']}[@class='{$link['class']}']") as $node) {
+		    $data[] = str_replace("http://{$user}.deviantart.com/gallery/", '', $node->getAttribute('href'));
 		}
-		
-		debug($folders);
+		foreach($xpath->query("//{$title['tag']}[@class='{$title['class']}']") as $node) {
+		    $data[] = $node->textContent;
+		}
+		return array_combine($links, $titles);
 	}
 	
-	public function scanDevArtAlbum($user, $albumId = null) {
-		$path = 'http://backend.deviantart.com/rss.xml?type=deviation&offset=0&q=gallery:' . $user;
-		if ($albumId) {
-			$path .= '/' . $albumId;
+	public function scanDeviantart($accountId) {
+		$username = $this->Account->field('username', array('id' => $accountId));
+		$folders = $this->scanDevArtFolders($username);
+		foreach ($folders as $uuid => $name) {
+			$data['Album'] = array(
+				'uuid' => $uuid,
+				'name' => $name,
+				'account_id' => $accountId,
+				'url' => sprintf('http://%s.deviantart.com/gallery/%s', $username, $uuid),
+			);
+			$this->save($data);
 		}
 	}
 
