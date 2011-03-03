@@ -37,6 +37,7 @@ class AppController extends Controller {
 		'Time',
 		'Html',
 		'Form',
+		'Batch.Batch',
 	);
 	var $components = array(
 		'Session',

@@ -6,9 +6,7 @@ class ProjectsController extends AppController {
 
 	function index() {
 		$this->Project->recursive = 0;
-		$projects = $this->paginate();
-		$categories = $this->Project->Category->find('list');
-		$this->set(compact('projects', 'categories'));
+		$this->set('projects', $this->paginate());
 	}
 
 	function view($id = null) {
@@ -16,8 +14,7 @@ class ProjectsController extends AppController {
 			$this->Session->setFlash(__('Invalid project', true));
 			$this->redirect(array('action' => 'index'));
 		}
-		$project = $this->Project->read(null, $id);
-		$this->set(compact('project'));
+		$this->set('project', $this->Project->read(null, $id));
 	}
 
 	function add() {
@@ -30,8 +27,8 @@ class ProjectsController extends AppController {
 				$this->Session->setFlash(__('The project could not be saved. Please, try again.', true));
 			}
 		}
-		$categories = $this->Project->Category->find('list');
-		$this->set(compact('categories'));
+		$accounts = $this->Project->Account->find('list');
+		$this->set(compact('accounts'));
 	}
 
 	function edit($id = null) {
@@ -50,8 +47,8 @@ class ProjectsController extends AppController {
 		if (empty($this->data)) {
 			$this->data = $this->Project->read(null, $id);
 		}
-		$categories = $this->Project->Category->find('list');
-		$this->set(compact('categories'));
+		$accounts = $this->Project->Account->find('list');
+		$this->set(compact('accounts'));
 	}
 
 	function delete($id = null) {

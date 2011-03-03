@@ -2,7 +2,12 @@
 class AccountsController extends AppController {
 
 	var $name = 'Accounts';
-	var $components = array('Linkedin.Linkedin');
+	var $components = array(
+		'Linkedin.Linkedin' => array(
+			'appKey' => '1KqQhz25v7ne60NEPWhdZjIE8ET3cEijT0m0RvgqKqKpFEZHXjwX14Vz-Hp5hMQ6',
+			'appSecret' => 'ldmVbU9wn08ea6l9_2EkBQKXnwbjLOf0EfKjptHzc0U-8ldBYE7J1TDIFEt9e9H4',
+		),
+	);
 	
 	function test() {
 		$this->loadModel('Resource');
@@ -13,10 +18,22 @@ class AccountsController extends AppController {
 		debug($projects);
 	}
 	
-	function linkedin() {
-		$this->set('profile', $this->Linkedin->profile(null, array(
-			'first-name', 'last-name', 'positions' => 'company', 'educations', 'certifications', 'skills', 'recommendations-received'
-		)));
+	function linkedin($scan = false) {
+		$data = $this->Linkedin->profile(null, array(
+			'first-name', 'last-name', 'summary', 'specialties', 'associations', 'honors', 'interests', 'twitter-accounts', 
+			'positions' => array('title', 'summary', 'start-date', 'end-date', 'is-current', 'company'), 
+			'educations', 
+			'certifications',
+			'skills' => array('id', 'skill', 'proficiency', 'years'), 
+			'recommendations-received'
+		));
+		if (!$data) {
+			$this->Session->setFlash('There was an error: ' . $this->Linkedin->response['error']);
+		} elseif ($scan) {
+			$this->loadModel('Resume');
+			$this->Resume->scanLinkedin($data);
+		}
+		$this->set('profile', $data);
 	}
 	
 	function login($id = null) {

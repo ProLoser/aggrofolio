@@ -2,7 +2,6 @@
 class ResumesController extends AppController {
 
 	var $name = 'Resumes';
-	
 
 	function index() {
 		$this->Resume->recursive = 0;
@@ -27,8 +26,8 @@ class ResumesController extends AppController {
 				$this->Session->setFlash(__('The resume could not be saved. Please, try again.', true));
 			}
 		}
-		$users = $this->Resume->User->find('list');
-		$this->set(compact('users'));
+		$resumeRecommendations = $this->Resume->ResumeRecommendation->find('list');
+		$this->set(compact('resumeRecommendations'));
 	}
 
 	function edit($id = null) {
@@ -47,8 +46,8 @@ class ResumesController extends AppController {
 		if (empty($this->data)) {
 			$this->data = $this->Resume->read(null, $id);
 		}
-		$users = $this->Resume->User->find('list');
-		$this->set(compact('users'));
+		$resumeRecommendations = $this->Resume->ResumeRecommendation->find('list');
+		$this->set(compact('resumeRecommendations'));
 	}
 
 	function delete($id = null) {

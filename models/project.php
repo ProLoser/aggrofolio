@@ -15,9 +15,9 @@ class Project extends AppModel {
 	);
 
 	var $belongsTo = array(
-		'Category',
-		'User',
+		//'User',
 		'Account',
+		'ProjectCategory',
 	);
 	
 	function read($fields = null, $id) {

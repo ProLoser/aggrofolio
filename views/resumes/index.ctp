@@ -11,7 +11,7 @@
 			<th><?php echo $this->Paginator->sort('attachment_meta_type');?></th>
 			<th><?php echo $this->Paginator->sort('content');?></th>
 			<th><?php echo $this->Paginator->sort('visible');?></th>
-			<th><?php echo $this->Paginator->sort('user_id');?></th>
+			<th><?php echo $this->Paginator->sort('objective');?></th>
 			<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
@@ -32,9 +32,7 @@
 		<td><?php echo $resume['Resume']['attachment_meta_type']; ?>&nbsp;</td>
 		<td><?php echo $resume['Resume']['content']; ?>&nbsp;</td>
 		<td><?php echo $resume['Resume']['visible']; ?>&nbsp;</td>
-		<td>
-			<?php echo $this->Html->link($resume['User']['name'], array('controller' => 'users', 'action' => 'view', $resume['User']['id'])); ?>
-		</td>
+		<td><?php echo $resume['Resume']['objective']; ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $resume['Resume']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $resume['Resume']['id'])); ?>
@@ -61,7 +59,13 @@
 	<h3><?php __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('New Resume', true), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Users', true), array('controller' => 'users', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User', true), array('controller' => 'users', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Resume Recommendations', true), array('controller' => 'resume_recommendations', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Resume Recommendation', true), array('controller' => 'resume_recommendations', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Resume Schools', true), array('controller' => 'resume_schools', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Resume School', true), array('controller' => 'resume_schools', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Resume Skills', true), array('controller' => 'resume_skills', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Resume Skill', true), array('controller' => 'resume_skills', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Resume Employers', true), array('controller' => 'resume_employers', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Resume Employer', true), array('controller' => 'resume_employers', 'action' => 'add')); ?> </li>
 	</ul>
 </div>

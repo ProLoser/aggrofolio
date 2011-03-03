@@ -50,7 +50,7 @@
  *
  */
 	if (!defined('CAKE_CORE_INCLUDE_PATH')) {
-		define('CAKE_CORE_INCLUDE_PATH', 'C:' . DS . 'wamp' . DS . 'cakephp');
+		define('CAKE_CORE_INCLUDE_PATH', 'C:' . DS . 'wampserver64' . DS . 'bin' . DS . 'cakephp');
 	}
 
 /**

@@ -1,5 +1,5 @@
 <?php
-/* Resumes Test cases generated on: 2011-02-15 12:22:58 : 1297772578*/
+/* Resumes Test cases generated on: 2011-02-28 08:43:15 : 1298882595*/
 App::import('Controller', 'Resumes');
 
 class TestResumesController extends ResumesController {
@@ -11,7 +11,7 @@ class TestResumesController extends ResumesController {
 }
 
 class ResumesControllerTestCase extends CakeTestCase {
-	var $fixtures = array('app.resume', 'app.user', 'app.account', 'app.album', 'app.media_item', 'app.project', 'app.category');
+	var $fixtures = array('app.resume', 'app.resume_recommendation', 'app.resumes_resume_recommendation');
 
 	function startTest() {
 		$this->Resumes =& new TestResumesController();

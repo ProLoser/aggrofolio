@@ -1,6 +1,6 @@
 <?php
-class Category extends AppModel {
-	var $name = 'Category';
+class MediaCategory extends AppModel {
+	var $name = 'MediaCategory';
 	var $validate = array(
 		'name' => array(
 			'notempty' => array(
@@ -33,11 +33,35 @@ class Category extends AppModel {
 			),
 		),
 	);
+	//The Associations below have been created with all possible keys, those that are not needed can be removed
+
+	var $belongsTo = array(
+		'ParentMediaCategory' => array(
+			'className' => 'MediaCategory',
+			'foreignKey' => 'parent_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		)
+	);
 
 	var $hasMany = array(
-		'Project' => array(
-			'className' => 'Project',
-			'foreignKey' => 'category_id',
+		'Album' => array(
+			'className' => 'Album',
+			'foreignKey' => 'media_category_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'ChildMediaCategory' => array(
+			'className' => 'MediaCategory',
+			'foreignKey' => 'parent_id',
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
@@ -48,10 +72,6 @@ class Category extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		)
-	);
-	
-	var $actsAs = array(
-		'Tree',
 	);
 
 }
