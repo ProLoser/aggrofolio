@@ -50,6 +50,48 @@ class Album extends AppModel {
 			'counterQuery' => ''
 		)
 	);
+	
+	public function scanDevArtUser($username) {
+		$user = 'thecritique';
+		$page = sprintf('http://%s.deviantart.com/gallery/', $user);
+		$link = array('tag' => 'a', 'class' => 'tv150-cover');
+		$title = array('tag' => 'div', 'class' => 'tv150-tag');
+		
+		libxml_use_internal_errors(true);
+		$doc = new DOMDocument();
+		$doc->validateOnParse = true;
+		$doc->loadHTMLFile($page);
+		$subset = $doc->getElementById('output');
+		$subset = simplexml_import_dom($subset)->asXML();
+		$subset = simplexml_load_string($subset);
+		$links = $subset->xpath(sprintf(
+		    "//%s[@class='%s']",
+		    $link['tag'],
+		    $link['class']
+		));
+		$titles = $subset->xpath(sprintf(
+		    "//%s[@class='%s']",
+		    $title['tag'],
+		    $title['class']
+		));
+		debug($links[0]);
+		debug($titles);
+		foreach ($links as $i => $link) {
+			$link = $links[$i]->attributes();
+			$title = $titles[$i]->attributes();
+			debug($link);
+			$folders[$link['href']] = $title[0];
+		}
+		
+		debug($folders);
+	}
+	
+	public function scanDevArtAlbum($user, $albumId = null) {
+		$path = 'http://backend.deviantart.com/rss.xml?type=deviation&offset=0&q=gallery:' . $user;
+		if ($albumId) {
+			$path .= '/' . $albumId;
+		}
+	}
 
 }
 ?>

@@ -67,3 +67,6 @@
 [submodule "plugins/trimmable"]
 	path = plugins/trimmable
 	url = git://github.com/josegonzalez/trimmable-behavior.git
+[submodule "plugins/rss"]
+	path = plugins/rss
+	url = git://github.com/joeytrapp/CakePHP-RSS-Datasource.git

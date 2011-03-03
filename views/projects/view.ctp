@@ -91,12 +91,7 @@
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Category'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $this->Html->link($project['Category']['name'], array('controller' => 'categories', 'action' => 'view', $project['Category']['id'])); ?>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('User Id'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $project['Project']['user_id']; ?>
+			<?php echo $this->Html->link($project['ProjectCategory']['name'], array('controller' => 'categories', 'action' => 'view', $project['ProjectCategory']['id'])); ?>
 			&nbsp;
 		</dd>
 	</dl>
