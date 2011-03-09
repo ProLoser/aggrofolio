@@ -70,3 +70,6 @@
 [submodule "plugins/rss"]
 	path = plugins/rss
 	url = git://github.com/joeytrapp/CakePHP-RSS-Datasource.git
+[submodule "plugins/flickr"]
+	path = plugins/flickr
+	url = git@github.com:ProLoser/CakePHP-Flickr.git

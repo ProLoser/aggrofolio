@@ -11,15 +11,24 @@ class DATABASE_CONFIG {
 	);
 	
 	var $codaset = array(
-		'datasource' => 'Codaset.Codaset',
+		'datasource' => 'Apis.Apis',
+		'driver' => 'Codaset.Codaset',
 	);
 	
 	var $github = array(
-		'datasource' => 'Github.Github',
+		'datasource' => 'Apis.Apis',
+		'driver' => 'Github.Github',
 	);
 	
 	var $deviantart = array(
 		'datasource' => 'Rss.Rss',
+	);
+	
+	var $flickr = array(
+		'datasource' => 'Apis.Apis',
+		'driver' => 'Flickr.Flickr',
+		'login' => '80321c67bcc5f64e6322eceed5c887aa',
+		'password' => 'f66a8cf28922ccd7',
 	);
 }
 ?>
