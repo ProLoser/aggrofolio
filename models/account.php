@@ -1,6 +1,7 @@
 <?php
 class Account extends AppModel {
 	var $name = 'Account';
+	var $displayField = 'type';
 	var $validate = array(
 		'username' => array(
 			'notempty' => array(

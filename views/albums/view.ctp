@@ -31,16 +31,6 @@
 			<?php echo $album['Album']['url']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Visible'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $album['Album']['visible']; ?>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('User Id'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $album['Album']['user_id']; ?>
-			&nbsp;
-		</dd>
 	</dl>
 </div>
 <div class="actions">

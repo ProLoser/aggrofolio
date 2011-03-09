@@ -72,6 +72,7 @@ class Project extends AppModel {
 		));
 		$this->useDbConfig = $default;
 		foreach ($data as $project) {
+			$this->create();
 			$this->save(array('Project' => array(
 				'cvs_url' => $project['url'],
 				'account_id' => $account['Account']['id'],
@@ -92,6 +93,7 @@ class Project extends AppModel {
 		$this->useDbConfig = $default;
 		
 		foreach ($projects as $project) {
+			$this->create();
 			$this->save(array('Project' => array(
 				'cvs_url' => $project['url'],
 				'account_id' => $account['Account']['id'],

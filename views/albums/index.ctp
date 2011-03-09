@@ -8,8 +8,6 @@
 			<th><?php echo $this->Paginator->sort('name');?></th>
 			<th><?php echo $this->Paginator->sort('description');?></th>
 			<th><?php echo $this->Paginator->sort('url');?></th>
-			<th><?php echo $this->Paginator->sort('visible');?></th>
-			<th><?php echo $this->Paginator->sort('user_id');?></th>
 			<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
@@ -27,9 +25,8 @@
 		<td><?php echo $album['Album']['name']; ?>&nbsp;</td>
 		<td><?php echo $album['Album']['description']; ?>&nbsp;</td>
 		<td><?php echo $album['Album']['url']; ?>&nbsp;</td>
-		<td><?php echo $album['Album']['visible']; ?>&nbsp;</td>
-		<td><?php echo $album['Album']['user_id']; ?>&nbsp;</td>
 		<td class="actions">
+			<?php echo $this->Html->link(__('Scan', true), array('controller' => 'media_items', 'action' => 'scan', $album['Album']['id'])); ?>
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $album['Album']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $album['Album']['id'])); ?>
 			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $album['Album']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $album['Album']['id'])); ?>

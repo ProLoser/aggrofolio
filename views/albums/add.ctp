@@ -6,8 +6,10 @@
 		echo $this->Form->input('name');
 		echo $this->Form->input('description');
 		echo $this->Form->input('url');
-		echo $this->Form->input('visible');
-		echo $this->Form->input('user_id');
+		echo $this->Form->input('published');
+		echo $this->Form->input('media_category_id');
+		echo $this->Form->input('uuid');
+		echo $this->Form->input('account_id');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>

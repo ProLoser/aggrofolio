@@ -30,8 +30,12 @@
 		<td><?php echo $account['Account']['email']; ?>&nbsp;</td>
 		<td><?php echo $account['Account']['type']; ?>&nbsp;</td>
 		<td class="actions">
+		<?php if ($account['Account']['type'] == 'deviantart'): ?>
+			<?php echo $this->Html->link(__('Scan', true), array('controller' => 'albums', 'action' => 'scan', $account['Account']['id'])); ?>
+		<?php else: ?>
 			<?php $action = ($account['Account']['type'] == 'linkedin') ? 'login': 'scan'; ?>
 			<?php echo $this->Html->link(__('Scan', true), array('action' => $action, $account['Account']['id'])); ?>
+		<?php endif ?>
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $account['Account']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $account['Account']['id'])); ?>
 			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $account['Account']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $account['Account']['id'])); ?>

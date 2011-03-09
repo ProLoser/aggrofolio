@@ -7,6 +7,16 @@ class MediaItemsController extends AppController {
 		$this->MediaItem->recursive = 0;
 		$this->set('mediaItems', $this->paginate());
 	}
+	
+	function scan($albumId = null) {
+		if (!$albumId) {
+			$this->Session->setFlash(__('Invalid album', true));
+			$this->redirect(array('action' => 'index'));
+		}
+		$this->MediaItem->scanDevArtAlbum($albumId);
+		$this->Session->setFlash(__('Scan Successfull', true));
+		$this->redirect(array('action' => 'index'));
+	}
 
 	function view($id = null) {
 		if (!$id) {
