@@ -9,7 +9,7 @@ class AlbumsController extends AppController {
 	}
 	
 	function scan($accountId = null) {
-		$this->Album->scanDeviantart($accountId);
+		$this->Album->scan($accountId);
 		$this->redirect(array('action' => 'index'));
 	}
 

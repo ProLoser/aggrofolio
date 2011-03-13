@@ -31,11 +31,19 @@ class MediaItem extends AppModel {
 	);
 	
 	
-	public function scanDevArtAlbum($albumId) {
+	public function scan($albumId) {
 		$album = $this->Album->find('first', array(
 			'conditions' => array('Album.id' => $albumId), 
 			'contain' => array('Account'),
 		));
+		if ($album['Account']['type'] == 'deviantart') {
+			$this->scanDevArtAlbum($album);
+		} elseif ($album['Account']['type'] == 'flickr') {
+			$this->scanFlickr($album);
+		}
+	}
+
+	public function scanDevArtAlbum($album) {
 		$mediaItems = $this->fetchDevArt($album['Account']['username'], $album['Album']['uuid']);
 		foreach ($mediaItems as $mediaItem) {
 			$data['MediaItem'] = array(
@@ -69,6 +77,25 @@ class MediaItem extends AppModel {
 		} while ($count > 0);
 		$this->useDbConfig = 'default';
 		return $mediaItems;
+	}
+	
+	public function scanFlickr($album) {
+		$this->useDbConfig = 'flickr';
+		$photos = $this->find('all', array(
+			'fields' => 'photos',
+			'conditions' => array('photoset_id' => $album['Album']['uuid']),
+		));
+		$this->useDbConfig = 'default';
+		foreach ($photos['photoset']['photo'] as $photo) {
+			$data['MediaItem'] = array(
+				'url' => sprintf('http://www.flickr.com/photos/%s/%s', $album['Account']['username'], $photo['id']),
+				'name' => $photo['title'],
+				'uuid' => $photo['id'],
+				'album_id' => $album['Album']['id'],
+			);
+			$this->create();
+			$this->save($data);
+		}
 	}
 }
 ?>

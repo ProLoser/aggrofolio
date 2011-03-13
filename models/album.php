@@ -26,9 +26,17 @@ class Album extends AppModel {
 		'MediaItem',
 	);
 	
+	public function scan($accountId) {
+		$account = $this->Account->read(null, $accountId);
+		$account['Account']['username'] = strtolower($account['Account']['username']);
+		if ($account['Account']['type'] == 'deviantart') {
+			$this->scanDeviantart($account);
+		} elseif ($account['Account']['type'] == 'flickr') {
+			$this->scanFlickr($account);
+		}
+	}
 	
-	public function scanDevArtFolders($user) {
-		$user = strtolower($user);
+	public function scanDeviantart($user) {
 		$page = sprintf('http://%s.deviantart.com/gallery/', $user);
 		$link = array('tag' => 'a', 'class' => 'tv150-cover');
 		$title = array('tag' => 'div', 'class' => 'tv150-tag');
@@ -46,28 +54,42 @@ class Album extends AppModel {
 		    $titles[] = $node->textContent;
 		}
 		if (is_array($links) && is_array($titles) && !empty($links) && !empty($titles)) {
-			return array_combine($links, $titles);
-		} else {
-			return null;
+			$folders = array_combine($links, $titles);
+			foreach ($folders as $uuid => $name) {
+				$data['Album'] = array(
+					'uuid' => $uuid,
+					'name' => $name,
+					'account_id' => $account['Account']['id'],
+					'url' => sprintf('http://%s.deviantart.com/gallery/%s', $account['Account']['username'], $uuid),
+				);
+				$this->create();
+				$this->save($data);
+			}
 		}
 	}
 	
-	
-	public function scanDeviantart($accountId) {
-		$username = $this->Account->field('username', array('id' => $accountId));
-		$folders = $this->scanDevArtFolders($username);
-		$username = strtolower($username);
-		foreach ($folders as $uuid => $name) {
+	public function scanFlickr($account) {
+		$this->useDbConfig = 'flickr';
+		$username = $this->find('all', array(
+			'fields' => 'people', 
+			'conditions' => array('username' => $account['Account']['username'])
+		));
+		$result = $this->find('all', array(
+			'fields' => 'sets', 
+			'conditions' => array('user_id' => $username['user']['nsid'])
+		));
+		$this->useDbConfig = 'default';
+		foreach ($result['photosets']['photoset'] as $photoset) {
 			$data['Album'] = array(
-				'uuid' => $uuid,
-				'name' => $name,
-				'account_id' => $accountId,
-				'url' => sprintf('http://%s.deviantart.com/gallery/%s', $username, $uuid),
+				'uuid' => $photoset['id'],
+				'name' => $photoset['title']['_content'],
+				'description' => $photoset['description']['_content'],
+				'account_id' => $account['Account']['id'],
+				'url' => sprintf('http://www.flickr.com/photos/%s/sets/%s', $account['Account']['username'], $photoset['id']),
 			);
 			$this->create();
 			$this->save($data);
 		}
 	}
-
 }
 ?>

@@ -60,6 +60,7 @@ class Account extends AppModel {
 		'grooveshark'	=> 'Grooveshark',
 		'pandora'		=> 'Pandora',
 		'facebook'		=> 'Facebook',
+		'flickr'		=> 'Flickr',
 	);
 }
 ?>

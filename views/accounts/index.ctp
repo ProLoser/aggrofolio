@@ -30,7 +30,7 @@
 		<td><?php echo $account['Account']['email']; ?>&nbsp;</td>
 		<td><?php echo $account['Account']['type']; ?>&nbsp;</td>
 		<td class="actions">
-		<?php if ($account['Account']['type'] == 'deviantart'): ?>
+		<?php if (in_array($account['Account']['type'], array('deviantart', 'flickr'))): ?>
 			<?php echo $this->Html->link(__('Scan', true), array('controller' => 'albums', 'action' => 'scan', $account['Account']['id'])); ?>
 		<?php else: ?>
 			<?php $action = ($account['Account']['type'] == 'linkedin') ? 'login': 'scan'; ?>
