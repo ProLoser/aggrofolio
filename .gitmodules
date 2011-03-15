@@ -73,3 +73,6 @@
 [submodule "plugins/flickr"]
 	path = plugins/flickr
 	url = git@github.com:ProLoser/CakePHP-Flickr.git
+[submodule "plugins/migrations"]
+	path = plugins/migrations
+	url = git://github.com/CakeDC/migrations.git
