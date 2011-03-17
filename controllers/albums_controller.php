@@ -9,7 +9,8 @@ class AlbumsController extends AppController {
 	}
 	
 	function scan($accountId = null) {
-		$this->Album->scan($accountId);
+		$count = $this->Album->scan($accountId);
+		$this->Session->setFlash(__($count . ' Album(s) scanned', true));
 		$this->redirect(array('action' => 'index'));
 	}
 

@@ -32,7 +32,7 @@ class Album extends AppModel {
 		if ($account['Account']['type'] == 'deviantart') {
 			$this->scanDeviantart($account);
 		} elseif ($account['Account']['type'] == 'flickr') {
-			$this->scanFlickr($account);
+			return $this->scanFlickr($account);
 		}
 	}
 	
@@ -79,17 +79,22 @@ class Album extends AppModel {
 			'conditions' => array('user_id' => $username['user']['nsid'])
 		));
 		$this->useDbConfig = 'default';
-		foreach ($result['photosets']['photoset'] as $photoset) {
-			$data['Album'] = array(
-				'uuid' => $photoset['id'],
-				'name' => $photoset['title']['_content'],
-				'description' => $photoset['description']['_content'],
-				'account_id' => $account['Account']['id'],
-				'url' => sprintf('http://www.flickr.com/photos/%s/sets/%s', $account['Account']['username'], $photoset['id']),
-			);
-			$this->create();
-			$this->save($data);
+		$count = 0;
+		if (!empty($result)) {
+			foreach ($result['photosets']['photoset'] as $photoset) {
+				$data['Album'] = array(
+					'uuid' => $photoset['id'],
+					'name' => $photoset['title']['_content'],
+					'description' => $photoset['description']['_content'],
+					'account_id' => $account['Account']['id'],
+					'url' => sprintf('http://www.flickr.com/photos/%s/sets/%s', $account['Account']['username'], $photoset['id']),
+				);
+				$this->create();
+				$this->save($data);
+				$count++;
+			}
 		}
+		return $count;
 	}
 }
 ?>
