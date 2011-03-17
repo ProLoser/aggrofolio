@@ -73,3 +73,6 @@
 [submodule "plugins/flickr"]
 	path = plugins/flickr
 	url = git@github.com:ProLoser/CakePHP-Flickr.git
+[submodule "plugins/apis"]
+	path = plugins/apis
+	url = git@github.com:ProLoser/CakePHP-Api-Datasources.git
