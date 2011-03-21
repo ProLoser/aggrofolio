@@ -76,3 +76,6 @@
 [submodule "plugins/migrations"]
 	path = plugins/migrations
 	url = git://github.com/CakeDC/migrations.git
+[submodule "plugins/apis"]
+	path = plugins/apis
+	url = git@github.com:ProLoser/CakePHP-Api-Datasources.git
