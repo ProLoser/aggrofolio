@@ -1,5 +1,5 @@
 <?php
-class M4d86cdf06f2c4f00953211807d7a26ff extends CakeMigration {
+class M4d87439d5e9c4e29ac9212bc7d7a26ff extends CakeMigration {
 
 /**
  * Migration description
@@ -259,7 +259,7 @@ class M4d86cdf06f2c4f00953211807d7a26ff extends CakeMigration {
 					'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 10, 'key' => 'primary'),
 					'created' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
 					'type' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 100, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
-					'uui' => array('type' => 'integer', 'null' => true, 'default' => NULL),
+					'uuid' => array('type' => 'integer', 'null' => true, 'default' => NULL),
 					'account_id' => array('type' => 'integer', 'null' => true, 'default' => NULL),
 					'text' => array('type' => 'text', 'null' => false, 'default' => NULL, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
 					'first_name' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 100, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
@@ -351,6 +351,7 @@ class M4d86cdf06f2c4f00953211807d7a26ff extends CakeMigration {
 					'first_name' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 20, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
 					'last_name' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 20, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
 					'indexes' => array(
+						'PRIMARY' => array('column' => 'id', 'unique' => 1),
 					),
 					'tableParameters' => array('charset' => 'latin1', 'collate' => 'latin1_swedish_ci', 'engine' => 'InnoDB'),
 				),
