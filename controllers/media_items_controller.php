@@ -13,8 +13,8 @@ class MediaItemsController extends AppController {
 			$this->Session->setFlash(__('Invalid album', true));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->MediaItem->scan($albumId);
-		$this->Session->setFlash(__('Scan Successfull', true));
+		$count = $this->MediaItem->scan($albumId);
+		$this->Session->setFlash(__($count . ' Media Item(s) Scanned', true));
 		$this->redirect(array('action' => 'index'));
 	}
 

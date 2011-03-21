@@ -13,26 +13,6 @@ class Account extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'email' => array(
-			'email' => array(
-				'rule' => array('email'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'password' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
 		'type' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
@@ -61,6 +41,7 @@ class Account extends AppModel {
 		'pandora'		=> 'Pandora',
 		'facebook'		=> 'Facebook',
 		'flickr'		=> 'Flickr',
+		'xmarks'		=> 'XMarks',
 	);
 }
 ?>

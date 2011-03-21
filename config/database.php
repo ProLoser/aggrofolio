@@ -24,6 +24,10 @@ class DATABASE_CONFIG {
 		'datasource' => 'Rss.Rss',
 	);
 	
+	var $rss = array(
+		'datasource' => 'Rss.Rss',
+	);
+	
 	var $flickr = array(
 		'datasource' => 'Apis.Apis',
 		'driver' => 'Flickr.Flickr',

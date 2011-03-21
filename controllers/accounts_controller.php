@@ -9,15 +9,6 @@ class AccountsController extends AppController {
 		),
 	);
 	
-	function test() {
-		$this->loadModel('Resource');
-		$projects = array_merge(
-			$this->Resource->find('all', array('conditions' => array('username' => 'proloser'), 'fields' => 'projects')),
-			$this->Resource->find('all', array('conditions' => array('username' => 'proloser'), 'fields' => 'collaborations'))
-		);
-		debug($projects);
-	}
-	
 	function linkedin($scan = false) {
 		$data = $this->Linkedin->profile(null, array(
 			'first-name', 'last-name', 'summary', 'specialties', 'associations', 'honors', 'interests', 'twitter-accounts', 

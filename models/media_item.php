@@ -37,26 +37,30 @@ class MediaItem extends AppModel {
 			'contain' => array('Account'),
 		));
 		if ($album['Account']['type'] == 'deviantart') {
-			$this->scanDevArtAlbum($album);
+			return $this->scanDevArtAlbum($album);
 		} elseif ($album['Account']['type'] == 'flickr') {
-			$this->scanFlickr($album);
+			return $this->scanFlickr($album);
 		}
 	}
 
 	public function scanDevArtAlbum($album) {
 		$mediaItems = $this->fetchDevArt($album['Account']['username'], $album['Album']['uuid']);
-		foreach ($mediaItems as $mediaItem) {
-			$data['MediaItem'] = array(
-				'url' => $mediaItem['MediaItem']['link'],
-				'name' => $mediaItem['MediaItem']['Title'][0],
-				'description' => $mediaItem['MediaItem']['Description'][1]['value'],
-				'uuid' => $mediaItem['MediaItem']['guid']['value'],
-				'album_id' => $album['Album']['id'],
-			);
-			$this->create();
-			$this->save($data);
+		$count = 0;
+		if (!empty($mediaItems)) {
+			foreach ($mediaItems as $mediaItem) {
+				$data['MediaItem'] = array(
+					'url' => $mediaItem['MediaItem']['link'],
+					'name' => $mediaItem['MediaItem']['Title'][0],
+					'description' => $mediaItem['MediaItem']['Description'][1]['value'],
+					'uuid' => $mediaItem['MediaItem']['guid']['value'],
+					'album_id' => $album['Album']['id'],
+				);
+				$this->create();
+				$this->save($data);
+				$count++;
+			}
 		}
-		return $mediaItems;
+		return $count;
 	}
 	
 	public function fetchDevArt($user, $albumId = null) {
@@ -86,16 +90,21 @@ class MediaItem extends AppModel {
 			'conditions' => array('photoset_id' => $album['Album']['uuid']),
 		));
 		$this->useDbConfig = 'default';
-		foreach ($photos['photoset']['photo'] as $photo) {
-			$data['MediaItem'] = array(
-				'url' => sprintf('http://www.flickr.com/photos/%s/%s', $album['Account']['username'], $photo['id']),
-				'name' => $photo['title'],
-				'uuid' => $photo['id'],
-				'album_id' => $album['Album']['id'],
-			);
-			$this->create();
-			$this->save($data);
+		$count = 0;
+		if (!empty($photos)) {
+			foreach ($photos['photoset']['photo'] as $photo) {
+				$data['MediaItem'] = array(
+					'url' => sprintf('http://www.flickr.com/photos/%s/%s', $album['Account']['username'], $photo['id']),
+					'name' => $photo['title'],
+					'uuid' => $photo['id'],
+					'album_id' => $album['Album']['id'],
+				);
+				$this->create();
+				$this->save($data);
+				$count++;
+			}
 		}
+		return $count;
 	}
 }
 ?>

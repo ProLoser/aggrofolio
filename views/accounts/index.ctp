@@ -32,6 +32,8 @@
 		<td class="actions">
 		<?php if (in_array($account['Account']['type'], array('deviantart', 'flickr'))): ?>
 			<?php echo $this->Html->link(__('Scan', true), array('controller' => 'albums', 'action' => 'scan', $account['Account']['id'])); ?>
+		<?php elseif ($account['Account']['type'] == 'xmarks'): ?>
+			<?php echo $this->Html->link(__('Scan', true), array('controller' => 'bookmarks', 'action' => 'scan', $account['Account']['id'])); ?>
 		<?php else: ?>
 			<?php $action = ($account['Account']['type'] == 'linkedin') ? 'login': 'scan'; ?>
 			<?php echo $this->Html->link(__('Scan', true), array('action' => $action, $account['Account']['id'])); ?>

@@ -1,5 +1,5 @@
 <?php
-class M4d7fe196973c4a77adb00ddc7d7a26ff extends CakeMigration {
+class M4d86cdf06f2c4f00953211807d7a26ff extends CakeMigration {
 
 /**
  * Migration description
@@ -70,6 +70,32 @@ class M4d7fe196973c4a77adb00ddc7d7a26ff extends CakeMigration {
 					'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 10, 'key' => 'primary'),
 					'album_id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 10),
 					'school_id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 10),
+					'indexes' => array(
+						'PRIMARY' => array('column' => 'id', 'unique' => 1),
+					),
+					'tableParameters' => array('charset' => 'latin1', 'collate' => 'latin1_swedish_ci', 'engine' => 'InnoDB'),
+				),
+				'bookmark_categories' => array(
+					'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 10, 'key' => 'primary'),
+					'created' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
+					'name' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 100, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
+					'description' => array('type' => 'text', 'null' => true, 'default' => NULL, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
+					'parent_id' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'length' => 10),
+					'lft' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 10),
+					'rght' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 10),
+					'indexes' => array(
+						'PRIMARY' => array('column' => 'id', 'unique' => 1),
+					),
+					'tableParameters' => array('charset' => 'latin1', 'collate' => 'latin1_swedish_ci', 'engine' => 'InnoDB'),
+				),
+				'bookmarks' => array(
+					'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 10, 'key' => 'primary'),
+					'created' => array('type' => 'datetime', 'null' => false, 'default' => NULL),
+					'name' => array('type' => 'string', 'null' => false, 'default' => NULL, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
+					'url' => array('type' => 'string', 'null' => false, 'default' => NULL, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
+					'description' => array('type' => 'text', 'null' => true, 'default' => NULL, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
+					'account_id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 10),
+					'bookmark_category_id' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'length' => 10),
 					'indexes' => array(
 						'PRIMARY' => array('column' => 'id', 'unique' => 1),
 					),
@@ -344,7 +370,7 @@ class M4d7fe196973c4a77adb00ddc7d7a26ff extends CakeMigration {
 		),
 		'down' => array(
 			'drop_table' => array(
-				'accounts', 'albums', 'albums_projects', 'albums_resume_employers', 'albums_schools', 'comments', 'media_categories', 'media_items', 'posts', 'project_categories', 'projects', 'resume_employers', 'resume_employers_resumes', 'resume_item_fields', 'resume_item_types', 'resume_items', 'resume_recommendations', 'resume_recommendations_resumes', 'resume_schools', 'resume_schools_resumes', 'resume_skills', 'resume_skills_resumes', 'resumes', 'users'
+				'accounts', 'albums', 'albums_projects', 'albums_resume_employers', 'albums_schools', 'bookmark_categories', 'bookmarks', 'comments', 'media_categories', 'media_items', 'posts', 'project_categories', 'projects', 'resume_employers', 'resume_employers_resumes', 'resume_item_fields', 'resume_item_types', 'resume_items', 'resume_recommendations', 'resume_recommendations_resumes', 'resume_schools', 'resume_schools_resumes', 'resume_skills', 'resume_skills_resumes', 'resumes', 'users'
 			),
 		),
 	);
