@@ -1,6 +1,7 @@
 <?php
 class ResumeSchool extends AppModel {
 	var $name = 'ResumeSchool';
+	var $displayField = 'name';
 	var $validate = array(
 		'published' => array(
 			'boolean' => array(
@@ -15,16 +16,6 @@ class ResumeSchool extends AppModel {
 		'deleted' => array(
 			'boolean' => array(
 				'rule' => array('boolean'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'date_started' => array(
-			'date' => array(
-				'rule' => array('date'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,

@@ -1,6 +1,7 @@
 <?php
 class ResumeEmployer extends AppModel {
 	var $name = 'ResumeEmployer';
+	var $displayField = 'name';
 	var $validate = array(
 		'name' => array(
 			'notempty' => array(

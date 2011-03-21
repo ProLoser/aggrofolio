@@ -27,7 +27,10 @@ class ResumesController extends AppController {
 			}
 		}
 		$resumeRecommendations = $this->Resume->ResumeRecommendation->find('list');
-		$this->set(compact('resumeRecommendations'));
+		$resumeSchools = $this->Resume->ResumeSchool->find('list');
+		$resumeSkills = $this->Resume->ResumeSkill->find('list');
+		$resumeEmployers = $this->Resume->ResumeEmployer->find('list');
+		$this->set(compact('resumeRecommendations', 'resumeSchools', 'resumeSkills', 'resumeEmployers'));
 	}
 
 	function edit($id = null) {
@@ -47,7 +50,10 @@ class ResumesController extends AppController {
 			$this->data = $this->Resume->read(null, $id);
 		}
 		$resumeRecommendations = $this->Resume->ResumeRecommendation->find('list');
-		$this->set(compact('resumeRecommendations'));
+		$resumeSchools = $this->Resume->ResumeSchool->find('list');
+		$resumeSkills = $this->Resume->ResumeSkill->find('list');
+		$resumeEmployers = $this->Resume->ResumeEmployer->find('list');
+		$this->set(compact('resumeRecommendations', 'resumeSchools', 'resumeSkills', 'resumeEmployers'));
 	}
 
 	function delete($id = null) {

@@ -33,16 +33,27 @@ class Resume extends AppModel {
 	);
 	
 	public function scanLinkedin($data, $accountId = null) {
+		$date = array('day' => 1, 'month' => 1, 'year' => null);
 		foreach ($data['skills']['values'] as $i => $skill) {
 			$skills[$i]['uuid'] = $skill['id'];
-			$skills[$i]['skill'] = $skill['skill']['name'];
+			$skills[$i]['name'] = $skill['skill']['name'];
+			$skills[$i]['years'] = $skill['years']['name'];
+			$skills[$i]['proficiency'] = $skill['proficiency']['name'];
+			$skills[$i]['account_id'] = $accountId;
 		}
 		if (!empty($skills)) {
 			$this->ResumeSkill->saveAll($skills);
 		}
 		foreach ($data['positions']['values'] as $i => $employer) {
-			if (isset($employer['company']['id'])) $employers[$i]['uuid'] = $employer['company']['id'];
+			if (isset($employer['company']['id'])) 
+				$employers[$i]['uuid'] = $employer['company']['id'];
 			$employers[$i]['name'] = $employer['company']['name'];
+			$employers[$i]['title'] = $employer['title'];
+			if (isset($employer['startDate']))
+				$employers[$i]['date_started'] = array_merge($date, $employer['startDate']);
+			if (isset($employer['endDate']))
+				$employers[$i]['date_ended'] = array_merge($date, $employer['endDate']);
+			$employers[$i]['account_id'] = $accountId;
 		}
 		if (!empty($employers)) {
 			$this->ResumeEmployer->saveAll($employers);
@@ -54,6 +65,11 @@ class Resume extends AppModel {
 			$schools[$i]['activities'] = $school['activities'];
 			$schools[$i]['notes'] = $school['notes'];
 			$schools[$i]['degree'] = $school['degree'];
+			if (isset($school['startDate']))
+				$schools[$i]['date_started'] = array_merge($date, $school['startDate']);
+			if (isset($school['endDate']))
+				$schools[$i]['date_ended'] = array_merge($date, $school['endDate']);
+			$schools[$i]['account_id'] = $accountId;
 		}
 		if (!empty($schools)) {
 			$this->ResumeSchool->saveAll($schools);
@@ -65,6 +81,7 @@ class Resume extends AppModel {
 			$recommendations[$i]['last_name'] = $recommendation['recommender']['lastName'];
 			$recommendations[$i]['recommendor_uuid'] = $recommendation['recommender']['id'];
 			$recommendations[$i]['text'] = $recommendation['recommendationText'];
+			$recommendations[$i]['account_id'] = $accountId;
 		}
 		if (!empty($recommendations)) {
 			$this->ResumeRecommendation->saveAll($recommendations);
@@ -74,8 +91,8 @@ class Resume extends AppModel {
 		$resume['associations'] = $data['associations'];
 		$resume['honors'] = $data['honors'];
 		$resume['interests'] = $data['interests'];
-		$resume['first_name'] = $data['first-name'];
-		$resume['last_name'] = $data['last-name'];
+		$resume['first_name'] = $data['firstName'];
+		$resume['last_name'] = $data['lastName'];
 		if (!empty($resume)) {
 			$this->save(array('Resume' => $resume));
 		}

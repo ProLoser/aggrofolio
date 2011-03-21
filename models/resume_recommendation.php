@@ -1,6 +1,10 @@
 <?php
 class ResumeRecommendation extends AppModel {
 	var $name = 'ResumeRecommendation';
+	var $displayField = 'name';
+	var $virtualFields = array(
+		'name' => 'CONCAT(ResumeRecommendation.first_name, " ", ResumeRecommendation.last_name)'
+	);
 	var $validate = array(
 		'first_name' => array(
 			'notempty' => array(
