@@ -6,42 +6,24 @@ class ResumeSkill extends AppModel {
 		'name' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+				'message' => 'Your custom message here',
 			),
 		),
 	);
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
-
+	
 	var $belongsTo = array(
-		'Account' => array(
-			'className' => 'Account',
-			'foreignKey' => 'account_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		)
+		'Account',
 	);
 
 	var $hasAndBelongsToMany = array(
-		'Resume' => array(
-			'className' => 'Resume',
-			'joinTable' => 'resume_skills_resumes',
-			'foreignKey' => 'resume_skill_id',
-			'associationForeignKey' => 'resume_id',
-			'unique' => true,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'finderQuery' => '',
-			'deleteQuery' => '',
-			'insertQuery' => ''
-		)
+		'Resume',
+	);
+	
+	var $proficiencies = array(
+		'expert'		=> 'Expert',
+		'advanced'		=> 'Advanced',
+		'intermediate'	=> 'Intermediate',
+		'beginner'		=> 'Beginner',
 	);
 
 }

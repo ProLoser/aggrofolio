@@ -5,25 +5,20 @@ class Resume extends AppModel {
 		'purpose' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+				'message' => 'Your custom message here',
 			),
 		),
 		'visible' => array(
 			'boolean' => array(
 				'rule' => array('boolean'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+				'message' => 'Your custom message here',
 			),
 		),
 	);
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
+
+	var $belongsTo = array(
+		'Account',
+	);
 
 	var $hasAndBelongsToMany = array(
 		'ResumeRecommendation',
@@ -34,6 +29,7 @@ class Resume extends AppModel {
 	
 	public function scanLinkedin($data, $accountId = null) {
 		$date = array('day' => 1, 'month' => 1, 'year' => null);
+		
 		foreach ($data['skills']['values'] as $i => $skill) {
 			$skills[$i]['uuid'] = $skill['id'];
 			$skills[$i]['name'] = $skill['skill']['name'];
@@ -44,11 +40,14 @@ class Resume extends AppModel {
 		if (!empty($skills)) {
 			$this->ResumeSkill->saveAll($skills);
 		}
+		
 		foreach ($data['positions']['values'] as $i => $employer) {
 			if (isset($employer['company']['id'])) 
 				$employers[$i]['uuid'] = $employer['company']['id'];
 			$employers[$i]['name'] = $employer['company']['name'];
 			$employers[$i]['title'] = $employer['title'];
+			$employers[$i]['summary'] = $employer['summary'];
+			$employers[$i]['currently_employed'] = $employer['isCurrent'];
 			if (isset($employer['startDate']))
 				$employers[$i]['date_started'] = array_merge($date, $employer['startDate']);
 			if (isset($employer['endDate']))
@@ -58,6 +57,7 @@ class Resume extends AppModel {
 		if (!empty($employers)) {
 			$this->ResumeEmployer->saveAll($employers);
 		}
+		
 		foreach ($data['educations']['values'] as $i => $school) {
 			if (isset($school['id'])) $schools[$i]['uuid'] = $school['id'];
 			$schools[$i]['field_of_study'] = $school['fieldOfStudy'];
@@ -74,6 +74,7 @@ class Resume extends AppModel {
 		if (!empty($schools)) {
 			$this->ResumeSchool->saveAll($schools);
 		}
+		
 		foreach ($data['recommendationsReceived']['values'] as $i => $recommendation) {
 			$recommendations[$i]['uuid'] = $recommendation['id'];
 			$recommendations[$i]['type'] = $recommendation['recommendationType']['code'];
@@ -86,6 +87,7 @@ class Resume extends AppModel {
 		if (!empty($recommendations)) {
 			$this->ResumeRecommendation->saveAll($recommendations);
 		}
+		
 		$resume['summary'] = $data['summary'];
 		$resume['specialties'] = $data['specialties'];
 		$resume['associations'] = $data['associations'];

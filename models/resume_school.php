@@ -24,8 +24,8 @@ class ResumeSchool extends AppModel {
 			),
 		),
 		'name' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
+			'isUnique' => array(
+				'rule' => array('isUnique'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,

@@ -7,12 +7,13 @@ class ResumesController extends AppController {
 		$this->Resume->recursive = 0;
 		$this->set('resumes', $this->paginate());
 	}
-
+	
 	function view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid resume', true));
 			$this->redirect(array('action' => 'index'));
 		}
+		$this->Resume->recursive = 1;
 		$this->set('resume', $this->Resume->read(null, $id));
 	}
 
@@ -47,6 +48,7 @@ class ResumesController extends AppController {
 			}
 		}
 		if (empty($this->data)) {
+			$this->Resume->recursive = 1;
 			$this->data = $this->Resume->read(null, $id);
 		}
 		$resumeRecommendations = $this->Resume->ResumeRecommendation->find('list');

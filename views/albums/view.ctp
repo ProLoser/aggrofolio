@@ -31,6 +31,26 @@
 			<?php echo $album['Album']['url']; ?>
 			&nbsp;
 		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Published'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $album['Album']['published']; ?>
+			&nbsp;
+		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Media Category'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $this->Html->link($album['MediaCategory']['name'], array('controller' => 'media_categories', 'action' => 'view', $album['MediaCategory']['id'])); ?>
+			&nbsp;
+		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Uuid'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $album['Album']['uuid']; ?>
+			&nbsp;
+		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Account'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $this->Html->link($album['Account']['type'], array('controller' => 'accounts', 'action' => 'view', $album['Account']['id'])); ?>
+			&nbsp;
+		</dd>
 	</dl>
 </div>
 <div class="actions">
@@ -40,8 +60,16 @@
 		<li><?php echo $this->Html->link(__('Delete Album', true), array('action' => 'delete', $album['Album']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $album['Album']['id'])); ?> </li>
 		<li><?php echo $this->Html->link(__('List Albums', true), array('action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Album', true), array('action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Accounts', true), array('controller' => 'accounts', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Account', true), array('controller' => 'accounts', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Media Categories', true), array('controller' => 'media_categories', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Media Category', true), array('controller' => 'media_categories', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Media Items', true), array('controller' => 'media_items', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Media Item', true), array('controller' => 'media_items', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Resume Employers', true), array('controller' => 'resume_employers', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Resume Employer', true), array('controller' => 'resume_employers', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Resume Schools', true), array('controller' => 'resume_schools', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Resume School', true), array('controller' => 'resume_schools', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
 <div class="related">
@@ -61,6 +89,7 @@
 		<th><?php __('Album Id'); ?></th>
 		<th><?php __('Description'); ?></th>
 		<th><?php __('Published'); ?></th>
+		<th><?php __('Uuid'); ?></th>
 		<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
@@ -84,6 +113,7 @@
 			<td><?php echo $mediaItem['album_id'];?></td>
 			<td><?php echo $mediaItem['description'];?></td>
 			<td><?php echo $mediaItem['published'];?></td>
+			<td><?php echo $mediaItem['uuid'];?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View', true), array('controller' => 'media_items', 'action' => 'view', $mediaItem['id'])); ?>
 				<?php echo $this->Html->link(__('Edit', true), array('controller' => 'media_items', 'action' => 'edit', $mediaItem['id'])); ?>
@@ -97,6 +127,124 @@
 	<div class="actions">
 		<ul>
 			<li><?php echo $this->Html->link(__('New Media Item', true), array('controller' => 'media_items', 'action' => 'add'));?> </li>
+		</ul>
+	</div>
+</div>
+<div class="related">
+	<h3><?php __('Related Resume Employers');?></h3>
+	<?php if (!empty($album['ResumeEmployer'])):?>
+	<table cellpadding = "0" cellspacing = "0">
+	<tr>
+		<th><?php __('Id'); ?></th>
+		<th><?php __('Created'); ?></th>
+		<th><?php __('Modified'); ?></th>
+		<th><?php __('Name'); ?></th>
+		<th><?php __('Account Id'); ?></th>
+		<th><?php __('Uuid'); ?></th>
+		<th><?php __('Title'); ?></th>
+		<th><?php __('Date Started'); ?></th>
+		<th><?php __('Date Ended'); ?></th>
+		<th><?php __('Currently Employed'); ?></th>
+		<th><?php __('Published'); ?></th>
+		<th><?php __('Deleted'); ?></th>
+		<th><?php __('Summary'); ?></th>
+		<th class="actions"><?php __('Actions');?></th>
+	</tr>
+	<?php
+		$i = 0;
+		foreach ($album['ResumeEmployer'] as $resumeEmployer):
+			$class = null;
+			if ($i++ % 2 == 0) {
+				$class = ' class="altrow"';
+			}
+		?>
+		<tr<?php echo $class;?>>
+			<td><?php echo $resumeEmployer['id'];?></td>
+			<td><?php echo $resumeEmployer['created'];?></td>
+			<td><?php echo $resumeEmployer['modified'];?></td>
+			<td><?php echo $resumeEmployer['name'];?></td>
+			<td><?php echo $resumeEmployer['account_id'];?></td>
+			<td><?php echo $resumeEmployer['uuid'];?></td>
+			<td><?php echo $resumeEmployer['title'];?></td>
+			<td><?php echo $resumeEmployer['date_started'];?></td>
+			<td><?php echo $resumeEmployer['date_ended'];?></td>
+			<td><?php echo $resumeEmployer['currently_employed'];?></td>
+			<td><?php echo $resumeEmployer['published'];?></td>
+			<td><?php echo $resumeEmployer['deleted'];?></td>
+			<td><?php echo $resumeEmployer['summary'];?></td>
+			<td class="actions">
+				<?php echo $this->Html->link(__('View', true), array('controller' => 'resume_employers', 'action' => 'view', $resumeEmployer['id'])); ?>
+				<?php echo $this->Html->link(__('Edit', true), array('controller' => 'resume_employers', 'action' => 'edit', $resumeEmployer['id'])); ?>
+				<?php echo $this->Html->link(__('Delete', true), array('controller' => 'resume_employers', 'action' => 'delete', $resumeEmployer['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $resumeEmployer['id'])); ?>
+			</td>
+		</tr>
+	<?php endforeach; ?>
+	</table>
+<?php endif; ?>
+
+	<div class="actions">
+		<ul>
+			<li><?php echo $this->Html->link(__('New Resume Employer', true), array('controller' => 'resume_employers', 'action' => 'add'));?> </li>
+		</ul>
+	</div>
+</div>
+<div class="related">
+	<h3><?php __('Related Resume Schools');?></h3>
+	<?php if (!empty($album['ResumeSchool'])):?>
+	<table cellpadding = "0" cellspacing = "0">
+	<tr>
+		<th><?php __('Id'); ?></th>
+		<th><?php __('Created'); ?></th>
+		<th><?php __('Modified'); ?></th>
+		<th><?php __('Uuid'); ?></th>
+		<th><?php __('Account Id'); ?></th>
+		<th><?php __('Published'); ?></th>
+		<th><?php __('Deleted'); ?></th>
+		<th><?php __('Date Started'); ?></th>
+		<th><?php __('Date Ended'); ?></th>
+		<th><?php __('Field Of Study'); ?></th>
+		<th><?php __('Degree'); ?></th>
+		<th><?php __('Name'); ?></th>
+		<th><?php __('Activities'); ?></th>
+		<th><?php __('Notes'); ?></th>
+		<th class="actions"><?php __('Actions');?></th>
+	</tr>
+	<?php
+		$i = 0;
+		foreach ($album['ResumeSchool'] as $resumeSchool):
+			$class = null;
+			if ($i++ % 2 == 0) {
+				$class = ' class="altrow"';
+			}
+		?>
+		<tr<?php echo $class;?>>
+			<td><?php echo $resumeSchool['id'];?></td>
+			<td><?php echo $resumeSchool['created'];?></td>
+			<td><?php echo $resumeSchool['modified'];?></td>
+			<td><?php echo $resumeSchool['uuid'];?></td>
+			<td><?php echo $resumeSchool['account_id'];?></td>
+			<td><?php echo $resumeSchool['published'];?></td>
+			<td><?php echo $resumeSchool['deleted'];?></td>
+			<td><?php echo $resumeSchool['date_started'];?></td>
+			<td><?php echo $resumeSchool['date_ended'];?></td>
+			<td><?php echo $resumeSchool['field_of_study'];?></td>
+			<td><?php echo $resumeSchool['degree'];?></td>
+			<td><?php echo $resumeSchool['name'];?></td>
+			<td><?php echo $resumeSchool['activities'];?></td>
+			<td><?php echo $resumeSchool['notes'];?></td>
+			<td class="actions">
+				<?php echo $this->Html->link(__('View', true), array('controller' => 'resume_schools', 'action' => 'view', $resumeSchool['id'])); ?>
+				<?php echo $this->Html->link(__('Edit', true), array('controller' => 'resume_schools', 'action' => 'edit', $resumeSchool['id'])); ?>
+				<?php echo $this->Html->link(__('Delete', true), array('controller' => 'resume_schools', 'action' => 'delete', $resumeSchool['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $resumeSchool['id'])); ?>
+			</td>
+		</tr>
+	<?php endforeach; ?>
+	</table>
+<?php endif; ?>
+
+	<div class="actions">
+		<ul>
+			<li><?php echo $this->Html->link(__('New Resume School', true), array('controller' => 'resume_schools', 'action' => 'add'));?> </li>
 		</ul>
 	</div>
 </div>

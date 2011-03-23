@@ -32,9 +32,11 @@ class AlbumsController extends AppController {
 				$this->Session->setFlash(__('The album could not be saved. Please, try again.', true));
 			}
 		}
-		$mediaCategories = $this->Album->MediaCategory->find('list');
 		$accounts = $this->Album->Account->find('list');
-		$this->set(compact('accounts', 'mediaCategories'));
+		$mediaCategories = $this->Album->MediaCategory->find('list');
+		$resumeEmployers = $this->Album->ResumeEmployer->find('list');
+		$resumeSchools = $this->Album->ResumeSchool->find('list');
+		$this->set(compact('accounts', 'mediaCategories', 'resumeEmployers', 'resumeSchools'));
 	}
 
 	function edit($id = null) {
@@ -53,9 +55,11 @@ class AlbumsController extends AppController {
 		if (empty($this->data)) {
 			$this->data = $this->Album->read(null, $id);
 		}
-		$mediaCategories = $this->Album->MediaCategory->find('list');
 		$accounts = $this->Album->Account->find('list');
-		$this->set(compact('accounts', 'mediaCategories'));
+		$mediaCategories = $this->Album->MediaCategory->find('list');
+		$resumeEmployers = $this->Album->ResumeEmployer->find('list');
+		$resumeSchools = $this->Album->ResumeSchool->find('list');
+		$this->set(compact('accounts', 'mediaCategories', 'resumeEmployers', 'resumeSchools'));
 	}
 
 	function delete($id = null) {

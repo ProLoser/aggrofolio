@@ -26,6 +26,11 @@ class Album extends AppModel {
 		'MediaItem',
 	);
 	
+	var $hasAndBelongsToMany = array(
+		'ResumeEmployer',
+		'ResumeSchool',
+	);
+	
 	public function scan($accountId) {
 		$account = $this->Account->read(null, $accountId);
 		$account['Account']['username'] = strtolower($account['Account']['username']);

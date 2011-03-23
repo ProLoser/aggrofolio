@@ -21,9 +21,10 @@ class AccountsController extends AppController {
 		if (!$data) {
 			$this->Session->setFlash('There was an error: ' . $this->Linkedin->response['error']);
 		} elseif ($scan) {
-			$this->loadModel('Resume');
-			$this->Resume->scanLinkedin($data);
+			$this->Account->Resume->scanLinkedin($data, $scan);
+			$this->Session->setFlash('Success!');
 		}
+		$this->redirect(array('action' => 'index'));
 		$this->set('profile', $data);
 	}
 	
@@ -36,7 +37,7 @@ class AccountsController extends AppController {
 			$this->Account->id = $id;
 			$this->Account->saveField('api_key', json_encode($this->Linkedin->response['linkedin']));
 			$this->Session->setFlash('You logged in');
-			$this->redirect(array('action' => 'linkedin'));
+			$this->redirect(array('action' => 'linkedin', $id));
 		} else {
 			$this->Account->id = $id;
 			$this->Account->saveField('api_key', '');

@@ -33,16 +33,9 @@ class MediaCategory extends AppModel {
 			),
 		),
 	);
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
-
-	var $belongsTo = array(
-		'ParentMediaCategory' => array(
-			'className' => 'MediaCategory',
-			'foreignKey' => 'parent_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		)
+	
+	var $behaviors = array(
+		'Tree',
 	);
 
 	var $hasMany = array(
@@ -59,19 +52,6 @@ class MediaCategory extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'ChildMediaCategory' => array(
-			'className' => 'MediaCategory',
-			'foreignKey' => 'parent_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		)
 	);
 
 }
