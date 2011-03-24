@@ -79,3 +79,6 @@
 [submodule "plugins/apis"]
 	path = plugins/apis
 	url = git@github.com:ProLoser/CakePHP-Api-Datasources.git
+[submodule "plugins/baking_plate"]
+	path = plugins/baking_plate
+	url = git://github.com/ProLoser/BakingPlate.git
