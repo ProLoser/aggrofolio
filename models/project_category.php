@@ -37,6 +37,10 @@ class ProjectCategory extends AppModel {
 	var $hasMany = array(
 		'Project',
 	);
+	
+	var $behaviors = array(
+		'Tree',
+	);
 
 }
 ?>

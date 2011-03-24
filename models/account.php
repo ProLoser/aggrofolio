@@ -27,6 +27,11 @@ class Account extends AppModel {
 	
 	var $hasMany = array(
 		'Project',
+		'Resume',
+		'ResumeEmployer',
+		'ResumeSchool',
+		'ResumeRecommendation',
+		'ResumeSkill',
 	);
 	
 	var $types = array(

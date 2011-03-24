@@ -1,5 +1,5 @@
 <?php
-/* Albums Test cases generated on: 2011-02-15 12:23:10 : 1297772590*/
+/* Albums Test cases generated on: 2011-03-23 11:01:28 : 1300878088*/
 App::import('Controller', 'Albums');
 
 class TestAlbumsController extends AlbumsController {
@@ -11,7 +11,7 @@ class TestAlbumsController extends AlbumsController {
 }
 
 class AlbumsControllerTestCase extends CakeTestCase {
-	var $fixtures = array('app.album', 'app.media_item');
+	var $fixtures = array('app.album', 'app.account', 'app.project', 'app.project_category', 'app.resume', 'app.resume_recommendation', 'app.resume_recommendations_resume', 'app.resume_school', 'app.resume_schools_resume', 'app.resume_skill', 'app.resume_skills_resume', 'app.resume_employer', 'app.albums_resume_employer', 'app.resume_employers_resume', 'app.media_category', 'app.media_item', 'app.albums_resume_school');
 
 	function startTest() {
 		$this->Albums =& new TestAlbumsController();

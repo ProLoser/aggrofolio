@@ -12,6 +12,13 @@
 			<th><?php echo $this->Paginator->sort('content');?></th>
 			<th><?php echo $this->Paginator->sort('visible');?></th>
 			<th><?php echo $this->Paginator->sort('objective');?></th>
+			<th><?php echo $this->Paginator->sort('summary');?></th>
+			<th><?php echo $this->Paginator->sort('specialties');?></th>
+			<th><?php echo $this->Paginator->sort('associations');?></th>
+			<th><?php echo $this->Paginator->sort('honors');?></th>
+			<th><?php echo $this->Paginator->sort('interests');?></th>
+			<th><?php echo $this->Paginator->sort('first_name');?></th>
+			<th><?php echo $this->Paginator->sort('last_name');?></th>
 			<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
@@ -33,6 +40,13 @@
 		<td><?php echo $resume['Resume']['content']; ?>&nbsp;</td>
 		<td><?php echo $resume['Resume']['visible']; ?>&nbsp;</td>
 		<td><?php echo $resume['Resume']['objective']; ?>&nbsp;</td>
+		<td><?php echo $resume['Resume']['summary']; ?>&nbsp;</td>
+		<td><?php echo $resume['Resume']['specialties']; ?>&nbsp;</td>
+		<td><?php echo $resume['Resume']['associations']; ?>&nbsp;</td>
+		<td><?php echo $resume['Resume']['honors']; ?>&nbsp;</td>
+		<td><?php echo $resume['Resume']['interests']; ?>&nbsp;</td>
+		<td><?php echo $resume['Resume']['first_name']; ?>&nbsp;</td>
+		<td><?php echo $resume['Resume']['last_name']; ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $resume['Resume']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $resume['Resume']['id'])); ?>
