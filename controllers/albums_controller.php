@@ -5,9 +5,13 @@ class AlbumsController extends AppController {
 
 	function index() {
 		$this->Album->recursive = 0;
-		$this->set('albums', $this->paginate());
+		$this->paginate = $this->Filter->paginate;
+		$albums = $this->paginate();
+		$accounts = $this->Album->Account->find('list');
+		$mediaCategories = $this->Album->MediaCategory->find('list');
+		$this->set(compact('albums', 'accounts', 'mediaCategories'));
 	}
-	
+
 	function scan($accountId = null) {
 		$count = $this->Album->scan($accountId);
 		$this->Session->setFlash(__($count . ' Album(s) scanned', true));
