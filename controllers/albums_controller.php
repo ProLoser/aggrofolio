@@ -5,7 +5,6 @@ class AlbumsController extends AppController {
 
 	function index() {
 		$this->Album->recursive = 0;
-		$this->paginate = $this->Filter->paginate;
 		$albums = $this->paginate();
 		$accounts = $this->Album->Account->find('list');
 		$mediaCategories = $this->Album->MediaCategory->find('list');
