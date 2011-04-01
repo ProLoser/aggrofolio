@@ -82,3 +82,6 @@
 [submodule "plugins/baking_plate"]
 	path = plugins/baking_plate
 	url = git://github.com/ProLoser/BakingPlate.git
+[submodule "plugins/analogue"]
+	path = plugins/analogue
+	url = git://github.com/joebeeson/analogue.git

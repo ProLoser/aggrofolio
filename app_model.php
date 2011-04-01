@@ -31,7 +31,7 @@
  * @subpackage    cake.app
  */
 App::import('Lib', 'LazyModel.LazyModel');
-class AppModel extends LazyModel { // TODO Make sure lazymodel is enabled when publishing
+class AppModel extends LazyModel {
 
 	var $recursive = -1;
 	
