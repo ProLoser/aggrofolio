@@ -85,3 +85,21 @@
 [submodule "plugins/analogue"]
 	path = plugins/analogue
 	url = git://github.com/joebeeson/analogue.git
+[submodule "plugins/asset_compress"]
+	path = plugins/asset_compress
+	url = git://github.com/markstory/asset_compress.git
+[submodule "plugins/navigation"]
+	path = plugins/navigation
+	url = git://github.com/sams/cakephp-navigation.git
+[submodule "plugins/webmaster_tools"]
+	path = plugins/webmaster_tools
+	url = git://github.com/davidpersson/webmaster_tools.git
+[submodule "plugins/mongodb"]
+	path = plugins/mongodb
+	url = git://github.com/ichikaway/mongoDB-Datasource.git
+[submodule "plugins/acl_extras"]
+	path = plugins/acl_extras
+	url = git://github.com/markstory/acl_extras.git
+[submodule "plugins/acl_menu"]
+	path = plugins/acl_menu
+	url = git://github.com/markstory/cakephp_menu_component.git

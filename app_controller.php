@@ -35,7 +35,6 @@ class AppController extends Controller {
 	var $helpers = array(
 		'Session',	
 		'Time',
-		'Batch.Batch',
 		'BakingPlate.Plate',
 		'AssetCompress.AssetCompress',
 		'Navigation.Navigation',
@@ -46,11 +45,9 @@ class AppController extends Controller {
 	);
 	var $components = array(
 		'Session',
-		'Cookie',
 		'RequestHandler',
+		'Batch.Batch',
 		'BakingPlate.Plate',
-		//'MobileDetect.MobileDetect',
-		'Webservice.Webservice',
 		/* Auth Configuration *[delete me]/
 		'Auth' => array(
 			'fields' => array(
