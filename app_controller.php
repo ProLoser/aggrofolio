@@ -61,17 +61,13 @@ class AppController extends Controller {
 		),/**/
 	);
 	var $view = 'Theme';
-	
 	var $attributesForLayout = array(
 		'id' => 'home',
 		'class' => 'home'
 	);
 	var $descriptionForLayout = '';
 	var $keywordsForLayout = '';
-	
-	/**
-	 * $_GET keyword to force debug mode. Set to false or delete to disable.
-	 */
+	// $_GET keyword to force debug mode. Set to false or delete to disable.
 	var $debugOverride = 'debug';
 
 	function beforeFilter() {

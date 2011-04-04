@@ -103,3 +103,15 @@
 [submodule "plugins/acl_menu"]
 	path = plugins/acl_menu
 	url = git://github.com/markstory/cakephp_menu_component.git
+[submodule "plugins/vcard"]
+	path = plugins/vcard
+	url = git://github.com/markstory/cakephp_vcard.git
+[submodule "plugins/media"]
+	path = plugins/media
+	url = git://github.com/davidpersson/media.git
+[submodule "plugins/asset_mapper"]
+	path = plugins/asset_mapper
+	url = git://github.com/1Marc/cakephp-asset-mapper.git
+[submodule "plugins/tagging"]
+	path = plugins/tagging
+	url = git://github.com/mariano/tagging.git
