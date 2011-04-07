@@ -36,10 +36,8 @@ class AppModel extends LazyModel {
 	var $recursive = -1;
 	
 	var $actsAs = array(
-		'Joinable.Joinable',
 		'Linkable.Linkable', // TODO Possibly causing behavior errors when trying to bake
 		'Containable',
-		'Cacheable.Cacheable',
 	);
 	
 	/**

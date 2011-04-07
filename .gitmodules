@@ -13,60 +13,15 @@
 [submodule "plugins/batch"]
 	path = plugins/batch
 	url = git@github.com:ProLoser/CakePHP-Batch.git
-[submodule "vendors/php_arrays"]
-	path = vendors/php_arrays
-	url = git://github.com/debuggable/php_arrays.git
 [submodule "plugins/debug_kit"]
 	path = plugins/debug_kit
 	url = git://github.com/cakephp/debug_kit.git
-[submodule "plugins/interactive"]
-	path = plugins/interactive
-	url = git://github.com/mcurry/interactive.git
 [submodule "plugins/lazy_model"]
 	path = plugins/lazy_model
 	url = git://github.com/Phally/lazy_model.git
 [submodule "plugins/linkable"]
 	path = plugins/linkable
 	url = git://github.com/rafaelbandeira3/linkable.git
-[submodule "plugins/joinable"]
-	path = plugins/joinable
-	url = git://github.com/ProLoser/CakePHP-Joinable.git
-[submodule "plugins/cacheable"]
-	path = plugins/cacheable
-	url = git://github.com/ProLoser/CakePHP-Cacheable.git
-[submodule "plugins/clear_cache"]
-	path = plugins/clear_cache
-	url = git://github.com/ceeram/clear_cache.git
-[submodule "plugins/webservice"]
-	path = plugins/webservice
-	url = git://github.com/josegonzalez/webservice_plugin.git
-[submodule "plugins/supervalidateable"]
-	path = plugins/supervalidateable
-	url = git://github.com/ProLoser/cakephp-supervalidatable-behavior.git
-[submodule "plugins/searchable"]
-	path = plugins/searchable
-	url = git://github.com/neilcrookes/searchable.git
-[submodule "plugins/log"]
-	path = plugins/log
-	url = git://github.com/josegonzalez/log.git
-[submodule "plugins/settings"]
-	path = plugins/settings
-	url = git://github.com/josegonzalez/settings.git
-[submodule "plugins/purifiable"]
-	path = plugins/purifiable
-	url = git://github.com/josegonzalez/purifiable.git
-[submodule "plugins/retranslate"]
-	path = plugins/retranslate
-	url = git://github.com/josegonzalez/retranslatable-behavior.git
-[submodule "plugins/trackable"]
-	path = plugins/trackable
-	url = git://github.com/josegonzalez/trackable-behavior.git
-[submodule "plugins/sitemap"]
-	path = plugins/sitemap
-	url = git://github.com/josegonzalez/sitemap-helper.git
-[submodule "plugins/trimmable"]
-	path = plugins/trimmable
-	url = git://github.com/josegonzalez/trimmable-behavior.git
 [submodule "plugins/rss"]
 	path = plugins/rss
 	url = git://github.com/ProLoser/CakePHP-RSS-Datasource.git
@@ -91,27 +46,6 @@
 [submodule "plugins/navigation"]
 	path = plugins/navigation
 	url = git://github.com/sams/cakephp-navigation.git
-[submodule "plugins/webmaster_tools"]
-	path = plugins/webmaster_tools
-	url = git://github.com/davidpersson/webmaster_tools.git
-[submodule "plugins/mongodb"]
-	path = plugins/mongodb
-	url = git://github.com/ichikaway/mongoDB-Datasource.git
-[submodule "plugins/acl_extras"]
-	path = plugins/acl_extras
-	url = git://github.com/markstory/acl_extras.git
-[submodule "plugins/acl_menu"]
-	path = plugins/acl_menu
-	url = git://github.com/markstory/cakephp_menu_component.git
-[submodule "plugins/vcard"]
-	path = plugins/vcard
-	url = git://github.com/markstory/cakephp_vcard.git
-[submodule "plugins/media"]
-	path = plugins/media
-	url = git://github.com/davidpersson/media.git
-[submodule "plugins/asset_mapper"]
-	path = plugins/asset_mapper
-	url = git://github.com/1Marc/cakephp-asset-mapper.git
-[submodule "plugins/tagging"]
-	path = plugins/tagging
-	url = git://github.com/mariano/tagging.git
+[submodule "vendors/jsmin"]
+	path = vendors/jsmin
+	url = git://github.com/rgrove/jsmin-php.git

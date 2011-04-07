@@ -43,6 +43,9 @@ echo $this->Html->start(array('iecc' => true));
 </head>
 <body>
 	<div id="container">
+		<aside>
+			<?php echo $this->element('layout/sidebar')?>
+		</aside>
 		<header>
 			<?php echo $this->element('layout/header'); ?>
 		</header>

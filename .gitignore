@@ -7,6 +7,8 @@
 ## CakePHP ##
 tmp/*
 config/database.php
+webroot/cache_css/*
+webroot/cache_js/*
 app/tmp/*
 app/config/database.php
 !empty

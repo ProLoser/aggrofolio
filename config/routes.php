@@ -29,9 +29,7 @@ Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home
  * Want localization instead?
  *
 App::import('Lib', 'LocalizedRouter');
-
 LocalizedRouter::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
-
 LocalizedRouter::localize();
  */
 
