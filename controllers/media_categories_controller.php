@@ -3,12 +3,12 @@ class MediaCategoriesController extends AppController {
 
 	var $name = 'MediaCategories';
 
-	function index() {
+	function admin_index() {
 		$this->MediaCategory->recursive = 0;
 		$this->set('mediaCategories', $this->paginate());
 	}
 
-	function view($id = null) {
+	function admin_view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid media category', true));
 			$this->redirect(array('action' => 'index'));
@@ -16,7 +16,7 @@ class MediaCategoriesController extends AppController {
 		$this->set('mediaCategory', $this->MediaCategory->read(null, $id));
 	}
 
-	function add() {
+	function admin_add() {
 		if (!empty($this->data)) {
 			$this->MediaCategory->create();
 			if ($this->MediaCategory->save($this->data)) {
@@ -28,7 +28,7 @@ class MediaCategoriesController extends AppController {
 		}
 	}
 
-	function edit($id = null) {
+	function admin_edit($id = null) {
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid media category', true));
 			$this->redirect(array('action' => 'index'));
@@ -46,7 +46,7 @@ class MediaCategoriesController extends AppController {
 		}
 	}
 
-	function delete($id = null) {
+	function admin_delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for media category', true));
 			$this->redirect(array('action'=>'index'));

@@ -3,12 +3,12 @@ class ResumesController extends AppController {
 
 	var $name = 'Resumes';
 
-	function index() {
+	function admin_index() {
 		$this->Resume->recursive = 0;
 		$this->set('resumes', $this->paginate());
 	}
 	
-	function view($id = null) {
+	function admin_view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid resume', true));
 			$this->redirect(array('action' => 'index'));
@@ -17,7 +17,7 @@ class ResumesController extends AppController {
 		$this->set('resume', $this->Resume->read(null, $id));
 	}
 
-	function add() {
+	function admin_add() {
 		if (!empty($this->data)) {
 			$this->Resume->create();
 			if ($this->Resume->save($this->data)) {
@@ -34,7 +34,7 @@ class ResumesController extends AppController {
 		$this->set(compact('resumeRecommendations', 'resumeSchools', 'resumeSkills', 'resumeEmployers'));
 	}
 
-	function edit($id = null) {
+	function admin_edit($id = null) {
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid resume', true));
 			$this->redirect(array('action' => 'index'));
@@ -58,7 +58,7 @@ class ResumesController extends AppController {
 		$this->set(compact('resumeRecommendations', 'resumeSchools', 'resumeSkills', 'resumeEmployers'));
 	}
 
-	function delete($id = null) {
+	function admin_delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for resume', true));
 			$this->redirect(array('action'=>'index'));

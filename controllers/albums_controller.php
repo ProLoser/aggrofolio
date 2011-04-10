@@ -3,7 +3,7 @@ class AlbumsController extends AppController {
 
 	var $name = 'Albums';
 
-	function index() {
+	function admin_index() {
 		$this->Album->recursive = 0;
 		$albums = $this->paginate();
 		$accounts = $this->Album->Account->find('list');
@@ -11,13 +11,13 @@ class AlbumsController extends AppController {
 		$this->set(compact('albums', 'accounts', 'mediaCategories'));
 	}
 
-	function scan($accountId = null) {
+	function admin_scan($accountId = null) {
 		$count = $this->Album->scan($accountId);
 		$this->Session->setFlash(__($count . ' Album(s) scanned', true));
 		$this->redirect(array('action' => 'index'));
 	}
 
-	function view($id = null) {
+	function admin_view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid album', true));
 			$this->redirect(array('action' => 'index'));
@@ -25,7 +25,7 @@ class AlbumsController extends AppController {
 		$this->set('album', $this->Album->read(null, $id));
 	}
 
-	function add() {
+	function admin_add() {
 		if (!empty($this->data)) {
 			$this->Album->create();
 			if ($this->Album->save($this->data)) {
@@ -42,7 +42,7 @@ class AlbumsController extends AppController {
 		$this->set(compact('accounts', 'mediaCategories', 'resumeEmployers', 'resumeSchools'));
 	}
 
-	function edit($id = null) {
+	function admin_edit($id = null) {
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid album', true));
 			$this->redirect(array('action' => 'index'));
@@ -65,7 +65,7 @@ class AlbumsController extends AppController {
 		$this->set(compact('accounts', 'mediaCategories', 'resumeEmployers', 'resumeSchools'));
 	}
 
-	function delete($id = null) {
+	function admin_delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for album', true));
 			$this->redirect(array('action'=>'index'));

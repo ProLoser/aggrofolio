@@ -3,12 +3,12 @@ class BookmarkCategoriesController extends AppController {
 
 	var $name = 'BookmarkCategories';
 
-	function index() {
+	function admin_index() {
 		$this->BookmarkCategory->recursive = 0;
 		$this->set('bookmarkCategories', $this->paginate());
 	}
 
-	function view($id = null) {
+	function admin_view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid bookmark category', true));
 			$this->redirect(array('action' => 'index'));
@@ -16,7 +16,7 @@ class BookmarkCategoriesController extends AppController {
 		$this->set('bookmarkCategory', $this->BookmarkCategory->read(null, $id));
 	}
 
-	function add() {
+	function admin_add() {
 		if (!empty($this->data)) {
 			$this->BookmarkCategory->create();
 			if ($this->BookmarkCategory->save($this->data)) {
@@ -30,7 +30,7 @@ class BookmarkCategoriesController extends AppController {
 		$this->set(compact('parentBookmarkCategories'));
 	}
 
-	function edit($id = null) {
+	function admin_edit($id = null) {
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid bookmark category', true));
 			$this->redirect(array('action' => 'index'));
@@ -50,7 +50,7 @@ class BookmarkCategoriesController extends AppController {
 		$this->set(compact('parentBookmarkCategories'));
 	}
 
-	function delete($id = null) {
+	function admin_delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for bookmark category', true));
 			$this->redirect(array('action'=>'index'));

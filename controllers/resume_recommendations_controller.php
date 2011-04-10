@@ -3,12 +3,12 @@ class ResumeRecommendationsController extends AppController {
 
 	var $name = 'ResumeRecommendations';
 
-	function index() {
+	function admin_index() {
 		$this->ResumeRecommendation->recursive = 0;
 		$this->set('resumeRecommendations', $this->paginate());
 	}
 
-	function view($id = null) {
+	function admin_view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid resume recommendation', true));
 			$this->redirect(array('action' => 'index'));
@@ -16,7 +16,7 @@ class ResumeRecommendationsController extends AppController {
 		$this->set('resumeRecommendation', $this->ResumeRecommendation->read(null, $id));
 	}
 
-	function add() {
+	function admin_add() {
 		if (!empty($this->data)) {
 			$this->ResumeRecommendation->create();
 			if ($this->ResumeRecommendation->save($this->data)) {
@@ -31,7 +31,7 @@ class ResumeRecommendationsController extends AppController {
 		$this->set(compact('accounts', 'resumes'));
 	}
 
-	function edit($id = null) {
+	function admin_edit($id = null) {
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid resume recommendation', true));
 			$this->redirect(array('action' => 'index'));
@@ -52,7 +52,7 @@ class ResumeRecommendationsController extends AppController {
 		$this->set(compact('accounts', 'resumes'));
 	}
 
-	function delete($id = null) {
+	function admin_delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for resume recommendation', true));
 			$this->redirect(array('action'=>'index'));

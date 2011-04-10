@@ -3,12 +3,12 @@ class ProjectCategoriesController extends AppController {
 
 	var $name = 'ProjectCategories';
 
-	function index() {
+	function admin_index() {
 		$this->ProjectCategory->recursive = 0;
 		$this->set('projectCategories', $this->paginate());
 	}
 
-	function view($id = null) {
+	function admin_view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid project category', true));
 			$this->redirect(array('action' => 'index'));
@@ -16,7 +16,7 @@ class ProjectCategoriesController extends AppController {
 		$this->set('projectCategory', $this->ProjectCategory->read(null, $id));
 	}
 
-	function add() {
+	function admin_add() {
 		if (!empty($this->data)) {
 			$this->ProjectCategory->create();
 			if ($this->ProjectCategory->save($this->data)) {
@@ -30,7 +30,7 @@ class ProjectCategoriesController extends AppController {
 		$this->set(compact('parentProjectCategories'));
 	}
 
-	function edit($id = null) {
+	function admin_edit($id = null) {
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid project category', true));
 			$this->redirect(array('action' => 'index'));
@@ -50,7 +50,7 @@ class ProjectCategoriesController extends AppController {
 		$this->set(compact('parentProjectCategories'));
 	}
 
-	function delete($id = null) {
+	function admin_delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for project category', true));
 			$this->redirect(array('action'=>'index'));

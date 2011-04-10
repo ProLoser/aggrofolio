@@ -9,7 +9,7 @@ class AccountsController extends AppController {
 		),
 	);
 	
-	function linkedin($scan = false) {
+	function admin_linkedin($scan = false) {
 		$data = $this->Linkedin->profile(null, array(
 			'first-name', 'last-name', 'summary', 'specialties', 'associations', 'honors', 'interests', 'twitter-accounts', 
 			'positions' => array('title', 'summary', 'start-date', 'end-date', 'is-current', 'company'), 
@@ -28,7 +28,7 @@ class AccountsController extends AppController {
 		$this->set('profile', $data);
 	}
 	
-	function login($id = null) {
+	function admin_login($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid account', true));
 			$this->redirect(array('action' => 'index'));
@@ -46,7 +46,7 @@ class AccountsController extends AppController {
 		}
 	}
 	
-	function logout() {
+	function admin_logout() {
 		if ($this->Linkedin->logout()) {
 			$this->Session->setFlash('You logged out');
 		} else {
@@ -55,11 +55,11 @@ class AccountsController extends AppController {
 		$this->redirect(array('action' => 'index'));
 	}
 	
-	function deviantart() {
+	function admin_deviantart() {
 		
 	}
 	
-	function scan($id = null) {
+	function admin_scan($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid type', true));
 			$this->redirect(array('action' => 'index'));
@@ -78,14 +78,14 @@ class AccountsController extends AppController {
 	}
 	
 
-	function index() {
+	function admin_index() {
 		$this->Account->recursive = 0;
 		$accounts = $this->paginate();
 		$types = $this->Account->types;
 		$this->set(compact('accounts', 'types'));
 	}
 
-	function view($id = null) {
+	function admin_view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid account', true));
 			$this->redirect(array('action' => 'index'));
@@ -93,7 +93,7 @@ class AccountsController extends AppController {
 		$this->set('account', $this->Account->read(null, $id));
 	}
 
-	function add() {
+	function admin_add() {
 		if (!empty($this->data)) {
 			$this->Account->create();
 			if ($this->Account->save($this->data)) {
@@ -107,7 +107,7 @@ class AccountsController extends AppController {
 		$this->set(compact('types'));
 	}
 
-	function edit($id = null) {
+	function admin_edit($id = null) {
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid account', true));
 			$this->redirect(array('action' => 'index'));
@@ -127,7 +127,7 @@ class AccountsController extends AppController {
 		$this->set(compact('types'));
 	}
 
-	function delete($id = null) {
+	function admin_delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for account', true));
 			$this->redirect(array('action'=>'index'));
