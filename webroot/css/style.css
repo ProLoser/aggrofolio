@@ -153,24 +153,42 @@ button {  width: auto; overflow: visible; }
  /* Primary Styles
     Author:
  */
+h1 {
+	font-size: 35px;
+	text-align: center;
+}
+h2 {
+	font-size: 20px;
+}
+h3 {
+	font-size: 15px;
+	margin: 5px;
+}
 #container {
 	position: relative;
-	padding-left: 200px;
+	padding-left: 240px;
 }
-aside {
+header {
 	position: fixed;
 	top: 0;
 	left: 0;
 	height: 100%;
 	width: 200px;
+	margin: 0 20px;
+	background-color: #ccc;
+	border-left: 1px #aaa solid;
+	border-right: 1px #aaa solid;
+	box-shadow: 2px 2px 5px #666;
+	-webkit-box-shadow: 2px 2px 5px #666;
+	-moz-box-shadow: 2px 2px 5px #666;
 }
-nav li {
+#mainNav li {
 	display: inline;
 }
 
-
-
-
+legend {
+	font-size: 120%;
+}
 
 
 

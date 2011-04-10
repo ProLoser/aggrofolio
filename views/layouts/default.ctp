@@ -30,11 +30,15 @@ echo $this->Html->start(array('iecc' => true));
 	<?php echo $this->Html->meta('favicon.ico', '/favicon.ico', array('type' => 'icon', 'rel' => 'shortcut icon')); ?> 
 	<?php echo $this->Html->meta('favicon.ico', '/favicon.ico', array('type' => 'icon', 'rel' => 'apple-touch-icon')); ?> 
 	<?php echo $this->Html->css(array('handheld'), null, array('media' => 'handheld')); ?> 
-<?php $this->AssetCompress->css(array(
+<?php 
+echo $this->Html->css(array(
+//$this->AssetCompress->css(array(
 	'style',
 )); ?>
 	<?php echo $this->AssetCompress->includeCss(); ?> 
-<?php $this->AssetCompress->script(array(
+<?php 
+echo $this->Html->script(array(
+//$this->AssetCompress->script(array(
 	'plugins',
 	'script',
 )); ?> 
@@ -43,9 +47,6 @@ echo $this->Html->start(array('iecc' => true));
 </head>
 <body>
 	<div id="container">
-		<aside>
-			<?php echo $this->element('layout/sidebar')?>
-		</aside>
 		<header>
 			<?php echo $this->element('layout/header'); ?>
 		</header>
