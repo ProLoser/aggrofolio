@@ -2,6 +2,11 @@
 class ResumesController extends AppController {
 
 	var $name = 'Resumes';
+	
+	function index() {
+		$this->Resume->recursive = 1;
+		$this->set('resume', $this->Resume->find('first'));
+	}
 
 	function admin_index() {
 		$this->Resume->recursive = 0;

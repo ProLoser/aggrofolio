@@ -1,5 +1,20 @@
+<h2><?php __('Accounts');?></h2>
+<ul class="actions">
+	<li><?php echo $this->Html->link(__('New Account', true), array('action' => 'add')); ?></li>
+</ul>
 <div class="accounts index">
-	<h2><?php __('Accounts');?></h2>
+	<div class="header">
+		<p><?php
+		echo $this->Paginator->counter(array(
+		'format' => __('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%', true)
+		));
+		?></p>
+		<div class="paging">
+			<?php echo $this->Paginator->prev('<< ' . __('previous', true), array(), null, array('class'=>'disabled'));?>
+		 	| <?php echo $this->Paginator->numbers();?> |
+			<?php echo $this->Paginator->next(__('next', true) . ' >>', array(), null, array('class' => 'disabled'));?>
+		</div>
+	</div>
 	<?php echo $this->Batch->create('Account');?>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
@@ -48,23 +63,4 @@
 echo $this->Batch->batch(array(null, null, null, 'username', 'email', 'type'));?>
 	</table>
 	<?php echo $this->Batch->end()?>
-	<p>
-	<?php
-	echo $this->Paginator->counter(array(
-	'format' => __('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%', true)
-	));
-	?>	</p>
-
-	<div class="paging">
-		<?php echo $this->Paginator->prev('<< ' . __('previous', true), array(), null, array('class'=>'disabled'));?>
-	 | 	<?php echo $this->Paginator->numbers();?>
- |
-		<?php echo $this->Paginator->next(__('next', true) . ' >>', array(), null, array('class' => 'disabled'));?>
-	</div>
-</div>
-<div class="actions">
-	<h3><?php __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New Account', true), array('action' => 'add')); ?></li>
-	</ul>
 </div>

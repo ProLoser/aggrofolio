@@ -46,7 +46,9 @@ class AppController extends Controller {
 	var $components = array(
 		'Session',
 		'RequestHandler',
-		'Batch.Batch',
+		'Batch.Batch' => array(
+			'actions' => array('index', 'admin_index'),
+		),
 		'BakingPlate.Plate',
 		/* Auth Configuration *[delete me]/
 		'Auth' => array(
@@ -57,13 +59,12 @@ class AppController extends Controller {
 			'loginAction' => array('staff' => false, 'plugin' => null, 'controller' => 'users', 'action' => 'login'),
 			'logoutRedirect' => array('action' => 'login'),
 			'loginRedirect' => '/',
-			//'authorize' => 'actions', // TODO Install ACL component?
 		),/**/
 	);
 	var $view = 'Theme';
 	var $attributesForLayout = array(
 		'id' => 'home',
-		'class' => 'home'
+		'class' => 'home',
 	);
 	var $descriptionForLayout = '';
 	var $keywordsForLayout = '';
