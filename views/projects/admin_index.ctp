@@ -82,7 +82,7 @@
 			<?php echo $this->Batch->checkbox($project['Project']['id']); ?>
 		</td>
 	</tr>
-	<?php endforeach
+	<?php endforeach;
 		echo $this->Batch->batch(array(
 			'id',
 			null,
