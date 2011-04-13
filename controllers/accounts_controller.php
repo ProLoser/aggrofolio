@@ -69,7 +69,7 @@ class AccountsController extends AppController {
 			$this->Session->setFlash(__('Invalid account', true));
 			$this->redirect(array('action' => 'index'));
 		}
-		if ($this->Account->Project->{'scan' . Inflector::classify($type)}($account)) {
+		if ($this->Account->Project->scan($account)) {
 			$this->Session->setFlash(__('The projects have been saved', true));
 		} else {
 			$this->Session->setFlash(__('There was an error saving the projects', true));
@@ -98,7 +98,7 @@ class AccountsController extends AppController {
 			$this->Account->create();
 			if ($this->Account->save($this->data)) {
 				$this->Session->setFlash(__('The account has been saved', true));
-				$this->redirect(array('action' => 'login', $this->id));
+				$this->redirect(array('action' => 'login', $this->Account->id));
 			} else {
 				$this->Session->setFlash(__('The account could not be saved. Please, try again.', true));
 			}

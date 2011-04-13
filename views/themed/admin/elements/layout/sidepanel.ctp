@@ -2,46 +2,38 @@
 <div id="left_menu">
 	<ul id="main_menu">
 		<li id="hide_menu"><a href="#">&laquo;</a></li>
+		<li><?php echo $this->Html->link($this->Html->image('icons/comments.png', array('alt'=>'Posts')) . ' Posts', array('controller' => 'posts', 'action' => 'index'), array('escape' => false)); ?></li>
 		<li>
-			<?php echo $this->Html->link($this->Html->image('icon_pages.png', array('alt'=>'Pages')) . ' Pages', $this->Html->url('/admin/pages/'), array('escape' => false)); ?>
+			<?php echo $this->Html->link($this->Html->image('icons/user.png', array('alt'=>'Users')) . ' Users', '#', array('escape' => false)); ?>
 			<ul>
-			</ul>
+				<li><?php echo $this->Html->link('Accounts', array('controller' => 'accounts', 'action' => 'index'))?></li>
+				<li><?php echo $this->Html->link('Albums', array('controller' => 'albums', 'action' => 'index'))?></li>
+				<li><?php echo $this->Html->link('Bookmarks', array('controller' => 'bookmarks', 'action' => 'index'))?></li>
+				<li><?php echo $this->Html->link('Bookmark Categories', array('controller' => 'bookmark_categories', 'action' => 'index'))?></li>
+				<li><?php echo $this->Html->link('Comments', array('controller' => 'comments', 'action' => 'index'))?></li>
+			</ul>	
 		</li>
 		<li>
-			<?php echo $this->Html->link($this->Html->image('icon_users.png', array('alt'=>'Users')) . ' Users', $this->Html->url('/admin/users/'), array('escape' => false)); ?>
+			<?php echo $this->Html->link($this->Html->image('icons/palette.png', array('alt'=>'Media')) . ' Media', '#', array('escape' => false)); ?>
 			<ul>
-				<li><?php echo $this->Html->link('Employees', array('controller' => 'employees', 'action' => 'index'))?></li>
-				<li><?php echo $this->Html->link('Recruiters', array('controller' => 'recruiters', 'action' => 'index'))?></li>
-				<li><?php echo $this->Html->link('Reps', array('controller' => 'reps', 'action' => 'index'))?></li>
-				<li><?php echo $this->Html->link('People', array('controller' => 'people', 'action' => 'index'))?></li>
+				<li><?php echo $this->Html->link('Items', array('controller' => 'media_items', 'action' => 'index'))?></li>
+				<li><?php echo $this->Html->link('Item Categories', array('controller' => 'media_categories', 'action' => 'index'))?></li>
+				<li><?php echo $this->Html->link('Projects', array('controller' => 'projects', 'action' => 'index'))?></li>
+				<li><?php echo $this->Html->link('Project Categories', array('controller' => 'project_categories', 'action' => 'index'))?></li>
 				<li><?php echo $this->Html->link('Users', array('controller' => 'users', 'action' => 'index'))?></li>
 				<li><?php echo $this->Html->link('Volunteers', array('controller' => 'volunteers', 'action' => 'index'))?></li>
 			</ul>	
 		</li>
 		<li>
-			<a href="#"><?php echo $this->Html->image('icon_posts.png', array('alt'=>'Posts')); ?>Catalog Data</a>
+			<a href="#"><?php echo $this->Html->image('icons/folder_page.png', array('alt'=>'Posts')); ?>Resume</a>
 			<ul>
-				<li><?php echo $this->Html->link('Addons', array('controller' => 'addons', 'action' => 'index'))?></li>
-				<li><?php echo $this->Html->link('Departure Dates', array('controller' => 'departure_dates', 'action' => 'index'))?></li>
-				<li><?php echo $this->Html->link('Destinations', array('controller' => 'destinations', 'action' => 'index'))?></li>
-				<li><?php echo $this->Html->link('Locales', array('controller' => 'locales', 'action' => 'index'))?></li>
-				<li><?php echo $this->Html->link('Prices', array('controller' => 'prices', 'action' => 'index'))?></li>
-				<li><?php echo $this->Html->link('Programs', array('controller' => 'programs', 'action' => 'index'))?></li>
-				<li><?php echo $this->Html->link('Project Categories', array('controller' => 'project_categories', 'action' => 'index'))?></li>
-				<li><?php echo $this->Html->link('Tours', array('controller' => 'tours', 'action' => 'index'))?></li>
+				<li><?php echo $this->Html->link('Resumes', array('controller' => 'resumes', 'action' => 'index'))?></li>
+				<li><?php echo $this->Html->link('Employers', array('controller' => 'resume_employers', 'action' => 'index'))?></li>
+				<li><?php echo $this->Html->link('Items', array('controller' => 'resume_items', 'action' => 'index'))?></li>
+				<li><?php echo $this->Html->link('Recommendations', array('controller' => 'resume_recommendations', 'action' => 'index'))?></li>
+				<li><?php echo $this->Html->link('Schools', array('controller' => 'resume_schools', 'action' => 'index'))?></li>
+				<li><?php echo $this->Html->link('Skills', array('controller' => 'resume_skills', 'action' => 'index'))?></li>
 			</ul>	
-		</li>
-		<li><a href="#"><?php echo $this->Html->image('icon_home.png', array('alt'=>'Home')); ?>System Data</a>
-			<ul>
-				<li><?php echo $this->Html->link('Gallery Categories', array('controller' => 'gallery_categories', 'action' => 'index'))?></li>
-				<li><?php echo $this->Html->link('Note Categories', array('controller' => 'note_categories', 'action' => 'index'))?></li>
-				<li><?php echo $this->Html->link('Note Types', array('controller' => 'note_types', 'action' => 'index'))?></li>
-				<li><?php echo $this->Html->link('Offices', array('controller' => 'offices', 'action' => 'index'))?></li>
-				<li><?php echo $this->Html->link('Payment Methods', array('controller' => 'payment_methods', 'action' => 'index'))?></li>
-				<li><?php echo $this->Html->link('Payment Types', array('controller' => 'payment_types', 'action' => 'index'))?></li>
-				<li><?php echo $this->Html->link('Referral Types', array('controller' => 'referral_types', 'action' => 'index'))?></li>
-				<li><?php echo $this->Html->link('Schools', array('controller' => 'schools', 'action' => 'index'))?></li>
-			</ul>
 		</li>
 	</ul>
 </div>
