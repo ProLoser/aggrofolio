@@ -3,6 +3,20 @@ class ProjectsController extends AppController {
 
 	var $name = 'Projects';
 	var $helpers = array('Time');
+	
+	
+	function index() {
+		$this->Project->recursive = 0;
+		$this->set('projects', $this->paginate());
+	}
+
+	function view($id = null) {
+		if (!$id || !($project = $this->Project->read(null, $id))) {
+			$this->Session->setFlash(__('Invalid project', true));
+			$this->redirect(array('action' => 'index'));
+		}
+		$this->set(compact('project'));
+	}
 
 	function admin_index() {
 		$this->Project->recursive = 0;

@@ -47,7 +47,7 @@ class AppController extends Controller {
 		'Session',
 		'RequestHandler',
 		'Batch.Batch' => array(
-			'actions' => array('index', 'admin_index'),
+			'actions' => array('admin_index'),
 		),
 		'BakingPlate.Plate',
 		/* Auth Configuration *[delete me]/
