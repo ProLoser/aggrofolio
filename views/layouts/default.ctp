@@ -72,12 +72,10 @@ echo $this->Html->script(array(
 			<?php echo $this->element('layout/footer'); ?>
 		</footer>
 	</div>
-<?php
-	echo $this->Plate->lib('jquery');
-	echo $this->AssetCompress->includeJs();
-	echo $this->Plate->pngFix();
-	echo $this->Plate->analytics();
-	if (Configure::read('debug')) echo $this->Html->script(array('profiling/yahoo-profiling.min', 'profiling/config'));
-?>
+<?php echo $this->Plate->lib('jquery', array('fallback' => 'libs/jquery-1.5.0.min')); ?> 
+<?php echo $this->AssetCompress->includeJs(); ?> 
+<?php echo $this->Plate->pngFix(); ?> 
+<?php echo $this->Plate->analytics(); ?> 
+<?php if (Configure::read('debug')) echo $this->Html->script(array('profiling/yahoo-profiling.min', 'profiling/config')); ?> 
 </body>
 </html>

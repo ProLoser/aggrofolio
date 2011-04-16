@@ -41,6 +41,7 @@ class AppController extends Controller {
 		'Analogue.Analogue' => array(
 			array('helper' => 'BakingPlate.HtmlPlus', 'rename' => 'Html'),
 			array('helper' => 'BakingPlate.FormPlus', 'rename' => 'Form'),
+			array('helper' => 'BakingPlate.PaginatorPlus', 'rename' => 'Paginator'),
 		),
 	);
 	var $components = array(
@@ -61,7 +62,7 @@ class AppController extends Controller {
 			'loginRedirect' => '/',
 		),/**/
 	);
-	var $view = 'Theme';
+	var $view = 'BakingPlate.ThemedAutoHelper';
 	var $attributesForLayout = array(
 		'id' => 'home',
 		'class' => 'home',
@@ -70,112 +71,117 @@ class AppController extends Controller {
 	var $keywordsForLayout = '';
 	// $_GET keyword to force debug mode. Set to false or delete to disable.
 	var $debugOverride = 'debug';
-
-	function beforeFilter() {
-		//$this->_setupAuth();
-		//$this->_setLanguage();
-		//$this->_setStaticCache();
-	}
 	
-	/**
-	 * Changes the layout of the page if the prefix changes
-	 *
-	 * @return void
-	 * @author Dean
-	 */
-	function beforeRender() {
-		$this->_setTheme();
-	}
+/**
+ * Used to set a max for the pagination limit
+ *
+ * @var int
+ */
+    var $paginationMaxLimit = 25;
 	
-	/**
-	 * This allows the enabling of debug mode even if debug is set to off. 
-	 * Simply pass ?debug=1 in the url
-	 *
-	 * @author Dean
-	 */
+/**
+ * This allows the enabling of debug mode even if debug is set to off. 
+ * Simply pass ?debug=1 in the url
+ *
+ */
 	public function __construct() {
 		if (!empty($this->debugOverride) && !empty($_GET[$this->debugOverride])) {
 			Configure::write('debug', 2);
 		}
 		if (Configure::read('debug')) {
-			// todo: add interactive for debugkit or not
+			// TODO: add interactive for debugkit or not
 			$this->components[] = 'DebugKit.Toolbar';
 			App::import('Vendor', 'DebugKit.FireCake');
 		}
 		parent::__construct();
 	}
-
-	/**
-	 * Added support for continuing localized urls
-	 *
-	 * @param string $url 
-	 * @param string $status 
-	 * @param string $exit 
-	 * @return void
-	 * @author Dean Sofer
-	 * @access public
-	 */
-	public function redirect($url, $status = null, $exit = true) {
-		if (is_array($url) && !isset($url['locale']) && isset($this->params['locale'])) {
-			$url['locale'] = $this->params['locale'];
-		}
-		parent::redirect($url, $status, $exit);
+	
+	function beforeFilter() {
+		#!# $this->_setAuth();
+		#$this->_setLanguage();
+		#$this->_setMaintenance();
 	}
 	
-	/**
-	 * Set site theme
-	 *
-	 * todo: make it work, set from Site.theme or passed arg
-	 * 	plan to allow theme to be switched off pass false
-	 * 	call no arg or null to set with Configure::read('Site.theme');
-	 *	if prefix is used and matches a theme use it
-	 *
-	 * @param string $theme
-	 * @return void
-	 * @author Sam
-	 */
-	function _setTheme($theme = null) {
-		if ($this->Plate->prefix('admin')) {
-			$this->theme = 'admin';
-		} else {
-			// currently hard coding to h5bp for testing
-			//$this->theme = $this->Session->read('Config.locale');
-			if(Configure::read('site.Theme')) {
-				$this->theme = Configure::read('site.Theme');
-			}
-		}
+	
+/**
+ * Changes the layout of the page if the prefix changes - switch to basic layout for errors
+ */
+	function beforeRender() {
+		$this->_setTheme();
 	}
 	
-	/**
-	 * Configures the AuthComponent according to the application's settings.
-	 * Override this method in individual controllers for further configuration.
-	 *
-	 * @return void
-	 * @access private
-	 */
-	protected function _setupAuth() {
+/**
+ * Configure your Auth environment here
+ */
+	protected function _setAuth() {
+		if (isset($this->Acl))
+			$this->Acl->allow($aroAlias, $acoAlias);	
+		$this->Auth->authError = __('Sorry, but you need to login to access this location.', true);
+		$this->Auth->loginError = __('Invalid e-mail / password combination.  Please try again', true);
+		$this->Auth->allow('index', 'view', 'display');
+		
+		$user = $this->Auth->user();
+		$this->set('isAdmin', ($user['AppUser']['role'] == 'admin' && $user['AppUser']['is_admin']));
+		
 		if ($this->Plate->prefix('admin')) {
-			// TODO Role levels shouldn't be hardcoded
-			if ($this->Auth->user() && $this->Auth->user('role_id') < 1) {
-				$this->Session->setFlash('You do not have permission to enter this section');
+			if ($user['AppUser']['role'] == 'admin') {
+				$this->Auth->allow('*');
+			} else {
+				$this->Session->setFlash(__('Sorry, but you need to be Admin to access this location.', true));
 				$this->redirect($this->Auth->loginAction);
 			}
-		} else {
-			$this->Auth->allow();
 		}
+		Configure::write('Site.User', $user);
 	}
 	
-	/**
-	 * Stores the visitors 2 letter language code to cookie AND session so that the url parameter is optional (and remembered)
-	 *
-	 * @return void
-	 * @author Dean
-	 */
+/**
+ * Place your language switching logic here (if you use it)
+ */
 	protected function _setLanguage() {
 		if (isset($this->params['lang']) && $this->params['lang'] == Configure::read('Languages.default'))
 			$this->redirect(array('lang' => false));
 		$lang = isset($this->params['lang']) ? $this->params['lang'] : Configure::read('Languages.default');
 		Configure::write('Config.language', $lang);
+	}
+
+/**
+ * set site into Maintenance mode but not for loggeed user - allow users to login
+ */
+	protected function _setMaintenance() {
+		$user = Configure::read('Site.User') ? Configure::read('Site.User') : false;
+		$mainMode = Configure::read('WebmasterTools.Maintenance');
+		if(!isset($user['AppUser']) && $this->action !== 'login') {
+			if($mainMode['active']) {
+				$this->Plate->loadComponent(array('WebmasterTools.Maintenance'));
+				$this->Maintenance->activate($mainMode['message']);
+			}
+		}
+	}
+
+/**
+ * Place your theme-switching logic in here
+ */
+	protected function _setTheme() {
+		if ($this->Plate->prefix('admin')) {
+			$this->theme = 'admin';
+		} elseif (Configure::read('Config.language')) {
+			$this->theme = Configure::read('Config.language');
+		}
+	}
+
+/**
+ * Added support for continuing localized urls
+ *
+ * @param string $url 
+ * @param string $status 
+ * @param string $exit  Sofer
+ * @access public
+ */
+	public function redirect($url, $status = null, $exit = true) {
+		if (is_array($url) && !isset($url['locale']) && isset($this->params['locale'])) {
+			$url['locale'] = $this->params['locale'];
+		}
+		parent::redirect($url, $status, $exit);
 	}
 
 }

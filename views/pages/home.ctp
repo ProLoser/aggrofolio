@@ -1,4 +1,4 @@
-<h2>Sweet, "Aggropholio" got Baked by CakePHP!</h2>
+<h2>Sweet, "Baking Plate" got Baked by CakePHP!</h2>
 
 <?php
 if (Configure::read() > 0):
@@ -80,3 +80,18 @@ if (!empty($filePresent)):
 		APP . 'views' . DS . 'pages' . DS . 'home.ctp.<br />',  APP . 'views' . DS . 'layouts' . DS . 'default.ctp.<br />', APP . 'webroot' . DS . 'css');
 ?>
 </p>
+
+<h3>What to do now</h3>
+<p>Now that you're app has been generated, here are a few areas you should checkout to see some 'best practices' examples.</p>
+<ul>
+	<li>app_controller.php</li>
+	<li>app_model.php</li>
+	<li>app_error.php</li>
+	<li>bootstrap.php</li>
+	<li>views/layouts/default.ctp</li>
+	<li>views/elements</li>
+	<li>webroot/css</li>
+	<li>webroot/js</li>
+	<li>The BakingPlate Plugin! Read the documentation on the assorted helpers/components/views</li>
+</ul>
+<p>Baking Plate is delete-key friendly. Just search the project for #!# to see different options you can enable.</p>
