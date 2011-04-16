@@ -22,6 +22,7 @@ class AlbumsController extends AppController {
 			$this->Session->setFlash(__('Invalid album', true));
 			$this->redirect(array('action' => 'index'));
 		}
+		$this->Album->recursive = 1;
 		$this->set('album', $this->Album->read(null, $id));
 	}
 

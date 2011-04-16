@@ -44,15 +44,15 @@
 	?>
 	<tr<?php echo $class;?>>
 		<td><?php echo $resume['Resume']['id']; ?>&nbsp;</td>
-		<td><?php echo $resume['Resume']['created']; ?>&nbsp;</td>
-		<td><?php echo $resume['Resume']['modified']; ?>&nbsp;</td>
+		<td><?php echo $this->Time->niceShort($resume['Resume']['created']); ?>&nbsp;</td>
+		<td><?php echo $this->Time->niceShort($resume['Resume']['modified']); ?>&nbsp;</td>
 		<td><?php echo $resume['Resume']['purpose']; ?>&nbsp;</td>
 		<td><?php echo $resume['Resume']['first_name']; ?>&nbsp;</td>
 		<td><?php echo $resume['Resume']['last_name']; ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $resume['Resume']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $resume['Resume']['id'])); ?>
-			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $resume['Resume']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $resume['Resume']['id'])); ?>
+			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $resume['Resume']['id']), array('class' => 'view')); ?>
+			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $resume['Resume']['id']), array('class' => 'edit')); ?>
+			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $resume['Resume']['id']), array('class' => 'delete'), sprintf(__('Are you sure you want to delete # %s?', true), $resume['Resume']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

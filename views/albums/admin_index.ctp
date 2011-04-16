@@ -1,5 +1,4 @@
 <h2><?php __('Albums');?></h2>
-<?php $this->Plate->start('actions')?>
 <ul class="actions">
 	<li><?php echo $this->Html->link(__('New Album', true), array('action' => 'add')); ?></li>
 	<li><?php echo $this->Html->link(__('List Accounts', true), array('controller' => 'accounts', 'action' => 'index')); ?> </li>
@@ -13,7 +12,6 @@
 	<li><?php echo $this->Html->link(__('List Resume Schools', true), array('controller' => 'resume_schools', 'action' => 'index')); ?> </li>
 	<li><?php echo $this->Html->link(__('New Resume School', true), array('controller' => 'resume_schools', 'action' => 'add')); ?> </li>
 </ul>
-<?php $this->Plate->stop();?>
 <div class="albums index">
 	<div class="header">
 		<div class="paging">
@@ -77,6 +75,7 @@ echo $this->Batch->filter(array('id',
 			<?php echo $this->Html->link($album['Account']['type'], array('controller' => 'accounts', 'action' => 'view', $album['Account']['id'])); ?>
 		</td>
 		<td class="actions">
+			<?php echo $this->Html->link(__('Scan', true), array('controller' => 'media_items', 'action' => 'scan', $album['Album']['id'])); ?>
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $album['Album']['id']), array('class' => 'view')); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $album['Album']['id']), array('class' => 'edit')); ?>
 			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $album['Album']['id']), array('class' => 'delete'), sprintf(__('Are you sure you want to delete # %s?', true), $album['Album']['id'])); ?>

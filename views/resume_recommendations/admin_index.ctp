@@ -1,11 +1,31 @@
+<h2><?php __('Resume Recommendations');?></h2>
+<ul class="actions">
+	<li><?php echo $this->Html->link(__('New Resume Recommendation', true), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('List Accounts', true), array('controller' => 'accounts', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Account', true), array('controller' => 'accounts', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Resumes', true), array('controller' => 'resumes', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Resume', true), array('controller' => 'resumes', 'action' => 'add')); ?> </li>
+</ul>
 <div class="resumeRecommendations index">
-	<h2><?php __('Resume Recommendations');?></h2>
-	<table cellpadding="0" cellspacing="0">
+	<div class="header">
+		<p>
+		<?php
+		echo $this->Paginator->counter(array(
+		'format' => __('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%', true)
+		));
+		?>		</p>
+		<div class="paging">
+			<?php echo $this->Paginator->prev('&laquo; ' . __('previous', true), array('escape' => false), null, array('escape' => false, 'class'=>'disabled'));?>
+			<?php echo $this->Paginator->numbers();?>
+			<?php echo $this->Paginator->next(__('next', true) . ' &raquo;', array('escape' => false), null, array('escape' => false, 'class' => 'disabled'));?>
+		</div>
+	</div>
+	<?php echo $this->Batch->create('ResumeRecommendation')?>	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id');?></th>
 			<th><?php echo $this->Paginator->sort('created');?></th>
 			<th><?php echo $this->Paginator->sort('type');?></th>
-			<th><?php echo $this->Paginator->sort('uui');?></th>
+			<th><?php echo $this->Paginator->sort('uuid');?></th>
 			<th><?php echo $this->Paginator->sort('account_id');?></th>
 			<th><?php echo $this->Paginator->sort('text');?></th>
 			<th><?php echo $this->Paginator->sort('first_name');?></th>
@@ -16,6 +36,19 @@
 			<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
+		echo $this->Batch->filter(array(
+			'id',
+			null,
+			'type',
+			'uuid',
+			'account_id' => array('empty' => '-- None --'),
+			'text',
+			'first_name',
+			'last_name',
+			'recommendor_uuid',
+			'published',
+			'deleted'
+		));
 	$i = 0;
 	foreach ($resumeRecommendations as $resumeRecommendation):
 		$class = null;
@@ -27,9 +60,9 @@
 		<td><?php echo $resumeRecommendation['ResumeRecommendation']['id']; ?>&nbsp;</td>
 		<td><?php echo $resumeRecommendation['ResumeRecommendation']['created']; ?>&nbsp;</td>
 		<td><?php echo $resumeRecommendation['ResumeRecommendation']['type']; ?>&nbsp;</td>
-		<td><?php echo $resumeRecommendation['ResumeRecommendation']['uui']; ?>&nbsp;</td>
+		<td><?php echo $resumeRecommendation['ResumeRecommendation']['uuid']; ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($resumeRecommendation['Account']['id'], array('controller' => 'accounts', 'action' => 'view', $resumeRecommendation['Account']['id'])); ?>
+			<?php echo $this->Html->link($resumeRecommendation['Account']['type'], array('controller' => 'accounts', 'action' => 'view', $resumeRecommendation['Account']['id'])); ?>
 		</td>
 		<td><?php echo $resumeRecommendation['ResumeRecommendation']['text']; ?>&nbsp;</td>
 		<td><?php echo $resumeRecommendation['ResumeRecommendation']['first_name']; ?>&nbsp;</td>
@@ -38,34 +71,31 @@
 		<td><?php echo $resumeRecommendation['ResumeRecommendation']['published']; ?>&nbsp;</td>
 		<td><?php echo $resumeRecommendation['ResumeRecommendation']['deleted']; ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $resumeRecommendation['ResumeRecommendation']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $resumeRecommendation['ResumeRecommendation']['id'])); ?>
-			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $resumeRecommendation['ResumeRecommendation']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $resumeRecommendation['ResumeRecommendation']['id'])); ?>
+			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $resumeRecommendation['ResumeRecommendation']['id']), array('class' => 'view')); ?>
+			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $resumeRecommendation['ResumeRecommendation']['id']), array('class' => 'edit')); ?>
+			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $resumeRecommendation['ResumeRecommendation']['id']), array('class' => 'delete'), sprintf(__('Are you sure you want to delete # %s?', true), $resumeRecommendation['ResumeRecommendation']['id'])); ?>
+			<?php echo $this->Batch->checkbox($resumeRecommendation['ResumeRecommendation']['id']); ?>
 		</td>
 	</tr>
-<?php endforeach; ?>
+	<?php endforeach;
+		echo $this->Batch->batch(array(
+			'id',
+			null,
+			'type',
+			'uuid',
+			'account_id' => array('empty' => '-- None --'),
+			'text',
+			'first_name',
+			'last_name',
+			'recommendor_uuid',
+			'published',
+			'deleted'
+		));?> 
 	</table>
-	<p>
-	<?php
-	echo $this->Paginator->counter(array(
-	'format' => __('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%', true)
-	));
-	?>	</p>
-
+	<?php echo $this->Batch->end()?> 
 	<div class="paging">
-		<?php echo $this->Paginator->prev('<< ' . __('previous', true), array(), null, array('class'=>'disabled'));?>
-	 | 	<?php echo $this->Paginator->numbers();?>
- |
-		<?php echo $this->Paginator->next(__('next', true) . ' >>', array(), null, array('class' => 'disabled'));?>
+		<?php echo $this->Paginator->prev('&laquo; ' . __('previous', true), array('escape' => false), null, array('escape' => false, 'class'=>'disabled'));?>
+		| <?php echo $this->Paginator->numbers();?> |
+		<?php echo $this->Paginator->next(__('next', true) . ' &raquo;', array('escape' => false), null, array('escape' => false, 'class' => 'disabled'));?>
 	</div>
-</div>
-<div class="actions">
-	<h3><?php __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New Resume Recommendation', true), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Accounts', true), array('controller' => 'accounts', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Account', true), array('controller' => 'accounts', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Resumes', true), array('controller' => 'resumes', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Resume', true), array('controller' => 'resumes', 'action' => 'add')); ?> </li>
-	</ul>
 </div>
