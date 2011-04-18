@@ -1,23 +1,15 @@
+<h2><?php __('Admin Add Project Category'); ?></h2>
+<ul class="actions">
+	<li><?php echo $this->Html->link(__('List Project Categories', true), array('action' => 'index'));?></li>
+		<li><?php echo $this->Html->link(__('List Projects', true), array('controller' => 'projects', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Project', true), array('controller' => 'projects', 'action' => 'add')); ?> </li>
+</ul>
 <div class="projectCategories form">
 <?php echo $this->Form->create('ProjectCategory');?>
-	<fieldset>
- 		<legend><?php __('Add Project Category'); ?></legend>
 	<?php
 		echo $this->Form->input('name');
 		echo $this->Form->input('description');
-		echo $this->Form->input('parent_id');
-		echo $this->Form->input('lft');
-		echo $this->Form->input('rght');
+		echo $this->Form->input('parent_id', array('empty' => '-- None --'));
 	?>
-	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>
-</div>
-<div class="actions">
-	<h3><?php __('Actions'); ?></h3>
-	<ul>
-
-		<li><?php echo $this->Html->link(__('List Project Categories', true), array('action' => 'index'));?></li>
-		<li><?php echo $this->Html->link(__('List Project Categories', true), array('controller' => 'project_categories', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Parent Project Category', true), array('controller' => 'project_categories', 'action' => 'add')); ?> </li>
-	</ul>
 </div>

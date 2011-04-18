@@ -82,8 +82,8 @@ html { overflow-y: scroll; }
 /* accessible focus treatment: people.opera.com/patrickl/experiments/keyboard/test */
 a:hover, a:active { outline: none; }
 
-a, a:active, a:visited { color: #607890; }
-a:hover { color: #036; }
+a, a:active, a:visited { color: #733; }
+a:hover { color: #d11; }
 
 
 ul, ol { margin-left: 2em; }
@@ -151,18 +151,37 @@ button {  width: auto; overflow: visible; }
 
 
  /* Primary Styles
-    Author:
+    Author: Dean Sofer (ProLoser)
  */
 h1 {
 	font-size: 35px;
 	text-align: center;
+	color: #880000;
+	text-shadow: 0 0 4px #bb3333;
 }
 h2 {
 	font-size: 20px;
 }
 h3 {
 	font-size: 15px;
-	margin: 5px;
+	margin: 5px 0;
+	color: #aa0000;
+	background-color: #eee;
+	border-bottom: dotted 1px #666;
+	border-top: solid 2px #333;
+	padding: 3px 3px 1px 3px;
+	
+}
+h4 {
+	font-weight: bold;
+}
+h4 span {
+	display: block;
+	font-size: 80%;
+	font-weight: normal;
+}
+h5 {
+	float: right;
 }
 #container {
 	position: relative;
@@ -170,26 +189,50 @@ h3 {
 }
 header {
 	position: fixed;
+	font-size: 15px;
 	top: 0;
 	left: 0;
 	height: 100%;
 	width: 200px;
 	margin: 0 20px;
-	background-color: #ccc;
-	border-left: 1px #aaa solid;
-	border-right: 1px #aaa solid;
-	box-shadow: 2px 2px 5px #666;
-	-webkit-box-shadow: 2px 2px 5px #666;
-	-moz-box-shadow: 2px 2px 5px #666;
+	background-color: #aa0000;
+	background-image: -moz-linear-gradient(left, #aa0000, #990000); /* FF3.6 */
+	background-image: -ms-linear-gradient(left, #aa0000, #990000); /* IE10 */
+	background-image: -o-linear-gradient(left, #aa0000, #990000); /* Opera 11.10+ */
+	background-image: -webkit-gradient(linear, left top, right top, from(#aa0000), to(#990000)); /* Saf4+, Chrome */
+	background-image: -webkit-linear-gradient(left, #aa0000, #990000); /* Chrome 10+, Saf5.1+ */
+	background-image: linear-gradient(left, #aa0000, #990000);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#aa0000', EndColorStr='#990000'); /* IE6–IE9 */
+	border-left: 1px #a00 solid;
+	border-right: 1px #a00 solid;
+	box-shadow: 1px 0px 7px #555;
+	-webkit-box-shadow: 1px 0px 7px #555;
+	-moz-box-shadow: 1px 0px 7px #555;
+}
+header a, header a:visited {
+	color: #eee;
+	text-decoration: none;
+}
+header a:hover {
+	text-decoration: underline;
+}
+#mainNav {
+	margin: 0;
 }
 #mainNav li {
-	display: inline;
+	display: inline-block;
+	margin: 5px 15px;
 }
-
+#main {
+	margin: 20px 20px 20px 0;
+}
 legend {
 	font-size: 120%;
 }
 
+.cake-sql-log {
+	margin-left: 240px;
+}
 
 
 

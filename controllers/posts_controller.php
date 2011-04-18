@@ -2,6 +2,10 @@
 class PostsController extends AppController {
 
 	var $name = 'Posts';
+	
+	function index() {
+		$this->set('posts', $this->paginate());
+	}
 
 	function admin_index() {
 		$this->Post->recursive = 0;

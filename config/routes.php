@@ -25,13 +25,15 @@ Router::parseExtensions('json', 'xml', 'rss', 'ajax');
  
 Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
 
+Router::connect('/blog/*', array('controller' => 'posts'));
+
 /*
  * Want localization instead?
- *
+ *#!#/
 App::import('Lib', 'LocalizedRouter');
 LocalizedRouter::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
 LocalizedRouter::localize();
- */
+/*^*/
 
 
 /**

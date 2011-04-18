@@ -101,7 +101,6 @@ class Project extends AppModel {
 			$this->find('all', array('conditions' => array('username' => $account['Account']['username']), 'fields' => 'collaborations'))
 		);
 		$this->useDbConfig = $default;
-		
 		foreach ($projects as $project) {
 			$this->create();
 			$this->save(array('Project' => array(

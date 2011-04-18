@@ -1,29 +1,10 @@
 <style type="text/css">
-	h3 {
-		margin-top: 20px;
-		color: #0099cc;
-		background-color: #eee;
-		border-bottom: dotted 1px #666;
-		border-top: solid 2px #333;
-		padding: 3px 3px 1px 3px;
-	}
-	h4 {
-		font-weight: bold;
-	}
-	h4 span {
-		display: block;
-		font-size: 80%;
-		font-weight: normal;
-	}
-	h5 {
-		float: right;
-	}
-	ul {
+	#skills ul {
 		overflow: hidden;
 		margin: 5px 0;
-		padding: 0 10px;
+		padding-left: 20px;
 	}
-	li {
+	#skills li {
 		width: 30%;
 		float: left;
 	}
@@ -58,7 +39,7 @@
 	<div>
 		<h5><?php echo $employer['date_started']?> - <?php echo (!empty($employer['date_ended'])) ? $employer['date_ended'] : 'Present' ?></h5>
 		<h4>
-			<?php echo $employer['name']?>
+			<?php echo $this->Html->link($employer['name'], array('controller' => 'resume_employers', 'action' => 'view', $employer['id']))?>
 			<span><?php echo $employer['title']?></span>
 		</h4>
 		<?php if (!empty($employer['summary'])): ?>
@@ -76,7 +57,7 @@
 	<div>
 		<h5><?php echo $school['date_started']?> - <?php echo (!empty($employer['date_ended'])) ? $employer['date_ended'] : 'Present' ?></h5>
 		<h4>
-			<?php echo $school['name']?>
+			<?php echo $this->Html->link($school['name'], array('controller' => 'resume_schools', 'action' => 'view', $school['id']))?>
 			<span><?php echo $school['field_of_study']?></span>
 		</h4>
 		<?php if (!empty($school['activities'])): ?>

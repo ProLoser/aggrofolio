@@ -26,8 +26,8 @@ class ProjectCategoriesController extends AppController {
 				$this->Session->setFlash(__('The project category could not be saved. Please, try again.', true));
 			}
 		}
-		$parentProjectCategories = $this->ProjectCategory->ParentProjectCategory->find('list');
-		$this->set(compact('parentProjectCategories'));
+		$parents = $this->ProjectCategory->find('list');
+		$this->set(compact('parents'));
 	}
 
 	function admin_edit($id = null) {
@@ -46,8 +46,8 @@ class ProjectCategoriesController extends AppController {
 		if (empty($this->data)) {
 			$this->data = $this->ProjectCategory->read(null, $id);
 		}
-		$parentProjectCategories = $this->ProjectCategory->ParentProjectCategory->find('list');
-		$this->set(compact('parentProjectCategories'));
+		$parents = $this->ProjectCategory->find('list');
+		$this->set(compact('parents'));
 	}
 
 	function admin_delete($id = null) {
