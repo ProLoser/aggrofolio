@@ -29,6 +29,17 @@ class MediaItem extends AppModel {
 	var $belongsTo = array(
 		'Album',
 	);
+
+	var $hasMany = array(
+		'PostRelationship' => array(
+			'foreign_key' => 'foreign_key',
+			'conditions' => array('PostRelationship.model' => 'MediaItem'),
+		),
+	);
+
+	var $actsAs = array(
+		'Log.Logable',
+	);
 	
 	
 	public function scan($albumId) {
@@ -64,7 +75,7 @@ class MediaItem extends AppModel {
 	}
 	
 	public function fetchDevArt($user, $albumId = null) {
-		$this->useDbConfig = 'deviantart';
+		$this->useDbConfig = 'rss';
 		$mediaItems = array();
 		$offset = 0;
 		$path = "http://backend.deviantart.com/rss.xml?type=deviation&offset=:offset&q=gallery:" . $user;

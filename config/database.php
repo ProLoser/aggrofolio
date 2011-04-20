@@ -20,12 +20,9 @@ class DATABASE_CONFIG {
 		'driver' => 'Github.Github',
 	);
 	
-	var $deviantart = array(
-		'datasource' => 'Rss.Rss',
-	);
-	
 	var $rss = array(
 		'datasource' => 'Rss.Rss',
+		'cacheTime' => false,
 	);
 	
 	var $flickr = array(

@@ -1,8 +1,8 @@
 <h2><?php __('Project Categories');?></h2>
 <ul class="actions">
 	<li><?php echo $this->Html->link(__('New Project Category', true), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Projects', true), array('controller' => 'projects', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Project', true), array('controller' => 'projects', 'action' => 'add')); ?> </li>
+	<li><?php echo $this->Html->link(__('List Projects', true), array('controller' => 'projects', 'action' => 'index')); ?> </li>
+	<li><?php echo $this->Html->link(__('New Project', true), array('controller' => 'projects', 'action' => 'add')); ?> </li>
 </ul>
 <div class="projectCategories index">
 	<div class="header">

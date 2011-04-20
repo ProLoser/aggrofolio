@@ -1,5 +1,7 @@
 <?php
-/* ResumeEmployers Test cases generated on: 2011-02-28 09:36:00 : 1298885760*/
+
+Warning: date(): It is not safe to rely on the system's timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'America/Los_Angeles' for 'PDT/-7.0/DST' instead in /Users/Dean/Sites/cakephp/cake/console/templates/default/classes/test.ctp on line 22
+/* ResumeEmployers Test cases generated on: 2011-04-19 04:13:15 : 1303211595*/
 App::import('Controller', 'ResumeEmployers');
 
 class TestResumeEmployersController extends ResumeEmployersController {
@@ -11,7 +13,7 @@ class TestResumeEmployersController extends ResumeEmployersController {
 }
 
 class ResumeEmployersControllerTestCase extends CakeTestCase {
-	var $fixtures = array('app.resume_employer', 'app.account', 'app.project', 'app.user', 'app.album', 'app.media_item', 'app.resume', 'app.resume_recommendation', 'app.resume_recommendations_resume', 'app.resume_school', 'app.resume_schools_resume', 'app.resume_skill', 'app.resume_skills_resume', 'app.resume_employers_resume', 'app.albums_resume_employer');
+	var $fixtures = array('app.resume_employer', 'app.account', 'app.project', 'app.project_category', 'app.resume_school', 'app.post_relationship', 'app.album', 'app.media_category', 'app.media_item', 'app.bookmark', 'app.bookmark_category', 'app.resume', 'app.resume_recommendation', 'app.resume_recommendations_resume', 'app.resume_schools_resume', 'app.resume_skill', 'app.resume_skills_resume', 'app.resume_employers_resume', 'app.post');
 
 	function startTest() {
 		$this->ResumeEmployers =& new TestResumeEmployersController();
@@ -23,23 +25,23 @@ class ResumeEmployersControllerTestCase extends CakeTestCase {
 		ClassRegistry::flush();
 	}
 
-	function testIndex() {
+	function testAdminIndex() {
 
 	}
 
-	function testView() {
+	function testAdminView() {
 
 	}
 
-	function testAdd() {
+	function testAdminAdd() {
 
 	}
 
-	function testEdit() {
+	function testAdminEdit() {
 
 	}
 
-	function testDelete() {
+	function testAdminDelete() {
 
 	}
 

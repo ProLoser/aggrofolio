@@ -1,6 +1,7 @@
 <?php
 class Resume extends AppModel {
 	var $name = 'Resume';
+	var $displayField = 'purpose';
 	var $validate = array(
 		'purpose' => array(
 			'notempty' => array(
@@ -19,12 +20,23 @@ class Resume extends AppModel {
 	var $belongsTo = array(
 		'Account',
 	);
+	
+	var $hasMany = array(
+		'PostRelationship' => array(
+			'foreign_key' => 'foreign_key',
+			'conditions' => array('PostRelationship.model' => 'Resume'),
+		),
+	);
 
 	var $hasAndBelongsToMany = array(
 		'ResumeRecommendation',
 		'ResumeSchool',
 		'ResumeSkill',
 		'ResumeEmployer',
+	);
+	
+	var $actsAs = array(
+		'Log.Logable',
 	);
 	
 	public function scanLinkedin($data, $accountId = null) {

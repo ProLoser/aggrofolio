@@ -3,6 +3,13 @@ class AlbumsController extends AppController {
 
 	var $name = 'Albums';
 
+	function index() {
+		$albums = $this->Album->find('all');
+		$categories_for_layout = $this->Album->MediaCategory->find('list');
+		$catType_for_layout = 'Media';
+		$this->set(compact('albums', 'categories_for_layout', 'catType_for_layout'));
+	}
+
 	function admin_index() {
 		$this->Album->recursive = 0;
 		$albums = $this->paginate();

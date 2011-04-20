@@ -1,5 +1,13 @@
+<h1><?php  __('Media Category');?></h1>
+<ul class="actions">
+		<li><?php echo $this->Html->link(__('Edit Media Category', true), array('action' => 'edit', $mediaCategory['MediaCategory']['id'])); ?> </li>
+		<li><?php echo $this->Html->link(__('Delete Media Category', true), array('action' => 'delete', $mediaCategory['MediaCategory']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $mediaCategory['MediaCategory']['id'])); ?> </li>
+		<li><?php echo $this->Html->link(__('List Media Categories', true), array('action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Media Category', true), array('action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Albums', true), array('controller' => 'albums', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Album', true), array('controller' => 'albums', 'action' => 'add'), array('class' => 'add')); ?> </li>
+</ul>
 <div class="mediaCategories view">
-<h2><?php  __('Media Category');?></h2>
 	<dl><?php $i = 0; $class = ' class="altrow"';?>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Id'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
@@ -26,9 +34,9 @@
 			<?php echo $mediaCategory['MediaCategory']['description']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Parent Media Category'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Parent Id'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $this->Html->link($mediaCategory['ParentMediaCategory']['name'], array('controller' => 'media_categories', 'action' => 'view', $mediaCategory['ParentMediaCategory']['id'])); ?>
+			<?php echo $mediaCategory['MediaCategory']['parent_id']; ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Lft'); ?></dt>
@@ -43,21 +51,13 @@
 		</dd>
 	</dl>
 </div>
-<div class="actions">
-	<h3><?php __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit Media Category', true), array('action' => 'edit', $mediaCategory['MediaCategory']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('Delete Media Category', true), array('action' => 'delete', $mediaCategory['MediaCategory']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $mediaCategory['MediaCategory']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Media Categories', true), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Media Category', true), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Media Categories', true), array('controller' => 'media_categories', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Parent Media Category', true), array('controller' => 'media_categories', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Albums', true), array('controller' => 'albums', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Album', true), array('controller' => 'albums', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
 <div class="related">
-	<h3><?php __('Related Albums');?></h3>
+	<div class="header">
+		<h2><?php __('Related Albums');?></h2>
+		<ul>
+			<li><?php echo $this->Html->link(__('New Album', true), array('controller' => 'albums', 'action' => 'add'), array('class' => 'add'));?> </li>
+		</ul>
+	</div>
 	<?php if (!empty($mediaCategory['Album'])):?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
@@ -69,6 +69,8 @@
 		<th><?php __('Url'); ?></th>
 		<th><?php __('Published'); ?></th>
 		<th><?php __('Media Category Id'); ?></th>
+		<th><?php __('Uuid'); ?></th>
+		<th><?php __('Account Id'); ?></th>
 		<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
@@ -88,67 +90,16 @@
 			<td><?php echo $album['url'];?></td>
 			<td><?php echo $album['published'];?></td>
 			<td><?php echo $album['media_category_id'];?></td>
+			<td><?php echo $album['uuid'];?></td>
+			<td><?php echo $album['account_id'];?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View', true), array('controller' => 'albums', 'action' => 'view', $album['id'])); ?>
-				<?php echo $this->Html->link(__('Edit', true), array('controller' => 'albums', 'action' => 'edit', $album['id'])); ?>
-				<?php echo $this->Html->link(__('Delete', true), array('controller' => 'albums', 'action' => 'delete', $album['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $album['id'])); ?>
+				<?php echo $this->Html->link(__('View', true), array('controller' => 'albums', 'action' => 'view', $album['id']), array('class' => 'view')); ?>
+				<?php echo $this->Html->link(__('Edit', true), array('controller' => 'albums', 'action' => 'edit', $album['id']), array('class' => 'edit')); ?>
+				<?php echo $this->Html->link(__('Delete', true), array('controller' => 'albums', 'action' => 'delete', $album['id']), array('class' => 'delete'), sprintf(__('Are you sure you want to delete # %s?', true), $album['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
 	</table>
 <?php endif; ?>
 
-	<div class="actions">
-		<ul>
-			<li><?php echo $this->Html->link(__('New Album', true), array('controller' => 'albums', 'action' => 'add'));?> </li>
-		</ul>
-	</div>
-</div>
-<div class="related">
-	<h3><?php __('Related Media Categories');?></h3>
-	<?php if (!empty($mediaCategory['ChildMediaCategory'])):?>
-	<table cellpadding = "0" cellspacing = "0">
-	<tr>
-		<th><?php __('Id'); ?></th>
-		<th><?php __('Created'); ?></th>
-		<th><?php __('Modified'); ?></th>
-		<th><?php __('Name'); ?></th>
-		<th><?php __('Description'); ?></th>
-		<th><?php __('Parent Id'); ?></th>
-		<th><?php __('Lft'); ?></th>
-		<th><?php __('Rght'); ?></th>
-		<th class="actions"><?php __('Actions');?></th>
-	</tr>
-	<?php
-		$i = 0;
-		foreach ($mediaCategory['ChildMediaCategory'] as $childMediaCategory):
-			$class = null;
-			if ($i++ % 2 == 0) {
-				$class = ' class="altrow"';
-			}
-		?>
-		<tr<?php echo $class;?>>
-			<td><?php echo $childMediaCategory['id'];?></td>
-			<td><?php echo $childMediaCategory['created'];?></td>
-			<td><?php echo $childMediaCategory['modified'];?></td>
-			<td><?php echo $childMediaCategory['name'];?></td>
-			<td><?php echo $childMediaCategory['description'];?></td>
-			<td><?php echo $childMediaCategory['parent_id'];?></td>
-			<td><?php echo $childMediaCategory['lft'];?></td>
-			<td><?php echo $childMediaCategory['rght'];?></td>
-			<td class="actions">
-				<?php echo $this->Html->link(__('View', true), array('controller' => 'media_categories', 'action' => 'view', $childMediaCategory['id'])); ?>
-				<?php echo $this->Html->link(__('Edit', true), array('controller' => 'media_categories', 'action' => 'edit', $childMediaCategory['id'])); ?>
-				<?php echo $this->Html->link(__('Delete', true), array('controller' => 'media_categories', 'action' => 'delete', $childMediaCategory['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $childMediaCategory['id'])); ?>
-			</td>
-		</tr>
-	<?php endforeach; ?>
-	</table>
-<?php endif; ?>
-
-	<div class="actions">
-		<ul>
-			<li><?php echo $this->Html->link(__('New Child Media Category', true), array('controller' => 'media_categories', 'action' => 'add'));?> </li>
-		</ul>
-	</div>
 </div>

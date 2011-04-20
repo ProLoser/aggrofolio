@@ -37,34 +37,17 @@ class ResumeRecommendation extends AppModel {
 			),
 		),
 	);
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 	var $belongsTo = array(
-		'Account' => array(
-			'className' => 'Account',
-			'foreignKey' => 'account_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		)
+		'Account',
 	);
 
 	var $hasAndBelongsToMany = array(
-		'Resume' => array(
-			'className' => 'Resume',
-			'joinTable' => 'resume_recommendations_resumes',
-			'foreignKey' => 'resume_recommendation_id',
-			'associationForeignKey' => 'resume_id',
-			'unique' => true,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'finderQuery' => '',
-			'deleteQuery' => '',
-			'insertQuery' => ''
-		)
+		'Resume',
+	);
+
+	var $actsAs = array(
+		'Log.Logable',
 	);
 
 }

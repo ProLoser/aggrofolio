@@ -5,7 +5,9 @@ class ResumeEmployersController extends AppController {
 
 	function admin_index() {
 		$this->ResumeEmployer->recursive = 0;
-		$this->set('resumeEmployers', $this->paginate());
+		$resumeEmployers = $this->paginate();
+		$accounts = $this->ResumeEmployer->Account->find('list');
+		$this->set(compact('resumeEmployers', 'accounts'));
 	}
 
 	function admin_view($id = null) {
@@ -13,6 +15,7 @@ class ResumeEmployersController extends AppController {
 			$this->Session->setFlash(__('Invalid resume employer', true));
 			$this->redirect(array('action' => 'index'));
 		}
+		$this->recursive = 1;
 		$this->set('resumeEmployer', $this->ResumeEmployer->read(null, $id));
 	}
 
@@ -27,9 +30,8 @@ class ResumeEmployersController extends AppController {
 			}
 		}
 		$accounts = $this->ResumeEmployer->Account->find('list');
-		$albums = $this->ResumeEmployer->Album->find('list');
 		$resumes = $this->ResumeEmployer->Resume->find('list');
-		$this->set(compact('accounts', 'albums', 'resumes'));
+		$this->set(compact('accounts', 'resumes'));
 	}
 
 	function admin_edit($id = null) {
@@ -49,9 +51,8 @@ class ResumeEmployersController extends AppController {
 			$this->data = $this->ResumeEmployer->read(null, $id);
 		}
 		$accounts = $this->ResumeEmployer->Account->find('list');
-		$albums = $this->ResumeEmployer->Album->find('list');
 		$resumes = $this->ResumeEmployer->Resume->find('list');
-		$this->set(compact('accounts', 'albums', 'resumes'));
+		$this->set(compact('accounts', 'resumes'));
 	}
 
 	function admin_delete($id = null) {

@@ -23,27 +23,21 @@
 	<?php echo $this->Batch->create('Project')?>	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id');?></th>
-			<th><?php echo $this->Paginator->sort('created');?></th>
-			<th><?php echo $this->Paginator->sort('modified');?></th>
 			<th><?php echo $this->Paginator->sort('name');?></th>
 			<th><?php echo $this->Paginator->sort('project_category_id');?></th>
 			<th><?php echo $this->Paginator->sort('published');?></th>
 			<th><?php echo $this->Paginator->sort('deleted');?></th>
 			<th><?php echo $this->Paginator->sort('account_id');?></th>
-			<th><?php echo $this->Paginator->sort('owner');?></th>
 			<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
 		echo $this->Batch->filter(array(
-			'id',
-			null,
 			null,
 			'name',
 			'project_category_id' => array('empty' => '-- None --'),
 			'published',
 			'deleted',
 			'account_id' => array('empty' => '-- None --'),
-			'owner'
 		));
 	$i = 0;
 	foreach ($projects as $project):
@@ -54,8 +48,6 @@
 	?>
 	<tr<?php echo $class;?>>
 		<td><?php echo $project['Project']['id']; ?>&nbsp;</td>
-		<td><?php echo $project['Project']['created']; ?>&nbsp;</td>
-		<td><?php echo $project['Project']['modified']; ?>&nbsp;</td>
 		<td><?php echo $this->Html->link($project['Project']['name'], $project['Project']['cvs_url']); ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($project['ProjectCategory']['name'], array('controller' => 'project_categories', 'action' => 'view', $project['ProjectCategory']['id'])); ?>
@@ -65,7 +57,6 @@
 		<td>
 			<?php echo $this->Html->link($project['Account']['type'], array('controller' => 'accounts', 'action' => 'view', $project['Account']['id'])); ?>
 		</td>
-		<td><?php echo $project['Project']['owner']; ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $project['Project']['id']), array('class' => 'view')); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $project['Project']['id']), array('class' => 'edit')); ?>
@@ -75,15 +66,12 @@
 	</tr>
 	<?php endforeach;
 		echo $this->Batch->batch(array(
-			'id',
-			null,
 			null,
 			'name',
 			'project_category_id' => array('empty' => '-- None --'),
 			'published',
 			'deleted',
 			'account_id' => array('empty' => '-- None --'),
-			'owner'
 		));?> 
 	</table>
 	<?php echo $this->Batch->end()?> 

@@ -7,6 +7,16 @@ class ResumesController extends AppController {
 		$this->Resume->recursive = 1;
 		$this->set('resume', $this->Resume->find('first'));
 	}
+	
+	function view($id = null) {
+		if (!$id) {
+			$this->Session->setFlash(__('Invalid resume', true));
+			$this->redirect(array('action' => 'index'));
+		}
+		$this->Resume->recursive = 1;
+		$this->set('resume', $this->Resume->read(null, $id));
+		$this->render('index');
+	}
 
 	function admin_index() {
 		$this->Resume->recursive = 0;

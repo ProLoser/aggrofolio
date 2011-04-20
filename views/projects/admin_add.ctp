@@ -7,10 +7,10 @@
 		echo $this->Form->input('description');
 		echo $this->Form->input('hash_tag');
 		echo $this->Form->input('cvs_url');
-		echo $this->Form->input('project_category_id');
+		echo $this->Form->input('project_category_id', array('empty' => '-- None --'));
 		echo $this->Form->input('published');
 		echo $this->Form->input('deleted');
-		echo $this->Form->input('account_id');
+		echo $this->Form->input('account_id', array('empty' => '-- None --'));
 		echo $this->Form->input('owner');
 	?>
 	</fieldset>

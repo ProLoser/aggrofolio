@@ -5,7 +5,9 @@ class ResumeSchoolsController extends AppController {
 
 	function admin_index() {
 		$this->ResumeSchool->recursive = 0;
-		$this->set('resumeSchools', $this->paginate());
+		$resumeSchools = $this->paginate();
+		$accounts = $this->ResumeSchool->Account->find('list');
+		$this->set(compact('resumeSchools', 'accounts'));
 	}
 
 	function admin_view($id = null) {
@@ -13,6 +15,7 @@ class ResumeSchoolsController extends AppController {
 			$this->Session->setFlash(__('Invalid resume school', true));
 			$this->redirect(array('action' => 'index'));
 		}
+		$this->recursive = 1;
 		$this->set('resumeSchool', $this->ResumeSchool->read(null, $id));
 	}
 

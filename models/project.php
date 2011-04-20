@@ -15,14 +15,27 @@ class Project extends AppModel {
 	);
 
 	var $belongsTo = array(
-		//'User',
 		'Account',
 		'ProjectCategory',
+		'ResumeEmployer',
+		'ResumeSchool',
 	);
 	
-	function read($fields = null, $id) {
+	var $hasMany = array(
+		'Album',
+		'PostRelationship' => array(
+			'foreign_key' => 'foreign_key',
+			'conditions' => array('PostRelationship.model' => 'Project'),
+		),
+	);
+
+	var $actsAs = array(
+		'Log.Logable',
+	);
+	
+	function __findFull($id) {
 		$this->recursive = 1;
-		$project = parent::read($fields, $id);
+		$project = $this->read(null, $id);
 		$default = $this->useDbConfig;
 		if ($project['Account']['type'] == 'github') {
 			$this->useDbConfig = 'github';

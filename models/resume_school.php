@@ -37,32 +37,23 @@ class ResumeSchool extends AppModel {
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 	var $belongsTo = array(
-		'Account' => array(
-			'className' => 'Account',
-			'foreignKey' => 'account_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		)
+		'Account',
+	);
+	
+	var $hasMany = array(
+		'Project',
+		'PostRelationship' => array(
+			'foreign_key' => 'foreign_key',
+			'conditions' => array('PostRelationship.model' => 'ResumeSchool'),
+		),
 	);
 
 	var $hasAndBelongsToMany = array(
-		'Resume' => array(
-			'className' => 'Resume',
-			'joinTable' => 'resume_schools_resumes',
-			'foreignKey' => 'resume_school_id',
-			'associationForeignKey' => 'resume_id',
-			'unique' => true,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'finderQuery' => '',
-			'deleteQuery' => '',
-			'insertQuery' => ''
-		)
+		'Resume',
 	);
 
+	var $actsAs = array(
+		'Log.Logable',
+	);
 }
 ?>

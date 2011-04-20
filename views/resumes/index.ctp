@@ -1,3 +1,30 @@
+<?php $this->Plate->start('nav')?>
+<h3>Sections</h3>
+<ul>
+<?php if (!empty($resume['ResumeSkill'])): ?>
+	<li><a href="#skills">Skills</a></li>
+<?php endif; ?>
+<?php if (!empty($resume['Resume']['interests'])): ?>
+	<li><a href="#interests">Interests</a></li>
+<?php endif; ?>
+<?php if (!empty($resume['ResumeEmployer'])): ?>
+	<li><a href="#experience">Experience</a></li>
+<?php endif; ?>
+<?php if (!empty($resume['ResumeSchool'])): ?>
+	<li><a href="#education">Education</a></li>
+<?php endif; ?>
+<?php if (!empty($resume['Resume']['specialties'])): ?>
+	<li><a href="#specialties">Specialties</a></li>
+<?php endif; ?>
+<?php if (!empty($resume['Resume']['honors'])): ?>
+	<li><a href="#honors">Honors</a></li>
+<?php endif; ?>
+<?php if (!empty($resume['Resume']['associations'])): ?>
+	<li><a href="#associations">Associations</a></li>
+<?php endif; ?>
+</ul>
+<?php $this->Plate->stop()?>
+
 <style type="text/css">
 	#skills ul {
 		overflow: hidden;
@@ -5,13 +32,15 @@
 		padding-left: 20px;
 	}
 	#skills li {
-		width: 30%;
+		width: 33%;
 		float: left;
 	}
 </style>
 
 <h2>Resume</h2>
-<p id="objective"><?php echo $resume['Resume']['objective']?></p>
+<?php if (!empty($resume['Resume']['objective'])): ?>
+	<p id="objective"><strong>Objective:</strong> <?php echo $resume['Resume']['objective']?></p>	  	 
+<?php endif; ?>
 
 <?php if (!empty($resume['ResumeSkill'])): ?>
 <div id="skills">

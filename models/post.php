@@ -33,5 +33,12 @@ class Post extends AppModel {
 			),
 		),
 	);
+	
+	var $hasMany = array(
+		'PostRelationship',
+	);
+	
+	var $actsAs = array(
+		'Log.Logable',
+	);
 }
-?>

@@ -17,18 +17,21 @@ class Album extends AppModel {
 	);
 
 	var $belongsTo = array(
-		//'User',
 		'Account',
 		'MediaCategory',
+		'Project',
 	);
 
 	var $hasMany = array(
 		'MediaItem',
+		'PostRelationship' => array(
+			'foreign_key' => 'foreign_key',
+			'conditions' => array('PostRelationship.model' => 'Album'),
+		),
 	);
 	
-	var $hasAndBelongsToMany = array(
-		'ResumeEmployer',
-		'ResumeSchool',
+	var $actsAs = array(
+		'Log.Logable',
 	);
 	
 	public function scan($accountId) {
@@ -41,8 +44,8 @@ class Album extends AppModel {
 		}
 	}
 	
-	public function scanDeviantart($user) {
-		$page = sprintf('http://%s.deviantart.com/gallery/', $user);
+	public function scanDeviantart($account) {
+		$page = sprintf('http://%s.deviantart.com/gallery/', $account['Account']['username']);
 		$link = array('tag' => 'a', 'class' => 'tv150-cover');
 		$title = array('tag' => 'div', 'class' => 'tv150-tag');
 		$links = $titles = array();
@@ -53,7 +56,7 @@ class Album extends AppModel {
 		$doc->loadHTMLFile($page);
 		$xpath = new DOMXPath($doc);
 		foreach($xpath->query("//{$link['tag']}[@class='{$link['class']}']") as $node) {
-		    $links[] = str_replace("http://{$user}.deviantart.com/gallery/", '', $node->getAttribute('href'));
+		    $links[] = str_replace($page, '', $node->getAttribute('href'));
 		}
 		foreach($xpath->query("//{$title['tag']}[@class='{$title['class']}']") as $node) {
 		    $titles[] = $node->textContent;

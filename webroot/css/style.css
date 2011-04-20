@@ -159,10 +159,10 @@ h1 {
 	color: #880000;
 	text-shadow: 0 0 4px #bb3333;
 }
-h2 {
-	font-size: 20px;
+#main h2 {
+	font-size: 25px;
 }
-h3 {
+#main h3 {
 	font-size: 15px;
 	margin: 5px 0;
 	color: #aa0000;
@@ -172,20 +172,21 @@ h3 {
 	padding: 3px 3px 1px 3px;
 	
 }
-h4 {
+#main h4 {
 	font-weight: bold;
 }
-h4 span {
+#main h4 span {
 	display: block;
 	font-size: 80%;
 	font-weight: normal;
 }
-h5 {
+#main h5 {
 	float: right;
 }
 #container {
 	position: relative;
 	padding-left: 240px;
+	min-width: 720px;
 }
 header {
 	position: fixed;
@@ -216,6 +217,20 @@ header a, header a:visited {
 header a:hover {
 	text-decoration: underline;
 }
+header h3 {
+	font-size: 25px;
+	background: none;
+	text-align: center;
+	color: #880000;
+	text-shadow: 0 0 4px #bb3333;
+	border: 0;
+	margin: 25px 0 10px 0;
+	border-top: 2px solid #9f0000;
+	box-shadow: 0 0 1px #b22, 0 0 1px #b33;
+	-moz-box-shadow: 0 0 4px #b33, 0 0 4px #b33;
+	-webkit-box-shadow: 0 -1px 2px #b00, inset 0 1px 2px #b00;
+	padding-top: 5px;
+}
 #mainNav {
 	margin: 0;
 }
@@ -230,11 +245,16 @@ legend {
 	font-size: 120%;
 }
 
-.cake-sql-log {
-	margin-left: 240px;
+.cake-debug, .cake-sql-log {
+	margin-left: 220px;
 }
-
-
+.log span {
+	padding: 0 2px;
+}
+.log li {
+	margin: 5px 0;
+	list-style: circle;
+}
 
 
 

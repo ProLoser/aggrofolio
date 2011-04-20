@@ -11,7 +11,7 @@ class ProjectsController extends AppController {
 	}
 
 	function view($id = null) {
-		if (!$id || !($project = $this->Project->read(null, $id))) {
+		if (!$id || !($project = $this->Project->find('full', $id))) {
 			$this->Session->setFlash(__('Invalid project', true));
 			$this->redirect(array('action' => 'index'));
 		}
@@ -20,7 +20,10 @@ class ProjectsController extends AppController {
 
 	function admin_index() {
 		$this->Project->recursive = 0;
-		$this->set('projects', $this->paginate());
+		$projects = $this->paginate();
+		$accounts = $this->Project->Account->find('list');
+		$projectCategories = $this->Project->ProjectCategory->find('list');
+		$this->set(compact('projects', 'accounts', 'projectCategories'));
 	}
 
 	function admin_view($id = null) {
@@ -42,7 +45,8 @@ class ProjectsController extends AppController {
 			}
 		}
 		$accounts = $this->Project->Account->find('list');
-		$this->set(compact('accounts'));
+		$projectCategories = $this->Project->ProjectCategory->find('list');
+		$this->set(compact('accounts', 'projectCategories'));
 	}
 
 	function admin_edit($id = null) {
@@ -62,7 +66,10 @@ class ProjectsController extends AppController {
 			$this->data = $this->Project->read(null, $id);
 		}
 		$accounts = $this->Project->Account->find('list');
-		$this->set(compact('accounts'));
+		$projectCategories = $this->Project->ProjectCategory->find('list');
+		$resumeEmployers = $this->Project->ResumeEmployer->find('list');
+		$resumeSchools = $this->Project->ResumeSchool->find('list');
+		$this->set(compact('accounts', 'projectCategories', 'resumeEmployers', 'resumeSchools'));
 	}
 
 	function admin_delete($id = null) {

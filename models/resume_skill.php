@@ -25,6 +25,10 @@ class ResumeSkill extends AppModel {
 		'intermediate'	=> 'Intermediate',
 		'beginner'		=> 'Beginner',
 	);
+	
+	var $actsAs = array(
+		'Log.Logable',
+	);
 
 }
 ?>

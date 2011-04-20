@@ -24,6 +24,7 @@
 Router::parseExtensions('json', 'xml', 'rss', 'ajax');
  
 Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
+Router::connect('/log', array('controller' => 'logs'));
 
 Router::connect('/blog/*', array('controller' => 'posts'));
 

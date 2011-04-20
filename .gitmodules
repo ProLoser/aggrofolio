@@ -52,3 +52,6 @@
 [submodule "plugins/url_cache"]
 	path = plugins/url_cache
 	url = git://github.com/mcurry/url_cache.git
+[submodule "plugins/log"]
+	path = plugins/log
+	url = git://github.com/josegonzalez/log.git

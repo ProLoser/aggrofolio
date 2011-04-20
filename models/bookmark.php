@@ -27,6 +27,17 @@ class Bookmark extends AppModel {
 		'BookmarkCategory',
 	);
 	
+	var $hasMany = array(
+		'PostRelationship' => array(
+			'foreign_key' => 'foreign_key',
+			'conditions' => array('PostRelationship.model' => 'Bookmark'),
+		),
+	);
+
+	var $actsAs = array(
+		'Log.Logable',
+	);
+	
 	function scan($accountId) {
 		$account = $this->Account->read(null, $accountId);
 		return $this->scanXmarks($account);
