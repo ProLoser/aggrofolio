@@ -14,9 +14,9 @@ $(document).ready(function(){
 	$("#radial_container").radmenu({
 		listClass: 'list', // the list class to look within for items
 		itemClass: 'item', // the items - NOTE: the HTML inside the item is copied into the menu item
-		radius: 200, // radius in pixels
+		radius: 250, // radius in pixels
 		animSpeed:400, // animation speed in millis
-		centerX: 500, // the center x axis offset
+		centerX: 300, // the center x axis offset
 		centerY: -60, // the center y axis offset
 		selectEvent: "click", // the select event (click)
 		onSelect: function($selected){ // show what is returned 
@@ -24,5 +24,11 @@ $(document).ready(function(){
 		},
 		angleOffset: Math.PI // in radians
 	}).radmenu("show");
+	$('#radright').click(function(){
+		$('#radial_container').radmenu('prev');
+	});
 	
+	$('#radleft').click(function(){
+		$('#radial_container').radmenu('next');
+	});
 });

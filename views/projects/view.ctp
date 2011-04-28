@@ -26,24 +26,22 @@
 	<?php endif ?>	
 	</ul>
 <?php $this->Plate->stop()?>
-<div id='radial_container'>
-	<ul>
-		<li>1</li>
-		<li>2</li>
-		<li>3</li>
-		<li>4</li>
-		<li>5</li>
-		<li>6</li>
-		<li>7</li>
-		<li>8</li>
-		<li>9</li>
-		<li>10</li>
-	</ul>
-</div>
-<a href="#" onClick='jQuery("#radial_container").radmenu("next")'> Rotate Menu Clockwise </a>
-<a href="#" onClick='jQuery("#radial_container").radmenu("prev")'> Rotate Menu Anti-Clockwise </a>
-
 <h2><?php  echo $project['Project']['name'];?></h2>
+<div id='radial_container'>
+	<ul class='list'>
+		<li class="item"><div class="my_class">1</div></li>
+		<li class="item"><div class="my_class">2</div></li>
+		<li class="item"><div class="my_class">3</div></li>
+		<li class="item"><div class="my_class">4</div></li>
+		<li class="item"><div class="my_class">5</div></li>
+		<li class="item"><div class="my_class">6</div></li>
+		<li class="item"><div class="my_class">7</div></li>
+		<li class="item"><div class="my_class">8</div></li>
+		<li class="item"><div class="my_class">9</div></li>
+	</ul>
+	<a href="#" class="arrow" id="radright">Right &raquo;</a>
+	<a href="#" class="arrow" id="radleft">&laquo; Left</a>
+</div>
 <div class="projects view">
 	<p><?php echo $project['Project']['description']; ?></p>
 	<?php if (!empty($project['repository'])): ?>	
@@ -87,7 +85,7 @@
 			&nbsp;
 		</dd>
 	</dl>
-<?php if (!empty($project['repository'])): ?>
+<?php if (!empty($project['PostRelationship'])): ?>
 <section>
 	<h1>Related Blog Posts</h1>
 	<?php foreach ($project['PostRelationship'] as $post): ?>

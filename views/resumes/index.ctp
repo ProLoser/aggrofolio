@@ -36,6 +36,25 @@
 		list-style: circle;
 		float: left;
 	}
+	.resumes .projects li {
+		margin: 10px 5px;
+	}
+	.resumes .projects a {
+		text-decoration: none;
+		color: white;
+		background: rgba(0,0,0,.3);
+		padding: 5px 10px;
+		text-shadow: 0 1px 1px rgba(0,0,0,.3);
+		border-radius: 5px;
+		-moz-border-radius: 5px;
+		-webkit-border-radius: 5px;
+		box-shadow: 0 -1px 1px rgba(0,0,0,.3), 0 1px 1px rgba(255,255,255,.3);
+		-webkit-box-shadow: 0 -1px 1px rgba(0,0,0,.3), 0 1px 1px rgba(255,255,255,.3);
+		-moz-box-shadow: 0 -1px 1px rgba(0,0,0,.3), 0 1px 1px rgba(255,255,255,.3);
+	}
+	.resumes .projects a:hover {
+		background: rgba(0,0,0,.7);
+	}
 </style>
 <div class="resumes">
 	<h2>Resume</h2>

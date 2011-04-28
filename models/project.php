@@ -11,7 +11,8 @@ class Project extends AppModel {
 		'cvs_url' => array(
 			'rule' => 'isUnique',
 			'message' => 'This project url already exists',
-		)
+			'allowEmpty' => true,
+		),
 	);
 
 	var $belongsTo = array(
@@ -48,12 +49,13 @@ class Project extends AppModel {
 			),
 		));
 		$default = $this->useDbConfig;
+		$name = array_pop(explode('/', $project['Project']['cvs_url']));
 		if ($project['Account']['type'] == 'github') {
 			$this->useDbConfig = 'github';
 			$commits = $this->find('all', array(
 				'conditions' => array(
-					'owner' => $project['Project']['owner'], 
-					'repo' => $project['Project']['name'],
+					'owner' => $project['Project']['owner'],
+					'repo' => $name,
 					'branch' => 'master',
 				),
 				'fields' => 'commits'
@@ -61,14 +63,13 @@ class Project extends AppModel {
 			$data = $this->find('all', array(
 				'conditions' => array(
 					'owner' => $project['Project']['owner'], 
-					'repo' => $project['Project']['name'],
+					'repo' => $name,
 				),
 				'fields' => 'repos'
 			));
 			$project = array_merge($project, $data, $commits);
 		} elseif ($project['Account']['type'] == 'codaset') {
 			$this->useDbConfig = 'codaset';
-			$name = str_replace(' ', '-', $project['Project']['name']);
 			$project['codaset'] = $this->find('all', array(
 				'conditions' => array(
 					'username' => $project['Project']['owner'], 

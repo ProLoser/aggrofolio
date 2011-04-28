@@ -50,7 +50,7 @@ echo $this->Html->css(array(
 <?php 
 echo $this->Html->script(array(
 //$this->AssetCompress->script(array(
-	'mylibs/jQuery.radmenu.min',
+	'mylibs/radmenu/jQuery.radmenu',
 	'plugins',
 	'script',
 )); ?> 

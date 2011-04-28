@@ -4,9 +4,10 @@ class ProjectsController extends AppController {
 	var $name = 'Projects';
 	var $helpers = array('Time');
 	
-	
 	function index() {
 		$this->Project->recursive = 0;
+		$this->paginate['limit'] = 12;
+		$this->paginate['conditions']['Project.published'] = true;
 		$projects = $this->paginate();
 		$categories = $this->Project->ProjectCategory->find('threaded');
 		$this->set(compact('projects', 'categories'));
@@ -47,8 +48,10 @@ class ProjectsController extends AppController {
 			}
 		}
 		$accounts = $this->Project->Account->find('list');
-		$projectCategories = $this->Project->ProjectCategory->find('list');
-		$this->set(compact('accounts', 'projectCategories'));
+		$projectCategories = $this->Project->ProjectCategory->generatetreelist(null, null, null, '- ');
+		$resumeEmployers = $this->Project->ResumeEmployer->find('list');
+		$resumeSchools = $this->Project->ResumeSchool->find('list');
+		$this->set(compact('accounts', 'projectCategories', 'resumeEmployers', 'resumeSchools'));
 	}
 
 	function admin_edit($id = null) {
