@@ -28,12 +28,13 @@ class MediaItem extends AppModel {
 
 	var $belongsTo = array(
 		'Album',
+		'Project',
 	);
 
 	var $hasMany = array(
 		'PostRelationship' => array(
-			'foreign_key' => 'foreign_key',
-			'conditions' => array('PostRelationship.model' => 'MediaItem'),
+			'foreignKey' => 'foreign_key',
+			'conditions' => array('PostRelationship.foreign_model' => 'MediaItem'),
 		),
 	);
 

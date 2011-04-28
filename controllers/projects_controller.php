@@ -7,11 +7,13 @@ class ProjectsController extends AppController {
 	
 	function index() {
 		$this->Project->recursive = 0;
-		$this->set('projects', $this->paginate());
+		$projects = $this->paginate();
+		$categories = $this->Project->ProjectCategory->find('threaded');
+		$this->set(compact('projects', 'categories'));
 	}
 
 	function view($id = null) {
-		if (!$id || !($project = $this->Project->find('full', $id))) {
+		if (!$id || !($project = $this->Project->full($id))) {
 			$this->Session->setFlash(__('Invalid project', true));
 			$this->redirect(array('action' => 'index'));
 		}

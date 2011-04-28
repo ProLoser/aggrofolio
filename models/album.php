@@ -25,8 +25,8 @@ class Album extends AppModel {
 	var $hasMany = array(
 		'MediaItem',
 		'PostRelationship' => array(
-			'foreign_key' => 'foreign_key',
-			'conditions' => array('PostRelationship.model' => 'Album'),
+			'foreignKey' => 'foreign_key',
+			'conditions' => array('PostRelationship.foreign_model' => 'Album'),
 		),
 	);
 	

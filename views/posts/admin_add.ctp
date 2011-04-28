@@ -3,10 +3,12 @@
 	<fieldset>
  		<legend><?php __('Add Post'); ?></legend>
 	<?php
-		echo $this->Form->input('subject');
-		echo $this->Form->input('body');
-		echo $this->Form->input('url');
-		echo $this->Form->input('slug');
+		echo $this->Form->input('Post.subject');
+		echo $this->Form->input('Post.body');
+		echo $this->Form->input('Post.url', array('type' => 'text'));
+		echo $this->Form->input('Post.slug');
+		echo $this->Form->input('PostRelationship.0.foreign_model');
+		echo $this->Form->input('PostRelationship.0.foreign_key');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>

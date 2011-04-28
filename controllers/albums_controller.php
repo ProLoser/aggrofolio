@@ -45,9 +45,8 @@ class AlbumsController extends AppController {
 		}
 		$accounts = $this->Album->Account->find('list');
 		$mediaCategories = $this->Album->MediaCategory->find('list');
-		$resumeEmployers = $this->Album->ResumeEmployer->find('list');
-		$resumeSchools = $this->Album->ResumeSchool->find('list');
-		$this->set(compact('accounts', 'mediaCategories', 'resumeEmployers', 'resumeSchools'));
+		$projects = $this->Album->Project->find('list');
+		$this->set(compact('accounts', 'mediaCategories', 'projects'));
 	}
 
 	function admin_edit($id = null) {

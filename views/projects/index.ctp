@@ -1,9 +1,8 @@
 <h2><?php __('Projects');?></h2>
-<ul class="actions">
-	<li><?php echo $this->Html->link(__('New Project', true), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Accounts', true), array('controller' => 'accounts', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Project Categories', true), array('controller' => 'project_categories', 'action' => 'index')); ?> </li>
-</ul>
+<?php $this->Plate->start('nav')?>
+<h3>Categories</h3>
+<?php echo $this->Plate->tree($categories);?> 
+<?php $this->Plate->stop();?>
 <div class="projects index">
 	<div class="header">
 		<p>
@@ -13,23 +12,21 @@
 		));
 		?>		</p>
 		<div class="paging">
-			<?php echo $this->Paginator->prev('&laquo; ' . __('previous', true), array('escape' => false), null, array('escape' => false, 'class'=>'disabled'));?>
+			<?php echo $this->Paginator->prev();?>
 			<?php echo $this->Paginator->numbers();?>
-			<?php echo $this->Paginator->next(__('next', true) . ' &raquo;', array('escape' => false), null, array('escape' => false, 'class' => 'disabled'));?>
+			<?php echo $this->Paginator->next();?>
 		</div>
 	</div>
-	<table cellpadding="0" cellspacing="0">
+	<table cellpadding="0" cellspacing="0" style="width:100%">
 	<tr>
-			<th><?php echo $this->Paginator->sort('id');?></th>
-			<th><?php echo $this->Paginator->sort('created');?></th>
-			<th><?php echo $this->Paginator->sort('modified');?></th>
-			<th><?php echo $this->Paginator->sort('name');?></th>
-			<th><?php echo $this->Paginator->sort('project_category_id');?></th>
-			<th><?php echo $this->Paginator->sort('published');?></th>
-			<th><?php echo $this->Paginator->sort('deleted');?></th>
-			<th><?php echo $this->Paginator->sort('account_id');?></th>
-			<th><?php echo $this->Paginator->sort('owner');?></th>
-			<th class="actions"><?php __('Actions');?></th>
+		<th><?php echo $this->Paginator->sort('id');?></th>
+		<th><?php echo $this->Paginator->sort('created');?></th>
+		<th><?php echo $this->Paginator->sort('modified');?></th>
+		<th><?php echo $this->Paginator->sort('name');?></th>
+		<th><?php echo $this->Paginator->sort('project_category_id');?></th>
+		<th><?php echo $this->Paginator->sort('account_id');?></th>
+		<th><?php echo $this->Paginator->sort('owner');?></th>
+		<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
 	$i = 0;
@@ -47,8 +44,6 @@
 		<td>
 			<?php echo $this->Html->link($project['ProjectCategory']['name'], array('controller' => 'project_categories', 'action' => 'view', $project['ProjectCategory']['id'])); ?>
 		</td>
-		<td><?php echo $project['Project']['published']; ?>&nbsp;</td>
-		<td><?php echo $project['Project']['deleted']; ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($project['Account']['type'], array('controller' => 'accounts', 'action' => 'view', $project['Account']['id'])); ?>
 		</td>
@@ -60,8 +55,8 @@
 	<?php endforeach; ?> 
 	</table>
 	<div class="paging">
-		<?php echo $this->Paginator->prev('&laquo; ' . __('previous', true), array('escape' => false), null, array('escape' => false, 'class'=>'disabled'));?>
+		<?php echo $this->Paginator->prev();?>
 		| <?php echo $this->Paginator->numbers();?> |
-		<?php echo $this->Paginator->next(__('next', true) . ' &raquo;', array('escape' => false), null, array('escape' => false, 'class' => 'disabled'));?>
+		<?php echo $this->Paginator->next();?>
 	</div>
 </div>

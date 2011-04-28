@@ -29,8 +29,8 @@ class Bookmark extends AppModel {
 	
 	var $hasMany = array(
 		'PostRelationship' => array(
-			'foreign_key' => 'foreign_key',
-			'conditions' => array('PostRelationship.model' => 'Bookmark'),
+			'foreignKey' => 'foreign_key',
+			'conditions' => array('PostRelationship.foreign_model' => 'Bookmark'),
 		),
 	);
 

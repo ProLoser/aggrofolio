@@ -13,9 +13,9 @@
 		));
 		?>		</p>
 		<div class="paging">
-			<?php echo $this->Paginator->prev('&laquo; ' . __('previous', true), array('escape' => false), null, array('escape' => false, 'class'=>'disabled'));?>
+			<?php echo $this->Paginator->prev();?>
 			<?php echo $this->Paginator->numbers();?>
-			<?php echo $this->Paginator->next(__('next', true) . ' &raquo;', array('escape' => false), null, array('escape' => false, 'class' => 'disabled'));?>
+			<?php echo $this->Paginator->next();?>
 		</div>
 	</div>
 	<?php echo $this->Batch->create('ProjectCategory')?>	<table cellpadding="0" cellspacing="0">
@@ -26,8 +26,6 @@
 			<th><?php echo $this->Paginator->sort('name');?></th>
 			<th><?php echo $this->Paginator->sort('description');?></th>
 			<th><?php echo $this->Paginator->sort('parent_id');?></th>
-			<th><?php echo $this->Paginator->sort('lft');?></th>
-			<th><?php echo $this->Paginator->sort('rght');?></th>
 			<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
@@ -38,8 +36,6 @@
 			'name',
 			'description',
 			'parent_id' => array('empty' => '-- None --'),
-			'lft',
-			'rght'
 		));
 	$i = 0;
 	foreach ($projectCategories as $projectCategory):
@@ -55,8 +51,6 @@
 		<td><?php echo $projectCategory['ProjectCategory']['name']; ?>&nbsp;</td>
 		<td><?php echo $projectCategory['ProjectCategory']['description']; ?>&nbsp;</td>
 		<td><?php echo $projectCategory['ProjectCategory']['parent_id']; ?>&nbsp;</td>
-		<td><?php echo $projectCategory['ProjectCategory']['lft']; ?>&nbsp;</td>
-		<td><?php echo $projectCategory['ProjectCategory']['rght']; ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $projectCategory['ProjectCategory']['id']), array('class' => 'view')); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $projectCategory['ProjectCategory']['id']), array('class' => 'edit')); ?>
@@ -72,14 +66,12 @@
 			'name',
 			'description',
 			'parent_id' => array('empty' => '-- None --'),
-			'lft',
-			'rght'
 		));?> 
 	</table>
 	<?php echo $this->Batch->end()?> 
 	<div class="paging">
-		<?php echo $this->Paginator->prev('&laquo; ' . __('previous', true), array('escape' => false), null, array('escape' => false, 'class'=>'disabled'));?>
+		<?php echo $this->Paginator->prev();?>
 		| <?php echo $this->Paginator->numbers();?> |
-		<?php echo $this->Paginator->next(__('next', true) . ' &raquo;', array('escape' => false), null, array('escape' => false, 'class' => 'disabled'));?>
+		<?php echo $this->Paginator->next();?>
 	</div>
 </div>

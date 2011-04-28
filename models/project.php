@@ -23,9 +23,10 @@ class Project extends AppModel {
 	
 	var $hasMany = array(
 		'Album',
+		'MediaItem',
 		'PostRelationship' => array(
-			'foreign_key' => 'foreign_key',
-			'conditions' => array('PostRelationship.model' => 'Project'),
+			'foreignKey' => 'foreign_key',
+			'conditions' => array('PostRelationship.foreign_model' => 'Project'),
 		),
 	);
 
@@ -33,9 +34,19 @@ class Project extends AppModel {
 		'Log.Logable',
 	);
 	
-	function __findFull($id) {
-		$this->recursive = 1;
-		$project = $this->read(null, $id);
+	function full($id) {
+		$project = $this->find('first', array(
+			'conditions' => array('Project.id' => $id),
+			'contain' => array(
+				'Account',
+				'ProjectCategory',
+				'ResumeEmployer',
+				'ResumeSchool',
+				'Album',
+				'MediaItem',
+				'PostRelationship' => 'Post',
+			),
+		));
 		$default = $this->useDbConfig;
 		if ($project['Account']['type'] == 'github') {
 			$this->useDbConfig = 'github';

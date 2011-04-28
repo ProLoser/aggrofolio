@@ -23,8 +23,8 @@ class Resume extends AppModel {
 	
 	var $hasMany = array(
 		'PostRelationship' => array(
-			'foreign_key' => 'foreign_key',
-			'conditions' => array('PostRelationship.model' => 'Resume'),
+			'foreignKey' => 'foreign_key',
+			'conditions' => array('PostRelationship.foreign_model' => 'Resume'),
 		),
 	);
 

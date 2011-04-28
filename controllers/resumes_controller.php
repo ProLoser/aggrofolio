@@ -4,8 +4,24 @@ class ResumesController extends AppController {
 	var $name = 'Resumes';
 	
 	function index() {
-		$this->Resume->recursive = 1;
-		$this->set('resume', $this->Resume->find('first'));
+		$this->set('resume', $this->Resume->find('first', array(
+			'contain' => array(
+				'Account',
+				'PostRelationship',
+				'ResumeRecommendation',
+				'ResumeSchool' => array(
+					'Project' => array(
+						'Album',
+					),
+				),
+				'ResumeSkill',
+				'ResumeEmployer' => array(
+					'Project' => array(
+						'Album',
+					),
+				),
+			),
+		)));
 	}
 	
 	function view($id = null) {
@@ -13,8 +29,16 @@ class ResumesController extends AppController {
 			$this->Session->setFlash(__('Invalid resume', true));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Resume->recursive = 1;
-		$this->set('resume', $this->Resume->read(null, $id));
+		$this->set('resume', $this->Resume->find('first', array(
+			'contain' => array(
+				'Account',
+				'PostRelationship',
+				'ResumeRecommendation',
+				'ResumeSchool',
+				'ResumeSkill',
+				'ResumeEmployer',
+			),
+		)));
 		$this->render('index');
 	}
 

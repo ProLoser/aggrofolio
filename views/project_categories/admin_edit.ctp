@@ -11,7 +11,7 @@
 		echo $this->Form->input('id');
 		echo $this->Form->input('name');
 		echo $this->Form->input('description');
-		echo $this->Form->input('parent_id');
+		echo $this->Form->input('parent_id', array('empty' => '-- None --'));
 	?>
 <?php echo $this->Form->end(__('Submit', true));?>
 </div>

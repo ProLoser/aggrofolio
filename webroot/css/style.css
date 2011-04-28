@@ -16,6 +16,17 @@
   html5doctor.com/html-5-reset-stylesheet/
 */
 
+@font-face {
+    font-family: 'BIRTHOFAHERORegular';
+    src: url('birth_of_a_hero-webfont.eot');
+    src: url('birth_of_a_hero-webfont.eot?#iefix') format('embedded-opentype'),
+         url('birth_of_a_hero-webfont.woff') format('woff'),
+         url('birth_of_a_hero-webfont.ttf') format('truetype'),
+         url('birth_of_a_hero-webfont.svg#BIRTHOFAHERORegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 html, body, div, span, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp,
@@ -53,7 +64,7 @@ input, select { vertical-align:middle; }
 
 
 /* font normalization inspired by  from the YUI Library's fonts.css: developer.yahoo.com/yui/ */
-body { font:13px/1.231 sans-serif; *font-size:small; } /* hack retained to preserve specificity */
+body { text-shadow: 0 1px 2px #fff; font:13px/1.231 sans-serif; *font-size:small; } /* hack retained to preserve specificity */
 select, input, textarea, button { font:99% sans-serif; }
 
 /* normalize monospace sizing
@@ -76,7 +87,7 @@ body, select, input, textarea {
 h1,h2,h3,h4,h5,h6 { font-weight: bold; }
 
 /* always force a scrollbar in non-IE: */
-html { overflow-y: scroll; }
+html { overflow-y: scroll; background: url(../img/background.jpg); }
 
 
 /* accessible focus treatment: people.opera.com/patrickl/experiments/keyboard/test */
@@ -90,7 +101,7 @@ ul, ol { margin-left: 2em; }
 ol { list-style-type: decimal; }
 
 /* remove margins for navigation lists */
-nav ul, nav li { margin: 0; list-style:none; list-style-image: none; }
+nav ul, nav li { margin: 3px 0 3px 15px; list-style:none; list-style-image: none; }
 
 small { font-size: 85%; }
 strong, th { font-weight: bold; }
@@ -106,6 +117,7 @@ pre {
   /* www.pathf.com/blogs/2008/05/formatting-quoted-code-in-blog-posts-css21-white-space-pre-wrap/ */
   white-space: pre; white-space: pre-wrap; white-space: pre-line; word-wrap: break-word;
   padding: 15px;
+  margin-left: 220px;
 }
 
 textarea { overflow: auto; } /* www.sitepoint.com/blogs/2010/08/20/ie-remove-textarea-scrollbars/ */
@@ -153,40 +165,24 @@ button {  width: auto; overflow: visible; }
  /* Primary Styles
     Author: Dean Sofer (ProLoser)
  */
-h1 {
-	font-size: 35px;
-	text-align: center;
-	color: #880000;
-	text-shadow: 0 0 4px #bb3333;
-}
-#main h2 {
-	font-size: 25px;
-}
-#main h3 {
-	font-size: 15px;
-	margin: 5px 0;
-	color: #aa0000;
-	background-color: #eee;
-	border-bottom: dotted 1px #666;
-	border-top: solid 2px #333;
-	padding: 3px 3px 1px 3px;
-	
-}
-#main h4 {
+
+time {
+	float: right;
 	font-weight: bold;
 }
-#main h4 span {
-	display: block;
-	font-size: 80%;
-	font-weight: normal;
+section {
+	margin: 30px 0;
 }
-#main h5 {
-	float: right;
+article {
+	margin: 20px 0; 
+}
+legend {
+	font-size: 120%;
 }
 #container {
 	position: relative;
-	padding-left: 240px;
-	min-width: 720px;
+	padding-left: 260px;
+	min-width: 700px;
 }
 header {
 	position: fixed;
@@ -196,6 +192,7 @@ header {
 	height: 100%;
 	width: 200px;
 	margin: 0 20px;
+	z-index: 10;
 	background-color: #aa0000;
 	background-image: -moz-linear-gradient(left, #aa0000, #990000); /* FF3.6 */
 	background-image: -ms-linear-gradient(left, #aa0000, #990000); /* IE10 */
@@ -210,39 +207,110 @@ header {
 	-webkit-box-shadow: 1px 0px 7px #555;
 	-moz-box-shadow: 1px 0px 7px #555;
 }
+header h1 {
+	font-size: 55px;
+	text-align: center;
+	color: #fff;
+	text-shadow: 0 2px 3px rgba(0,0,0,.4);
+	font-weight: bold;
+	margin: 10px -30px;
+	font-family: "BIRTHOFAHERORegular";
+}
 header a, header a:visited {
-	color: #eee;
+	color: #000;
 	text-decoration: none;
 }
-header a:hover {
-	text-decoration: underline;
+#mainNav {
+	margin: 0;
+	background-color: #aa0000;
+	background-image: -moz-linear-gradient(left, #aa0000, #990000); /* FF3.6 */
+	background-image: -ms-linear-gradient(left, #aa0000, #990000); /* IE10 */
+	background-image: -o-linear-gradient(left, #aa0000, #990000); /* Opera 11.10+ */
+	background-image: -webkit-gradient(linear, left top, right top, from(#aa0000), to(#990000)); /* Saf4+, Chrome */
+	background-image: -webkit-linear-gradient(left, #aa0000, #990000); /* Chrome 10+, Saf5.1+ */
+	background-image: linear-gradient(left, #aa0000, #990000);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#aa0000', EndColorStr='#990000'); /* IE6–IE9 */
+	-webkit-box-shadow: inset 0 -2px 3px #b00, inset 0 2px 3px #800;
+	padding: 0 0 0 4px;
+}
+#mainNav li {
+	display: inline-block;
+	margin: 5px 2px;
+}
+#mainNav li a {
+	font-size: 18px;
+	color: #c11;
+	font-weight: bold;
+	text-shadow: 0 -1px 1px #b00, 0 1px 1px #800;
+}
+#mainNav li a:hover {
+	color: #880000;
+	text-shadow: 0 0 4px #bb3333;
 }
 header h3 {
 	font-size: 25px;
 	background: none;
 	text-align: center;
 	color: #880000;
-	text-shadow: 0 0 4px #bb3333;
+	text-shadow: 0 -1px 1px rgba(0,0,0,.2), 0 1px 1px rgba(255,255,255,.2);
 	border: 0;
-	margin: 25px 0 10px 0;
-	border-top: 2px solid #9f0000;
-	box-shadow: 0 0 1px #b22, 0 0 1px #b33;
-	-moz-box-shadow: 0 0 4px #b33, 0 0 4px #b33;
-	-webkit-box-shadow: 0 -1px 2px #b00, inset 0 1px 2px #b00;
-	padding-top: 5px;
+	border-bottom: 2px solid #8f0000;
+	box-shadow: 0 2px 2px rgba(0,0,0,.5);
+	-moz-box-shadow: 0 2px 2px rgba(0,0,0,.5);
+	-webkit-box-shadow: inset 0 -1px 1px rgba(0,0,0,.1), 0 1px 1px rgba(255,255,255,.1);
+	margin: 20px 0 10px 0;
 }
-#mainNav {
-	margin: 0;
+nav li a {
+	text-shadow: 0 1px 0 rgba(255,255,255,.1);
+	color: #000;
 }
-#mainNav li {
-	display: inline-block;
-	margin: 5px 15px;
+nav li a:hover {
+	color: #fff;
 }
 #main {
-	margin: 20px 20px 20px 0;
+	margin: 60px 40px 20px 0;
 }
-legend {
-	font-size: 120%;
+#main > h2, #main > div > h2 {
+	font-size: 40px;
+	position: fixed;
+	margin: 0px -40px 10px -260px;
+	padding: 3px 3px 1px 260px;
+	/*background: rgb(255, 255, 255);
+		background: rgba(255, 255, 255, 0.7);
+		-moz-box-shadow: 0 3px 10px #fff;
+		-webkit-box-shadow: 0 3px 10px #fff;
+		box-shadow: 0 3px 10px #fff;*/
+	width: 100%;
+	top: 0;
+	color: #b00;
+	text-shadow: 0 1px 2px #aaa, 0 0 100px #fff, 0 0 100px #fff, 0 0 100px #fff, 0 0 100px #fff;
+}
+#main h3, #main section > h1 {
+	font-size: 20px;
+	margin: 30px -40px 20px -260px;
+	padding: 3px 3px 1px 260px;
+	color: #fff;
+	text-shadow: 0 0 2px #a33;
+	/*background-color: #eaa;*/
+	background-image: -moz-linear-gradient(left, #eaa, #fff); /* FF3.6 */
+	background-image: -ms-linear-gradient(left, #eaa, #fff); /* IE10 */
+	background-image: -o-linear-gradient(left, #eaa, #fff); /* Opera 11.10+ */
+	background-image: -webkit-gradient(linear, left top, right top, from(#eaa), to(#fff)); /* Saf4+, Chrome */
+	background-image: -webkit-linear-gradient(left, #ebb, rgba(255, 255, 255, 0)); /* Chrome 10+, Saf5.1+ */
+	background-image: linear-gradient(left, #eaa, #fff);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#ffcccc', EndColorStr='#ffffff'); /* IE6–IE9 */
+	 -moz-box-shadow: inset 0px 1px 2px #999; /* FF3.5+ */
+  -webkit-box-shadow: inset 0px 1px 2px #999; /* Saf3.0+, Chrome */
+          box-shadow: inset 0px 1px 2px #999; /* Opera 10.5, IE9, Chrome 10+ */
+}
+#main h4 {
+	font-weight: bold;
+	font-size: 15px;
+}
+#main h4 span {
+	display: block;
+	font-size: 80%;
+	font-weight: normal;
 }
 
 .cake-debug, .cake-sql-log {
@@ -255,9 +323,17 @@ legend {
 	margin: 5px 0;
 	list-style: circle;
 }
+.resumes article .projects {
+	display: none;
+}
+.resumes .projects li {
+	list-style: none;
+	display: inline-block;
+	margin: 5px;
+}
 
 
-
+/* Radial Plugin */
 
 
 

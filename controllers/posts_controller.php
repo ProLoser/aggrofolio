@@ -19,17 +19,31 @@ class PostsController extends AppController {
 		}
 		$this->set('post', $this->Post->read(null, $id));
 	}
+	
+	function _setRelated() {
+		$models = $this->Post->PostRelationship->belongsTo;
+		unset($models['Post']);
+		$models = array_keys($models);
+		
+		foreach ($models as $model) {
+			$data = $this->Post->PostRelationship->{$model}->find('list');
+			$this->set(Inflector::variable(Inflector::tableize($model)), $data);
+			$foreignModels[$model] = Inflector::humanize(Inflector::underscore($model));
+		}
+		$this->set(compact('foreignModels'));
+	}
 
 	function admin_add() {
 		if (!empty($this->data)) {
 			$this->Post->create();
-			if ($this->Post->save($this->data)) {
+			if ($this->Post->saveAll($this->data)) {
 				$this->Session->setFlash(__('The post has been saved', true));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The post could not be saved. Please, try again.', true));
 			}
 		}
+		$this->_setRelated();
 	}
 
 	function admin_edit($id = null) {

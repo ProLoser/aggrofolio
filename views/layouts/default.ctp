@@ -45,14 +45,16 @@ echo $this->Html->css(array(
 	'style',
 )); ?>
 	<?php echo $this->AssetCompress->includeCss(); ?> 
+<?php echo $this->Plate->lib('jquery', array('fallback' => 'libs/jquery-1.5.0.min')); ?> 
+<?php echo $this->Plate->lib('jqueryui'); ?>
 <?php 
 echo $this->Html->script(array(
 //$this->AssetCompress->script(array(
+	'mylibs/jQuery.radmenu.min',
 	'plugins',
 	'script',
 )); ?> 
 	<?php echo $this->Html->script('libs/modernizr-1.7.min'); ?> 
-	<?php echo $scripts_for_layout; ?> 
 </head>
 <body>
 	<div id="container">
@@ -72,10 +74,9 @@ echo $this->Html->script(array(
 			<?php echo $this->element('layout/footer'); ?>
 		</footer>
 	</div>
-<?php echo $this->Plate->lib('jquery', array('fallback' => 'libs/jquery-1.5.0.min')); ?> 
-<?php echo $this->AssetCompress->includeJs(); ?> 
+<?php echo $this->AssetCompress->includeJs(); ?> 	
+<?php echo $scripts_for_layout; ?>
 <?php echo $this->Plate->pngFix(); ?> 
 <?php echo $this->Plate->analytics(); ?> 
-<?php if (Configure::read('debug')) echo $this->Html->script(array('profiling/yahoo-profiling.min', 'profiling/config')); ?> 
 </body>
 </html>

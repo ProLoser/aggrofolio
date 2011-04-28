@@ -15,9 +15,9 @@
 		));
 		?>		</p>
 		<div class="paging">
-			<?php echo $this->Paginator->prev('&laquo; ' . __('previous', true), array('escape' => false), null, array('escape' => false, 'class'=>'disabled'));?>
+			<?php echo $this->Paginator->prev();?>
 			<?php echo $this->Paginator->numbers();?>
-			<?php echo $this->Paginator->next(__('next', true) . ' &raquo;', array('escape' => false), null, array('escape' => false, 'class' => 'disabled'));?>
+			<?php echo $this->Paginator->next();?>
 		</div>
 	</div>
 	<?php echo $this->Batch->create('ResumeRecommendation')?>	<table cellpadding="0" cellspacing="0">
@@ -94,8 +94,8 @@
 	</table>
 	<?php echo $this->Batch->end()?> 
 	<div class="paging">
-		<?php echo $this->Paginator->prev('&laquo; ' . __('previous', true), array('escape' => false), null, array('escape' => false, 'class'=>'disabled'));?>
+		<?php echo $this->Paginator->prev();?>
 		| <?php echo $this->Paginator->numbers();?> |
-		<?php echo $this->Paginator->next(__('next', true) . ' &raquo;', array('escape' => false), null, array('escape' => false, 'class' => 'disabled'));?>
+		<?php echo $this->Paginator->next();?>
 	</div>
 </div>

@@ -43,8 +43,8 @@ class ResumeSchool extends AppModel {
 	var $hasMany = array(
 		'Project',
 		'PostRelationship' => array(
-			'foreign_key' => 'foreign_key',
-			'conditions' => array('PostRelationship.model' => 'ResumeSchool'),
+			'foreignKey' => 'foreign_key',
+			'conditions' => array('PostRelationship.foreign_model' => 'ResumeSchool'),
 		),
 	);
 
