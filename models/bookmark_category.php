@@ -10,7 +10,7 @@ class BookmarkCategory extends AppModel {
 		),
 	);
 	
-	var $behaviors = array(
+	var $actsAs = array(
 		'Tree',
 	);
 

@@ -5,33 +5,38 @@ class Comment extends AppModel {
 		'subject' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+				'message' => 'Please enter a subject',
 			),
 		),
 		'name' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+				'message' => 'Please specify your name',
+			),
+		),
+		'email' => array(
+			'notempty' => array(
+				'rule' => array('email'),
+				'message' => 'Please specify a valid email',
 			),
 		),
 		'website' => array(
 			'notempty' => array(
-				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+				'rule' => array('url'),
+				'message' => 'This is an invalid url',
+				'allowEmpty' => true,
 			),
 		),
+		'body' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				'message' => 'Your custom message here',
+			),
+		),
+		'human' => array(
+			'rule' => array('equalTo', '1'),
+			'message' => 'Nope, guess again'
+		)
 	);
 }
 ?>

@@ -23,10 +23,13 @@
  */
 Router::parseExtensions('json', 'xml', 'rss', 'ajax');
  
-Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
+Router::connect('/', array('controller' => 'logs', 'action' => 'index'));
 Router::connect('/log', array('controller' => 'logs'));
 
 Router::connect('/blog/*', array('controller' => 'posts'));
+
+Router::connect('/gallery/album/*', array('controller' => 'media_items', 'action' => 'album'));
+Router::connect('/gallery/*', array('controller' => 'albums', 'action' => 'index'));
 
 /*
  * Want localization instead?

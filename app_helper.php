@@ -21,7 +21,7 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 App::import('Vendor', 'UrlCache.url_cache_app_helper');
-class AppHelper extends UrlCacheAppHelper {
+class AppHelper extends Helper {
 	
 	/**
 	 * Specifies whether the url prefix should be left alone in array urls when unspecified
@@ -30,32 +30,13 @@ class AppHelper extends UrlCacheAppHelper {
 	 */
 	var $maintainPrefix = true;
 	
-	/**
-	 * The Html->url() function overridden to support local prefixes
-	 *
-	 * @param string $url 
-	 * @param string $full 
-	 * @return void
-	 * @author Dean Sofer
-	 */
-	function url($url = null, $full = false) {
-		if (is_array($url)) {
-			if (!isset($url['lang']) && isset($this->params['lang'])) {
-				$url['lang'] = $this->params['lang'];
-			} elseif (isset($url['lang']) && $url['lang'] == Configure::read('Languages.default')) {
-				unset($url['lang']);
-			}
-			if (!isset($url['plugin'])) {
-				$url['plugin'] = false;
-			}
-			if (!$this->maintainPrefix) {
-				$routing = Configure::read('Routing');
-				if (!empty($routing['prefixes'])) {
-					$prefixes = array_diff_key(array_flip($routing['prefixes']), $url);
-					$url = array_merge($url, array_fill_keys(array_keys($prefixes), false)); 
-				}
-			}
-		}
-		return parent::url($url, $full);
+	function _categories($row) {
+		$model = key($row);
+		$result = $this->HtmlPlus->link(
+			$row[$model]['name'], 
+			array('category' => $row[$model]['id']), 
+			array('id' => 'cat-' . $row[$model]['id'])
+		);
+		return $result;
 	}
 }

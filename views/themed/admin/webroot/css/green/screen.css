@@ -2,6 +2,17 @@
 	CSS Reset 
 */
 
+@font-face {
+    font-family: 'BIRTHOFAHERORegular';
+    src: url('../../../../css/birth_of_a_hero-webfont.eot');
+    src: url('../../../../css/birth_of_a_hero-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../../../css/birth_of_a_hero-webfont.woff') format('woff'),
+         url('../../../../css/birth_of_a_hero-webfont.ttf') format('truetype'),
+         url('../../../../css/birth_of_a_hero-webfont.svg#BIRTHOFAHERORegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
 	margin:0;
 	padding:0;
@@ -459,7 +470,12 @@ div.wysiwyg
 {
 	width: 210px;
 	float: left;
-	margin: 5px;
+	margin: -5px;
+	text-align: center;
+	color: #fff;
+	text-shadow: 0 2px 3px rgba(0,0,0,.4);
+	font-size: 40px;
+	font-family: "BIRTHOFAHERORegular";
 }
 
 #header #search

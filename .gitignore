@@ -9,6 +9,7 @@ tmp/*
 config/database.php
 webroot/cache_css/*
 webroot/cache_js/*
+webroot/uploads/*
 app/tmp/*
 app/config/database.php
 !empty

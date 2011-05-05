@@ -1,6 +1,7 @@
 <?php
 class Project extends AppModel {
 	var $name = 'Project';
+	var $order = 'Project.name ASC';
 	var $validate = array(
 		'name' => array(
 			'notempty' => array(

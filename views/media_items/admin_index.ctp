@@ -22,20 +22,18 @@
 	<tr>
 		<th><?php echo $this->Paginator->sort('id');?></th>
 		<th><?php echo $this->Paginator->sort('name');?></th>
-		<th><?php echo $this->Paginator->sort('source');?></th>
 		<th><?php echo $this->Paginator->sort('album_id');?></th>
+		<th><?php echo $this->Paginator->sort('project_id');?></th>
 		<th><?php echo $this->Paginator->sort('published');?></th>
-		<th><?php echo $this->Paginator->sort('uuid');?></th>
 		<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
 		echo $this->Batch->filter(array(
 			null,
 			'name',
-			'source',
 			'album_id' => array('empty' => '-- None --'),
+			'project_id' => array('empty' => '-- None --'),
 			'published',
-			'uuid'
 		));
 	$i = 0;
 	foreach ($mediaItems as $mediaItem):
@@ -46,13 +44,14 @@
 	?>
 	<tr<?php echo $class;?>>
 		<td><?php echo $mediaItem['MediaItem']['id']; ?>&nbsp;</td>
-		<td><?php echo $this->Html->link($mediaItem['MediaItem']['name'], $mediaItem['MediaItem']['url']); ?>&nbsp;</td>
-		<td><?php echo $mediaItem['MediaItem']['source']; ?>&nbsp;</td>
+		<td><?php echo $mediaItem['MediaItem']['name']; ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($mediaItem['Album']['name'], array('controller' => 'albums', 'action' => 'view', $mediaItem['Album']['id'])); ?>
 		</td>
+		<td>
+			<?php echo $this->Html->link($mediaItem['Project']['name'], array('controller' => 'project', 'action' => 'view', $mediaItem['Project']['id'])); ?>
+		</td>
 		<td><?php echo $mediaItem['MediaItem']['published']; ?>&nbsp;</td>
-		<td><?php echo $mediaItem['MediaItem']['uuid']; ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $mediaItem['MediaItem']['id']), array('class' => 'view')); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $mediaItem['MediaItem']['id']), array('class' => 'edit')); ?>
@@ -64,10 +63,9 @@
 		echo $this->Batch->batch(array(
 			null,
 			'name',
-			'source',
 			'album_id' => array('empty' => '-- None --'),
+			'project_id' => array('empty' => '-- None --'),
 			'published',
-			'uuid'
 		));?> 
 	</table>
 	<?php echo $this->Batch->end()?> 

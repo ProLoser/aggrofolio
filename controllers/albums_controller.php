@@ -4,10 +4,20 @@ class AlbumsController extends AppController {
 	var $name = 'Albums';
 
 	function index() {
-		$albums = $this->Album->find('all');
-		$categories_for_layout = $this->Album->MediaCategory->find('list');
-		$catType_for_layout = 'Media';
-		$this->set(compact('albums', 'categories_for_layout', 'catType_for_layout'));
+		$this->paginate['conditions']['Album.published'] = true;
+		$this->paginate['contain']['MediaItem']['limit'] = 1;
+		$albums = $this->paginate();
+		$categories = $this->Album->MediaCategory->find('threaded');
+		$this->set(compact('albums', 'categories'));
+	}
+
+	function view($id = null) {
+		if (!$id) {
+			$this->Session->setFlash(__('Invalid album', true));
+			$this->redirect(array('action' => 'index'));
+		}
+		$this->Album->recursive = 1;
+		$this->set('album', $this->Album->read(null, $id));
 	}
 
 	function admin_index() {
@@ -67,9 +77,8 @@ class AlbumsController extends AppController {
 		}
 		$accounts = $this->Album->Account->find('list');
 		$mediaCategories = $this->Album->MediaCategory->find('list');
-		$resumeEmployers = $this->Album->ResumeEmployer->find('list');
-		$resumeSchools = $this->Album->ResumeSchool->find('list');
-		$this->set(compact('accounts', 'mediaCategories', 'resumeEmployers', 'resumeSchools'));
+		$projects = $this->Album->Project->find('list');
+		$this->set(compact('accounts', 'mediaCategories', 'projects'));
 	}
 
 	function admin_delete($id = null) {

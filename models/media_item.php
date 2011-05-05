@@ -5,24 +5,19 @@ class MediaItem extends AppModel {
 		'name' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'Please enter a name',
 			),
 		),
 		'album_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
+				'message' => 'Please select an album',
 			),
 		),
 		'uuid' => array(
 			'rule' => 'isUnique',
 			'message' => 'be unique dammit',
-		),
-		'published' => array(
-			'boolean' => array(
-				'rule' => array('boolean'),
-				//'message' => 'Your custom message here',
-			),
+			'allowEmpty' => true,
 		),
 	);
 
@@ -40,9 +35,17 @@ class MediaItem extends AppModel {
 
 	var $actsAs = array(
 		'Log.Logable',
+		'UploadPack.Upload' => array(
+			'attachment' => array(
+				'path' => ':webroot/uploads/:style-:basename.:extension',
+				'styles' => array(
+					'thumb' => '200x160',
+				),
+			),
+		),
 	);
 	
-	
+
 	public function scan($albumId) {
 		$album = $this->Album->find('first', array(
 			'conditions' => array('Album.id' => $albumId), 
@@ -59,20 +62,46 @@ class MediaItem extends AppModel {
 		$mediaItems = $this->fetchDevArt($album['Account']['username'], $album['Album']['uuid']);
 		$count = 0;
 		if (!empty($mediaItems)) {
+			
+			App::import('Core', 'HttpSocket');
+			$socket = new HttpSocket();
+			
 			foreach ($mediaItems as $mediaItem) {
+			
+				$response = $socket->get('http://backend.deviantart.com/oembed', array('url' => $mediaItem['MediaItem']['link']));
+				$response = json_decode($response, true);
+				
 				$data['MediaItem'] = array(
 					'url' => $mediaItem['MediaItem']['link'],
 					'name' => $mediaItem['MediaItem']['Title'][0],
 					'description' => $mediaItem['MediaItem']['Description'][1]['value'],
 					'uuid' => $mediaItem['MediaItem']['guid']['value'],
 					'album_id' => $album['Album']['id'],
+					'attachment' => $this->loadUrl($response['url'], $mediaItem['MediaItem']['Title'][0]),
 				);
+				if (isset($album['Album']['project_id']))
+					$data['MediaItem']['project_id'] = $album['Album']['project_id'];
 				$this->create();
 				$this->save($data);
 				$count++;
 			}
 		}
 		return $count;
+	}
+	
+	public function loadUrl($url) {
+		$name = array_pop(explode('/',$url));
+		$path = ini_get('upload_tmp_dir') . DS . md5($name);
+		$data = array(
+			'name' => $name,
+			'tmp_name' => $path,
+			'error' => (int) !copy($url, $path),
+			'size' => filesize($path),
+		);
+		$finfo = finfo_open();
+		$data['type'] = finfo_file($finfo, $path, FILEINFO_MIME_TYPE);
+		finfo_close($finfo);
+		return $data;
 	}
 	
 	public function fetchDevArt($user, $albumId = null) {
@@ -111,6 +140,8 @@ class MediaItem extends AppModel {
 					'uuid' => $photo['id'],
 					'album_id' => $album['Album']['id'],
 				);
+				if (isset($album['Album']['project_id']))
+					$data['MediaItem']['project_id'] = $album['Album']['project_id'];
 				$this->create();
 				$this->save($data);
 				$count++;

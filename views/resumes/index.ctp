@@ -36,6 +36,20 @@
 		list-style: circle;
 		float: left;
 	}
+	.resumes h4 {
+		margin-bottom: 5px;
+		color: #933;
+	}
+	.resumes h4 span {
+		color: #444;
+	}
+	.resumes .projects {
+		margin: 5px 0;
+	}
+	.resumes h5 {
+		float: left;
+		margin: 8px 10px 0 0;
+	}
 	.resumes .projects li {
 		margin: 10px 5px;
 	}
@@ -88,7 +102,7 @@
 		<article>
 			<time><?php echo $employer['date_started']?> - <?php echo (!empty($employer['date_ended'])) ? $employer['date_ended'] : 'Present' ?></time>
 			<h4>
-				<?php echo $this->Html->link($employer['name'], array('controller' => 'resume_employers', 'action' => 'view', $employer['id']))?>
+				<?php echo $employer['name']?>
 				<span><?php echo $employer['title']?></span>
 			</h4>
 			<?php if (!empty($employer['summary'])): ?>
@@ -107,7 +121,7 @@
 		<article>
 			<time><?php echo $school['date_started']?> - <?php echo (!empty($school['date_ended'])) ? $school['date_ended'] : 'Present' ?></time>
 			<h4>
-				<?php echo $this->Html->link($school['name'], array('controller' => 'resume_schools', 'action' => 'view', $school['id']))?>
+				<?php echo $school['name']?>
 				<span><?php echo $school['field_of_study']?></span>
 			</h4>
 			<?php if (!empty($school['activities'])): ?>

@@ -27,21 +27,17 @@
 	</ul>
 <?php $this->Plate->stop()?>
 <h2><?php  echo $project['Project']['name'];?></h2>
-<div id='radial_container'>
-	<ul class='list'>
-		<li class="item"><div class="my_class">1</div></li>
-		<li class="item"><div class="my_class">2</div></li>
-		<li class="item"><div class="my_class">3</div></li>
-		<li class="item"><div class="my_class">4</div></li>
-		<li class="item"><div class="my_class">5</div></li>
-		<li class="item"><div class="my_class">6</div></li>
-		<li class="item"><div class="my_class">7</div></li>
-		<li class="item"><div class="my_class">8</div></li>
-		<li class="item"><div class="my_class">9</div></li>
+<?php if (!empty($project['MediaItem'])): ?>
+<div id="radial_container" class="media">
+	<ul class="list">
+	<?php foreach ($project['MediaItem'] as $item): ?>
+		<li class="item"><?php echo $this->Html->link($this->Html->image('/uploads/thumb-' . $item['attachment_file_name'], array('class' => 'my_class')), '/uploads/original-' . $item['attachment_file_name'], array('escape' => false, 'rel' => 'Project')) ?></li>
+	<?php endforeach ?>	
 	</ul>
-	<a href="#" class="arrow" id="radright">Right &raquo;</a>
-	<a href="#" class="arrow" id="radleft">&laquo; Left</a>
+	<a href="#" class="arrow" id="radright">Right</a>
+	<a href="#" class="arrow" id="radleft">Left</a>
 </div>
+<?php endif; ?>
 <div class="projects view">
 	<p><?php echo $project['Project']['description']; ?></p>
 	<?php if (!empty($project['repository'])): ?>	
@@ -90,9 +86,14 @@
 	<h1>Related Blog Posts</h1>
 	<?php foreach ($project['PostRelationship'] as $post): ?>
 		<article>
-			<time pubdate><?php echo $this->Time->timeAgoInWords($post['Post']['created']);?></time>
-			<h1><?php echo $this->Html->link($post['Post']['subject'], array('controller' => 'posts', $post['Post']['id']))?></h1>
+			<header>
+				<h1><?php echo $this->Html->link($post['Post']['subject'], array('controller' => 'posts', $post['Post']['id']))?></h1>
+				<time pubdate><?php echo $this->Time->timeAgoInWords($post['Post']['created']);?></time>
+			</header>
 			<?php echo $post['Post']['body']?>
+			<footer>
+				<?php echo $this->Html->link('Read More &rarr;', array('controller' => 'posts', 'action' => 'view', $post['Post']['id'], $post['Post']['slug']), array('class' => 'readmore', 'escape' => false)); ?>
+			</footer>
 		</article>
 	<?php endforeach ?>
 </section>

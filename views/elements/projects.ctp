@@ -1,6 +1,6 @@
 <?php if (!empty($projects)): ?>
 <div class="projects">
-	<h5>Projects</h5>
+	<h5>Projects:</h5>
 	<ul>
 	<?php foreach ($projects as $project): ?>			
 		<li>

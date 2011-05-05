@@ -65,6 +65,8 @@ input, select { vertical-align:middle; }
 
 /* font normalization inspired by  from the YUI Library's fonts.css: developer.yahoo.com/yui/ */
 body { text-shadow: 0 1px 2px #fff; font:13px/1.231 sans-serif; *font-size:small; } /* hack retained to preserve specificity */
+/* Disable Text Shadow for some content */
+.fancybox-title-float-main { text-shadow: none; }
 select, input, textarea, button { font:99% sans-serif; }
 
 /* normalize monospace sizing
@@ -93,11 +95,12 @@ html { overflow-y: scroll; background: url(../img/background.jpg); }
 /* accessible focus treatment: people.opera.com/patrickl/experiments/keyboard/test */
 a:hover, a:active { outline: none; }
 
-a, a:active, a:visited { color: #733; }
-a:hover { color: #d11; }
+a, a:active, a:visited { color: #933; text-decoration: none; }
+a:hover { color: #e11; }
 
 
 ul, ol { margin-left: 2em; }
+ul { list-style-type: circle;}
 ol { list-style-type: decimal; }
 
 /* remove margins for navigation lists */
@@ -184,7 +187,7 @@ legend {
 	padding-left: 260px;
 	min-width: 700px;
 }
-header {
+#container > header {
 	position: fixed;
 	font-size: 15px;
 	top: 0;
@@ -209,28 +212,37 @@ header {
 	-moz-box-shadow: 1px 0px 7px #555;
 }
 header h1 {
-	font-size: 55px;
+	margin: 10px -30px;
 	text-align: center;
 	color: #fff;
 	text-shadow: 0 2px 3px rgba(0,0,0,.4);
-	font-weight: bold;
-	margin: 10px -30px;
+	font-size: 55px;
 	font-family: "BIRTHOFAHERORegular";
 }
-header a, header a:visited {
-	color: #000;
-	text-decoration: none;
+header nav a, header nav a:visited, #mainNav a, #mainNav a:visited {
+	color: #fff;
+	text-shadow: none;
 }
-#mainNav {
+header nav a:hover, #mainNav a:hover {
+	color: #f00;
+}
+#mainNav a {
+	font-size: 140%;
+}
+#mainNav li {
+	margin: 5px;
+	list-style: none;
+}
+/*#mainNav {
 	margin: 0;
 	background-color: #aa0000;
-	background-image: -moz-linear-gradient(left, #aa0000, #990000); /* FF3.6 */
-	background-image: -ms-linear-gradient(left, #aa0000, #990000); /* IE10 */
-	background-image: -o-linear-gradient(left, #aa0000, #990000); /* Opera 11.10+ */
-	background-image: -webkit-gradient(linear, left top, right top, from(#aa0000), to(#990000)); /* Saf4+, Chrome */
-	background-image: -webkit-linear-gradient(left, #aa0000, #990000); /* Chrome 10+, Saf5.1+ */
+	background-image: -moz-linear-gradient(left, #aa0000, #990000);
+	background-image: -ms-linear-gradient(left, #aa0000, #990000);
+	background-image: -o-linear-gradient(left, #aa0000, #990000);
+	background-image: -webkit-gradient(linear, left top, right top, from(#aa0000), to(#990000));
+	background-image: -webkit-linear-gradient(left, #aa0000, #990000);
 	background-image: linear-gradient(left, #aa0000, #990000);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#aa0000', EndColorStr='#990000'); /* IE6–IE9 */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#aa0000', EndColorStr='#990000');
 	background-image: url(../img/texture.png);
 	-webkit-box-shadow: inset 0 -2px 3px rgba(255,255,255,.2), inset 0 2px 3px rgba(0,0,0,.2);
 	padding: 0 0 0 4px;
@@ -241,7 +253,7 @@ header a, header a:visited {
 }
 #mainNav li a {
 	font-size: 18px;
-	color: rgba(255,100,100,.1);
+	color: rgba(255,0,0,.1);
 	font-weight: bold;
 	text-shadow: 0 -1px 1px #b00, 0 1px 1px #800;
 	text-shadow: 0 -1px 1px rgba(255,255,255,.2), 0 1px 1px rgba(0,0,0,.2);
@@ -249,7 +261,7 @@ header a, header a:visited {
 #mainNav li a:hover {
 	color: #800000;
 	text-shadow: 0 -1px 1px rgba(0,0,0,.2), 0 1px 1px rgba(255,255,255,.2);
-}
+}*/
 header h3 {
 	font-size: 25px;
 	text-align: center;
@@ -262,20 +274,13 @@ header h3 {
 	-webkit-box-shadow: inset 0 -1px 1px rgba(0,0,0,.1), 0 1px 1px rgba(255,255,255,.1);
 	margin: 20px 0 10px 0;
 }
-nav li a {
-	text-shadow: 0 1px 0 rgba(255,255,255,.1);
-	color: #000;
-}
-nav li a:hover {
-	color: #fff;
-	text-shadow: 0 1px 0 rgba(0,0,0,.1);
-}
 #main {
 	margin: 60px 40px 20px 0;
 }
 #main > h2, #main > div > h2 {
 	font-size: 40px;
 	position: fixed;
+	z-index: 10;
 	margin: 0px -40px 10px -260px;
 	padding: 3px 3px 1px 260px;
 	/*background: rgb(255, 255, 255);
@@ -294,14 +299,14 @@ nav li a:hover {
 	padding: 3px 3px 1px 260px;
 	color: #fff;
 	text-shadow: 0 0 2px #a33;
-	/*background-color: #eaa;*/
-	background-image: -moz-linear-gradient(left, #eaa, #fff); /* FF3.6 */
-	background-image: -ms-linear-gradient(left, #eaa, #fff); /* IE10 */
-	background-image: -o-linear-gradient(left, #eaa, #fff); /* Opera 11.10+ */
-	background-image: -webkit-gradient(linear, left top, right top, from(#eaa), to(#fff)); /* Saf4+, Chrome */
-	background-image: -webkit-linear-gradient(left, #ebb, rgba(255, 255, 255, 0)); /* Chrome 10+, Saf5.1+ */
-	background-image: linear-gradient(left, #eaa, #fff);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#ffcccc', EndColorStr='#ffffff'); /* IE6–IE9 */
+	/*background-color: rgba(160,0,0,.5);*/
+	background-image: -moz-linear-gradient(left, rgba(160,0,0,.5), rgba(255, 255, 255, 0)); /* FF3.6 */
+	background-image: -ms-linear-gradient(left, rgba(160,0,0,.5), rgba(255, 255, 255, 0)); /* IE10 */
+	background-image: -o-linear-gradient(left, rgba(160,0,0,.5), rgba(255, 255, 255, 0)); /* Opera 11.10+ */
+	background-image: -webkit-gradient(linear, left top, right top, from(rgba(160,0,0,.5)), to(rgba(255, 255, 255, 0))); /* Saf4+, Chrome */
+	background-image: -webkit-linear-gradient(left, rgba(160,0,0,.5), rgba(255, 255, 255, 0)); /* Chrome 10+, Saf5.1+ */
+	background-image: linear-gradient(left, rgba(160,0,0,.5), rgba(255, 255, 255, 0));
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='rgba(160,0,0,.5)', EndColorStr='rgba(255, 255, 255, 0)'); /* IE6–IE9 */
 	 -moz-box-shadow: inset 0px 1px 2px #999; /* FF3.5+ */
   -webkit-box-shadow: inset 0px 1px 2px #999; /* Saf3.0+, Chrome */
           box-shadow: inset 0px 1px 2px #999; /* Opera 10.5, IE9, Chrome 10+ */
@@ -313,7 +318,6 @@ nav li a:hover {
 #main h4 span {
 	display: block;
 	font-size: 80%;
-	font-weight: normal;
 }
 
 .cake-debug, .cake-sql-log {
@@ -324,7 +328,6 @@ nav li a:hover {
 }
 .log li {
 	margin: 5px 0;
-	list-style: circle;
 }
 .resumes article .projects {
 	display: none;
@@ -335,34 +338,206 @@ nav li a:hover {
 	margin: 5px;
 }
 
+.paging p {
+	float: right;
+}
+a.readmore {
+	font-size: 80%;
+}
+
+#flashMessage {
+	color: #f00;
+	padding: 10px;
+	border: dashed 2px #fcc;
+	background: #fee;
+	display: inline-block;
+}
 
 /* Radial Plugin */
 #radial_container {
 	position: absolute;
+	z-index: 20;
 	right: 0;
 	top: -60px;
-	width: 300px;
-	height: 350px;
+	width: 360px;
+	height: 345px;
 	overflow: hidden;
+	background: url(../img/arrows.png) no-repeat 10px right;
 }
 #radial_container .arrow {
 	float: right;
 	text-decoration: none;
-}
-#radright {
-	margin: 40px 10px 0 0;
+	font-weight: bold;
+	position: absolute;
+	z-index: 10;
 }
 #radleft {
-	margin: 20px -10px 0 0;
+	top: 11px;
+	right: 45px;
+}
+#radright {
+	top: 42px;
+	right: 10px;
 }
 .my_class {
-	background: #ccc;
-	padding: 50px;
-	border-radius: 10px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border: 3px solid #000;
+	padding: 5px;
+	background: #fff;
+	box-shadow: 1px 1px 2px #666;
+	-moz-box-shadow: 1px 1px 2px #666;
 	-webkit-box-shadow: 1px 1px 2px #666;
+	width: 200px;
+	height: 160px;
+}
+.radial_div {
+	opacity: .4;
+}
+.radial_div_item {
+	margin: -80px 100px 80px -100px;
+}
+
+/* Gallery */
+.gallery ul {
+	overflow: hidden;
+	margin: 0;
+}
+.gallery li {
+	float: left;
+	margin: 10px;
+	list-style: none;
+	position: relative;
+	background: #fff;
+	padding: 5px;
+	border: solid 3px #000;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	box-shadow: 1px 1px 2px rgba(0,0,0,.8);
+	-moz-box-shadow: 1px 1px 2px rgba(0,0,0,.8);
+	-webkit-box-shadow: 1px 1px 2px rgba(0,0,0,.8);
+}
+.gallery li img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	width: 200px;
+	height: 160px;
+	margin: 5px;
+	
+}
+.gallery li a {
+	font-weight: bold;
+	display: block;
+	width: 160px;
+	height: 80px;
+	padding: 40px 20px;
+	background: rgba(0,0,0,.3);
+	text-align: center;
+	text-decoration: none;
+	color: white;
+	font-size: 16px;
+	text-shadow: 0 1px 1px rgba(0,0,0,.7);
+	position: relative;
+	z-index: 2;
+}	
+.gallery li a:hover {
+	background: rgba(0,0,0,.7);
+}
+.gallery li a span {
+	display: block;
+	font-size: 70%;
+}
+.reset {
+	text-align: center;
+	display: none;
+}
+
+#comments li {
+	margin: 10px 0;
+}
+#comments li h2 {
+	font-size: 120%;
+}
+#comments form {
+	border: 2px solid rgba(0,0,0,.1);
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	padding: 10px;
+}
+
+/* Paging */
+a.asc:after {
+	content: ' ⇑';
+}
+a.desc:after {
+	content: ' ⇓'; /* TODO Change sort down arrow icon */
+}
+
+/* Blog */
+.posts .paging {
+	margin: 10px 0;
+}
+.posts article {
+	border-bottom: 1px solid #933;
+	border-top: 1px solid #933;
+	padding: 10px 0;
+	margin: 0;
+}
+article header h1 {
+	font-size: 180%;
+	text-align: left;
+	color: #fff;
+	text-shadow: 0 2px 3px rgba(0,0,0,.4);
+	margin: 0;
+	font-family: inherit;
+}
+article header time {
+	margin-top: -20px;
+}
+article header a, article header a:visited {
+	color: #933; 
+	text-decoration: none;
+	text-shadow: 0 1px 2px #fff;
+}
+article header a:hover {
+	color: #e11;
 }
 
 
+input, textarea {
+	padding: 5px;
+}
+input, textarea, label {
+	font-size: 120%;
+}
+.input {
+	margin: 10px 0;
+}
+.checkbox input {
+	float: left;
+	margin-right: 5px;
+}
+label {
+	display: block;
+	font-weight: bold;
+	margin: 2px 0;
+}
+.required label:after {
+	content: '*';
+	color: red;
+}
+.error-message {
+	color: red;
+	margin-top: 2px;
+}
 
 /*
  * Non-semantic helper classes: please define your styles before this section.

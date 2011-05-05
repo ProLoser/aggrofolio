@@ -6,40 +6,40 @@ class Post extends AppModel {
 		'subject' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+				'message' => 'Please enter a valid subject',
 			),
 		),
 		'url' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+				'message' => 'Your custom message here',
 			),
 		),
 		'slug' => array(
 			'notempty' => array(
-				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+				'rule' => '/^[a-zA-Z0-9-\s_]+$/i',
+				'message' => 'Slugs must be letters, numbers, dashes and underscores only',
 			),
 		),
 	);
 	
 	var $hasMany = array(
 		'PostRelationship',
+		'Comment' => array(
+			'foreignKey' => 'foreign_key',
+			'conditions' => array(
+				'Comment.foreign_model' => 'Post',
+			)
+		)
 	);
 	
 	var $actsAs = array(
 		'Log.Logable',
 	);
+	
+	public function beforeValidate() {
+		if (isset($this->data['Post']['slug']) && empty($this->data['Post']['slug']))
+			$this->data['Post']['slug'] = Inflector::slug($this->data['Post']['subject']);
+		return true;
+	}
 }

@@ -2,9 +2,19 @@
 class PostsController extends AppController {
 
 	var $name = 'Posts';
+	var $helpers = array('Time');
 	
 	function index() {
 		$this->set('posts', $this->paginate());
+	}
+
+	function view($id = null) {
+		if (!$id) {
+			$this->Session->setFlash(__('Invalid post', true));
+			$this->redirect(array('action' => 'index'));
+		}
+		$this->Post->recursive = 1;
+		$this->set('post', $this->Post->read(null, $id));
 	}
 
 	function admin_index() {

@@ -2,6 +2,7 @@
 class ResumeSkill extends AppModel {
 	var $name = 'ResumeSkill';
 	var $displayField = 'name';
+	var $order = array('proficiency ASC', 'years DESC');
 	var $validate = array(
 		'name' => array(
 			'notempty' => array(

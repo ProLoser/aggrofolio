@@ -55,6 +55,12 @@
 [submodule "plugins/log"]
 	path = plugins/log
 	url = git://github.com/josegonzalez/log.git
+[submodule "plugins/mi"]
+	path = plugins/mi
+	url = git://github.com/AD7six/mi.git
 [submodule "webroot/js/mylibs/radmenu"]
 	path = webroot/js/mylibs/radmenu
 	url = git@github.com:ProLoser/jQuery-Radmenu-Plugin.git
+[submodule "plugins/upload_pack"]
+	path = plugins/upload_pack
+	url = git://github.com/proloser/uploadpack.git

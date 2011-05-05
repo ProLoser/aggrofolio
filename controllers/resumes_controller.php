@@ -11,13 +11,21 @@ class ResumesController extends AppController {
 				'ResumeRecommendation',
 				'ResumeSchool' => array(
 					'Project' => array(
-						'Album',
+						'conditions' => array('Project.published' => true),
+						'MediaItem' => array(
+							'conditions' => array('MediaItem.published' => true),
+						),
 					),
 				),
-				'ResumeSkill',
+				'ResumeSkill' => array(
+					'order' => array('proficiency ASC', 'years DESC')
+				),
 				'ResumeEmployer' => array(
 					'Project' => array(
-						'Album',
+						'conditions' => array('Project.published' => true),
+						'MediaItem' => array(
+							'conditions' => array('MediaItem.published' => true),
+						),
 					),
 				),
 			),

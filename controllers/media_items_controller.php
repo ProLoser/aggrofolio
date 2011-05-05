@@ -3,9 +3,25 @@ class MediaItemsController extends AppController {
 
 	var $name = 'MediaItems';
 
+	function album($albumId = null) {
+		if (!$albumId) {
+			$this->Session->setFlash(__('Invalid album', true));
+			$this->redirect('/');
+		}
+		$this->MediaItem->recursive = 0;
+		$this->paginate['conditions']['album_id'] = $albumId;
+		$this->paginate['limit'] = 12;
+		$items = $this->paginate();
+		$album = $this->MediaItem->Album->read(null, $albumId);
+		$this->set(compact('items', 'album'));
+	}
+
 	function admin_index() {
 		$this->MediaItem->recursive = 0;
 		$this->set('mediaItems', $this->paginate());
+		$albums = $this->MediaItem->Album->find('list');
+		$projects = $this->MediaItem->Project->find('list');
+		$this->set(compact('albums', 'projects'));
 	}
 	
 	function admin_scan($albumId = null) {
@@ -37,7 +53,8 @@ class MediaItemsController extends AppController {
 			}
 		}
 		$albums = $this->MediaItem->Album->find('list');
-		$this->set(compact('albums'));
+		$projects = $this->MediaItem->Project->find('list');
+		$this->set(compact('albums', 'projects'));
 	}
 
 	function admin_edit($id = null) {
@@ -54,10 +71,12 @@ class MediaItemsController extends AppController {
 			}
 		}
 		if (empty($this->data)) {
+			$this->MediaItem->recursive = 1;
 			$this->data = $this->MediaItem->read(null, $id);
 		}
 		$albums = $this->MediaItem->Album->find('list');
-		$this->set(compact('albums'));
+		$projects = $this->MediaItem->Project->find('list');
+		$this->set(compact('albums', 'projects'));
 	}
 
 	function admin_delete($id = null) {

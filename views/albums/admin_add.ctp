@@ -19,10 +19,10 @@
 		echo $this->Form->input('description');
 		echo $this->Form->input('url');
 		echo $this->Form->input('published');
-		echo $this->Form->input('media_category_id');
+		echo $this->Form->input('media_category_id', array('empty' => '-- None --'));
 		echo $this->Form->input('uuid');
-		echo $this->Form->input('account_id');
-		echo $this->Form->input('project_id');
+		echo $this->Form->input('account_id', array('empty' => '-- None --'));
+		echo $this->Form->input('project_id', array('empty' => '-- None --'));
 	?>
 <?php echo $this->Form->end(__('Submit', true));?>
 </div>

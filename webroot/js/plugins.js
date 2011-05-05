@@ -7,28 +7,42 @@ window.log = function(){
   if(this.console) console.log( Array.prototype.slice.call(arguments) );
 };
 
-
-
 // place any jQuery/helper plugins in here, instead of separate, slower script files.
 $(document).ready(function(){
 	$("#radial_container").radmenu({
 		listClass: 'list', // the list class to look within for items
 		itemClass: 'item', // the items - NOTE: the HTML inside the item is copied into the menu item
-		radius: 250, // radius in pixels
+		radius: 1, // radius in pixels
 		animSpeed:400, // animation speed in millis
-		centerX: 300, // the center x axis offset
-		centerY: -60, // the center y axis offset
-		selectEvent: "click", // the select event (click)
-		onSelect: function($selected){ // show what is returned 
-			alert("you clicked on .. " + $selected.index());
-		},
-		angleOffset: Math.PI // in radians
-	}).radmenu("show");
-	$('#radright').click(function(){
+		centerX: 350, // the center x axis offset
+		centerY: 0, // the center y axis offset
+		angleOffset: 235 // in radians the angle that the elements are offset at
+	}).radmenu("show").hover(function(){
+		$(this).radmenu('scale', 250).find('.radial_div').animate({
+			opacity: 1
+		}, 400);
+	},function(){
+		$(this).radmenu('scale', 1).find('.radial_div').animate({
+			opacity: .4
+		}, 400);
+	}).mousewheel(function(event, delta){
+		if (delta > 0) {
+			$(this).radmenu('prev');
+		} else {			
+			$(this).radmenu('next');
+		}
+	});
+	$('#radleft').click(function(){
 		$('#radial_container').radmenu('prev');
 	});
 	
-	$('#radleft').click(function(){
+	$('#radright').click(function(){
 		$('#radial_container').radmenu('next');
+	});
+	$('.media a').fancybox({
+		'transitionIn'	:	'elastic',
+		'transitionOut'	:	'elastic',
+		'speedIn'		:	600, 
+		'speedOut'		:	200
 	});
 });

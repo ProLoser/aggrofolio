@@ -1,5 +1,5 @@
 <div id="logo">
-	<?php echo $this->Html->link($this->Html->image('layout/logo2.png', array('style' => 'width:220px;height:40px')), '/', array('escape' => false))?>
+	<?php echo $this->Html->link('Dean Sofer', '/')?>
 </div>
 <div id="search">
 	<form action="dashboard.html" id="search_form" name="search_form" method="get">

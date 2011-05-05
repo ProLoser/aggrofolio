@@ -8,6 +8,9 @@ class ProjectsController extends AppController {
 		$this->Project->recursive = 0;
 		$this->paginate['limit'] = 12;
 		$this->paginate['conditions']['Project.published'] = true;
+		if (isset($this->params['named']['category']))
+			$this->paginate['conditions']['Project.project_category_id'] = $this->params['named']['category'];
+		$this->paginate['contain'] = array('ProjectCategory', 'MediaItem' => array('limit' => 1));
 		$projects = $this->paginate();
 		$categories = $this->Project->ProjectCategory->find('threaded');
 		$this->set(compact('projects', 'categories'));
