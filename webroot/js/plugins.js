@@ -39,7 +39,7 @@ $(document).ready(function(){
 	$('#radright').click(function(){
 		$('#radial_container').radmenu('next');
 	});
-	$('.media a').fancybox({
+	$('.media a:not(.arrow)').fancybox({
 		'transitionIn'	:	'elastic',
 		'transitionOut'	:	'elastic',
 		'speedIn'		:	600, 

@@ -2,6 +2,27 @@
 class UsersController extends AppController {
 
 	var $name = 'Users';
+	
+	// function register() {
+	// 	if (!empty($this->data)) {
+	// 		$this->User->create();
+	// 		if ($this->User->save($this->data)) {
+	// 			$this->Session->setFlash(__('The user has been saved', true));
+	// 			$this->redirect(array('action' => 'login'));
+	// 		} else {
+	// 			$this->Session->setFlash(__('The user could not be saved. Please, try again.', true));
+	// 		}
+	// 	}
+	// 	
+	// }
+	
+	function login() {    
+		
+	}    
+	
+	function logout() {        
+		$this->redirect($this->Auth->logout());    
+	}
 
 	function admin_index() {
 		$this->User->recursive = 0;

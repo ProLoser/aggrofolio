@@ -51,13 +51,13 @@ class AppController extends Controller {
 			'actions' => array('admin_index'),
 		),
 		'BakingPlate.Plate',
-		/* Auth Configuration *[delete me]/
+		/* Auth Configuration */
 		'Auth' => array(
 			'fields' => array(
-				'username' => 'username', 
+				'username' => 'email', 
 				'password' => 'password',
 			),
-			'loginAction' => array('staff' => false, 'plugin' => null, 'controller' => 'users', 'action' => 'login'),
+			'loginAction' => array('admin' => false, 'plugin' => null, 'controller' => 'users', 'action' => 'login'),
 			'logoutRedirect' => array('action' => 'login'),
 			'loginRedirect' => '/',
 		),/**/
@@ -97,7 +97,7 @@ class AppController extends Controller {
 	}
 	
 	function beforeFilter() {
-		#!# $this->_setAuth();
+		$this->_setAuth();
 		#$this->_setLanguage();
 		#$this->_setMaintenance();
 	}
@@ -114,24 +114,12 @@ class AppController extends Controller {
  * Configure your Auth environment here
  */
 	protected function _setAuth() {
-		if (isset($this->Acl))
-			$this->Acl->allow($aroAlias, $acoAlias);	
 		$this->Auth->authError = __('Sorry, but you need to login to access this location.', true);
 		$this->Auth->loginError = __('Invalid e-mail / password combination.  Please try again', true);
-		$this->Auth->allow('index', 'view', 'display');
 		
-		$user = $this->Auth->user();
-		$this->set('isAdmin', ($user['AppUser']['role'] == 'admin' && $user['AppUser']['is_admin']));
-		
-		if ($this->Plate->prefix('admin')) {
-			if ($user['AppUser']['role'] == 'admin') {
-				$this->Auth->allow('*');
-			} else {
-				$this->Session->setFlash(__('Sorry, but you need to be Admin to access this location.', true));
-				$this->redirect($this->Auth->loginAction);
-			}
+		if (!$this->Plate->prefix('admin')) {
+			$this->Auth->allow();
 		}
-		Configure::write('Site.User', $user);
 	}
 	
 /**

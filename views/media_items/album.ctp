@@ -1,4 +1,4 @@
-<?php $this->Paginator->options(array('url' => $this->params['pass']));?>
+<?php $this->Paginator->options(array('url' => $this->params['pass']))?>
 <h2>Gallery: <?php echo $album['Album']['name']?></h2>
 <div class="gallery">
 	<div class="paging">

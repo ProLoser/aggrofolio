@@ -20,7 +20,6 @@
  * @since         CakePHP(tm) v 0.2.9
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
-App::import('Vendor', 'UrlCache.url_cache_app_helper');
 class AppHelper extends Helper {
 	
 	/**
