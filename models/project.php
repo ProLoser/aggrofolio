@@ -68,7 +68,7 @@ class Project extends AppModel {
 				),
 				'fields' => 'repos'
 			));
-			$project = array_merge($project, $data, $commits);
+			$project = array_merge((array)$project, (array)$data, (array)$commits);
 		} elseif ($project['Account']['type'] == 'codaset') {
 			$this->useDbConfig = 'codaset';
 			$project['codaset'] = $this->find('all', array(

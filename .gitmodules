@@ -63,4 +63,4 @@
 	url = git://github.com/ProLoser/jQuery-Radmenu-Plugin.git
 [submodule "plugins/upload_pack"]
 	path = plugins/upload_pack
-	url = git://github.com/proloser/uploadpack.git
+	url = git://github.com/ProLoser/uploadpack.git
