@@ -1,18 +1,18 @@
 [submodule "plugins/linkedin"]
 	path = plugins/linkedin
-	url = git@github.com:ProLoser/CakePHP-LinkedIn.git
+	url = git://github.com/ProLoser/CakePHP-LinkedIn.git
 [submodule "plugins/github"]
 	path = plugins/github
-	url = git@github.com:ProLoser/CakePHP-Github.git
+	url = git://github.com/ProLoser/CakePHP-Github.git
 [submodule "plugins/codaset"]
 	path = plugins/codaset
-	url = git@github.com:ProLoser/Cakephp-Codaset.git
+	url = git://github.com/ProLoser/Cakephp-Codaset.git
 [submodule "vendors/php-github-api"]
 	path = vendors/php-github-api
 	url = git://github.com/ornicar/php-github-api
 [submodule "plugins/batch"]
 	path = plugins/batch
-	url = git@github.com:ProLoser/CakePHP-Batch.git
+	url = git://github.com/ProLoser/CakePHP-Batch.git
 [submodule "plugins/debug_kit"]
 	path = plugins/debug_kit
 	url = git://github.com/cakephp/debug_kit.git
@@ -27,13 +27,13 @@
 	url = git://github.com/ProLoser/CakePHP-RSS-Datasource.git
 [submodule "plugins/flickr"]
 	path = plugins/flickr
-	url = git@github.com:ProLoser/CakePHP-Flickr.git
+	url = git://github.com/ProLoser/CakePHP-Flickr.git
 [submodule "plugins/migrations"]
 	path = plugins/migrations
 	url = git://github.com/CakeDC/migrations.git
 [submodule "plugins/apis"]
 	path = plugins/apis
-	url = git@github.com:ProLoser/CakePHP-Api-Datasources.git
+	url = git://github.com/ProLoser/CakePHP-Api-Datasources.git
 [submodule "plugins/baking_plate"]
 	path = plugins/baking_plate
 	url = git://github.com/ProLoser/BakingPlate.git
@@ -60,7 +60,7 @@
 	url = git://github.com/AD7six/mi.git
 [submodule "webroot/js/mylibs/radmenu"]
 	path = webroot/js/mylibs/radmenu
-	url = git@github.com:ProLoser/jQuery-Radmenu-Plugin.git
+	url = git://github.com/ProLoser/jQuery-Radmenu-Plugin.git
 [submodule "plugins/upload_pack"]
 	path = plugins/upload_pack
 	url = git://github.com/proloser/uploadpack.git
