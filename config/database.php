@@ -4,10 +4,10 @@ class DATABASE_CONFIG {
 	var $default = array(
 		'driver' => 'mysql',
 		'persistent' => false,
-		'host' => 'localhost',
-		'login' => 'root',
-		'password' => 'root',
-		'database' => 'aggropholio',
+		'host' => 'mysql.holycrap.ws',
+		'login' => 'holycrap',
+		'password' => 'gamegod',
+		'database' => 'deansofer',
 	);
 	
 	var $codaset = array(
