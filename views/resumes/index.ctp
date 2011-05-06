@@ -48,12 +48,12 @@
 	}
 	.resumes h5 {
 		float: left;
-		margin: 8px 10px 0 0;
+		margin: 8px 5px 0 0;
 	}
-	.projects li {
-		margin: 10px 5px;
+	.projects h1 {		
+		margin: 4px 0;
 	}
-	.projects .names a {
+	.projects a {
 		text-decoration: none;
 		color: white;
 		background: rgba(0,0,0,.3);
@@ -66,12 +66,18 @@
 		-webkit-box-shadow: 0 -1px 1px rgba(0,0,0,.3), 0 1px 1px rgba(255,255,255,.3);
 		-moz-box-shadow: 0 -1px 1px rgba(0,0,0,.3), 0 1px 1px rgba(255,255,255,.3);
 	}
-	.projects .names a:hover {
+	.projects a:hover {
 		background: rgba(0,0,0,.7);
 	}
-	.projects .thumbs li {
+	.projects li div {
 		display: none;
-		float: left;
+	}
+	.ui-tooltip {
+		text-align: center;
+	}
+	.ui-tooltip img {
+		display: inline;
+		margin: 5px;
 	}
 </style>
 <div class="resumes">

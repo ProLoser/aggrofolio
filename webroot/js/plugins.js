@@ -13,18 +13,18 @@ $(document).ready(function(){
 		listClass: 'list', // the list class to look within for items
 		itemClass: 'item', // the items - NOTE: the HTML inside the item is copied into the menu item
 		radius: 1, // radius in pixels
-		animSpeed:400, // animation speed in millis
+		animSpeed:300, // animation speed in millis
 		centerX: 350, // the center x axis offset
 		centerY: 0, // the center y axis offset
 		angleOffset: 235 // in radians the angle that the elements are offset at
 	}).radmenu("show").hover(function(){
 		$(this).radmenu('scale', 250).find('.radial_div').animate({
 			opacity: 1
-		}, 400);
+		}, 200);
 	},function(){
 		$(this).radmenu('scale', 1).find('.radial_div').animate({
 			opacity: .4
-		}, 400);
+		}, 200);
 	}).mousewheel(function(event, delta){
 		if (delta > 0) {
 			$(this).radmenu('prev');
@@ -42,7 +42,24 @@ $(document).ready(function(){
 	$('.media a:not(.arrow)').fancybox({
 		'transitionIn'	:	'elastic',
 		'transitionOut'	:	'elastic',
-		'speedIn'		:	600, 
+		'speedIn'		:	400, 
 		'speedOut'		:	200
+	});
+	$('.projects li').qtip({
+		position: {
+			my: 'top center',
+			at: 'bottom center',
+			adjust: {
+				y: 4
+			}
+		},
+		style: 'ui-tooltip-dark ui-tooltip-rounded',
+		content: {
+			text: function(){ 
+				content = $('div', this).html();
+				if (content.length > 0)
+					return content;
+			}
+		}
 	});
 });

@@ -43,6 +43,7 @@
 echo $this->Html->css(array(
 //$this->AssetCompress->css(array(
 	'/js/mylibs/fancybox/jquery.fancybox-1.3.4',
+	'/js/mylibs/qtip/jquery.qtip.min',
 	'style',
 )); ?>
 	<?php echo $this->AssetCompress->includeCss(); ?> 
@@ -54,6 +55,7 @@ echo $this->Html->script(array(
 	'mylibs/radmenu/jQuery.radmenu',
 	'mylibs/fancybox/jquery.mousewheel-3.0.4.pack',
 	'mylibs/fancybox/jquery.fancybox-1.3.4.pack',
+	'mylibs/qtip/jquery.qtip.min',
 	'plugins',
 	'script',
 )); ?> 

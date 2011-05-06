@@ -14,6 +14,7 @@ class ResumesController extends AppController {
 						'conditions' => array('Project.published' => true),
 						'MediaItem' => array(
 							'conditions' => array('MediaItem.published' => true),
+							'limit' => 2,
 						),
 					),
 				),
@@ -25,6 +26,7 @@ class ResumesController extends AppController {
 						'conditions' => array('Project.published' => true),
 						'MediaItem' => array(
 							'conditions' => array('MediaItem.published' => true),
+							'limit' => 2,
 						),
 					),
 				),
