@@ -38,6 +38,13 @@ $(document).ready(function(){
 		$(this).closest('.reset').fadeOut(600);
 		return false;
 	});
+	$('.projects .names li').bind('mouseover', function(){
+		target = '.' + $('a', this).attr('rel');
+		$siblings = $('.projects .thumbs li:not(' + target + ')');
+		$siblings.slideUp(400, function() {
+			$siblings.siblings(target).slideDown(600);
+		});
+	});
 });
 
 
