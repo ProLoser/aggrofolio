@@ -31,6 +31,7 @@ $(document).ready(function(){
 		} else {			
 			$(this).radmenu('next');
 		}
+		return false;
 	});
 	$('#radleft').click(function(){
 		$('#radial_container').radmenu('prev');
