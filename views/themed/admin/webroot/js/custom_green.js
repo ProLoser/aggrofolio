@@ -120,7 +120,7 @@ $(function(){
     
     
     // Setup WYSIWYG editor
-    $('#wysiwyg').wysiwyg({
+    $('textarea').wysiwyg({
     	css : "css/wysiwyg.css"
     });
     
@@ -140,7 +140,7 @@ $(function(){
 		$('#show_menu').show();
 		$('body').addClass('nobg');
 		$('#content').css('marginLeft', 40);
-		$('#wysiwyg').css('width', '97%');
+		$('textarea').css('width', '97%');
 		setNotifications();
 	});
 	
@@ -149,7 +149,7 @@ $(function(){
 		$(this).hide();
 		$('body').removeClass('nobg');
 		$('#content').css('marginLeft', 240);
-		$('#wysiwyg').css('width', '97%');
+		$('textarea').css('width', '97%');
 		setNotifications();
 	});
 	
