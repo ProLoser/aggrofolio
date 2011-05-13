@@ -16,11 +16,20 @@
 <?php endif;?>
 
 <?php if (!empty($categories)): ?>
-<nav>
-	<div id="categories">
-		<h3>Categories</h3>
-		<?php echo $this->Plate->tree($categories, array('callback' => '_categories'));?> 
-		<p class="reset"><a href="#">&raquo; Reset &laquo;</a></p>
-	</div>
+<nav id="categories">
+	<h3>Categories</h3>
+	<?php echo $this->Plate->tree($categories, array('callback' => '_categories'));?> 
+	<p class="reset"><a href="#">&raquo; Reset &laquo;</a></p>
 </nav>		
 <?php endif;?>
+
+<?php if (!empty($navAccounts)): ?>
+<nav id="accounts">
+	<h3>On The Web</h3>
+	<ul>
+<?php foreach ($navAccounts as $account):?>
+		<li><?php echo $this->Agro->account($account['Account'])?></li>
+<?php endforeach;?>
+	</ul>
+</nav>
+<?php endif; ?>

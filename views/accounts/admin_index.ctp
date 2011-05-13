@@ -24,11 +24,12 @@
 		<th><?php echo $this->Paginator->sort('username');?></th>
 		<th><?php echo $this->Paginator->sort('email');?></th>
 		<th><?php echo $this->Paginator->sort('type');?></th>
+		<th><?php echo $this->Paginator->sort('published');?></th>
 		<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
 	echo $this->Batch->filter(array(
-		null, null, null, 'username', 'email', 'type'
+		null, null, null, 'username', 'email', 'type', 'published'
 	));
 	$i = 0;
 	foreach ($accounts as $account):
@@ -44,6 +45,7 @@
 		<td><?php echo $account['Account']['username']; ?>&nbsp;</td>
 		<td><?php echo $account['Account']['email']; ?>&nbsp;</td>
 		<td><?php echo $account['Account']['type']; ?>&nbsp;</td>
+		<td><?php echo $account['Account']['published']; ?>&nbsp;</td>
 		<td class="actions">
 		<?php if (in_array($account['Account']['type'], array('deviantart', 'flickr'))): ?>
 			<?php echo $this->Html->link(__('Scan', true), array('controller' => 'albums', 'action' => 'scan', $account['Account']['id'])); ?>
@@ -60,7 +62,7 @@
 		</td>
 	</tr>
 <?php endforeach; 
-echo $this->Batch->batch(array(null, null, null, 'username', 'email', 'type'));?>
+echo $this->Batch->batch(array(null, null, null, 'username', 'email', 'type', 'published'));?>
 	</table>
 	<?php echo $this->Batch->end()?>
 </div>

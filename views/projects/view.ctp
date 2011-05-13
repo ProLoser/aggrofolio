@@ -52,7 +52,6 @@
 	<li class="bugs"><?php echo $this->Html->link('Open Bugs: '.$project['codaset']['ticket_count'], $project['Project']['cvs_url'] . '/tickets'); ?> </li>
 	<li class="wiki"><?php echo $this->Html->link(__('Wiki', true), $project['Project']['cvs_url'] . '/wiki'); ?> </li>
 	<li class="milestones"><?php echo $this->Html->link(__('Milestones', true), $project['Project']['cvs_url'] . '/milestones'); ?> </li>
-	<li class="blog"><?php echo $this->Html->link(__('Blog', true), $project['Project']['cvs_url'] . '/blog'); ?> </li>
 <?php endif ?>
 </ul>
 

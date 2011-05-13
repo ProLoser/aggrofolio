@@ -64,3 +64,6 @@
 [submodule "plugins/upload_pack"]
 	path = plugins/upload_pack
 	url = git://github.com/ProLoser/uploadpack.git
+[submodule "plugins/cacheable"]
+	path = plugins/cacheable
+	url = git://github.com/ProLoser/CakePHP-Cacheable.git

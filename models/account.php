@@ -48,5 +48,9 @@ class Account extends AppModel {
 		'flickr'		=> 'Flickr',
 		'xmarks'		=> 'XMarks',
 	);
+	
+	var $actsAs = array(
+		'Cacheable.Cacheable',
+	);
 }
 ?>

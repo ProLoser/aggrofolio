@@ -228,11 +228,14 @@ header nav a, header nav a:visited, #mainNav a, #mainNav a:visited {
 header nav a:hover, #mainNav a:hover {
 	color: #f00;
 }
+#mainNav {
+	margin: 0 0 20px 20px;
+}
 #mainNav a {
-	font-size: 140%;
+	font-size: 200%;
 }
 #mainNav li {
-	margin: 5px;
+	margin: 10px 0;
 	list-style: none;
 }
 /*#mainNav {

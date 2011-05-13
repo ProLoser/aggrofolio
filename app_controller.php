@@ -38,6 +38,7 @@ class AppController extends Controller {
 		'BakingPlate.Plate',
 		'AssetCompress.AssetCompress',
 		'Navigation.Navigation',
+		'Agro',
 		'Analogue.Analogue' => array(
 			array('helper' => 'BakingPlate.HtmlPlus', 'rename' => 'Html'),
 			array('helper' => 'BakingPlate.FormPlus', 'rename' => 'Form'),
@@ -108,6 +109,8 @@ class AppController extends Controller {
  */
 	function beforeRender() {
 		$this->_setTheme();
+		$this->loadModel('Account');
+		$this->set('navAccounts', $this->Account->cache('all', array('conditions' => array('Account.published' => true))));
 	}
 	
 /**
