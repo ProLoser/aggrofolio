@@ -1,4 +1,4 @@
-<h1>Dean Sofer</h1>
+<h1><?php echo $this->Html->link('Dean Sofer', '/'); ?></h1>
 <ul id="mainNav">
 	<li><?php echo $this->Html->link('Resume', array('controller' => 'resumes', 'action' => 'index')); ?></li>
 	<li><?php echo $this->Html->link('Projects', array('controller' => 'projects', 'action' => 'index')); ?></li>

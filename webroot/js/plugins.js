@@ -14,10 +14,11 @@ $(document).ready(function(){
 		itemClass: 'item', // the items - NOTE: the HTML inside the item is copied into the menu item
 		radius: 1, // radius in pixels
 		animSpeed:300, // animation speed in millis
+		animEasing: 'linear',
 		centerX: 350, // the center x axis offset
 		centerY: 0, // the center y axis offset
 		angleOffset: 235 // in radians the angle that the elements are offset at
-	}).radmenu("show").hover(function(){
+	}).radmenu("scale", 250).radmenu("show").radmenu("scale", 1).hover(function(){
 		$(this).radmenu('scale', 250).find('.radial_div').animate({
 			opacity: 1
 		}, 200);
@@ -46,7 +47,7 @@ $(document).ready(function(){
 		'speedIn'		:	400, 
 		'speedOut'		:	200
 	});
-	$('.projects li').qtip({
+	$('.projects li, .log li').qtip({
 		position: {
 			my: 'top center',
 			at: 'bottom center',

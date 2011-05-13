@@ -42,9 +42,8 @@ class Project extends AppModel {
 			'contain' => array(
 				'Account',
 				'ProjectCategory',
-				'ResumeEmployer',
-				'ResumeSchool',
-				'Album',
+				'ResumeEmployer' => array('name'),
+				'ResumeSchool' => array('name'),
 				'MediaItem',
 				'PostRelationship' => 'Post',
 			),

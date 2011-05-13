@@ -64,7 +64,7 @@ input, select { vertical-align:middle; }
 
 
 /* font normalization inspired by  from the YUI Library's fonts.css: developer.yahoo.com/yui/ */
-body { text-shadow: 0 1px 2px #fff; font:13px/1.231 sans-serif; *font-size:small; } /* hack retained to preserve specificity */
+body { text-shadow: 0 1px 2px #fff; font:14px/1.231 sans-serif; *font-size:small; } /* hack retained to preserve specificity */
 /* Disable Text Shadow for some content */
 .fancybox-title-float-main { text-shadow: none; }
 select, input, textarea, button { font:99% sans-serif; }
@@ -195,7 +195,7 @@ legend {
 	height: 100%;
 	width: 200px;
 	margin: 0 20px;
-	z-index: 10;
+	z-index: 50;
 	background-color: #aa0000;
 	background-image: -moz-linear-gradient(left, #aa0000, #990000); /* FF3.6 */
 	background-image: -ms-linear-gradient(left, #aa0000, #990000); /* IE10 */
@@ -214,10 +214,12 @@ legend {
 header h1 {
 	margin: 10px -30px;
 	text-align: center;
-	color: #fff;
 	text-shadow: 0 2px 3px rgba(0,0,0,.4);
 	font-size: 55px;
 	font-family: "BIRTHOFAHERORegular";
+}
+header h1 a, header h1 a:visited {
+	color: #fff;
 }
 header nav a, header nav a:visited, #mainNav a, #mainNav a:visited {
 	color: #fff;
@@ -511,6 +513,13 @@ article header a:hover {
 	color: #e11;
 }
 
+.log li div {
+	display: none;
+}
+.log li div img {
+	width: 200px;
+	height: 160px;
+}
 
 input, textarea {
 	padding: 5px;
@@ -537,6 +546,36 @@ label {
 .error-message {
 	color: red;
 	margin-top: 2px;
+}
+#related section {
+	margin: 0;
+}
+#related section h2 {
+	font-size: 180%;
+	text-align: center;
+}
+#related.half section {
+	width: 50%;
+	float: left;
+}
+#related section ul {
+	padding: 10px 0;
+}
+#related section li {
+	margin: 10px 0;
+}
+#description {
+	font-size: 120%;
+}
+#stats {
+	margin: 10px 0;
+}
+#stats li {
+	float: left;
+	width: 50%;
+	list-style: none;
+	padding-left: 30px;
+	margin: 10px -30px 10px 0;
 }
 
 /*

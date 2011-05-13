@@ -1,31 +1,3 @@
-<?php $this->Plate->start('nav')?>
-	<h3><?php __('Related'); ?></h3>
-	<ul>
-	<?php if (!empty($project['ProjectCategory']['name'])): ?>
-		<li><?php echo $this->Html->link('Category: '.$project['ProjectCategory']['name'], array('controller' => 'project_categories', 'action' => 'view', $project['ProjectCategory']['id'])); ?></li>		  	 
-	<?php endif; ?>
-	<?php if (!empty($project['repository'])): ?>
-		<?php if ($project['repository']['has_issues']): ?>
-			<li><?php echo $this->Html->link('Issues ('.$project['repository']['open_issues'].')', $project['Project']['cvs_url'] . '/issues'); ?> </li>
-		<?php endif ?>
-		<?php if ($project['repository']['has_wiki']): ?>
-			<li><?php echo $this->Html->link(__('Wiki', true), $project['Project']['cvs_url'] . '/wiki'); ?> </li>
-		<?php endif ?>
-		<?php if ($project['repository']['has_downloads']): ?>
-			<li><?php echo $this->Html->link(__('Downloads', true), $project['Project']['cvs_url'] . '/downloads'); ?> </li>
-		<?php endif ?>
-	<?php endif ?>
-	<?php if (!empty($project['codaset'])): ?>
-		<li><?php echo $this->Html->link('Issues ('.$project['codaset']['ticket_count'].')', $project['Project']['cvs_url'] . '/tickets'); ?> </li>
-		<li><?php echo $this->Html->link(__('Wiki', true), $project['Project']['cvs_url'] . '/wiki'); ?> </li>
-		<li><?php echo $this->Html->link(__('Milestones', true), $project['Project']['cvs_url'] . '/milestones'); ?> </li>
-		<li><?php echo $this->Html->link(__('Blog', true), $project['Project']['cvs_url'] . '/blog'); ?> </li>
-		<?php if ($project['codaset']['state'] == 'public'): ?>
-			<li><?php echo $this->Html->link(__('Source', true), $project['Project']['cvs_url'] . '/source'); ?> </li>
-		<?php endif ?>
-	<?php endif ?>	
-	</ul>
-<?php $this->Plate->stop()?>
 <h2><?php  echo $project['Project']['name'];?></h2>
 <?php if (!empty($project['MediaItem'])): ?>
 <div id="radial_container" class="media">
@@ -38,80 +10,90 @@
 	<a href="#" class="arrow" id="radleft">Left</a>
 </div>
 <?php endif; ?>
-<div class="projects view">
-	<p><?php echo $project['Project']['description']; ?></p>
-	<?php if (!empty($project['repository'])): ?>	
-		<p>Last Updated: <?php echo $project['repository']['pushed_at']; ?></p>
-	<?php endif ?>
-	<?php if (!empty($project['codaset'])): ?>
-		<p>Last Updated: <?php echo $project['codaset']['last_pushed_at']; ?></p>
-	<?php endif ?>
-	<?php if (!empty($project['codaset'])): ?>		
-		<dt><?php __('Watchers'); ?></dt>
-		<dd>
-			<?php echo $project['codaset']['bookmark_count']; ?>
-			&nbsp;
-		</dd>
-		<dt><?php __('Forks'); ?></dt>
-		<dd>
-			<?php echo $project['codaset']['fork_count']; ?>
-			&nbsp;
-		</dd>
-	<?php endif ?>
-	<?php if (!empty($project['repository'])): ?>		
-		<dt><?php __('Homepage'); ?></dt>
-		<dd>
-			<?php echo $project['repository']['homepage']; ?>
-			&nbsp;
-		</dd>
-		<dt><?php __('Watchers'); ?></dt>
-		<dd>
-			<?php echo $project['repository']['watchers']; ?>
-			&nbsp;
-		</dd>
-		<dt><?php __('Forks'); ?></dt>
-		<dd>
-			<?php echo $project['repository']['forks']; ?>
-			&nbsp;
-		</dd>
-	<?php endif ?>
-		<dt><?php __('Cvs Url'); ?></dt>
-		<dd>
-			<?php echo $project['Project']['cvs_url']; ?>
-			&nbsp;
-		</dd>
-	</dl>
-<?php if (!empty($project['PostRelationship'])): ?>
-<section>
-	<h1>Related Blog Posts</h1>
-	<?php foreach ($project['PostRelationship'] as $post): ?>
-		<article>
-			<header>
-				<h1><?php echo $this->Html->link($post['Post']['subject'], array('controller' => 'posts', $post['Post']['id']))?></h1>
-				<time pubdate><?php echo $this->Time->timeAgoInWords($post['Post']['created']);?></time>
-			</header>
-			<?php echo $post['Post']['body']?>
-			<footer>
-				<?php echo $this->Html->link('Read More &rarr;', array('controller' => 'posts', 'action' => 'view', $post['Post']['id'], $post['Post']['slug']), array('class' => 'readmore', 'escape' => false)); ?>
-			</footer>
-		</article>
-	<?php endforeach ?>
-</section>
-<?php endif ?>
+
+<div id="description"><p><?php echo $project['Project']['description']; ?></p></div>
+<h3>Project Stats</h3>
+<ul id="stats" class="clearfix">
+<?php if (!empty($project['Project']['url'])): ?>
+	<li class="url"><?php echo $this->Html->link($project['Project']['url'], $project['Project']['url'])?></li>
+<?php endif; ?>
+<?php if (!empty($project['ProjectCategory']['name'])): ?>
+	<li class="category"><?php echo $this->Html->link($project['ProjectCategory']['name'], array('controller' => 'projects', 'action' => 'index', 'category' => $project['ProjectCategory']['id'])); ?></li>		  	 
+<?php endif; ?>
+<?php if (!empty($project['Project']['cvs_url'])): ?>
+	<li class="repo"><?php echo $this->Html->link($project['Project']['cvs_url'], $project['Project']['cvs_url']); ?></li>
+<?php endif; ?>
+<?php if (!empty($project['ResumeEmployer']['name'])): ?>
+	<li class="organization"><?php echo $project['ResumeEmployer']['name']?></li>
+<?php endif; ?>	
+<?php if (!empty($project['ResumeSchool']['name'])): ?>
+	<li class="organization"><?php echo $project['ResumeSchool']['name']?></li>
+<?php endif; ?>
+	
 <?php if (!empty($project['repository'])): ?>
-<section>
-	<h1>Recent Updates</h1>
-	<ul>
-	<?php foreach ($project['commits'] as $i => $commit): ?>
-		<li>
-			<h4><?php echo $this->Html->link($commit['message'], 'https://github.com' . $commit['url'])?></h4>
-			<p>
-				By <?php echo (empty($commit['author']['login'])) ? $commit['author']['name'] : $this->Html->link($commit['author']['name'], 'https://github.com/' . $commit['author']['login']);?>
-				<?php echo $this->Time->timeAgoInWords($commit['authored_date']);?>
-			</p>
-		</li>
-	<?php endforeach ?>
-	</ul>
-</section>
+	<?php if ($project['repository']['has_issues']): ?>
+		<li class="bugs"><?php echo $this->Html->link('Issues ('.$project['repository']['open_issues'].')', $project['Project']['cvs_url'] . '/issues'); ?> </li>
+	<?php endif ?>
+	<?php if ($project['repository']['has_wiki']): ?>
+		<li class="wiki"><?php echo $this->Html->link(__('Wiki', true), $project['Project']['cvs_url'] . '/wiki'); ?> </li>
+	<?php endif ?>
+	<?php if ($project['repository']['has_downloads']): ?>
+		<li class="downloads"><?php echo $this->Html->link(__('Downloads', true), $project['Project']['cvs_url'] . '/downloads'); ?> </li>
+	<?php endif ?>
+	<li class="updated">Last Updated: <?php echo $project['repository']['pushed_at']; ?></p>
+	<li class="followers"><?php echo $project['repository']['watchers']; ?></li>
+	<li class="forks"><?php echo $project['repository']['forks']; ?></li>
 <?php endif ?>
-</div>
+	<?php if (!empty($project['codaset'])): ?>
+		<li class="updated">Last Updated: <?php echo $project['codaset']['last_pushed_at']; ?></li>
+		<li class="followers"><?php echo $project['codaset']['bookmark_count']; ?></li>
+		<li class="forks"><?php echo $project['codaset']['fork_count']; ?></li>
+		<li class="bugs"><?php echo $this->Html->link('Issues ('.$project['codaset']['ticket_count'].')', $project['Project']['cvs_url'] . '/tickets'); ?> </li>
+		<li class="wiki"><?php echo $this->Html->link(__('Wiki', true), $project['Project']['cvs_url'] . '/wiki'); ?> </li>
+		<li class="milestones"><?php echo $this->Html->link(__('Milestones', true), $project['Project']['cvs_url'] . '/milestones'); ?> </li>
+		<li class="blog"><?php echo $this->Html->link(__('Blog', true), $project['Project']['cvs_url'] . '/blog'); ?> </li>
+		<?php if ($project['codaset']['state'] == 'public'): ?>
+			<li class="repo"><?php echo $this->Html->link(__('Source', true), $project['Project']['cvs_url'] . '/source'); ?> </li>
+		<?php endif ?>
+	<?php endif ?>
+</ul>
+
+<?php if (!empty($project['PostRelationship']) || !empty($project['commits'])):?>
+<section id="related" class="clearfix<?php if (!empty($project['PostRelationship']) && !empty($project['commits'])) echo ' half'?>">
+	<h1><?php __('Related'); ?></h1>
+	<?php if (!empty($project['PostRelationship'])): ?>
+	<section>
+		<h2>Blog Posts</h2>
+		<?php foreach ($project['PostRelationship'] as $post): ?>
+			<article>
+				<header>
+					<h1><?php echo $this->Html->link($post['Post']['subject'], array('controller' => 'posts', $post['Post']['id']))?></h1>
+					<time pubdate><?php echo $this->Time->timeAgoInWords($post['Post']['created']);?></time>
+				</header>
+				<?php echo $post['Post']['body']?>
+				<footer>
+					<?php echo $this->Html->link('Read More &rarr;', array('controller' => 'posts', 'action' => 'view', $post['Post']['id'], $post['Post']['slug']), array('class' => 'readmore', 'escape' => false)); ?>
+				</footer>
+			</article>
+		<?php endforeach ?>
+	</section>
+	<?php endif ?>
+	<?php if (!empty($project['repository'])): ?>
+	<section>
+		<h2>Recent Updates</h2>
+		<ul>
+		<?php foreach ($project['commits'] as $i => $commit): ?>
+			<li>
+				<h4><?php echo $this->Html->link($commit['message'], 'https://github.com' . $commit['url'])?></h4>
+				<p>
+					By <?php echo (empty($commit['author']['login'])) ? $commit['author']['name'] : $this->Html->link($commit['author']['name'], 'https://github.com/' . $commit['author']['login']);?>
+					<?php echo $this->Time->timeAgoInWords($commit['authored_date']);?>
+				</p>
+			</li>
+		<?php endforeach ?>
+		</ul>
+	</section>
+	<?php endif ?>
+	</div>
+</section>
+<?php endif;?>
