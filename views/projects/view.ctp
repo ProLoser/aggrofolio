@@ -33,10 +33,10 @@
 	<li class="category"><?php echo $this->Html->link($project['ProjectCategory']['name'], array('controller' => 'projects', 'action' => 'index', 'category' => $project['ProjectCategory']['id']), array('title' => 'Category')); ?></li>		  	 
 <?php endif; ?>
 <?php if (!empty($project['ResumeEmployer']['name'])): ?>
-	<li class="organization"><p><?php echo $project['ResumeEmployer']['name']?></p></li>
+	<li class="organization"><p title="Organization"><?php echo $project['ResumeEmployer']['name']?></p></li>
 <?php endif; ?>	
 <?php if (!empty($project['ResumeSchool']['name'])): ?>
-	<li class="organization"><p><?php echo $project['ResumeSchool']['name']?></p></li>
+	<li class="organization"><p title="Organization"><?php echo $project['ResumeSchool']['name']?></p></li>
 <?php endif; ?>
 	
 <?php if (!empty($project['repository'])): ?>

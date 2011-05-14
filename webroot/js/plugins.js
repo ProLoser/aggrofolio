@@ -68,7 +68,25 @@ $(document).ready(function(){
 			}
 		}
 	});
-	$('.projects li, .log li').qtip({
+	$('.log li').qtip({
+		position: {
+			my: 'top center',
+			at: 'bottom left',
+			adjust: {
+				x: 250,
+				y: 4
+			}
+		},
+		style: 'ui-tooltip-dark ui-tooltip-rounded',
+		content: {
+			text: function(){ 
+				content = $('div', this).html();
+				if (content.length > 0)
+					return content;
+			}
+		}
+	});
+	$('.projects li').qtip({
 		position: {
 			my: 'top center',
 			at: 'bottom center',
