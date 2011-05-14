@@ -91,7 +91,7 @@ class MediaItem extends AppModel {
 	
 	public function loadUrl($url) {
 		$name = array_pop(explode('/',$url));
-		$path = ini_get('upload_tmp_dir') . DS . md5($name);
+		$path = CACHE . md5($name);
 		$data = array(
 			'name' => $name,
 			'tmp_name' => $path,

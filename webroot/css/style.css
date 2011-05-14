@@ -578,24 +578,24 @@ label {
 	width: 50%;
 	font-size: 130%;
 	list-style: none;
-	padding-left: 40px;
-	margin: 3px -40px 3px 0;
-	height: 32px;
-	line-height: 32px;
-	background: no-repeat left center;
 }
-#stats .downloads { background-image: url(../img/icons/floppy.png); }
-#stats .repo { background-image: url(../img/icons/cloud.png); }
-#stats .wiki { background-image: url(../img/icons/info.png); }
-#stats .bugs { background-image: url(../img/icons/bug.png); }
-#stats .url { background-image: url(../img/icons/globe.png); }
-#stats .account { background-image: url(../img/icons/id.png); }
-#stats .organization { background-image: url(../img/icons/suitcase.png); }
-#stats .category { background-image: url(../img/icons/tag.png); }
-#stats .updated { background-image: url(../img/icons/clock.png); }
-#stats .followers { background-image: url(../img/icons/eye.png); }
-#stats .forks { background-image: url(../img/icons/collapse.png); }
-#stats .milestones { background-image: url(../img/icons/clipboard.png); }
+#stats li p, #stats li a {
+	display: block;
+	background: no-repeat left center;
+	padding: 10px 3px 10px 40px;
+}
+#stats .downloads a, #stats .downloads p { background-image: url(../img/icons/floppy.png); }
+#stats .repo a, #stats .repo p { background-image: url(../img/icons/cloud.png); }
+#stats .wiki a, #stats .wiki p { background-image: url(../img/icons/info.png); }
+#stats .bugs a, #stats .bugs p { background-image: url(../img/icons/bug.png); }
+#stats .url a, #stats .url p { background-image: url(../img/icons/globe.png); }
+#stats .account a, #stats .account p { background-image: url(../img/icons/id.png); }
+#stats .organization a, #stats .organization p { background-image: url(../img/icons/suitcase.png); }
+#stats .category a, #stats .category p { background-image: url(../img/icons/tag.png); }
+#stats .updated a, #stats .updated p { background-image: url(../img/icons/clock.png); }
+#stats .followers a, #stats .followers p { background-image: url(../img/icons/eye.png); }
+#stats .forks a, #stats .forks p { background-image: url(../img/icons/collapse.png); }
+#stats .milestones a, #stats .milestones p { background-image: url(../img/icons/clipboard.png); }
 
 
 /*

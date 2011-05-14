@@ -18,7 +18,7 @@
 	<li class="url"><?php echo $this->Html->link($project['Project']['url'], $project['Project']['url'])?></li>
 <?php endif; ?>
 <?php if (!empty($project['Project']['cvs_url'])): ?>
-	<li class="repo"><?php echo $this->Html->link($project['Project']['cvs_url'], $project['Project']['cvs_url']); ?></li>
+	<li class="repo"><?php echo $this->Html->link($project['Project']['cvs_url'], $project['Project']['cvs_url'], array('title' => 'Repository Hosting')); ?></li>
 <?php endif; ?>
 <?php if (!empty($project['repository']['has_downloads'])): ?>
 	<li class="downloads"><?php echo $this->Html->link(__('Downloads', true), $project['Project']['cvs_url'] . '/downloads'); ?> </li>
@@ -30,23 +30,23 @@
 	<li class="wiki"><?php echo $this->Html->link(__('Wiki', true), $project['Project']['cvs_url'] . '/wiki'); ?> </li>
 <?php endif ?>
 <?php if (!empty($project['ProjectCategory']['name'])): ?>
-	<li class="category"><?php echo $this->Html->link($project['ProjectCategory']['name'], array('controller' => 'projects', 'action' => 'index', 'category' => $project['ProjectCategory']['id'])); ?></li>		  	 
+	<li class="category"><?php echo $this->Html->link($project['ProjectCategory']['name'], array('controller' => 'projects', 'action' => 'index', 'category' => $project['ProjectCategory']['id']), array('title' => 'Category')); ?></li>		  	 
 <?php endif; ?>
 <?php if (!empty($project['ResumeEmployer']['name'])): ?>
-	<li class="organization"><?php echo $project['ResumeEmployer']['name']?></li>
+	<li class="organization"><p><?php echo $project['ResumeEmployer']['name']?></p></li>
 <?php endif; ?>	
 <?php if (!empty($project['ResumeSchool']['name'])): ?>
-	<li class="organization"><?php echo $project['ResumeSchool']['name']?></li>
+	<li class="organization"><p><?php echo $project['ResumeSchool']['name']?></p></li>
 <?php endif; ?>
 	
 <?php if (!empty($project['repository'])): ?>
-	<li class="updated">Last Update: <?php echo $project['repository']['pushed_at']; ?></p>
+	<li class="updated"><p>Last Update: <?php echo $project['repository']['pushed_at']; ?></p></li>
 	<li class="followers"><?php echo $this->Html->link('Followers: ' . $project['repository']['watchers'], $project['Project']['cvs_url'] . '/watchers'); ?></li>
 	<li class="forks"><?php echo $this->Html->link('Collaborators: ' . $project['repository']['forks'], $project['Project']['cvs_url'] . '/network'); ?></li>
 <?php endif ?>
 
 <?php if (!empty($project['codaset'])): ?>
-	<li class="updated">Last Updated: <?php echo $project['codaset']['last_pushed_at']; ?></li>
+	<li class="updated"><p>Last Updated: <?php echo $project['codaset']['last_pushed_at']; ?></p></li>
 	<li class="followers"><?php echo $this->Html->link('Followers: ' . $project['codaset']['bookmark_count'], $project['Project']['cvs_url'] . '/bookmarks'); ?></li>
 	<li class="forks"><?php echo $this->Html->link('Collaborators: ' . $project['codaset']['fork_count'], $project['Project']['cvs_url'] . '/forks'); ?></li>
 	<li class="bugs"><?php echo $this->Html->link('Open Bugs: '.$project['codaset']['ticket_count'], $project['Project']['cvs_url'] . '/tickets'); ?> </li>
@@ -76,12 +76,12 @@
 	</section>
 	<?php endif ?>
 	<?php if (!empty($project['repository'])): ?>
-	<section>
+	<section id="commits">
 		<h2>Recent Updates</h2>
 		<ul>
 		<?php foreach ($project['commits'] as $i => $commit): ?>
 			<li>
-				<h4><?php echo $this->Html->link($commit['message'], 'https://github.com' . $commit['url'])?></h4>
+				<h4><?php echo $this->Html->link($commit['message'], 'https://github.com' . $commit['url'], array('title' => 'Hash: ' . $commit['id']))?></h4>
 				<p>
 					By <?php echo (empty($commit['author']['login'])) ? $commit['author']['name'] : $this->Html->link($commit['author']['name'], 'https://github.com/' . $commit['author']['login']);?>
 					<?php echo $this->Time->timeAgoInWords($commit['authored_date']);?>

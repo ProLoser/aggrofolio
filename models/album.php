@@ -14,6 +14,10 @@ class Album extends AppModel {
 				'message' => 'Your custom message here',
 			),
 		),
+		'uuid' => array(
+			'rule' => 'isUnique',
+			'message' => 'UUID already used',
+		),
 	);
 
 	var $belongsTo = array(

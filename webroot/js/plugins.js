@@ -47,6 +47,27 @@ $(document).ready(function(){
 		'speedIn'		:	400, 
 		'speedOut'		:	200
 	});
+	$('#commits a').qtip({
+		style: 'ui-tooltip-dark ui-tooltip-rounded',
+		position: {
+			my: 'bottom left',
+			at: 'top left',
+			adjust: {
+				x: 50
+			}
+		}
+	});
+	$('#stats a, #stats p').qtip({
+		style: 'ui-tooltip-dark ui-tooltip-rounded',
+		position: {
+			my: 'bottom left',
+			at: 'top left',
+			adjust: {
+				x: 50,
+				y: 10
+			}
+		}
+	});
 	$('.projects li, .log li').qtip({
 		position: {
 			my: 'top center',
