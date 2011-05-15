@@ -21,9 +21,7 @@
 		echo $this->Form->input('date_ended');
 		echo $this->Form->input('currently_employed');
 		echo $this->Form->input('published');
-		echo $this->Form->input('deleted');
 		echo $this->Form->input('summary');
-		echo $this->Form->input('Resume');
 	?>
 <?php echo $this->Form->end(__('Submit', true));?>
 </div>

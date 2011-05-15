@@ -48,6 +48,7 @@ class ResumeSchoolsController extends AppController {
 			}
 		}
 		if (empty($this->data)) {
+			$this->ResumeSchool->recursive = 1;
 			$this->data = $this->ResumeSchool->read(null, $id);
 		}
 		$accounts = $this->ResumeSchool->Account->find('list');

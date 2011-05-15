@@ -48,6 +48,7 @@ class ResumeEmployersController extends AppController {
 			}
 		}
 		if (empty($this->data)) {
+			$this->ResumeEmployer->recursive = 1;
 			$this->data = $this->ResumeEmployer->read(null, $id);
 		}
 		$accounts = $this->ResumeEmployer->Account->find('list');

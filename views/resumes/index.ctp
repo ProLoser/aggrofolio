@@ -110,7 +110,7 @@
 		<h3>Experience</h3>
 		<?php foreach ($resume['ResumeEmployer'] as $employer): ?>
 		<article>
-			<time><?php echo $employer['date_started']?> - <?php echo (!empty($employer['date_ended'])) ? $employer['date_ended'] : 'Present' ?></time>
+			<time><?php echo $this->Time->format('M Y', $employer['date_started'])?> - <?php echo (!empty($employer['date_ended'])) ? $this->Time->format('M Y', $employer['date_ended']) : 'Present' ?></time>
 			<h4>
 				<?php echo $employer['name']?>
 				<span><?php echo $employer['title']?></span>
@@ -129,7 +129,7 @@
 		<h3>Education</h3>
 		<?php foreach ($resume['ResumeSchool'] as $school): ?>
 		<article>
-			<time><?php echo $school['date_started']?> - <?php echo (!empty($school['date_ended'])) ? $school['date_ended'] : 'Present' ?></time>
+			<time><?php echo $this->Time->format('M Y', $school['date_started'])?> - <?php echo (!empty($school['date_ended'])) ? $this->Time->format('M Y', $school['date_ended']) : 'Present' ?></time>
 			<h4>
 				<?php echo $school['name']?>
 				<span><?php echo $school['field_of_study']?></span>
