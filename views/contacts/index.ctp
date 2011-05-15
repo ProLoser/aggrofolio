@@ -1,5 +1,9 @@
 <h2><?php __('Contact Me'); ?></h2>
 <div class="contacts form">
+	<h3>By Phone</h3>
+	<p><strong>#</strong> (714) 900-2254</p>
+	
+	<h3>By Email</h3>
 <?php echo $this->Form->create('Contact');?>
 
 <script>

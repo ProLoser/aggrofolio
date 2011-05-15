@@ -70,10 +70,10 @@ $(document).ready(function(){
 	});
 	$('.log li').qtip({
 		position: {
-			my: 'top center',
+			my: 'top left',
 			at: 'bottom left',
 			adjust: {
-				x: 250,
+				x: 120,
 				y: 4
 			}
 		},

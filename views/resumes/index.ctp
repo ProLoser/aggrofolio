@@ -72,13 +72,6 @@
 	.projects li div {
 		display: none;
 	}
-	.ui-tooltip {
-		text-align: center;
-	}
-	.ui-tooltip img {
-		display: inline;
-		margin: 5px;
-	}
 </style>
 <div class="resumes">
 	<h2>Resume</h2>

@@ -10,12 +10,15 @@
 				<div>
 					<?php echo $log[$log['Log']['model']]['description']?>
 					<?php
-						if ($log['Log']['model'] == 'MediaItem')
-					 		$file = $log['MediaItem'];
-						if ($log['Log']['model'] == 'Project' && !empty($log['Project']['MediaItem']))
-							$file = $log['Project']['MediaItem'][0];
-						if (isset($file))
-							echo $this->Html->image('/uploads/thumb-' . $file['attachment_file_name'])
+						if ($log['Log']['model'] == 'MediaItem') {
+							echo '<p>' . $this->Html->image('/uploads/thumb-' . $log['MediaItem']['attachment_file_name']) . '</p>';
+						} elseif (!empty($log[$log['Log']['model']]['MediaItem'])) {
+							echo '<p>';
+							foreach ($log[$log['Log']['model']]['MediaItem'] as $item) {
+								echo $this->Html->image('/uploads/thumb-' . $item['attachment_file_name']);
+							}
+							echo '</p>';
+						}
 					?>
 				</div>
 			<?php endif; ?>

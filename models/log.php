@@ -6,19 +6,15 @@ class Log extends AppModel {
 	
 	var $belongsTo = array(
 		'Album' => array(
-			'conditions' => array('model' => 'Album'),
 			'foreignKey' => 'model_id',
 		),
 		'MediaItem' => array(
-			'conditions' => array('model' => 'MediaItem'),
 			'foreignKey' => 'model_id',
 		),
 		'Post' => array(
-			'conditions' => array('model' => 'Post'),
 			'foreignKey' => 'model_id',
 		),
 		'Project' => array(
-			'conditions' => array('model' => 'Project'),
 			'foreignKey' => 'model_id',
 		),
 	);
@@ -31,7 +27,16 @@ class Log extends AppModel {
 
 	function _findDashboard($state, $query, $results = array()) {
 		if ($state == 'before') {
-			$query['contain'] = array('Album', 'MediaItem', 'Post', 'Project');
+			$query['contain'] = array(
+				'Album' => array(
+					'MediaItem' => array('limit' => 2)
+				), 
+				'MediaItem', 
+				'Post', 
+				'Project' => array(
+					'MediaItem' => array('limit' => 2)
+				),
+			);
 			if (isset($this->belongsTo['User']))
 				$query['contain'][] = 'User';
 			#$query['limit'] = 30;

@@ -597,8 +597,13 @@ label {
 #stats .forks a, #stats .forks p { background-image: url(../img/icons/collapse.png); }
 #stats .milestones a, #stats .milestones p { background-image: url(../img/icons/clipboard.png); }
 
-.ui-tooltip-dark img {
-	margin-top: 10px;
+
+.ui-tooltip {
+	text-align: center;
+}
+.ui-tooltip img {
+	display: inline;
+	margin: 5px;
 }
 
 /*
