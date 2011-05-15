@@ -83,7 +83,7 @@
 <div class="resumes">
 	<h2>Resume</h2>
 	<?php if (!empty($resume['Resume']['objective'])): ?>
-		<p id="objective"><strong>Objective:</strong> <?php echo $resume['Resume']['objective']?></p>	  	 
+		<p id="objective"><?php echo $resume['Resume']['objective']?></p>	  	 
 	<?php endif; ?>
 
 	<?php if (!empty($resume['ResumeSkill'])): ?>

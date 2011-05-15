@@ -38,8 +38,6 @@
 			<th><?php echo $this->Paginator->sort('field_of_study');?></th>
 			<th><?php echo $this->Paginator->sort('degree');?></th>
 			<th><?php echo $this->Paginator->sort('name');?></th>
-			<th><?php echo $this->Paginator->sort('activities');?></th>
-			<th><?php echo $this->Paginator->sort('notes');?></th>
 			<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
@@ -56,8 +54,6 @@
 			'field_of_study',
 			'degree',
 			'name',
-			'activities',
-			'notes'
 		));
 	$i = 0;
 	foreach ($resumeSchools as $resumeSchool):
@@ -81,8 +77,6 @@
 		<td><?php echo $resumeSchool['ResumeSchool']['field_of_study']; ?>&nbsp;</td>
 		<td><?php echo $resumeSchool['ResumeSchool']['degree']; ?>&nbsp;</td>
 		<td><?php echo $resumeSchool['ResumeSchool']['name']; ?>&nbsp;</td>
-		<td><?php echo $resumeSchool['ResumeSchool']['activities']; ?>&nbsp;</td>
-		<td><?php echo $resumeSchool['ResumeSchool']['notes']; ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $resumeSchool['ResumeSchool']['id']), array('class' => 'view')); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $resumeSchool['ResumeSchool']['id']), array('class' => 'edit')); ?>
@@ -104,8 +98,6 @@
 			'field_of_study',
 			'degree',
 			'name',
-			'activities',
-			'notes'
 		));?> 
 	</table>
 	<?php echo $this->Batch->end()?> 

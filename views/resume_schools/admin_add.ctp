@@ -17,7 +17,7 @@
 		echo $this->Form->input('account_id');
 		echo $this->Form->input('published');
 		echo $this->Form->input('date_started');
-		echo $this->Form->input('date_ended');
+		echo $this->Form->input('date_ended', array('empty' => true));
 		echo $this->Form->input('field_of_study');
 		echo $this->Form->input('degree');
 		echo $this->Form->input('name');

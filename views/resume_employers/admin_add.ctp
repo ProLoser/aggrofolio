@@ -18,7 +18,7 @@
 		echo $this->Form->input('uuid');
 		echo $this->Form->input('title');
 		echo $this->Form->input('date_started');
-		echo $this->Form->input('date_ended');
+		echo $this->Form->input('date_ended', array('empty' => true));
 		echo $this->Form->input('currently_employed');
 		echo $this->Form->input('published');
 		echo $this->Form->input('summary');
