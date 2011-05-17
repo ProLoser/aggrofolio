@@ -34,7 +34,7 @@ class AppHelper extends Helper {
 		$result = $this->HtmlPlus->link(
 			$row[$model]['name'], 
 			array('category' => $row[$model]['id']), 
-			array('id' => 'cat-' . $row[$model]['id'])
+			array('title' => strip_tags(str_replace('"', '\"', $row[$model]['description'])), 'id' => 'cat-' . $row[$model]['id'])
 		);
 		return $result;
 	}

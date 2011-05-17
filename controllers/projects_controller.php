@@ -5,7 +5,6 @@ class ProjectsController extends AppController {
 	var $helpers = array('Time');
 	
 	function index() {
-		$this->Project->recursive = 0;
 		$this->paginate['limit'] = 12;
 		$this->paginate['conditions']['Project.published'] = true;
 		if (isset($this->params['named']['category']))

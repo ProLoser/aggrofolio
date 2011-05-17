@@ -6,7 +6,6 @@
 		echo $this->Form->input('id');
 		echo $this->Form->input('subject');
 		echo $this->Form->input('body');
-		echo $this->Form->input('url', array('type' => 'text'));
 		echo $this->Form->input('slug');
 	?>
 	</fieldset>

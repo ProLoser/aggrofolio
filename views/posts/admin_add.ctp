@@ -5,9 +5,8 @@
 	<?php
 		echo $this->Form->input('Post.subject');
 		echo $this->Form->input('Post.body');
-		echo $this->Form->input('Post.url', array('type' => 'text'));
 		echo $this->Form->input('Post.slug');
-		echo $this->Form->input('PostRelationship.0.foreign_model');
+		echo $this->Form->input('PostRelationship.0.foreign_model', array('empty' => '-- None --'));
 		echo $this->Form->input('PostRelationship.0.foreign_key');
 	?>
 	</fieldset>

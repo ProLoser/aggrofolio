@@ -5,7 +5,12 @@ class PostsController extends AppController {
 	var $helpers = array('Time');
 	
 	function index() {
-		$this->set('posts', $this->paginate());
+		if (isset($this->params['named']['category']))
+			$this->paginate['conditions']['Post.post_category_id'] = $this->params['named']['category'];
+		$this->paginate['contain'] = array('PostCategory');
+		$posts = $this->paginate();
+		$categories = $this->Post->PostCategory->find('threaded');
+		$this->set(compact('posts', 'categories'));
 	}
 
 	function view($id = null) {

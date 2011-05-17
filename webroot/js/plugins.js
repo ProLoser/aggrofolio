@@ -13,11 +13,13 @@ $(document).ready(function(){
 		listClass: 'list', // the list class to look within for items
 		itemClass: 'item', // the items - NOTE: the HTML inside the item is copied into the menu item
 		radius: 1, // radius in pixels
-		animSpeed:300, // animation speed in millis
-		animEasing: 'linear',
+		rotateAnimOpts: {
+			duration: 300,
+			easing: "linear"
+		},
 		centerX: 350, // the center x axis offset
 		centerY: 0, // the center y axis offset
-		angleOffset: 235 // in radians the angle that the elements are offset at
+		angleOffset: 145 // in radians the angle that the elements are offset at
 	}).radmenu("scale", 250).radmenu("show").radmenu("scale", 1).hover(function(){
 		$(this).radmenu('scale', 250).find('.radial_div').animate({
 			opacity: 1
@@ -46,6 +48,16 @@ $(document).ready(function(){
 		'transitionOut'	:	'elastic',
 		'speedIn'		:	400, 
 		'speedOut'		:	200
+	});
+	$('#categories a').qtip({
+		style: 'ui-tooltip-dark ui-tooltip-rounded',
+		position: {
+			my: 'left middle',
+			at: 'right middle',
+			adjust: {
+				x: 10
+			}
+		}
 	});
 	$('#commits a').qtip({
 		style: 'ui-tooltip-dark ui-tooltip-rounded',

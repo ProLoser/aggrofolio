@@ -491,10 +491,16 @@ a.desc:after {
 	margin: 10px 0;
 }
 .posts article {
-	border-bottom: 1px solid #933;
-	border-top: 1px solid #933;
-	padding: 10px 0;
-	margin: 0;
+	border: 2px solid #933;
+	padding: 10px;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	margin: 10px 0;
+	background: #ffe;
+	box-shadow: 0 0 5px rgba(0,0,0,.7), inset 0 0 2px rgba(0,0,0,.7);
+	-moz-box-shadow: 0 0 5px rgba(0,0,0,.7);
+	-webkit-box-shadow: 0 0 5px rgba(0,0,0,.7), inset 0 0 2px rgba(0,0,0,.7);
 }
 article header h1 {
 	font-size: 180%;

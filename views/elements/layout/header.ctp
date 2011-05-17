@@ -25,7 +25,7 @@
 
 <?php if (!empty($navAccounts)): ?>
 <nav id="accounts">
-	<h3>On The Web</h3>
+	<h3>Follow Me</h3>
 	<ul>
 <?php foreach ($navAccounts as $account):?>
 		<li><?php echo $this->Agro->account($account['Account'])?></li>

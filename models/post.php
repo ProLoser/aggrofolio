@@ -33,6 +33,10 @@ class Post extends AppModel {
 		)
 	);
 	
+	var $belongsTo = array(
+		'PostCategory',
+	);
+	
 	var $actsAs = array(
 		'Log.Logable',
 	);
