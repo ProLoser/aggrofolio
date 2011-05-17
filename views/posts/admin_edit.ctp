@@ -7,7 +7,7 @@
 		echo $this->Form->input('subject');
 		echo $this->Form->input('body');
 		echo $this->Form->input('slug');
-		echo $this->Form->input('Post.post_category_id');
+		echo $this->Form->input('post_category_id', array('empty' => '-- None --'));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>

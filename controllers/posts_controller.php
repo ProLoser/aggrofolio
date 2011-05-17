@@ -59,6 +59,8 @@ class PostsController extends AppController {
 			}
 		}
 		$this->_setRelated();
+		$this->set('postCategories', $this->Post->PostCategory->find('list'));
+		
 	}
 
 	function admin_edit($id = null) {
@@ -77,6 +79,7 @@ class PostsController extends AppController {
 		if (empty($this->data)) {
 			$this->data = $this->Post->read(null, $id);
 		}
+		$this->set('postCategories', $this->Post->PostCategory->find('list'));
 	}
 
 	function admin_delete($id = null) {
