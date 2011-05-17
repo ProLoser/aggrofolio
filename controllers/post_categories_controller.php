@@ -28,6 +28,8 @@ class PostCategoriesController extends AppController {
 				$this->Session->setFlash(__('The post category could not be saved. Please, try again.', true));
 			}
 		}
+		$parents = $this->PostCategory->find('list');
+		$this->set(compact('parents'));
 	}
 
 	function admin_edit($id = null) {

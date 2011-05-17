@@ -6,6 +6,7 @@
 		echo $this->Form->input('Post.subject');
 		echo $this->Form->input('Post.body');
 		echo $this->Form->input('Post.slug');
+		echo $this->Form->input('Post.post_category_id');
 		echo $this->Form->input('PostRelationship.0.foreign_model', array('empty' => '-- None --'));
 		echo $this->Form->input('PostRelationship.0.foreign_key');
 	?>

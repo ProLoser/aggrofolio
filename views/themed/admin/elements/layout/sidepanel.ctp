@@ -7,6 +7,7 @@
 			<ul>
 				<li><?php echo $this->Html->link('Posts', array('controller' => 'posts', 'action' => 'index')); ?></li>
 				<li><?php echo $this->Html->link('Comments', array('controller' => 'comments', 'action' => 'index')); ?></li>
+				<li><?php echo $this->Html->link('Categories', array('controller' => 'post_categories', 'action' => 'index')); ?></li>
 			</ul>
 		</li>
 		<li>
@@ -14,7 +15,7 @@
 			<ul>
 				<li><?php echo $this->Html->link('Accounts', array('controller' => 'accounts', 'action' => 'index'))?></li>
 				<li><?php echo $this->Html->link('Bookmarks', array('controller' => 'bookmarks', 'action' => 'index'))?></li>
-				<li><?php echo $this->Html->link('Bookmark Categories', array('controller' => 'bookmark_categories', 'action' => 'index'))?></li>
+				<li><?php echo $this->Html->link('Categories', array('controller' => 'bookmark_categories', 'action' => 'index'))?></li>
 			</ul>	
 		</li>
 		<li>
