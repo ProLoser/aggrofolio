@@ -81,10 +81,10 @@ class AgroHelper extends AppHelper {
 		
 	}
 	
-	function account($account) {
+	function account($account, $options = array()) {
 		$name = $this->types[$account['type']]['name'];
 		$url = str_replace(':name', $account['username'], $this->types[$account['type']]['url']);
-		return $this->Html->link($name, $url, array('class' => $account['type']));
+		return $this->Html->link($name, $url, $options);
 	}
 	
 	

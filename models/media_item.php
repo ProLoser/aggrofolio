@@ -97,10 +97,12 @@ class MediaItem extends AppModel {
 			'tmp_name' => $path,
 			'error' => (int) !copy($url, $path),
 			'size' => filesize($path),
+			'type' => null,
 		);
-		$finfo = finfo_open();
-		$data['type'] = finfo_file($finfo, $path, FILEINFO_MIME_TYPE);
-		finfo_close($finfo);
+		// TODO: install finfo onto server and figure out why types area always null in db
+		// $finfo = finfo_open();
+		// $data['type'] = finfo_file($finfo, $path, FILEINFO_MIME_TYPE);
+		// finfo_close($finfo);
 		return $data;
 	}
 	

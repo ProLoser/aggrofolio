@@ -187,9 +187,9 @@ legend {
 	padding-left: 260px;
 	min-width: 700px;
 }
-#container > header {
+#navigation {
 	position: fixed;
-	font-size: 15px;
+	font-size: 120%;
 	top: 0;
 	left: 0;
 	height: 100%;
@@ -211,28 +211,38 @@ legend {
 	-webkit-box-shadow: 1px 0px 7px #555;
 	-moz-box-shadow: 1px 0px 7px #555;
 }
-header h1 {
+#navigation h1 {
 	margin: 10px -30px;
 	text-align: center;
 	text-shadow: 0 2px 3px rgba(0,0,0,.4);
 	font-size: 55px;
 	font-family: "BIRTHOFAHERORegular";
 }
-header h1 a, header h1 a:visited {
+#navigation h1 a, header h1 a:visited {
 	color: #fff;
 }
-header nav a, header nav a:visited, #mainNav a, #mainNav a:visited {
+#navigation h3 {
+	font-size: 180%;
+	text-align: center;
+	color: #800000;
+	text-shadow: 0 -1px 1px rgba(0,0,0,.2), 0 1px 1px rgba(255,255,255,.2);
+	border: 0;
+	border-bottom: 2px solid #8f0000;
+	box-shadow: 0 2px 2px rgba(0,0,0,.5);
+	-moz-box-shadow: 0 2px 2px rgba(0,0,0,.5);
+	-webkit-box-shadow: inset 0 -1px 1px rgba(0,0,0,.1), 0 1px 1px rgba(255,255,255,.1);
+	margin: 20px 0 10px 0;
+}
+#navigation nav a, #navigation nav a:visited, #mainNav a, #mainNav a:visited {
 	color: #fff;
 	text-shadow: none;
 }
-header nav a:hover, #mainNav a:hover {
+#navigation nav a:hover, #mainNav a:hover {
 	color: #f00;
 }
 #mainNav {
 	margin: 0 0 20px 20px;
-}
-#mainNav a {
-	font-size: 200%;
+	font-size: 180%;
 }
 #mainNav li {
 	margin: 10px 0;
@@ -267,17 +277,16 @@ header nav a:hover, #mainNav a:hover {
 	color: #800000;
 	text-shadow: 0 -1px 1px rgba(0,0,0,.2), 0 1px 1px rgba(255,255,255,.2);
 }*/
-header h3 {
-	font-size: 25px;
-	text-align: center;
-	color: #800000;
-	text-shadow: 0 -1px 1px rgba(0,0,0,.2), 0 1px 1px rgba(255,255,255,.2);
-	border: 0;
-	border-bottom: 2px solid #8f0000;
-	box-shadow: 0 2px 2px rgba(0,0,0,.5);
-	-moz-box-shadow: 0 2px 2px rgba(0,0,0,.5);
-	-webkit-box-shadow: inset 0 -1px 1px rgba(0,0,0,.1), 0 1px 1px rgba(255,255,255,.1);
-	margin: 20px 0 10px 0;
+#categories {
+	position: relative;
+}
+#categories .reset {
+	display: block;
+	width: 32px;
+	height: 32px;
+	margin: 0 auto;
+	text-indent: -5000px;
+	background: no-repeat center url(../img/icons/remove_category.png);
 }
 #main {
 	margin: 60px 40px 20px 0;
@@ -603,6 +612,16 @@ label {
 #stats .forks a, #stats .forks p { background-image: url(../img/icons/collapse.png); }
 #stats .milestones a, #stats .milestones p { background-image: url(../img/icons/clipboard.png); }
 
+#accounts a {
+	display: block;
+	padding: 7px 0 7px 40px;
+	margin: 0;
+	background: no-repeat left center;
+}
+#accounts .linkedin a { background-image: url(../img/accounts/linkedin.png); }
+#accounts .github a { background-image: url(../img/accounts/github.png); }
+#accounts .codaset a { background-image: url(../img/accounts/codaset.png); }
+#accounts .deviantart a { background-image: url(../img/accounts/deviantart.png); }
 
 .ui-tooltip {
 	text-align: center;

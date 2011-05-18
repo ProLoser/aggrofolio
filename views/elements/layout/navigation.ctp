@@ -8,7 +8,6 @@
 	<li><?php echo $this->Html->link('Contact', array('controller' => 'contacts', 'action' => 'index')); ?></li>
 </ul>
 
-
 <?php if (!empty($nav_for_layout)): ?>
 <nav>
 	<?php echo $nav_for_layout; ?>
@@ -18,8 +17,8 @@
 <?php if (!empty($categories)): ?>
 <nav id="categories">
 	<h3>Categories</h3>
-	<?php echo $this->Plate->tree($categories, array('callback' => '_categories'));?> 
-	<p class="reset"><a href="#">&raquo; Reset &laquo;</a></p>
+	<?php echo $this->Plate->tree($categories, array('callback' => '_categories'));?>
+	<a href="#" class="reset">Reset</a>
 </nav>		
 <?php endif;?>
 
@@ -28,7 +27,7 @@
 	<h3>Follow Me</h3>
 	<ul>
 <?php foreach ($navAccounts as $account):?>
-		<li><?php echo $this->Agro->account($account['Account'])?></li>
+		<li class="<?php echo $account['Account']['type']?>"><?php echo $this->Agro->account($account['Account'])?></li>
 <?php endforeach;?>
 	</ul>
 </nav>

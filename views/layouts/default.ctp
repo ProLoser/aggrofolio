@@ -63,9 +63,9 @@ echo $this->Html->script(array(
 </head>
 <body>
 	<div id="container">
-		<header>
-			<?php echo $this->element('layout/header'); ?>
-		</header>
+		<aside id="navigation">
+			<?php echo $this->element('layout/navigation'); ?>
+		</aside>
 		<div id="main">
 
 			<?php echo $this->Session->flash(); ?>
@@ -75,9 +75,6 @@ echo $this->Html->script(array(
 			<?php echo $content_for_layout; ?>
 
 		</div>
-		<footer>
-			<?php echo $this->element('layout/footer'); ?>
-		</footer>
 	</div>
 <?php echo $this->AssetCompress->includeJs(); ?> 	
 <?php echo $scripts_for_layout; ?>

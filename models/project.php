@@ -106,6 +106,7 @@ class Project extends AppModel {
 			'fields' => 'repos'
 		));
 		$this->useDbConfig = $default;
+		$i = 0;
 		foreach ($projects['repositories'] as $project) {
 			$this->create();
 			$this->save(array('Project' => array(
@@ -115,7 +116,9 @@ class Project extends AppModel {
 				'description' => $project['description'],
 				'owner' => $project['owner'],
 			)));
+			$i++;
 		}
+		return $i;
 	}
 	
 	function scanCodaset($account) {
@@ -126,6 +129,7 @@ class Project extends AppModel {
 			$this->find('all', array('conditions' => array('username' => $account['Account']['username']), 'fields' => 'collaborations'))
 		);
 		$this->useDbConfig = $default;
+		$i = 0;
 		foreach ($projects as $project) {
 			$this->create();
 			$this->save(array('Project' => array(
@@ -135,7 +139,9 @@ class Project extends AppModel {
 				'description' => $project['description'],
 				'owner' => $project['owner']['login'],
 			)));
+			$i++;
 		}
+		return $i;
 	}
 	
 }

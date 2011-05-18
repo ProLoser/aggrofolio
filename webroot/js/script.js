@@ -31,11 +31,11 @@ $(document).ready(function(){
 			$('#categories .reset').fadeIn(600);
 		return false;
 	});
-	$('#categories .reset a').click(function(){
-		$('.gallery ul li').animate({
+	$('#categories a.reset').hide().click(function(){
+		$('.gallery ul li, .posts article').animate({
 			opacity: 1
 		}, 600);
-		$(this).closest('.reset').fadeOut(600);
+		$(this).fadeOut(600);
 		return false;
 	});
 	$('.projects .names li').bind('mouseover', function(){
