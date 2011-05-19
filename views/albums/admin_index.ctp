@@ -12,19 +12,20 @@
 	<li><?php echo $this->Html->link(__('List Resume Schools', true), array('controller' => 'resume_schools', 'action' => 'index')); ?> </li>
 	<li><?php echo $this->Html->link(__('New Resume School', true), array('controller' => 'resume_schools', 'action' => 'add')); ?> </li>
 </ul>
-<div class="albums index">
+
+<article class="albums index">
 	<div class="header">
 		<div class="paging">
 			<?php echo $this->Paginator->prev();?>
-			<?php echo $this->Paginator->numbers();?>
+			<?php echo $this->Paginator->numbers(array('separator' => ''));?>
 			<?php echo $this->Paginator->next();?>
 		</div>
-		<p>
+		<h3>
 		<?php
 		echo $this->Paginator->counter(array(
-		'format' => __('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%', true)
+			'format' => __('Record %start% to %end% of %count% total', true)
 		));
-		?>		</p>
+		?>	</h3>
 	</div>
 	<?php echo $this->Batch->create('Album')?>	
 	<table cellpadding="0" cellspacing="0">
@@ -84,7 +85,7 @@
 		<?php echo $this->Batch->end()?>	
 	<div class="paging">
 		<?php echo $this->Paginator->prev();?>
-		| <?php echo $this->Paginator->numbers();?> |
+		<?php echo $this->Paginator->numbers(array('separator' => ''));?>
 		<?php echo $this->Paginator->next();?>
 	</div>
-</div>
+</article>

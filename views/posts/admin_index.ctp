@@ -2,23 +2,22 @@
 <ul class="actions">
 	<li><?php echo $this->Html->link(__('New Post', true), array('action' => 'add')); ?></li>
 </ul>
-<div class="posts index">
-	<div class="header">
-		<p>
+<article class="posts index">
+	<header>
+		<h3>
 		<?php
 		echo $this->Paginator->counter(array(
-		'format' => __('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%', true)
+			'format' => __('Record %start% to %end% of %count% total', true)
 		));
-		?>	</p>
+		?>	</h3>
 		<div class="paging">
 			<?php echo $this->Paginator->prev();?>
-		 	| <?php echo $this->Paginator->numbers();?> |
+		 	<?php echo $this->Paginator->numbers(array('separator' => ''));?>
 			<?php echo $this->Paginator->next();?>
 		</div>
-	</div>
+	</header>
 	<?php echo $this->Batch->create('Post')?>
 	<table cellpadding="0" cellspacing="0">
-	<?php echo $this->Batch->filter(array(null, null, 'subject', 'slug'))?>
 	<tr>
 		<th><?php echo $this->Paginator->sort('id');?></th>
 		<th><?php echo $this->Paginator->sort('created');?></th>
@@ -26,7 +25,7 @@
 		<th><?php echo $this->Paginator->sort('slug');?></th>
 		<th class="actions"><?php __('Actions');?></th>
 	</tr>
-	<?php
+	<?php echo $this->Batch->filter(array(null, null, 'subject', 'slug'));
 	$i = 0;
 	foreach ($posts as $post):
 		$class = null;
@@ -50,4 +49,4 @@
 	<?php echo $this->Batch->batch(array(null, null, 'subject', 'slug'))?>
 	</table>
 	<?php echo $this->Batch->end()?>
-</div>
+</article>

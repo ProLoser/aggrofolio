@@ -46,7 +46,7 @@
 
 	<div class="paging">
 		<?php echo $this->Paginator->prev();?>
-	 | 	<?php echo $this->Paginator->numbers();?>
+	 | 	<?php echo $this->Paginator->numbers(array('separator' => ''));?>
  |
 		<?php echo $this->Paginator->next();?>
 	</div>

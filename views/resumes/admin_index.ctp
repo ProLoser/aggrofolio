@@ -1,29 +1,33 @@
-<h2><?php __('Resumes');?></h2>
-<ul class="actions">
-	<li><?php echo $this->Html->link(__('New Resume', true), array('action' => 'add')); ?></li>
-	<li><?php echo $this->Html->link(__('List Resume Recommendations', true), array('controller' => 'resume_recommendations', 'action' => 'index')); ?> </li>
-	<li><?php echo $this->Html->link(__('New Resume Recommendation', true), array('controller' => 'resume_recommendations', 'action' => 'add')); ?> </li>
-	<li><?php echo $this->Html->link(__('List Resume Schools', true), array('controller' => 'resume_schools', 'action' => 'index')); ?> </li>
-	<li><?php echo $this->Html->link(__('New Resume School', true), array('controller' => 'resume_schools', 'action' => 'add')); ?> </li>
-	<li><?php echo $this->Html->link(__('List Resume Skills', true), array('controller' => 'resume_skills', 'action' => 'index')); ?> </li>
-	<li><?php echo $this->Html->link(__('New Resume Skill', true), array('controller' => 'resume_skills', 'action' => 'add')); ?> </li>
-	<li><?php echo $this->Html->link(__('List Resume Employers', true), array('controller' => 'resume_employers', 'action' => 'index')); ?> </li>
-	<li><?php echo $this->Html->link(__('New Resume Employer', true), array('controller' => 'resume_employers', 'action' => 'add')); ?> </li>
-</ul>
-<div class="resumes index">
-	<div class="header">
-		<p>
+<header>
+	<hgroup>
+		<h1><?php __('Resumes');?></h1>
+	</hgroup>
+	<ul class="actions">
+		<li><?php echo $this->Html->link(__('New Resume', true), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('List Resume Recommendations', true), array('controller' => 'resume_recommendations', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Resume Recommendation', true), array('controller' => 'resume_recommendations', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Resume Schools', true), array('controller' => 'resume_schools', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Resume School', true), array('controller' => 'resume_schools', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Resume Skills', true), array('controller' => 'resume_skills', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Resume Skill', true), array('controller' => 'resume_skills', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Resume Employers', true), array('controller' => 'resume_employers', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Resume Employer', true), array('controller' => 'resume_employers', 'action' => 'add')); ?> </li>
+	</ul>
+</header>
+<article class="resumes index">
+	<header>
+		<h3>
 		<?php
 		echo $this->Paginator->counter(array(
-		'format' => __('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%', true)
+			'format' => __('Record %start% to %end% of %count% total', true)
 		));
-		?>	</p>
+		?>	</h3>
 		<div class="paging">
 			<?php echo $this->Paginator->prev();?>
-		 	| <?php echo $this->Paginator->numbers();?> |
+		 	<?php echo $this->Paginator->numbers(array('separator' => ''));?>
 			<?php echo $this->Paginator->next();?>
 		</div>
-	</div>
+	</header>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 		<th><?php echo $this->Paginator->sort('id');?></th>
@@ -57,4 +61,4 @@
 	</tr>
 <?php endforeach; ?>
 	</table>
-</div>
+</article>

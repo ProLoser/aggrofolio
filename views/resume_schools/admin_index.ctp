@@ -12,15 +12,15 @@
 </ul>
 <div class="resumeSchools index">
 	<div class="header">
-		<p>
+		<h3>
 		<?php
 		echo $this->Paginator->counter(array(
-		'format' => __('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%', true)
+			'format' => __('Record %start% to %end% of %count% total', true)
 		));
-		?>		</p>
+		?>	</h3>
 		<div class="paging">
 			<?php echo $this->Paginator->prev();?>
-			<?php echo $this->Paginator->numbers();?>
+			<?php echo $this->Paginator->numbers(array('separator' => ''));?>
 			<?php echo $this->Paginator->next();?>
 		</div>
 	</div>
@@ -103,7 +103,7 @@
 	<?php echo $this->Batch->end()?> 
 	<div class="paging">
 		<?php echo $this->Paginator->prev();?>
-		| <?php echo $this->Paginator->numbers();?> |
+		<?php echo $this->Paginator->numbers(array('separator' => ''));?>
 		<?php echo $this->Paginator->next();?>
 	</div>
 </div>

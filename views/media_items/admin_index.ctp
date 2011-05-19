@@ -1,23 +1,28 @@
-<h2><?php __('Media Items');?></h2>
-<ul class="actions">
-	<li><?php echo $this->Html->link(__('New Media Item', true), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Albums', true), array('controller' => 'albums', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Album', true), array('controller' => 'albums', 'action' => 'add')); ?> </li>
-</ul>
-<div class="mediaItems index">
-	<div class="header">
-		<p>
+<header>
+	<hgroup>
+		<h1><?php __('Media Items');?></h1>
+	</hgroup>
+	<ul class="actions">
+		<li><?php echo $this->Html->link(__('New Media Item', true), array('action' => 'add')); ?></li>
+			<li><?php echo $this->Html->link(__('List Albums', true), array('controller' => 'albums', 'action' => 'index')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Album', true), array('controller' => 'albums', 'action' => 'add')); ?> </li>
+	</ul>
+</header>
+
+<article class="mediaItems index">
+	<header>
+		<h3>
 		<?php
 		echo $this->Paginator->counter(array(
-		'format' => __('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%', true)
+			'format' => __('Record %start% to %end% of %count% total', true)
 		));
-		?>		</p>
+		?>	</h3>
 		<div class="paging">
 			<?php echo $this->Paginator->prev();?>
-			<?php echo $this->Paginator->numbers();?>
+			<?php echo $this->Paginator->numbers(array('separator' => ''));?>
 			<?php echo $this->Paginator->next();?>
 		</div>
-	</div>
+	</header>
 	<?php echo $this->Batch->create('MediaItem')?>	<table cellpadding="0" cellspacing="0">
 	<tr>
 		<th><?php echo $this->Paginator->sort('id');?></th>
@@ -68,10 +73,12 @@
 			'published',
 		));?> 
 	</table>
-	<?php echo $this->Batch->end()?> 
-	<div class="paging">
-		<?php echo $this->Paginator->prev();?>
-		| <?php echo $this->Paginator->numbers();?> |
-		<?php echo $this->Paginator->next();?>
-	</div>
-</div>
+	<?php echo $this->Batch->end()?>
+	<footer>
+		<div class="paging">
+			<?php echo $this->Paginator->prev();?>
+			<?php echo $this->Paginator->numbers(array('separator' => ''));?>
+			<?php echo $this->Paginator->next();?>
+		</div>
+	</footer>
+</article>

@@ -67,7 +67,10 @@
 					<h1><?php echo $this->Html->link($post['Post']['subject'], array('controller' => 'posts', $post['Post']['id']))?></h1>
 					<time pubdate><?php echo $this->Time->timeAgoInWords($post['Post']['created']);?></time>
 				</header>
-				<?php echo $post['Post']['body']?>
+				<?php 
+					$pos = strpos($post['Post']['body'], '<hr>');
+					echo ($pos === false) ? $post['Post']['body']: substr($post['Post']['body'], 0, $pos); 
+				?>
 				<footer>
 					<?php echo $this->Html->link('Read More &rarr;', array('controller' => 'posts', 'action' => 'view', $post['Post']['id'], $post['Post']['slug']), array('class' => 'readmore', 'escape' => false)); ?>
 				</footer>

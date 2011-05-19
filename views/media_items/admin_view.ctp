@@ -1,13 +1,17 @@
-<h1><?php  __('Media Item');?></h1>
-<ul class="actions">
-		<li><?php echo $this->Html->link(__('Edit Media Item', true), array('action' => 'edit', $mediaItem['MediaItem']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('Delete Media Item', true), array('action' => 'delete', $mediaItem['MediaItem']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $mediaItem['MediaItem']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Media Items', true), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Media Item', true), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Albums', true), array('controller' => 'albums', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Album', true), array('controller' => 'albums', 'action' => 'add'), array('class' => 'add')); ?> </li>
-</ul>
-<div class="mediaItems view">
+<header>
+	<hgroup>
+		<h1><?php  __('Media Item');?></h1>
+	</hgroup>
+	<ul class="actions">
+			<li><?php echo $this->Html->link(__('Edit Media Item', true), array('action' => 'edit', $mediaItem['MediaItem']['id'])); ?> </li>
+			<li><?php echo $this->Html->link(__('Delete Media Item', true), array('action' => 'delete', $mediaItem['MediaItem']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $mediaItem['MediaItem']['id'])); ?> </li>
+			<li><?php echo $this->Html->link(__('List Media Items', true), array('action' => 'index')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Media Item', true), array('action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('List Albums', true), array('controller' => 'albums', 'action' => 'index')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Album', true), array('controller' => 'albums', 'action' => 'add'), array('class' => 'add')); ?> </li>
+	</ul>
+</header>
+<article class="mediaItems view">
 	<dl><?php $i = 0; $class = ' class="altrow"';?>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Id'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
@@ -75,4 +79,4 @@
 			&nbsp;
 		</dd>
 	</dl>
-</div>
+</article>
