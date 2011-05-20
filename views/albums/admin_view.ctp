@@ -71,7 +71,7 @@
 </div>
 <div class="related">
 	<div class="header">
-		<h2><?php __('Related Media Items');?></h2>
+		<h1><?php __('Related Media Items');?></h1>
 		<ul>
 			<li><?php echo $this->Html->link(__('New Media Item', true), array('controller' => 'media_items', 'action' => 'add'), array('class' => 'add'));?> </li>
 		</ul>
@@ -129,7 +129,7 @@
 </div>
 <div class="related">
 	<div class="header">
-		<h2><?php __('Related Resume Employers');?></h2>
+		<h1><?php __('Related Resume Employers');?></h1>
 		<ul>
 			<li><?php echo $this->Html->link(__('New Resume Employer', true), array('controller' => 'resume_employers', 'action' => 'add'), array('class' => 'add'));?> </li>
 		</ul>
@@ -187,7 +187,7 @@
 </div>
 <div class="related">
 	<div class="header">
-		<h2><?php __('Related Resume Schools');?></h2>
+		<h1><?php __('Related Resume Schools');?></h1>
 		<ul>
 			<li><?php echo $this->Html->link(__('New Resume School', true), array('controller' => 'resume_schools', 'action' => 'add'), array('class' => 'add'));?> </li>
 		</ul>

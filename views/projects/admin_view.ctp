@@ -1,5 +1,5 @@
 <div class="projects view">
-<h2><?php  __('Project');?></h2>
+<h1><?php  __('Project');?></h1>
 	<dl><?php $i = 0; $class = ' class="altrow"';?>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Id'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
@@ -96,7 +96,7 @@
 		</dd>
 	</dl>
 <?php if (!empty($project['repository'])): ?>
-	<h2>Recent Updates</h2>
+	<h1>Recent Updates</h1>
 	<ol>
 	<?php foreach ($project['commits'] as $i => $commit): ?>
 		<li>

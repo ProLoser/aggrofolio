@@ -1,4 +1,4 @@
-<h2><?php __('Admin Add Post Category'); ?></h2>
+<h1><?php __('Admin Add Post Category'); ?></h1>
 <ul class="actions">
 	<li><?php echo $this->Html->link(__('List Post Categories', true), array('action' => 'index'));?></li>
 		<li><?php echo $this->Html->link(__('List Posts', true), array('controller' => 'posts', 'action' => 'index')); ?> </li>

@@ -1,4 +1,4 @@
-<h2><?php __('Admin Add Media Category'); ?></h2>
+<h1><?php __('Admin Add Media Category'); ?></h1>
 <ul class="actions">
 	<li><?php echo $this->Html->link(__('List Media Categories', true), array('action' => 'index'));?></li>
 		<li><?php echo $this->Html->link(__('List Albums', true), array('controller' => 'albums', 'action' => 'index')); ?> </li>

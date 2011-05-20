@@ -1,4 +1,4 @@
-<h2><?php __('Resume Skills');?></h2>
+<h1><?php __('Resume Skills');?></h1>
 <ul class="actions">
 	<li><?php echo $this->Html->link(__('New Resume Skill', true), array('action' => 'add')); ?></li>
 		<li><?php echo $this->Html->link(__('List Accounts', true), array('controller' => 'accounts', 'action' => 'index')); ?> </li>

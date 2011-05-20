@@ -1,5 +1,5 @@
 <div class="bookmarkCategories view">
-<h2><?php  __('Bookmark Category');?></h2>
+<h1><?php  __('Bookmark Category');?></h1>
 	<dl><?php $i = 0; $class = ' class="altrow"';?>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Id'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>

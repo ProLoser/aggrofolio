@@ -1,4 +1,4 @@
-<h2><?php __('Admin Edit Post Category'); ?></h2>
+<h1><?php __('Admin Edit Post Category'); ?></h1>
 <ul class="actions">
 	<li><?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $this->Form->value('PostCategory.id')), null, sprintf(__('Are you sure you want to delete # %s?', true), $this->Form->value('PostCategory.id'))); ?></li>
 	<li><?php echo $this->Html->link(__('List Post Categories', true), array('action' => 'index'));?></li>

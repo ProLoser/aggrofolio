@@ -1,5 +1,5 @@
 <div class="bookmarkCategories index">
-	<h2><?php __('Bookmark Categories');?></h2>
+	<h1><?php __('Bookmark Categories');?></h1>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id');?></th>

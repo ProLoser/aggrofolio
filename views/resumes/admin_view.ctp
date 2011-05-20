@@ -29,7 +29,7 @@
 	}
 </style>
 
-<h2>Resume</h2>
+<h1>Resume</h1>
 <p id="objective"><?php echo $resume['Resume']['objective']?></p>
 
 <?php if (!empty($resume['ResumeSkill'])): ?>

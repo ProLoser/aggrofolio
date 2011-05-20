@@ -1,4 +1,4 @@
-<h2><?php __('Accounts');?></h2>
+<h1><?php __('Accounts');?></h1>
 <ul class="actions">
 	<li><?php echo $this->Html->link(__('New Account', true), array('action' => 'add')); ?></li>
 </ul>

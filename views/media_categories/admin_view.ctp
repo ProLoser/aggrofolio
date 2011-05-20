@@ -53,7 +53,7 @@
 </div>
 <div class="related">
 	<div class="header">
-		<h2><?php __('Related Albums');?></h2>
+		<h1><?php __('Related Albums');?></h1>
 		<ul>
 			<li><?php echo $this->Html->link(__('New Album', true), array('controller' => 'albums', 'action' => 'add'), array('class' => 'add'));?> </li>
 		</ul>

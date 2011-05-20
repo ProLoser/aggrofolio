@@ -89,7 +89,7 @@
 </div>
 <div class="related">
 	<div class="header">
-		<h2><?php __('Related Post Relationships');?></h2>
+		<h1><?php __('Related Post Relationships');?></h1>
 		<ul>
 			<li><?php echo $this->Html->link(__('New Post Relationship', true), array('controller' => 'post_relationships', 'action' => 'add'), array('class' => 'add'));?> </li>
 		</ul>
@@ -133,7 +133,7 @@
 </div>
 <div class="related">
 	<div class="header">
-		<h2><?php __('Related Projects');?></h2>
+		<h1><?php __('Related Projects');?></h1>
 		<ul>
 			<li><?php echo $this->Html->link(__('New Project', true), array('controller' => 'projects', 'action' => 'add'), array('class' => 'add'));?> </li>
 		</ul>
@@ -193,7 +193,7 @@
 </div>
 <div class="related">
 	<div class="header">
-		<h2><?php __('Related Resumes');?></h2>
+		<h1><?php __('Related Resumes');?></h1>
 		<ul>
 			<li><?php echo $this->Html->link(__('New Resume', true), array('controller' => 'resumes', 'action' => 'add'), array('class' => 'add'));?> </li>
 		</ul>

@@ -1,7 +1,11 @@
-<h2><?php __('Posts');?></h2>
-<ul class="actions">
-	<li><?php echo $this->Html->link(__('New Post', true), array('action' => 'add')); ?></li>
-</ul>
+<header>
+	<hgroup>
+		<h1><?php __('Posts');?></h1>
+	</hgroup>
+	<ul class="actions">
+		<li><?php echo $this->Html->link(__('New Post', true), array('action' => 'add')); ?></li>
+	</ul>
+</header>
 <article class="posts index">
 	<header>
 		<h3>

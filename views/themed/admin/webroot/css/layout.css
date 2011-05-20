@@ -610,6 +610,13 @@ article header li:last-child, article header li:last-child a, article footer li:
 	border-top-right-radius: 5px; border-bottom-right-radius: 5px;
 }
 
+/* Tabs */
+article.tabs > ul, article.tabs > ul li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
 /* Messages */
 
 .message {

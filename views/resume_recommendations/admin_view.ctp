@@ -70,7 +70,7 @@
 </div>
 <div class="related">
 	<div class="header">
-		<h2><?php __('Related Resumes');?></h2>
+		<h1><?php __('Related Resumes');?></h1>
 		<ul>
 			<li><?php echo $this->Html->link(__('New Resume', true), array('controller' => 'resumes', 'action' => 'add'), array('class' => 'add'));?> </li>
 		</ul>

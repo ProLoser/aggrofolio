@@ -53,7 +53,7 @@
 </div>
 <div class="related">
 	<div class="header">
-		<h2><?php __('Related Posts');?></h2>
+		<h1><?php __('Related Posts');?></h1>
 		<ul>
 			<li><?php echo $this->Html->link(__('New Post', true), array('controller' => 'posts', 'action' => 'add'), array('class' => 'add'));?> </li>
 		</ul>

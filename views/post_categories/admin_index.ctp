@@ -1,4 +1,4 @@
-<h2><?php __('Post Categories');?></h2>
+<h1><?php __('Post Categories');?></h1>
 <ul class="actions">
 	<li><?php echo $this->Html->link(__('New Post Category', true), array('action' => 'add')); ?></li>
 		<li><?php echo $this->Html->link(__('List Posts', true), array('controller' => 'posts', 'action' => 'index')); ?> </li>

@@ -1,4 +1,4 @@
-<h2><?php __('Add Contact'); ?></h2>
+<h1><?php __('Add Contact'); ?></h1>
 <ul class="actions">
 	<li><?php echo $this->Html->link(__('List Contacts', true), array('action' => 'index'));?></li>
 </ul>

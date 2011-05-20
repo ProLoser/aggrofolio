@@ -1,4 +1,4 @@
-<h2><?php __('Project Categories');?></h2>
+<h1><?php __('Project Categories');?></h1>
 <ul class="actions">
 	<li><?php echo $this->Html->link(__('New Project Category', true), array('action' => 'add')); ?></li>
 	<li><?php echo $this->Html->link(__('List Projects', true), array('controller' => 'projects', 'action' => 'index')); ?> </li>

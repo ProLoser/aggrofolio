@@ -1,4 +1,4 @@
-<h2><?php __('Admin Edit Resume School'); ?></h2>
+<h1><?php __('Admin Edit Resume School'); ?></h1>
 <ul class="actions">
 	<li><?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $this->Form->value('ResumeSchool.id')), null, sprintf(__('Are you sure you want to delete # %s?', true), $this->Form->value('ResumeSchool.id'))); ?></li>
 	<li><?php echo $this->Html->link(__('List Resume Schools', true), array('action' => 'index'));?></li>

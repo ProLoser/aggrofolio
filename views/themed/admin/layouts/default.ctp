@@ -11,6 +11,8 @@
 		echo $this->Html->css(array(
 			'layout',
 			'/batch/css/batch',
+			'/js/mylibs/markitup/skins/simple/style',
+			'/js/mylibs/markitup/sets/default/style',
 		));
 		echo $this->Plate->iecc(
 			$this->Html->css('ie') . 
@@ -20,9 +22,10 @@
 		echo $this->Plate->lib('jquery');
 		echo $this->Html->script(array(
 			'hideshow',
-			'jquery.tablesorter.min',
 			'jquery.equalHeight',
 			'/batch/js/batch',
+			'mylibs/markitup/jquery.markitup',
+			'mylibs/markitup/sets/default/set',
 			'script',
 		));
 		echo $scripts_for_layout;

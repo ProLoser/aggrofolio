@@ -1,4 +1,4 @@
-<h2><?php __('Resume Employers');?></h2>
+<h1><?php __('Resume Employers');?></h1>
 <ul class="actions">
 	<li><?php echo $this->Html->link(__('New Resume Employer', true), array('action' => 'add')); ?></li>
 		<li><?php echo $this->Html->link(__('List Accounts', true), array('controller' => 'accounts', 'action' => 'index')); ?> </li>
