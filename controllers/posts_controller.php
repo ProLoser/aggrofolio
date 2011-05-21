@@ -47,6 +47,13 @@ class PostsController extends AppController {
 		}
 		$this->set(compact('foreignModels'));
 	}
+	
+	function admin_related($model = null) {
+		if (empty($model))
+			die;
+		$this->view = 'Webservice.Webservice';
+		$this->set('items', $this->Post->PostRelationship->{$model}->find('list'));
+	}
 
 	function admin_add() {
 		if (!empty($this->data)) {

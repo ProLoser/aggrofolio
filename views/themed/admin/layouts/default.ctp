@@ -21,9 +21,8 @@
 		);
 		echo $this->Plate->lib('jquery');
 		echo $this->Html->script(array(
-			'hideshow',
 			'jquery.equalHeight',
-			'/batch/js/batch',
+			'/batch/js/jquery',
 			'mylibs/markitup/jquery.markitup',
 			'mylibs/markitup/sets/default/set',
 			'script',

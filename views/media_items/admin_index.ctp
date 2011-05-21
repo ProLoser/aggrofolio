@@ -30,7 +30,7 @@
 		<th><?php echo $this->Paginator->sort('album_id');?></th>
 		<th><?php echo $this->Paginator->sort('project_id');?></th>
 		<th><?php echo $this->Paginator->sort('published');?></th>
-		<th class="actions"><?php __('Actions');?></th>
+		<th class="actions"><?php __('Actions');?><?php echo $this->Batch->all();?></th>
 	</tr>
 	<?php
 		echo $this->Batch->filter(array(

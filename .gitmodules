@@ -67,3 +67,6 @@
 [submodule "plugins/cacheable"]
 	path = plugins/cacheable
 	url = git://github.com/ProLoser/CakePHP-Cacheable.git
+[submodule "plugins/webservice"]
+	path = plugins/webservice
+	url = git://github.com/josegonzalez/webservice_plugin.git

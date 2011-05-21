@@ -174,6 +174,13 @@ border-radius: 5px;
 box-shadow: 0 1px 0 #fff;
 }
 
+#main > header li:hover {
+	background: #F5F6F7;
+	-webkit-box-shadow: inset 0 1px 2px #999;
+	-moz-box-shadow: inset 0 1px 2px #999;
+	box-shadow: inset 0 1px 2px #999;
+}
+
 #main > header div a {
 display: block;
 float: left;
@@ -192,13 +199,14 @@ text-decoration: none;
 color: #44474F;
 text-decoration: none;
 text-shadow: 0 1px 0 #fff;
-font-weight: bold;}
-
-#main > header div a:hover, #main > header ul a:hover {
-color: #222222;
+font-weight: bold;
 }
 
-.breadcrumb_divider {
+#main > header div a:hover, #main > header ul a:hover {
+color: #222222;	
+}
+
+.divider {
 display: inline-block;
 width: 12px;
 height: 24px;
@@ -436,29 +444,6 @@ border: none;
 padding: 0;
 }
 
-/* Module Widths */
-
-.width_full {
-width: 95%;
-}
-
-.width_half {
-width: 46%;
-margin-right: 0;
-float: left;
-}
-
-.width_quarter {
-width: 26%;
-margin-right: 0;
-float: left;
-}
-
-.width_3_quarter {
-width: 66%;
-margin-right: 0;
-float: left;
-}
 
 /* Stats Module */
 
@@ -528,7 +513,6 @@ cursor: pointer;
 table td {
 padding: 15px 10px;
 }
-
 td.actions a {
 	margin-right: 3px;
 	text-indent: -5000px;
@@ -579,6 +563,10 @@ article header li a, article footer li a, .paging a {
 
 article header li a:hover, article footer li a:hover, .paging a:hover {
 	color: #44474F;
+	background: #F5F6F7;
+	-webkit-box-shadow: inset 0 1px 2px #999;
+	-moz-box-shadow: inset 0 1px 2px #999;
+	box-shadow: inset 0 1px 2px #999;
 }
 .paging span.current, .paging span.prev, .paging span.next {
 	padding: 0 10px;
@@ -864,6 +852,31 @@ margin: 8px 0px;
 
 .content li {
 line-height: 150%;
+}
+
+
+/* Module Widths */
+
+.full {
+width: 95%;
+}
+
+.half {
+width: 46%;
+margin-right: 2%;
+float: left;
+}
+
+.quarter {
+width: 26%;
+margin-right: 0;
+float: left;
+}
+
+.2thirds {
+width: 66%;
+margin-right: 0;
+float: left;
 }
 
 /* Alerts */

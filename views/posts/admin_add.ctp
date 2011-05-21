@@ -1,22 +1,30 @@
-<div class="posts form">
+<header>
+	<hgroup>
+		<h1>Add Post</h1>
+	</hgroup>
+</header>
+<article class="posts form">
+	<header>
+		<h3>Add Post</h3>
+		<ul>
+			<li><a href="#" class="add-related">Add Related</a></li>
+		</ul>
+	</header>
 <?php echo $this->Form->create('Post');?>
 	<fieldset>
- 		<legend><?php __('Add Post'); ?></legend>
 	<?php
 		echo $this->Form->input('Post.subject');
-		echo $this->Form->input('Post.body');
 		echo $this->Form->input('Post.slug');
+		echo $this->Form->input('Post.body');
 		echo $this->Form->input('Post.post_category_id', array('empty' => '-- None --'));
-		echo $this->Form->input('PostRelationship.0.foreign_model', array('empty' => '-- None --'));
-		echo $this->Form->input('PostRelationship.0.foreign_key');
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit', true));?>
-</div>
-<div class="actions">
-	<h3><?php __('Actions'); ?></h3>
-	<ul>
-
-		<li><?php echo $this->Html->link(__('List Posts', true), array('action' => 'index'));?></li>
-	</ul>
-</div>
+	<?php echo $this->element('related'); ?>
+	<footer>
+		<ul>
+			<li><a href="#" class="add-related">Add Related</a></li>
+		</ul>
+		<?php echo $this->Form->submit('Submit'); ?>
+</footer>
+<?php echo $this->Form->end();?>
+</article>
