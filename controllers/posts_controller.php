@@ -54,6 +54,19 @@ class PostsController extends AppController {
 		$this->view = 'Webservice.Webservice';
 		$this->set('items', $this->Post->PostRelationship->{$model}->find('list'));
 	}
+	
+	function admin_delete_related($id = null, $postId = null) {
+		if (!$id) {
+			$this->Session->setFlash(__('Invalid id for post relationship', true));
+			$this->redirect(array('action'=>'edit', $postId));
+		}
+		if ($this->Post->PostRelationship->delete($id)) {
+			$this->Session->setFlash(__('Post Relationship deleted', true));
+			$this->redirect(array('action'=>'edit', $postId));
+		}
+		$this->Session->setFlash(__('Post Relationship was not deleted', true));
+		$this->redirect(array('action' => 'edit', $postId));
+	}
 
 	function admin_add() {
 		if (!empty($this->data)) {
@@ -76,7 +89,7 @@ class PostsController extends AppController {
 			$this->redirect(array('action' => 'index'));
 		}
 		if (!empty($this->data)) {
-			if ($this->Post->save($this->data)) {
+			if ($this->Post->saveAll($this->data)) {
 				$this->Session->setFlash(__('The post has been saved', true));
 				$this->redirect(array('action' => 'index'));
 			} else {
@@ -84,8 +97,10 @@ class PostsController extends AppController {
 			}
 		}
 		if (empty($this->data)) {
+			$this->Post->recursive = 1;
 			$this->data = $this->Post->read(null, $id);
 		}
+		$this->_setRelated();
 		$this->set('postCategories', $this->Post->PostCategory->find('list'));
 	}
 

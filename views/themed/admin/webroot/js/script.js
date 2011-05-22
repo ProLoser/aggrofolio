@@ -16,6 +16,9 @@ $(document).ready(function(){
 
 	$('textarea').markItUp(mySettings);
 	
+	$('.message').click(function(){
+		$(this).fadeOut();
+	});
 	
 	// choose text for the show/hide link - can contain HTML (e.g. an image)
 	var showText='Show';

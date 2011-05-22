@@ -1,6 +1,7 @@
 <style>
 .related fieldset {
 	position: relative;
+	display: none;
 }
 .related .cancel {
 	position: absolute;
@@ -23,12 +24,14 @@ $(document).ready(function(){
 			))) ?>\
 		</fieldset>';
 		content = content.replace(/@@/g, i);
-		$(".related").append(content);
+		$(".related").append(content).find("fieldset").slideDown(300);
 		i++;
 		return false;
 	});
 	$(".related .cancel").live("click", function(){
-		$(this).closest("fieldset").remove();
+		$(this).closest("fieldset").slideUp(300, function(){
+			$(this).remove();
+		});
 		return false;
 	});
 	$(".related .model").live("change", function(){

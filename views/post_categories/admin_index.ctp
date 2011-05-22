@@ -1,23 +1,24 @@
-<h1><?php __('Post Categories');?></h1>
-<ul class="actions">
-	<li><?php echo $this->Html->link(__('New Post Category', true), array('action' => 'add')); ?></li>
+<header>
+	<hgroup>
+		<h1><?php __('Post Categories');?></h1>
+	</hgroup>
+	<ul>
+		<li><?php echo $this->Html->link(__('New Post Category', true), array('action' => 'add')); ?></li>
 		<li><?php echo $this->Html->link(__('List Posts', true), array('controller' => 'posts', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Post', true), array('controller' => 'posts', 'action' => 'add')); ?> </li>
-</ul>
-<div class="postCategories index">
-	<div class="header">
-		<h3>
-		<?php
-		echo $this->Paginator->counter(array(
+	</ul>
+</header>
+<article class="postCategories index">
+	<header>
+		<h3><?php echo $this->Paginator->counter(array(
 			'format' => __('Record %start% to %end% of %count% total', true)
-		));
-		?>	</h3>
+		));?></h3>
 		<div class="paging">
 			<?php echo $this->Paginator->prev('&laquo; ' . __('previous', true), array('escape' => false), null, array('escape' => false, 'class'=>'disabled'));?>
 			<?php echo $this->Paginator->numbers(array('separator' => ''));?>
 			<?php echo $this->Paginator->next(__('next', true) . ' &raquo;', array('escape' => false), null, array('escape' => false, 'class' => 'disabled'));?>
 		</div>
-	</div>
+	</header>
 	<?php echo $this->Batch->create('PostCategory')?>	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id');?></th>
@@ -69,9 +70,11 @@
 		));?> 
 	</table>
 	<?php echo $this->Batch->end()?> 
-	<div class="paging">
-		<?php echo $this->Paginator->prev('&laquo; ' . __('previous', true), array('escape' => false), null, array('escape' => false, 'class'=>'disabled'));?>
-		<?php echo $this->Paginator->numbers(array('separator' => ''));?>
-		<?php echo $this->Paginator->next(__('next', true) . ' &raquo;', array('escape' => false), null, array('escape' => false, 'class' => 'disabled'));?>
-	</div>
-</div>
+	<footer>
+		<div class="paging">
+			<?php echo $this->Paginator->prev('&laquo; ' . __('previous', true), array('escape' => false), null, array('escape' => false, 'class'=>'disabled'));?>
+			<?php echo $this->Paginator->numbers(array('separator' => ''));?>
+			<?php echo $this->Paginator->next(__('next', true) . ' &raquo;', array('escape' => false), null, array('escape' => false, 'class' => 'disabled'));?>
+		</div>
+	</footer>
+</article>

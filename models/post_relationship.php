@@ -34,5 +34,4 @@ class PostRelationship extends AppModel {
 		),
 	);
 	
-	
 }

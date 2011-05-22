@@ -6,24 +6,28 @@ class Contact extends AppModel {
 			'notempty' => array(
 				'rule' => array('notempty'),
 				'message' => 'Please enter a valid subject',
+				'required' => true,
 			),
 		),
 		'message' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
 				'message' => 'Please enter a valid message',
+				'required' => true,
 			),
 		),
 		'email' => array(
 			'email' => array(
 				'rule' => array('email'),
 				'message' => 'Please enter a valid email',
+				'required' => true,
 			),
 		),
 		'name' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
 				'message' => 'Please enter a valid name',
+				'required' => true,
 			),
 		),
 		'phone' => array(
@@ -35,7 +39,8 @@ class Contact extends AppModel {
 		),
 		'human' => array(
 			'rule' => array('equalTo', '1'),
-			'message' => 'Nope, guess again'
+			'message' => 'Nope, guess again',
+			'required' => true,
 		)
 	);
 }

@@ -174,5 +174,5 @@ class AppController extends Controller {
 		}
 		parent::redirect($url, $status, $exit);
 	}
-
+	
 }

@@ -120,7 +120,16 @@ pre {
   /* www.pathf.com/blogs/2008/05/formatting-quoted-code-in-blog-posts-css21-white-space-pre-wrap/ */
   white-space: pre; white-space: pre-wrap; white-space: pre-line; word-wrap: break-word;
   padding: 15px;
-  margin-left: 220px;
+  background: #ffe;
+  border: 2px dotted #eee;
+  margin: 20px 0 10px;
+}
+pre:before {
+	content: "Code:";
+	display: block;
+	margin: -10px 0 10px -10px;
+	font-size: 80%;
+	font-weight: bold;
 }
 
 textarea { overflow: auto; } /* www.sitepoint.com/blogs/2010/08/20/ie-remove-textarea-scrollbars/ */
@@ -178,6 +187,9 @@ section {
 }
 article {
 	margin: 20px 0; 
+}
+p {
+	margin: 10px 0;
 }
 legend {
 	font-size: 120%;
@@ -510,6 +522,9 @@ a.desc:after {
 	box-shadow: 0 0 5px rgba(0,0,0,.7);
 	-moz-box-shadow: 0 0 5px rgba(0,0,0,.7);
 	-webkit-box-shadow: 0 0 5px rgba(0,0,0,.7);
+}
+article hr {
+	display: none;
 }
 article header h1 {
 	font-size: 180%;

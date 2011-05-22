@@ -8,7 +8,14 @@
 		</header>	
 		<?php 
 			$pos = strpos($post['Post']['body'], '<hr>');
-			echo ($pos === false) ? $post['Post']['body']: substr($post['Post']['body'], 0, $pos); 
+			if ($pos === false) {
+				echo $post['Post']['body'];
+			} else {
+				echo substr($post['Post']['body'], 0, $pos);
+				echo "<footer>\n";
+				echo $this->Html->link('Read More...', array('controller' => 'posts', 'action' => 'view', $post['Post']['id'], $post['Post']['slug']), array('class' => 'readon'));
+				echo "</footer>\n";
+			}
 		?>
 	</article>
 <?php endforeach; ?>
