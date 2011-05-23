@@ -1,17 +1,18 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#PostSubject").bind('change keyup',function(){
-		content = $(this).val();
-		$("#PostSlug").val(content.replace(/([^\w\d-]+)/g, "-"));
+		if ($("#PostSlug").is(':disabled')) {
+			content = $(this).val();
+			$("#PostSlug").val(content.replace(/([^\w\d-]+)/g, "-"));
+		}
 	});
-	$("#PostSlug").click(function(){
-		alert();
-		$(this).removeAttr('disabled');
+	$("#PostSlug").closest("div").click(function(){
+		$(".PostSlug").removeClass("PostSlug").find("#PostSlug").removeAttr("disabled");
 	});
 });
 </script>
 <style type="text/css">
-#PostSlug {
+.PostSlug, .PostSlug label, .PostSlug input {
 cursor: pointer;
 }
 </style>
@@ -31,7 +32,7 @@ cursor: pointer;
 	<fieldset>
 	<?php
 		echo $this->Form->input('Post.subject');
-		echo $this->Form->input('Post.slug', array('disabled' => true));
+		echo $this->Form->input('Post.slug', array('disabled' => true, 'div' => array('class' => 'PostSlug input')));
 		echo $this->Form->input('Post.body');
 		echo $this->Form->input('Post.post_category_id', array('empty' => '-- None --'));
 	?>

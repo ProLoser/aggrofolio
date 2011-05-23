@@ -21,6 +21,19 @@
 						}
 					?>
 				</div>
+			<?php elseif (!empty($log[$log['Log']['model']]['body'])): ?>
+				 <div>
+					 <div style="text-align: left;">
+					<?php
+						$pos = strpos($log[$log['Log']['model']]['body'], '<hr>');
+						if ($pos === false) {
+							echo $log[$log['Log']['model']]['body'];
+						} else {
+							echo substr($log[$log['Log']['model']]['body'], 0, $pos);
+						}
+					?>
+					</div>
+				 </div>
 			<?php endif; ?>
 		</li>
 	<?php endforeach; ?>
