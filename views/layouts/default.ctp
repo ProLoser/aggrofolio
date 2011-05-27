@@ -24,9 +24,6 @@
 		<?php echo $title_for_layout; ?> 
 	</title>
 	
-	<!--
-		TODO Check the htaccess to see if this tag is unnecessary
-	-->
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	
 	<meta name="description" content="<?php if (!empty($description_for_layout)) echo $description_for_layout; ?>">
@@ -38,28 +35,17 @@
 	<?php echo $this->Html->meta('favicon.ico', '/favicon.ico', array('type' => 'icon')); ?> 
 	<?php echo $this->Html->meta('favicon.ico', '/favicon.ico', array('type' => 'icon', 'rel' => 'shortcut icon')); ?> 
 	<?php echo $this->Html->meta('favicon.ico', '/favicon.ico', array('type' => 'icon', 'rel' => 'apple-touch-icon')); ?> 
-	<?php // echo $this->Html->css(array('handheld'), null, array('media' => 'handheld')); ?> 
 <?php 
-echo $this->Html->css(array(
-//$this->AssetCompress->css(array(
-	'/js/mylibs/fancybox/jquery.fancybox-1.3.4',
-	'/js/mylibs/qtip/jquery.qtip.min',
-	'style',
-)); ?>
-	<?php echo $this->AssetCompress->includeCss(); ?> 
-<?php echo $this->Plate->lib('jquery', array('fallback' => 'libs/jquery-1.5.0.min')); ?> 
-<?php echo $this->Plate->lib('jqueryui'); ?>
-<?php 
-echo $this->Html->script(array(
-//$this->AssetCompress->script(array(
-	'mylibs/radmenu/jQuery.radmenu',
-	'mylibs/fancybox/jquery.mousewheel-3.0.4.pack',
-	'mylibs/fancybox/jquery.fancybox-1.3.4.pack',
-	'mylibs/qtip/jquery.qtip.min',
-	'plugins',
-	'script',
-)); ?> 
-	<?php echo $this->Html->script('libs/modernizr-1.7.min'); ?> 
+	echo $this->Html->css(array(
+	#!# $this->AssetCompress->css(array(
+		'/js/mylibs/fancybox/jquery.fancybox-1.3.4',
+		'/js/mylibs/qtip/jquery.qtip.min',
+		'style',
+	));
+	echo $this->AssetCompress->includeCss();
+	echo $styles_for_layout; 
+	echo $this->Html->script('libs/modernizr-1.7.min');
+?>
 </head>
 <body>
 	<div id="container">
@@ -76,9 +62,22 @@ echo $this->Html->script(array(
 
 		</div>
 	</div>
-<?php echo $this->AssetCompress->includeJs(); ?> 	
-<?php echo $scripts_for_layout; ?>
-<?php echo $this->Plate->pngFix(); ?> 
-<?php echo $this->Plate->analytics(); ?> 
+<?php	
+	echo $this->Plate->lib('jquery', array('fallback' => 'libs/jquery-1.5.0.min'));
+	echo $this->Plate->lib('jqueryui');
+	echo $this->Html->script(array(
+	#!# $this->AssetCompress->script(array(
+		'mylibs/radmenu/jQuery.radmenu',
+		'mylibs/fancybox/jquery.mousewheel-3.0.4.pack',
+		'mylibs/fancybox/jquery.fancybox-1.3.4.pack',
+		'mylibs/qtip/jquery.qtip.min',
+		'plugins',
+		'script',
+	));
+	echo $this->Plate->pngFix();
+	echo $this->Plate->analytics();
+	echo $this->AssetCompress->includeJs();
+	var_dump($scripts_for_layout);
+?>
 </body>
 </html>
