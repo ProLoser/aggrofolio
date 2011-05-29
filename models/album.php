@@ -17,6 +17,7 @@ class Album extends AppModel {
 		'uuid' => array(
 			'rule' => 'isUnique',
 			'message' => 'UUID already used',
+			'allowEmpty' => true,
 		),
 	);
 
