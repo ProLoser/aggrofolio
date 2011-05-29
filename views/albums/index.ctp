@@ -1,16 +1,16 @@
 <h2>Gallery: Albums</h2>
 <div class="gallery">
-	<div class="paging">
+	<p class="paging">
 		<?php echo $this->Paginator->prev();?>
 		| <?php echo $this->Paginator->numbers();?> |
 		<?php echo $this->Paginator->next();?>
-		<p>
+		<span class="sorting">
 			Sort by: 
 			<?php echo $this->Paginator->sort('created');?> 
 			| <?php echo $this->Paginator->sort('name');?> | 
 			<?php echo $this->Paginator->sort('Category', 'media_category_id');?>
-		</p>
-	</div>
+		</span>
+	</p>
 	<ul>
 	<?php foreach ($albums as $album): ?>
 		<li<?php if (!empty($album['MediaCategory'])) echo " class='cat-{$album['MediaCategory']['id']}'";?>>
@@ -24,15 +24,15 @@
 		</li>
 	<?php endforeach ?>
 	</ul>
-	<div class="paging">
+	<p class="paging">
 		<?php echo $this->Paginator->prev();?>
 		| <?php echo $this->Paginator->numbers();?> |
 		<?php echo $this->Paginator->next();?>
-		<p>
+		<span class="sorting">
 			Sort by: 
 			<?php echo $this->Paginator->sort('created');?> 
 			| <?php echo $this->Paginator->sort('name');?> | 
 			<?php echo $this->Paginator->sort('Category', 'media_category_id');?>
-		</p>
-	</div>
+		</span>
+	</p>
 </div>

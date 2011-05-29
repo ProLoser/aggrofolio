@@ -20,12 +20,12 @@
 	</article>
 <?php endforeach; ?>
 </div>
-<div class="paging">
+<p class="paging">
 	<?php echo $this->Paginator->prev();?> |
  	<?php echo $this->Paginator->numbers();?>
 	<?php echo $this->Paginator->next();?>
-	<p>
+	<span class="sorting">
 		Sort By <?php echo $this->Paginator->sort('created');?> |
 		<?php echo $this->Paginator->sort('subject');?>
-	</p>
-</div>
+	</span>
+</p>

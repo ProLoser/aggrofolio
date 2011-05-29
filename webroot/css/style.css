@@ -315,9 +315,10 @@ legend {
 		-webkit-box-shadow: 0 3px 10px #fff;
 		box-shadow: 0 3px 10px #fff;*/
 	width: 100%;
+	height: 60px;
 	top: 0;
 	color: #b00;
-	text-shadow: 0 1px 2px #aaa, 0 0 100px #fff, 0 0 100px #fff, 0 0 100px #fff, 0 0 100px #fff;
+	background: url(../img/page-title.png) repeat-x;
 }
 #main h3, #main section > h1 {
 	font-size: 20px;
@@ -510,6 +511,9 @@ a.desc:after {
 /* Blog */
 .posts .paging {
 	margin: 10px 0;
+}
+.paging .sorting {
+	float: right;
 }
 .posts article {
 	border: 2px solid #933;
