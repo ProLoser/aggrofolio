@@ -1,16 +1,16 @@
 <?php $this->Paginator->options(array('url' => $this->params['pass']))?>
 <h2>Gallery: <?php echo $album['Album']['name']?></h2>
 <div class="gallery">
-	<div class="paging">
+	<p class="paging">
 		<?php echo $this->Paginator->prev();?>
 		| <?php echo $this->Paginator->numbers();?> |
 		<?php echo $this->Paginator->next();?>
-		<p>
+		<span class="sorting">
 			Sort by: 
 			<?php echo $this->Paginator->sort('created');?> 
 			| <?php echo $this->Paginator->sort('name');?>
-		</p>
-	</div>
+		</span>
+	</p>
 	<ul class="media">
 	<?php foreach ($items as $item): ?>
 		<li>
@@ -21,14 +21,14 @@
 		</li>
 	<?php endforeach ?>
 	</ul>
-	<div class="paging">
+	<p class="paging">
 		<?php echo $this->Paginator->prev();?>
 		| <?php echo $this->Paginator->numbers();?> |
 		<?php echo $this->Paginator->next();?>
-		<p>
+		<span class="sorting">
 			Sort by: 
 			<?php echo $this->Paginator->sort('created');?> 
 			| <?php echo $this->Paginator->sort('name');?>
-		</p>
-	</div>
+		</span>
+	</p>
 </div>
