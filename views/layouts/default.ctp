@@ -77,7 +77,7 @@
 	echo $this->Plate->pngFix();
 	echo $this->Plate->analytics();
 	echo $this->AssetCompress->includeJs();
-	var_dump($scripts_for_layout);
+	echo $scripts_for_layout;
 ?>
 </body>
 </html>
