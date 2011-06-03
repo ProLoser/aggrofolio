@@ -392,14 +392,6 @@ background: url(../img/sidebar_shadow.png) repeat-y left top;
 float: left;
 }
 
-#main h3 {
-color: #1F1F20;
-text-transform: uppercase;
-text-shadow: 0 1px 0 #fff;
-font-size: 13px;
-margin: 8px 20px;
-}
-
 /* Modules */
 
 article {
@@ -414,27 +406,34 @@ background: #ffffff;
 width: 95%;
 }
 
-article header h1, article header h2, article header h3, article footer h1, article footer h2, article footer h3 {
+article header p, article header h1, article header h2, article header h3, article footer h1, article footer h2, article footer h3 {
 display: inline-block;
+margin: 0;
 }
 
 article header {
-height: 38px;
-width: 100%;
-background: #F1F1F4 url(../img/secondary_bar.png) repeat-x;
+background: url(../img/secondary_bar.png) repeat-x top;
 -webkit-border-top-left-radius: 5px; -webkit-border-top-right-radius: 5px;
 -moz-border-radius-topleft: 5px; -moz-border-radius-topright: 5px;
 border-top-left-radius: 5px; border-top-right-radius: 5px;
+padding: 8px 20px;
+height: 20px;
+color: #1F1F20;
+text-shadow: 0 1px 0 #fff;
+font-size: 13px;
 }
 
 article footer {
-height: 32px;
-width: 100%;
+padding: 8px 20px;
+color: #1F1F20;
+text-shadow: 0 1px 0 #fff;
+font-size: 13px;
 border-top: 1px solid #9CA1B0;
-background: #F1F1F4 url(../img/module_footer_bg.png) repeat-x;
+background: #F1F1F4 url(../img/module_footer_bg.png) repeat-x bottom;
 -webkit-border-bottom-left-radius: 5px; -webkit-border-bottom-right-radius: 5px;
 -moz-border-radius-bottomleft: 5px; -moz-border-radius-bottomright: 5px;
 -webkit-border-bottom-left-radius: 5px; -webkit-border-bottom-right-radius: 5px;
+overflow: hidden;
 }
 
 .content, .view dl, .form fieldset {
@@ -493,7 +492,7 @@ margin-bottom: 8px}
 
 table {
 width: 100%;
-margin: -5px 0 0 0;
+margin: 0;
 }
 
 table td{
@@ -530,7 +529,7 @@ margin-right: 10px;
 
 
 .paging, article header ul, article footer ul {
-margin: 3px 10px 0 0;
+margin: -5px 0;
 padding: 0;
 float: right;
 list-style: none;
@@ -551,7 +550,6 @@ margin: 0;
 padding: 0;
 line-height: 24px;
 display: block;
-color: #999;
 }
 article header li a, article footer li a, .paging a {
 text-decoration: none;
@@ -641,7 +639,11 @@ background: #D0D1D4 url(../img/btn_submit_2.png) repeat-x;
 text-shadow: 0 1px 0 #6CDCF9;
 color: #001217;
 }
-
+header .submit, footer .submit {
+float: left;
+margin: -2px 5px -2px 0;
+padding: 0;
+}
 header input[type=submit], footer input[type=submit] {
 background: #D0D1D4 url(../img/btn_submit_2.png) repeat-x;
 border: 1px solid#30B0C8;
@@ -779,7 +781,6 @@ box-shadow: inset 0 2px 2px #ccc, 0 0 10px #ADDCE6;
 width: 96%;
 margin: 0 10px;
 border: 1px solid #bbb;
-height: 20px;
 color: #666666;
 }
 

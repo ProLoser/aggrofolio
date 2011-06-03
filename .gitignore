@@ -12,6 +12,7 @@ webroot/cache_js/*
 webroot/uploads/*
 app/tmp/*
 app/config/database.php
+vendors/simpletest
 !empty
 
 ## Operating Systems ##

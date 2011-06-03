@@ -12,9 +12,9 @@ $(document).ready(function(){
 		e.preventDefault();
 	});
 
-    $('body, #sidebar, #main').equalHeight();
-
 	$('textarea').markItUp(mySettings);
+
+    $('body, #sidebar, #main').equalHeight();
 	
 	$('.message').click(function(){
 		$(this).fadeOut();

@@ -1,7 +1,7 @@
 <?php
 /* PostRelationship Fixture generated on: 
 Warning: date(): It is not safe to rely on the system's timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'America/Los_Angeles' for 'PDT/-7.0/DST' instead in /Users/Dean/Sites/cakephp/cake/console/templates/default/classes/fixture.ctp on line 24
-2011-04-19 03:34:11 : 1303209251 */
+2011-06-01 19:51:23 : 1306983083 */
 class PostRelationshipFixture extends CakeTestFixture {
 	var $name = 'PostRelationship';
 
@@ -27,4 +27,3 @@ class PostRelationshipFixture extends CakeTestFixture {
 		),
 	);
 }
-?>

@@ -1,5 +1,7 @@
-<div class="accounts view">
-<h1><?php  __('Account');?></h1>
+<article class="accounts view">
+	<header>
+		<h1><?php  __('Account');?></h1>
+	</header>
 	<dl><?php $i = 0; $class = ' class="altrow"';?>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Id'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
@@ -42,7 +44,7 @@
 			&nbsp;
 		</dd>
 	</dl>
-</div>
+</article>
 <div class="actions">
 	<h3><?php __('Actions'); ?></h3>
 	<ul>

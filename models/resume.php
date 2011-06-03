@@ -26,6 +26,7 @@ class Resume extends AppModel {
 			'foreignKey' => 'foreign_key',
 			'conditions' => array('PostRelationship.foreign_model' => 'Resume'),
 		),
+		'ResumeItem',
 	);
 
 	var $hasAndBelongsToMany = array(
@@ -37,11 +38,11 @@ class Resume extends AppModel {
 	
 	var $actsAs = array(
 		'Log.Logable',
+		'Joinable.Joinable',
 	);
 	
 	public function scanLinkedin($data, $accountId = null) {
 		$date = array('day' => 1, 'month' => 1, 'year' => null);
-		
 		foreach ($data['skills']['values'] as $i => $skill) {
 			$skills[$i]['uuid'] = $skill['id'];
 			$skills[$i]['name'] = $skill['skill']['name'];

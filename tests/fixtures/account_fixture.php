@@ -1,5 +1,7 @@
 <?php
-/* Account Fixture generated on: 2011-02-15 11:33:38 : 1297769618 */
+/* Account Fixture generated on: 
+Warning: date(): It is not safe to rely on the system's timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'America/Los_Angeles' for 'PDT/-7.0/DST' instead in /Users/Dean/Sites/cakephp/cake/console/templates/default/classes/fixture.ctp on line 24
+2011-06-01 19:51:22 : 1306983082 */
 class AccountFixture extends CakeTestFixture {
 	var $name = 'Account';
 
@@ -12,6 +14,8 @@ class AccountFixture extends CakeTestFixture {
 		'password' => array('type' => 'string', 'null' => false, 'default' => NULL, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
 		'api_key' => array('type' => 'string', 'null' => false, 'default' => NULL, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
 		'type' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 50, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
+		'published' => array('type' => 'boolean', 'null' => false, 'default' => '0'),
+		'order_weight' => array('type' => 'integer', 'null' => false, 'default' => '0'),
 		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1)),
 		'tableParameters' => array('charset' => 'latin1', 'collate' => 'latin1_swedish_ci', 'engine' => 'InnoDB')
 	);
@@ -19,14 +23,15 @@ class AccountFixture extends CakeTestFixture {
 	var $records = array(
 		array(
 			'id' => 1,
-			'created' => '2011-02-15 11:33:38',
-			'modified' => '2011-02-15 11:33:38',
+			'created' => '2011-06-01 19:51:18',
+			'modified' => '2011-06-01 19:51:18',
 			'username' => 'Lorem ipsum dolor sit amet',
 			'email' => 'Lorem ipsum dolor sit amet',
 			'password' => 'Lorem ipsum dolor sit amet',
 			'api_key' => 'Lorem ipsum dolor sit amet',
-			'type' => 'Lorem ipsum dolor sit amet'
+			'type' => 'Lorem ipsum dolor sit amet',
+			'published' => 1,
+			'order_weight' => 1
 		),
 	);
 }
-?>

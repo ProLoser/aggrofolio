@@ -1,8 +1,9 @@
-<div class="accounts form">
-	<div class="header">
+<article class="accounts form">
+	<header>
 		<h3><?php __('Add Account'); ?></h3>
-	</div>
+	</header>
 <?php echo $this->Form->create('Account');?>
+	<fieldset>
 	<?php
 		echo $this->Form->input('username');
 		echo $this->Form->input('email');
@@ -10,12 +11,13 @@
 		echo $this->Form->input('api_key');
 		echo $this->Form->input('type');
 	?>
-<?php echo $this->Form->end(__('Submit', true));?>
-</div>
-<div class="actions">
-	<h3><?php __('Actions'); ?></h3>
-	<ul>
-
-		<li><?php echo $this->Html->link(__('List Accounts', true), array('action' => 'index'));?></li>
-	</ul>
-</div>
+	</fieldset>
+<?php echo $this->Form->end();?>
+	<footer>
+		<?php echo $this->Form->submit('Submit'); ?>
+		<h3><?php __('Actions'); ?></h3>
+		<ul>
+			<li><?php echo $this->Html->link(__('List Accounts', true), array('action' => 'index'));?></li>
+		</ul>
+	</footer>
+</article>

@@ -1,7 +1,9 @@
-<div class="resumes form">
+<article class="resumes form">
+	<header>
+		<h3>Add Resume</h3>
+	</header>
 <?php echo $this->Form->create('Resume');?>
 	<fieldset>
- 		<legend><?php __('Add Resume'); ?></legend>
 	<?php
 		echo $this->Form->input('purpose');
 		echo $this->Form->input('attachment');
@@ -21,20 +23,12 @@
 		echo $this->Form->input('ResumeEmployer');
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit', true));?>
-</div>
-<div class="actions">
-	<h3><?php __('Actions'); ?></h3>
-	<ul>
-
-		<li><?php echo $this->Html->link(__('List Resumes', true), array('action' => 'index'));?></li>
-		<li><?php echo $this->Html->link(__('List Resume Recommendations', true), array('controller' => 'resume_recommendations', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Resume Recommendation', true), array('controller' => 'resume_recommendations', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Resume Schools', true), array('controller' => 'resume_schools', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Resume School', true), array('controller' => 'resume_schools', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Resume Skills', true), array('controller' => 'resume_skills', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Resume Skill', true), array('controller' => 'resume_skills', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Resume Employers', true), array('controller' => 'resume_employers', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Resume Employer', true), array('controller' => 'resume_employers', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
+	<footer>
+		<?php echo $this->Form->submit('Submit'); ?>
+		<ul>
+			<li><?php echo $this->Html->link(__('List Resumes', true), array('action' => 'index'));?></li>
+			<li><?php echo $this->Html->link(__('List Resume Recommendations', true), array('controller' => 'resume_recommendations', 'action' => 'index')); ?> </li>
+		</ul>
+	</footer>
+	<?php echo $this->Form->end();?>
+</article>

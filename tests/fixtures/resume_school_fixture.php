@@ -1,5 +1,7 @@
 <?php
-/* ResumeSchool Fixture generated on: 2011-02-28 09:36:13 : 1298885773 */
+/* ResumeSchool Fixture generated on: 
+Warning: date(): It is not safe to rely on the system's timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'America/Los_Angeles' for 'PDT/-7.0/DST' instead in /Users/Dean/Sites/cakephp/cake/console/templates/default/classes/fixture.ctp on line 24
+2011-06-01 19:51:25 : 1306983085 */
 class ResumeSchoolFixture extends CakeTestFixture {
 	var $name = 'ResumeSchool';
 
@@ -25,14 +27,14 @@ class ResumeSchoolFixture extends CakeTestFixture {
 	var $records = array(
 		array(
 			'id' => 1,
-			'created' => '2011-02-28 09:36:13',
-			'modified' => '2011-02-28 09:36:13',
+			'created' => '2011-06-01 19:51:25',
+			'modified' => '2011-06-01 19:51:25',
 			'uuid' => 1,
 			'account_id' => 1,
 			'published' => 1,
 			'deleted' => 1,
-			'date_started' => '2011-02-28',
-			'date_ended' => '2011-02-28',
+			'date_started' => '2011-06-01',
+			'date_ended' => '2011-06-01',
 			'field_of_study' => 'Lorem ipsum dolor sit amet',
 			'degree' => 'Lorem ip',
 			'name' => 'Lorem ipsum dolor sit amet',
@@ -41,4 +43,3 @@ class ResumeSchoolFixture extends CakeTestFixture {
 		),
 	);
 }
-?>

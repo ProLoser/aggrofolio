@@ -1,5 +1,7 @@
-<div class="users index">
-	<h1><?php __('Users');?></h1>
+<header>
+	<hgroup><h1><?php __('Users');?></h1></hgroup>
+</header>
+<article class="users index">
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id');?></th>
@@ -33,20 +35,20 @@
 	</tr>
 <?php endforeach; ?>
 	</table>
-	<p>
-	<?php
-	echo $this->Paginator->counter(array(
-	'format' => __('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%', true)
-	));
-	?>	</p>
-
-	<div class="paging">
-		<?php echo $this->Paginator->prev();?>
-	 | 	<?php echo $this->Paginator->numbers(array('separator' => ''));?>
- |
-		<?php echo $this->Paginator->next();?>
-	</div>
-</div>
+	<footer>
+		<p>
+		<?php
+		echo $this->Paginator->counter(array(
+		'format' => __('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%', true)
+		));
+		?>	</p>
+		<div class="paging">
+			<?php echo $this->Paginator->prev();?>
+			<?php echo $this->Paginator->numbers(array('separator' => ''));?>
+			<?php echo $this->Paginator->next();?>
+		</div>
+	</footer>
+</article>
 <div class="actions">
 	<h3><?php __('Actions'); ?></h3>
 	<ul>
