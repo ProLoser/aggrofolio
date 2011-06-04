@@ -614,6 +614,7 @@ color: red;
 .form-error {
 background-color: #fee;
 }
+.
 input[disabled], textarea[disabled], select[disabled] {
 background: #f0f0f0;
 }
@@ -748,6 +749,11 @@ font-weight: bold;
 padding-left: 10px;
 margin: -5px 0 5px 0;
 text-transform: uppercase;
+}
+
+.required label:after {
+content: "*";
+color: red;
 }
 
 .input input[type=text], .input input[type=email], .input input[type=url] {
