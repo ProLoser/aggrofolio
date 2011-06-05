@@ -188,7 +188,7 @@ section {
 article {
 	margin: 20px 0; 
 }
-p {
+article p {
 	margin: 10px 0;
 }
 legend {

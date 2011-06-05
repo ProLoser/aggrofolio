@@ -17,17 +17,14 @@
 <?php if (!empty($project['Project']['url'])): ?>
 	<li class="url"><?php echo $this->Html->link($project['Project']['url'], $project['Project']['url'])?></li>
 <?php endif; ?>
-<?php if (!empty($project['Project']['cvs_url'])): ?>
-	<li class="repo"><?php echo $this->Html->link($project['Project']['cvs_url'], $project['Project']['cvs_url'], array('title' => 'Repository Hosting')); ?></li>
-<?php endif; ?>
 <?php if (!empty($project['repository']['has_downloads'])): ?>
 	<li class="downloads"><?php echo $this->Html->link(__('Downloads', true), $project['Project']['cvs_url'] . '/downloads'); ?> </li>
 <?php endif ?>
-<?php if (!empty($project['repository']['has_issues'])): ?>
-	<li class="bugs"><?php echo $this->Html->link('Open Bugs: '.$project['repository']['open_issues'], $project['Project']['cvs_url'] . '/issues'); ?> </li>
-<?php endif ?>
 <?php if (!empty($project['repository']['has_wiki'])): ?>
 	<li class="wiki"><?php echo $this->Html->link(__('Wiki', true), $project['Project']['cvs_url'] . '/wiki'); ?> </li>
+<?php endif ?>
+<?php if (!empty($project['repository']['has_issues'])): ?>
+	<li class="bugs"><?php echo $this->Html->link('Open Bugs: '.$project['repository']['open_issues'], $project['Project']['cvs_url'] . '/issues'); ?> </li>
 <?php endif ?>
 <?php if (!empty($project['ProjectCategory']['name'])): ?>
 	<li class="category"><?php echo $this->Html->link($project['ProjectCategory']['name'], array('controller' => 'projects', 'action' => 'index', 'category' => $project['ProjectCategory']['id']), array('title' => 'Category')); ?></li>		  	 
@@ -40,19 +37,22 @@
 <?php endif; ?>
 	
 <?php if (!empty($project['repository'])): ?>
-	<li class="updated"><p>Last Update: <?php echo $project['repository']['pushed_at']; ?></p></li>
 	<li class="followers"><?php echo $this->Html->link('Followers: ' . $project['repository']['watchers'], $project['Project']['cvs_url'] . '/watchers'); ?></li>
 	<li class="forks"><?php echo $this->Html->link('Collaborators: ' . $project['repository']['forks'], $project['Project']['cvs_url'] . '/network'); ?></li>
+	<li class="updated"><p>Last Update: <?php echo $project['repository']['pushed_at']; ?></p></li>
 <?php endif ?>
 
 <?php if (!empty($project['codaset'])): ?>
-	<li class="updated"><p>Last Updated: <?php echo $project['codaset']['last_pushed_at']; ?></p></li>
 	<li class="followers"><?php echo $this->Html->link('Followers: ' . $project['codaset']['bookmark_count'], $project['Project']['cvs_url'] . '/bookmarks'); ?></li>
 	<li class="forks"><?php echo $this->Html->link('Collaborators: ' . $project['codaset']['fork_count'], $project['Project']['cvs_url'] . '/forks'); ?></li>
 	<li class="bugs"><?php echo $this->Html->link('Open Bugs: '.$project['codaset']['ticket_count'], $project['Project']['cvs_url'] . '/tickets'); ?> </li>
 	<li class="wiki"><?php echo $this->Html->link(__('Wiki', true), $project['Project']['cvs_url'] . '/wiki'); ?> </li>
 	<li class="milestones"><?php echo $this->Html->link(__('Milestones', true), $project['Project']['cvs_url'] . '/milestones'); ?> </li>
+	<li class="updated"><p>Last Updated: <?php echo $project['codaset']['last_pushed_at']; ?></p></li>
 <?php endif ?>
+<?php if (!empty($project['Project']['cvs_url'])): ?>
+	<li class="repo"><?php echo $this->Html->link($project['Project']['cvs_url'], $project['Project']['cvs_url'], array('title' => 'Repository Hosting')); ?></li>
+<?php endif; ?>
 </ul>
 
 <?php if (!empty($project['PostRelationship']) || !empty($project['commits'])):?>
