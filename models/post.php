@@ -17,7 +17,7 @@ class Post extends AppModel {
 		),
 		'slug' => array(
 			'notempty' => array(
-				'rule' => '/^[a-zA-Z0-9-\s_]+$/i',
+				'rule' => '/^[a-z0-9-\s_]{3,}$/i',
 				'message' => 'Slugs must be letters, numbers, dashes and underscores only',
 			),
 			'unique'=>array(
