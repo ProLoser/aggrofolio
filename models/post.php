@@ -20,8 +20,8 @@ class Post extends AppModel {
 				'rule' => '/^[a-z0-9-\s_]{3,}$/i',
 				'message' => 'Slugs must be letters, numbers, dashes and underscores only',
 			),
-			'unique'=>array(
-				'rule' => 'unique',
+			'isUnique'=>array(
+				'rule' => 'isUnique',
 				'message' => 'This slug is already taken.',
 			),	
 			'allowEmpty' => true,
