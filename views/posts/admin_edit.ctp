@@ -25,17 +25,19 @@
 		echo $this->Form->input('Post.post_category_id', array('empty' => '-- None --'));
 	?>
 	</fieldset>
-	<h3>Relationship Tags</h3>
-	<ul>
-	<?php foreach ($this->data['PostRelationship'] as $relationship): ?>
-		<li>
-			<?php echo $this->Html->link('[Delete]', array('action' => 'delete_related', $relationship['id'], $this->Form->value('Post.id'))); ?>
-			<strong><?php echo $relationship['foreign_model']; ?></strong>
-			<?php echo $relationship['title']; ?>
-		</li>
-	<?php endforeach ?>
-	</ul>
-	<?php echo $this->element('related'); ?>
+	<fieldset>
+		<h3>Relationship Tags</h3>
+		<ul>
+		<?php if (!empty($this->data['PostRelationship'])): foreach ($this->data['PostRelationship'] as $relationship): ?>
+			<li>
+				<?php echo $this->Html->link('[Delete]', array('action' => 'delete_related', $relationship['id'], $this->Form->value('Post.id'))); ?>
+				<strong><?php echo $relationship['foreign_model']; ?></strong>
+				<?php echo $relationship['title']; ?>
+			</li>
+		<?php endforeach ?>
+		</ul>
+		<?php echo $this->element('related'); endif; ?>
+	</fieldset>
 	<footer>
 		<ul>
 			<li><?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $this->Form->value('Post.id')), null, sprintf(__('Are you sure you want to delete # %s?', true), $this->Form->value('Post.id'))); ?></li>

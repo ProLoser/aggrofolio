@@ -9,6 +9,9 @@ $(document).ready(function(){
 	$("#PostSlug").closest("div").click(function(){
 		$(".PostSlug").removeClass("PostSlug").find("#PostSlug").removeAttr("disabled");
 	});
+	$("form").submit(function(){
+		$("#PostSlug").removeAttr("disabled");
+	})
 });
 <?php $this->Html->scriptEnd(); ?>
 <style type="text/css">
