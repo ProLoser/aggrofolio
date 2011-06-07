@@ -1,4 +1,13 @@
-<h2><?php __('Blog');?></h2>
+<header>
+	<h2><?php __('Blog');?></h2>
+	<p class="paging">
+		<?php echo $this->Paginator->prev();?><?php echo $this->Paginator->numbers(array('separator'=>''));?><?php echo $this->Paginator->next();?>
+	</p>	
+	<p class="sorting">
+		<span>Sort by:</span>
+		<?php echo $this->Paginator->sort('created');?><?php echo $this->Paginator->sort('name');?><?php echo $this->Paginator->sort('Category', 'post_category_id');?>
+	</p>
+</header>
 <div class="posts index">	
 	<?php foreach ($posts as $post):?>
 	<article<?php if (!empty($post['PostCategory'])) echo " class='cat-{$post['PostCategory']['id']}'";?>>
@@ -20,12 +29,12 @@
 	</article>
 <?php endforeach; ?>
 </div>
-<p class="paging">
-	<?php echo $this->Paginator->prev();?> |
- 	<?php echo $this->Paginator->numbers();?>
-	<?php echo $this->Paginator->next();?>
-	<span class="sorting">
-		Sort By <?php echo $this->Paginator->sort('created');?> |
-		<?php echo $this->Paginator->sort('subject');?>
-	</span>
-</p>
+<footer>
+	<p class="paging">
+		<?php echo $this->Paginator->prev();?><?php echo $this->Paginator->numbers(array('separator'=>''));?><?php echo $this->Paginator->next();?>
+	</p>	
+	<p class="sorting">
+		<span>Sort by:</span>
+		<?php echo $this->Paginator->sort('created');?><?php echo $this->Paginator->sort('name');?><?php echo $this->Paginator->sort('Category', 'post_category_id');?>
+	</p>
+</footer>

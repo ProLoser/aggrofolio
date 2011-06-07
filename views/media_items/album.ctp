@@ -1,16 +1,15 @@
 <?php $this->Paginator->options(array('url' => $this->params['pass']))?>
-<h2>Gallery: <?php echo $album['Album']['name']?></h2>
-<div class="gallery">
+<header>
+	<h2>Gallery: <?php echo $album['Album']['name']?></h2>
 	<p class="paging">
-		<?php echo $this->Paginator->prev();?>
-		| <?php echo $this->Paginator->numbers();?> |
-		<?php echo $this->Paginator->next();?>
-		<span class="sorting">
-			Sort by: 
-			<?php echo $this->Paginator->sort('created');?> 
-			| <?php echo $this->Paginator->sort('name');?>
-		</span>
+		<?php echo $this->Paginator->prev();?><?php echo $this->Paginator->numbers(array('separator'=>''));?><?php echo $this->Paginator->next();?>
+	</p>	
+	<p class="sorting">
+		<span>Sort by:</span>
+		<?php echo $this->Paginator->sort('created');?><?php echo $this->Paginator->sort('name');?>
 	</p>
+</header>
+<div class="gallery">
 	<ul class="media">
 	<?php foreach ($items as $item): ?>
 		<li>
@@ -21,14 +20,13 @@
 		</li>
 	<?php endforeach ?>
 	</ul>
-	<p class="paging">
-		<?php echo $this->Paginator->prev();?>
-		| <?php echo $this->Paginator->numbers();?> |
-		<?php echo $this->Paginator->next();?>
-		<span class="sorting">
-			Sort by: 
-			<?php echo $this->Paginator->sort('created');?> 
-			| <?php echo $this->Paginator->sort('name');?>
-		</span>
-	</p>
 </div>
+<footer>
+	<p class="paging">
+		<?php echo $this->Paginator->prev();?><?php echo $this->Paginator->numbers(array('separator'=>''));?><?php echo $this->Paginator->next();?>
+	</p>	
+	<p class="sorting">
+		<span>Sort by:</span>
+		<?php echo $this->Paginator->sort('created');?><?php echo $this->Paginator->sort('name');?>
+	</p>
+</footer>
