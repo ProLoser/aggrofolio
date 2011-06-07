@@ -10,7 +10,7 @@
 }
 </style>
 
-<script>
+<?php $this->Html->scriptStart(array('inline' => false)); ?>
 $(document).ready(function(){
 	i = 0;
 	$(".add-related").click(function(){
@@ -46,6 +46,6 @@ $(document).ready(function(){
 		});
 	});
 });
-</script>
+<?php echo $this->Html->scriptEnd(); ?>
 
 <div class="related"></div>

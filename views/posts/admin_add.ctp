@@ -1,4 +1,4 @@
-<script type="text/javascript">
+<?php $this->Html->scriptStart(array('inline' => false)); ?>
 $(document).ready(function(){
 	$("#PostSubject").bind('change keyup',function(){
 		if ($("#PostSlug").is(':disabled')) {
@@ -10,7 +10,7 @@ $(document).ready(function(){
 		$(".PostSlug").removeClass("PostSlug").find("#PostSlug").removeAttr("disabled");
 	});
 });
-</script>
+<?php $this->Html->scriptEnd(); ?>
 <style type="text/css">
 .PostSlug, .PostSlug label, .PostSlug input {
 cursor: pointer;
