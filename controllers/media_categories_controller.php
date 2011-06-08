@@ -26,6 +26,8 @@ class MediaCategoriesController extends AppController {
 				$this->Session->setFlash(__('The media category could not be saved. Please, try again.', true));
 			}
 		}
+		$parents = $this->MediaCategory->generateTreeList(null, null, null, '- ');
+		$this->set(compact('parents'));
 	}
 
 	function admin_edit($id = null) {
@@ -44,6 +46,8 @@ class MediaCategoriesController extends AppController {
 		if (empty($this->data)) {
 			$this->data = $this->MediaCategory->read(null, $id);
 		}
+		$parents = $this->MediaCategory->generateTreeList(array('MediaCategory.id !=' => $id), null, null, '- ');
+		$this->set(compact('parents'));
 	}
 
 	function admin_delete($id = null) {

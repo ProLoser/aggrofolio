@@ -1,5 +1,14 @@
-<div class="bookmarkCategories index">
-	<h1><?php __('Bookmark Categories');?></h1>
+<header>
+	<hgroup><h1><?php __('Bookmark Categories');?></h1></hgroup>
+	<ul>
+		<li><?php echo $this->Html->link(__('New Bookmark Category', true), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('List Bookmark Categories', true), array('controller' => 'bookmark_categories', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Parent Bookmark Category', true), array('controller' => 'bookmark_categories', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Bookmarks', true), array('controller' => 'bookmarks', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Bookmark', true), array('controller' => 'bookmarks', 'action' => 'add')); ?> </li>
+	</ul>
+</header>
+<article class="bookmarkCategories index">
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id');?></th>
@@ -37,27 +46,18 @@
 	</tr>
 <?php endforeach; ?>
 	</table>
-	<p>
-	<?php
-	echo $this->Paginator->counter(array(
-	'format' => __('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%', true)
-	));
-	?>	</p>
-
-	<div class="paging">
-		<?php echo $this->Paginator->prev();?>
-	 | 	<?php echo $this->Paginator->numbers(array('separator' => ''));?>
- |
-		<?php echo $this->Paginator->next();?>
-	</div>
-</div>
-<div class="actions">
-	<h3><?php __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New Bookmark Category', true), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Bookmark Categories', true), array('controller' => 'bookmark_categories', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Parent Bookmark Category', true), array('controller' => 'bookmark_categories', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Bookmarks', true), array('controller' => 'bookmarks', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Bookmark', true), array('controller' => 'bookmarks', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
+	<footer>
+		<p>
+		<?php
+		echo $this->Paginator->counter(array(
+		'format' => __('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%', true)
+		));
+		?></p>
+	
+		<p class="paging">
+			<?php echo $this->Paginator->prev();?>
+			<?php echo $this->Paginator->numbers(array('separator' => ''));?>
+			<?php echo $this->Paginator->next();?>
+		</p>
+	</footer>
+</article>

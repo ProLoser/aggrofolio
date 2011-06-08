@@ -79,7 +79,7 @@ class PostsController extends AppController {
 			}
 		}
 		$this->_setRelated();
-		$this->set('postCategories', $this->Post->PostCategory->find('list'));
+		$this->set('postCategories', $this->Post->PostCategory->generateTreeList(null, null, null, '- '));
 		
 	}
 
@@ -101,7 +101,7 @@ class PostsController extends AppController {
 			$this->data = $this->Post->read(null, $id);
 		}
 		$this->_setRelated();
-		$this->set('postCategories', $this->Post->PostCategory->find('list'));
+		$this->set('postCategories', $this->Post->PostCategory->generateTreeList(null, null, null, '- '));
 	}
 
 	function admin_delete($id = null) {

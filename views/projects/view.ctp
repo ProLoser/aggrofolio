@@ -59,7 +59,7 @@
 <section id="related" class="clearfix<?php if (!empty($project['PostRelationship']) && !empty($project['commits'])) echo ' half'?>">
 	<h1><?php __('Related'); ?></h1>
 	<?php if (!empty($project['PostRelationship'])): ?>
-	<section>
+	<section class="posts">
 		<h2>Blog Posts</h2>
 		<?php foreach ($project['PostRelationship'] as $post): ?>
 			<article>

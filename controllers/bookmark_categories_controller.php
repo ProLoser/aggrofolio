@@ -26,8 +26,8 @@ class BookmarkCategoriesController extends AppController {
 				$this->Session->setFlash(__('The bookmark category could not be saved. Please, try again.', true));
 			}
 		}
-		$parentBookmarkCategories = $this->BookmarkCategory->ParentBookmarkCategory->find('list');
-		$this->set(compact('parentBookmarkCategories'));
+		$parents = $this->BookmarkCategory->generateTreeList(null, null, null, '- ');
+		$this->set(compact('parents'));
 	}
 
 	function admin_edit($id = null) {
@@ -46,8 +46,8 @@ class BookmarkCategoriesController extends AppController {
 		if (empty($this->data)) {
 			$this->data = $this->BookmarkCategory->read(null, $id);
 		}
-		$parentBookmarkCategories = $this->BookmarkCategory->ParentBookmarkCategory->find('list');
-		$this->set(compact('parentBookmarkCategories'));
+		$parents = $this->BookmarkCategory->generateTreeList(array('BookmarkCategory.id !=' => $id), null, null, '- ');
+		$this->set(compact('parents'));
 	}
 
 	function admin_delete($id = null) {

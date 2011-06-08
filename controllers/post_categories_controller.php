@@ -28,7 +28,7 @@ class PostCategoriesController extends AppController {
 				$this->Session->setFlash(__('The post category could not be saved. Please, try again.', true));
 			}
 		}
-		$parents = $this->PostCategory->find('list');
+		$parents = $this->PostCategory->generateTreeList(null, null, null, '- ');
 		$this->set(compact('parents'));
 	}
 
@@ -48,6 +48,8 @@ class PostCategoriesController extends AppController {
 		if (empty($this->data)) {
 			$this->data = $this->PostCategory->read(null, $id);
 		}
+		$parents = $this->PostCategory->generateTreeList(array('PostCategory.id !=' => $id), null, null, '- ');
+		$this->set(compact('parents'));
 	}
 
 	function admin_delete($id = null) {
