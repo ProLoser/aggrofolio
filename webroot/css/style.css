@@ -276,10 +276,10 @@ legend {
 	list-style: none;
 }
 
-#categories {
+#categories, #filters {
 	position: relative;
 }
-#categories .reset {
+#categories .reset,  #filters .reset {
 	display: block;
 	width: 32px;
 	height: 32px;

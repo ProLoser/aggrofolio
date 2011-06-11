@@ -38,12 +38,26 @@ $(document).ready(function(){
 		$(this).fadeOut(600);
 		return false;
 	});
+	
 	$('.projects .names li').bind('mouseover', function(){
 		target = '.' + $('a', this).attr('rel');
 		$siblings = $('.projects .thumbs li:not(' + target + ')');
 		$siblings.slideUp(400, function() {
 			$siblings.siblings(target).slideDown(600);
 		});
+	});
+	
+	$('#filters ul a').click(function(){
+		selector = '.' + $(this).attr('id');
+		$(selector).slideDown(600).siblings(':not(' + selector + ')').slideUp(600);
+		if ($(selector).length)
+			$('#filters .reset').fadeIn(600);
+		return false;
+	});
+	$('#filters a.reset').hide().click(function(){
+		$('.log > ul > li').slideDown(600);
+		$(this).fadeOut(600);
+		return false;
 	});
 });
 

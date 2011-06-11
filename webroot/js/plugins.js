@@ -80,24 +80,6 @@ $(document).ready(function(){
 			}
 		}
 	});
-	$('.log li').qtip({
-		position: {
-			my: 'top left',
-			at: 'bottom left',
-			adjust: {
-				x: 120,
-				y: 4
-			}
-		},
-		style: 'ui-tooltip-dark ui-tooltip-rounded',
-		content: {
-			text: function(){ 
-				content = $('div', this).html();
-				if (content.length > 0)
-					return content;
-			}
-		}
-	});
 	$('.projects li').qtip({
 		position: {
 			my: 'top center',

@@ -1,34 +1,37 @@
-<h1><?php __('Projects');?></h1>
-<ul class="actions">
-	<li><?php echo $this->Html->link(__('New Project', true), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Accounts', true), array('controller' => 'accounts', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Account', true), array('controller' => 'accounts', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Project Categories', true), array('controller' => 'project_categories', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Project Category', true), array('controller' => 'project_categories', 'action' => 'add')); ?> </li>
-</ul>
-<div class="projects index">
-	<div class="header">
+<header>
+	<hgroup><h1><?php __('Projects');?></h1></hgroup>
+	<ul>
+		<li><?php echo $this->Html->link(__('New Project', true), array('action' => 'add')); ?></li>
+			<li><?php echo $this->Html->link(__('List Accounts', true), array('controller' => 'accounts', 'action' => 'index')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Account', true), array('controller' => 'accounts', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('List Project Categories', true), array('controller' => 'project_categories', 'action' => 'index')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Project Category', true), array('controller' => 'project_categories', 'action' => 'add')); ?> </li>
+	</ul>
+</header>
+<article class="projects index">
+	<header>
 		<h3>
 		<?php
 		echo $this->Paginator->counter(array(
 			'format' => __('Record %start% to %end% of %count% total', true)
 		));
 		?>	</h3>
-		<div class="paging">
+		<p class="paging">
 			<?php echo $this->Paginator->prev();?>
 			<?php echo $this->Paginator->numbers(array('separator' => ''));?>
 			<?php echo $this->Paginator->next();?>
-		</div>
-	</div>
-	<?php echo $this->Batch->create('Project')?>	<table cellpadding="0" cellspacing="0">
+		</p>
+	</header>
+	<?php echo $this->Batch->create('Project')?>	
+	<table cellpadding="0" cellspacing="0">
 	<tr>
-			<th><?php echo $this->Paginator->sort('id');?></th>
-			<th><?php echo $this->Paginator->sort('name');?></th>
-			<th><?php echo $this->Paginator->sort('project_category_id');?></th>
-			<th><?php echo $this->Paginator->sort('published');?></th>
-			<th><?php echo $this->Paginator->sort('deleted');?></th>
-			<th><?php echo $this->Paginator->sort('account_id');?></th>
-			<th class="actions"><?php __('Actions');?></th>
+		<th><?php echo $this->Paginator->sort('id');?></th>
+		<th><?php echo $this->Paginator->sort('name');?></th>
+		<th><?php echo $this->Paginator->sort('project_category_id');?></th>
+		<th><?php echo $this->Paginator->sort('published');?></th>
+		<th><?php echo $this->Paginator->sort('deleted');?></th>
+		<th><?php echo $this->Paginator->sort('account_id');?></th>
+		<th class="actions"><?php __('Actions');?> <?php echo $this->Batch->all()?></th>
 	</tr>
 	<?php
 		echo $this->Batch->filter(array(
@@ -75,9 +78,11 @@
 		));?> 
 	</table>
 	<?php echo $this->Batch->end()?> 
-	<div class="paging">
-		<?php echo $this->Paginator->prev();?>
-		<?php echo $this->Paginator->numbers(array('separator' => ''));?>
-		<?php echo $this->Paginator->next();?>
-	</div>
-</div>
+	<footer>
+		<p class="paging">
+			<?php echo $this->Paginator->prev();?>
+			<?php echo $this->Paginator->numbers(array('separator' => ''));?>
+			<?php echo $this->Paginator->next();?>
+		</p>
+	</footer>
+</article>

@@ -1,7 +1,16 @@
-<div class="projects form">
+<header>
+	<hgroup><h1>Add Project</h1></hgroup>
+	<ul>
+		<li><?php echo $this->Html->link(__('List Projects', true), array('action' => 'index'));?></li>
+		<li><?php echo $this->Html->link(__('List Accounts', true), array('controller' => 'accounts', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Account', true), array('controller' => 'accounts', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Project Categories', true), array('controller' => 'project_categories', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Project Category', true), array('controller' => 'project_categories', 'action' => 'add')); ?> </li>
+	</ul>
+</header>
+<article class="projects form">
 <?php echo $this->Form->create('Project');?>
 	<fieldset>
- 		<legend><?php __('Add Project'); ?></legend>
 	<?php
 		echo $this->Form->input('name');
 		echo $this->Form->input('url');		
@@ -17,15 +26,4 @@
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>
-</div>
-<div class="actions">
-	<h3><?php __('Actions'); ?></h3>
-	<ul>
-
-		<li><?php echo $this->Html->link(__('List Projects', true), array('action' => 'index'));?></li>
-		<li><?php echo $this->Html->link(__('List Accounts', true), array('controller' => 'accounts', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Account', true), array('controller' => 'accounts', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Project Categories', true), array('controller' => 'project_categories', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Project Category', true), array('controller' => 'project_categories', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
+</article>

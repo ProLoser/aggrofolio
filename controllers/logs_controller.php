@@ -1,7 +1,7 @@
 <?php
 class LogsController extends AppController {
 	var $name = 'Logs';
-	var $helpers = array('Log.Log', 'Time');
+	var $helpers = array('Time');
 
 	function index() {
 		$logs = $this->Log->find('dashboard');

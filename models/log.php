@@ -20,22 +20,25 @@ class Log extends AppModel {
 	);
 	
 	var $actions = array(
-		'add' => 'added',
-		'delete' => 'deleted',
-		'edit' => 'updated',
+		'add' => 'Added',
+		'delete' => 'Deleted',
+		'edit' => 'Updated',
 	);
 
 	function _findDashboard($state, $query, $results = array()) {
 		if ($state == 'before') {
 			$query['contain'] = array(
 				'Album' => array(
-					'MediaItem' => array('limit' => 2)
-				), 
-				'MediaItem', 
+					'MediaItem',
+				),
 				'Post', 
 				'Project' => array(
-					'MediaItem' => array('limit' => 2)
+					'MediaItem' => array('limit' => 4)
 				),
+			);
+			$query['group'] = array('Log.model', 'Log.model_id');
+			$query['conditions'] = array(
+				'Log.model' => array('Album', 'Post', 'Project'),
 			);
 			if (isset($this->belongsTo['User']))
 				$query['contain'][] = 'User';
