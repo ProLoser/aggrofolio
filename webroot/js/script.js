@@ -47,16 +47,17 @@ $(document).ready(function(){
 		});
 	});
 	
-	$('#filters ul a').click(function(){
+	$('#filters a:not(.freset)').click(function(){
 		selector = '.' + $(this).attr('id');
-		$(selector).slideDown(600).siblings(':not(' + selector + ')').slideUp(600);
-		if ($(selector).length)
-			$('#filters .reset').fadeIn(600);
+		$(selector).show().removeClass('faded', 1000).siblings(':not(' + selector + ')').addClass('faded', 1000, function(){
+			$(this).hide();
+		});
+		$(this).addClass('current').siblings().removeClass('current');
 		return false;
 	});
-	$('#filters a.reset').hide().click(function(){
-		$('.log > li').slideDown(600);
-		$(this).fadeOut(600);
+	$('#filters a.freset').click(function(){
+		$('.log > li').show().removeClass('faded', 1000);
+		$(this).addClass('current').siblings().removeClass('current');
 		return false;
 	});
 });

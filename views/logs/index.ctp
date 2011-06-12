@@ -1,15 +1,8 @@
-<?php $this->Plate->start('nav')?>
-<nav id="filters">
-	<h3>Filters</h3>
-	<ul>
-		<li><?php echo $this->Html->link('Blogs Posts', array('controller' => 'posts', 'action' => 'index'), array('id' => 'type-Post')); ?></li>
-		<li><?php echo $this->Html->link('Gallery', array('controller' => 'albums', 'action' => 'index'), array('id' => 'type-Album')); ?></li>
-		<li><?php echo $this->Html->link('Projects', array('controller' => 'projects', 'action' => 'index'), array('id' => 'type-Project')); ?></li>
-	</ul>
-	<a href="#" class="reset">Reset</a>
-</nav>
-<?php $this->Plate->stop()?>
 <style>
+.faded {
+	opacity: 0;
+	height: 0;
+}
 ul.log {
 	list-style: none;
 	margin: 0;
@@ -69,6 +62,10 @@ article.half section {
 </style>
 <header>
 	<h2 class="log"><?php __('Activity Feed'); ?></h2>
+	<p id="filters" class="sorting">
+		<span>Filter:</span>
+		<?php echo $this->Html->link('Blogs Posts', array('controller' => 'posts', 'action' => 'index'), array('id' => 'type-Post')); ?><?php echo $this->Html->link('Gallery', array('controller' => 'albums', 'action' => 'index'), array('id' => 'type-Album')); ?><?php echo $this->Html->link('Projects', array('controller' => 'projects', 'action' => 'index'), array('id' => 'type-Project')); ?><a href="#" class="freset current">Show All</a>
+	</p>
 </header>
 <ul class="log posts">
 <?php foreach ($logs as $log) : ?>

@@ -615,7 +615,7 @@ border-bottom-right-radius: 15px;
 	border-bottom-right-radius: 5px;
 	margin-right: 0;
 }
-.sorting a.asc, .sorting a.desc, .paging .current, .sorting a:hover, .paging a:hover {
+.sorting a.asc, .sorting a.desc, .paging .current, .sorting a:hover, .paging a:hover, .sorting .current {
 background-color: #D4D3C9;
 background-image: -webkit-gradient(linear, left top, left bottom, from(#D4D3C9), to(#F3F1E4)); 
 background-image: -webkit-linear-gradient(top, #D4D3C9, #F3F1E4); 
