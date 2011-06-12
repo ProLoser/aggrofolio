@@ -25,5 +25,8 @@
 		echo $this->Form->input('resume_school_id', array('empty' => '-- None --'));
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit', true));?>
+	<footer>
+		<?php echo $this->Form->submit('Submit'); ?>
+	</footer>
+<?php echo $this->Form->end();?>
 </article>

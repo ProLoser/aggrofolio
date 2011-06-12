@@ -1,5 +1,7 @@
-<div class="projects view">
-<h1><?php  __('Project');?></h1>
+<header>
+	<hgroup><h1><?php  __('Project');?></h1></hgroup>
+</header>
+<article class="projects view">
 	<dl><?php $i = 0; $class = ' class="altrow"';?>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Id'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
@@ -143,4 +145,4 @@
 	<?php endif ?>
 	</ul>
 <?php endif ?>
-</div>
+</article>

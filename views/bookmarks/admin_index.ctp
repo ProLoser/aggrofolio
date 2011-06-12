@@ -1,25 +1,27 @@
-<h1><?php __('Bookmarks');?></h1>
-<ul class="actions">
-	<li><?php echo $this->Html->link(__('New Bookmark', true), array('action' => 'add')); ?></li>
-	<li><?php echo $this->Html->link(__('List Accounts', true), array('controller' => 'accounts', 'action' => 'index')); ?> </li>
-	<li><?php echo $this->Html->link(__('New Account', true), array('controller' => 'accounts', 'action' => 'add')); ?> </li>
-	<li><?php echo $this->Html->link(__('List Bookmark Categories', true), array('controller' => 'bookmark_categories', 'action' => 'index')); ?> </li>
-	<li><?php echo $this->Html->link(__('New Bookmark Category', true), array('controller' => 'bookmark_categories', 'action' => 'add')); ?> </li>
-</ul>
-<div class="bookmarks index">
-	<div class="header">
+<header>
+	<hgroup><h1><?php __('Bookmarks');?></h1></hgroup>
+	<ul class="actions">
+		<li><?php echo $this->Html->link(__('New Bookmark', true), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('List Accounts', true), array('controller' => 'accounts', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Account', true), array('controller' => 'accounts', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Bookmark Categories', true), array('controller' => 'bookmark_categories', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Bookmark Category', true), array('controller' => 'bookmark_categories', 'action' => 'add')); ?> </li>
+	</ul>
+</header>
+<article class="bookmarks index">
+	<header>
 		<h3>
 		<?php
 		echo $this->Paginator->counter(array(
 			'format' => __('Record %start% to %end% of %count% total', true)
 		));
 		?>	</h3>
-		<div class="paging">
+		<p class="paging">
 			<?php echo $this->Paginator->prev();?>
 		 	<?php echo $this->Paginator->numbers(array('separator' => ''));?>
 			<?php echo $this->Paginator->next();?>
-		</div>
-	</div>
+		</p>
+	</header>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 		<th><?php echo $this->Paginator->sort('id');?></th>
@@ -59,4 +61,4 @@
 	</tr>
 <?php endforeach; ?>
 	</table>
-</div>
+</article>

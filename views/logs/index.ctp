@@ -65,7 +65,7 @@ article.half section {
 }
 </style>
 <header>
-	<h2 class="log"><?php __('Aggropholio Activity Feed'); ?></h2>
+	<h2 class="log"><?php __('Activity Feed'); ?></h2>
 </header>
 <ul class="log posts">
 <?php foreach ($logs as $log) : ?>
@@ -133,7 +133,7 @@ article.half section {
 								echo $this->Html->link(
 									$this->Html->image('/uploads/thumb-' . $item['attachment_file_name'], array('alt' => $item['name'])), 
 									'/uploads/original-' . $item['attachment_file_name'], 
-									array('escape' => false, 'rel' => 'album-' . $log['Album']['id'], 'title' => $item['name'])
+									array('escape' => false, 'rel' => 'project-' . $log['Project']['id'], 'title' => $item['name'])
 								);
 							?>
 							</li>

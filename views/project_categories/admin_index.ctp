@@ -1,23 +1,25 @@
-<h1><?php __('Project Categories');?></h1>
-<ul class="actions">
-	<li><?php echo $this->Html->link(__('New Project Category', true), array('action' => 'add')); ?></li>
-	<li><?php echo $this->Html->link(__('List Projects', true), array('controller' => 'projects', 'action' => 'index')); ?> </li>
-	<li><?php echo $this->Html->link(__('New Project', true), array('controller' => 'projects', 'action' => 'add')); ?> </li>
-</ul>
-<div class="projectCategories index">
-	<div class="header">
+<header>
+	<hgroup><h1><?php __('Project Categories');?></h1></hgroup>
+	<ul class="actions">
+		<li><?php echo $this->Html->link(__('New Project Category', true), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('List Projects', true), array('controller' => 'projects', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Project', true), array('controller' => 'projects', 'action' => 'add')); ?> </li>
+	</ul>
+</header>
+<article class="projectCategories index">
+	<header>
 		<h3>
 		<?php
 		echo $this->Paginator->counter(array(
 			'format' => __('Record %start% to %end% of %count% total', true)
 		));
 		?>	</h3>
-		<div class="paging">
+		<p class="paging">
 			<?php echo $this->Paginator->prev();?>
 			<?php echo $this->Paginator->numbers(array('separator' => ''));?>
 			<?php echo $this->Paginator->next();?>
-		</div>
-	</div>
+		</p>
+	</header>
 	<?php echo $this->Batch->create('ProjectCategory')?>	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id');?></th>
@@ -69,9 +71,11 @@
 		));?> 
 	</table>
 	<?php echo $this->Batch->end()?> 
-	<div class="paging">
-		<?php echo $this->Paginator->prev();?>
-		<?php echo $this->Paginator->numbers(array('separator' => ''));?>
-		<?php echo $this->Paginator->next();?>
-	</div>
-</div>
+	<footer>
+		<p class="paging">
+			<?php echo $this->Paginator->prev();?>
+			<?php echo $this->Paginator->numbers(array('separator' => ''));?>
+			<?php echo $this->Paginator->next();?>
+		</p>
+	</footer>
+</article>

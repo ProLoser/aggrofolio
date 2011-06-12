@@ -32,7 +32,7 @@ $(document).ready(function(){
 		return false;
 	});
 	$('#categories a.reset').hide().click(function(){
-		$('.gallery ul li, .posts article').animate({
+		$('ul.gallery li, .posts article').animate({
 			opacity: 1
 		}, 600);
 		$(this).fadeOut(600);
@@ -55,7 +55,7 @@ $(document).ready(function(){
 		return false;
 	});
 	$('#filters a.reset').hide().click(function(){
-		$('.log > ul > li').slideDown(600);
+		$('.log > li').slideDown(600);
 		$(this).fadeOut(600);
 		return false;
 	});
