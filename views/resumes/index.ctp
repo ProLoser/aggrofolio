@@ -1,30 +1,3 @@
-<?php $this->Plate->start('nav')?>
-<h3>Sections</h3>
-<ul>
-<?php if (!empty($resume['ResumeSkill'])): ?>
-	<li><a href="#skills">Skills</a></li>
-<?php endif; ?>
-<?php if (!empty($resume['Resume']['interests'])): ?>
-	<li><a href="#interests">Interests</a></li>
-<?php endif; ?>
-<?php if (!empty($resume['ResumeEmployer'])): ?>
-	<li><a href="#experience">Experience</a></li>
-<?php endif; ?>
-<?php if (!empty($resume['ResumeSchool'])): ?>
-	<li><a href="#education">Education</a></li>
-<?php endif; ?>
-<?php if (!empty($resume['Resume']['specialties'])): ?>
-	<li><a href="#specialties">Specialties</a></li>
-<?php endif; ?>
-<?php if (!empty($resume['Resume']['honors'])): ?>
-	<li><a href="#honors">Honors</a></li>
-<?php endif; ?>
-<?php if (!empty($resume['Resume']['associations'])): ?>
-	<li><a href="#associations">Associations</a></li>
-<?php endif; ?>
-</ul>
-<?php $this->Plate->stop()?>
-
 <style type="text/css">
 	#skills ul {
 		overflow: hidden;
@@ -75,6 +48,25 @@
 </style>
 <header>
 	<h2 class="resume">Resume</h2>
+	<p class="sorting">
+		<span>Sections:</span>
+	<?php 
+		if (!empty($resume['ResumeSkill']))
+			echo '<a href="#skills">Skills</a>';
+		if (!empty($resume['Resume']['interests']))
+			echo '<a href="#interests">Interests</a>';
+		if (!empty($resume['ResumeEmployer']))
+			echo '<a href="#experience">Experience</a>';
+		if (!empty($resume['ResumeSchool']))
+			echo '<a href="#education">Education</a>';
+		if (!empty($resume['Resume']['specialties']))
+			echo '<a href="#specialties">Specialties</a>';
+		if (!empty($resume['Resume']['honors']))
+			echo '<a href="#honors">Honors</a>';
+		if (!empty($resume['Resume']['associations']))
+			echo '<a href="#associations">Associations</a>';
+	?>
+	</p>
 </header>
 <div class="resumes">
 	<?php if (!empty($resume['Resume']['objective'])): ?>

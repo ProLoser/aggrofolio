@@ -543,8 +543,9 @@ a.desc:after {
 .sorting span {
 	position: absolute;
 	right: 100%;
-	width: 60px;
+	white-space: nowrap;
 	margin-top: 3px;
+	margin-right: 5px;
 }
 .paging span, .sorting a {
 	display: inline-block;
