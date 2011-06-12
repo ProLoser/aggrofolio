@@ -2,7 +2,7 @@
 <nav id="filters">
 	<h3>Filters</h3>
 	<ul>
-		<li><?php echo $this->Html->link('Posts', array('controller' => 'posts', 'action' => 'index'), array('id' => 'type-Post')); ?></li>
+		<li><?php echo $this->Html->link('Blogs Posts', array('controller' => 'posts', 'action' => 'index'), array('id' => 'type-Post')); ?></li>
 		<li><?php echo $this->Html->link('Gallery', array('controller' => 'albums', 'action' => 'index'), array('id' => 'type-Album')); ?></li>
 		<li><?php echo $this->Html->link('Projects', array('controller' => 'projects', 'action' => 'index'), array('id' => 'type-Project')); ?></li>
 	</ul>
@@ -87,7 +87,7 @@ article.half section {
 				}
 			?>
 		</article>
-	<?php break; case 'MediaItem':?>
+	<?php break; case 'MediaItem': if ($log['MediaItem']['published']):?>
 		<?php if (!empty($log['MediaItem']['name'])): ?>
 			<h3><?php echo $log['MediaItem']['name']?></h3>
 		<?php endif; ?>
@@ -100,7 +100,7 @@ article.half section {
 			);
 		?>
 		</section>
-	<?php break; case 'Album':?>
+	<?php endif; break; case 'Album': if ($log['Album']['published']):?>
 		<h3>
 			<?php echo $log['Album']['name']?>
 			Album <?php echo $actions[$log['Log']['action']]?>
@@ -121,7 +121,7 @@ article.half section {
 			<?php endforeach ?>
 			</ul>
 		</section>
-	<?php break; case 'Project': ?>	
+	<?php endif; break; case 'Project': if ($log['Project']['published']):?>
 		<article<?php if (count($log['Project']['MediaItem']) === 1) echo ' class="half"'?>>
 			<?php if (!empty($log['Project']['MediaItem'])): ?>
 				<?php $this->Plate->start()?>
@@ -150,7 +150,7 @@ article.half section {
 			<?php echo $log['Project']['description']; ?>
 			<?php if (!empty($items) && count($log['Project']['MediaItem']) > 1) echo $items ?>
 		</article>
-	<?php endswitch; ?>
+	<?php endif; endswitch; ?>
 	</li>
 <?php endforeach; ?>
 </ul>

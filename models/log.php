@@ -36,13 +36,18 @@ class Log extends AppModel {
 					'MediaItem' => array('limit' => 4)
 				),
 			);
-			$query['group'] = array('Log.model', 'Log.model_id');
+			// Used to retain the last item in the group
+			$query['joins'][] = array(
+				'table' => '(SELECT MAX(id) AS id FROM logs GROUP BY model, model_id)',
+				'alias' => 'Ids',
+				'type' => 'INNER',
+				'conditions' => array('Log.id = Ids.id'),
+			);
 			$query['conditions'] = array(
 				'Log.model' => array('Album', 'Post', 'Project'),
 			);
 			if (isset($this->belongsTo['User']))
 				$query['contain'][] = 'User';
-			#$query['limit'] = 30;
 			return $query;
 		} elseif ($state == 'after') {
 			return $results;
