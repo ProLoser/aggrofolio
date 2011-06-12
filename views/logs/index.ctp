@@ -77,7 +77,7 @@ article.half section {
 		case 'Post': ?>
 		<article>
 			<header>
-				<h1><?php echo $this->Html->link($log['Post']['subject'], array('action' => 'view', $log['Post']['id'], $log['Post']['slug'])); ?></h1>
+				<h1><?php echo $this->Html->link($log['Post']['subject'], array('controller' => 'posts', 'action' => 'view', $log['Post']['id'], $log['Post']['slug'])); ?></h1>
 				<time><?php echo $actions[$log['Log']['action']] . ' ' . $this->Time->nice($log['Post']['created']); ?></time>
 			</header>	
 			<?php 
@@ -150,7 +150,7 @@ article.half section {
 			<?php endif; ?>
 			<?php if (!empty($items) && count($log['Project']['MediaItem']) == 1) echo $items ?>
 			<header>
-				<h1><?php echo $this->Html->link($log['Project']['name'], array('action' => 'view', $log['Project']['id'], Inflector::slug($log['Project']['name']))); ?></h1>
+				<h1><?php echo $this->Html->link($log['Project']['name'], array('controller' => 'projects', 'action' => 'view', $log['Project']['id'], Inflector::slug($log['Project']['name']))); ?></h1>
 				<time><?php echo $actions[$log['Log']['action']] . ' ' . $this->Time->nice($log['Project']['created']); ?></time>
 			</header>	
 			<?php echo $log['Project']['description']; ?>
