@@ -47,6 +47,9 @@ ul.log > li {
 .type-MediaItem section {
 	margin-top: -10px;
 }
+.type-Album header time {
+	margin-top: -42px;
+}
 .type-Album li a img, .type-MediaItem a img, .type-Project li a img {
 	border: 3px solid #000;
 	padding: 5px;
@@ -101,11 +104,14 @@ article.half section {
 		?>
 		</section>
 	<?php endif; break; case 'Album': if ($log['Album']['published']):?>
-		<h3>
-			<?php echo $log['Album']['name']?>
-			Album <?php echo $actions[$log['Log']['action']]?>
-			<?php echo $this->Html->link('»', array('controller' => 'albums', 'action' => 'view', $log['Album']['id'])); ?>
-		</h3>
+		<header>
+			<h3>
+				<?php echo $log['Album']['name']?>
+				Album <?php echo $actions[$log['Log']['action']]?>
+				<?php echo $this->Html->link('»', array('controller' => 'albums', 'action' => 'view', $log['Album']['id'])); ?>
+			</h3>
+			<time><?php echo $actions[$log['Log']['action']] . ' ' . $this->Time->nice($log['Post']['created']); ?></time>
+		</header>
 		<section>
 			<ul class="media">
 			<?php foreach ($log['Album']['MediaItem'] as $item): ?>

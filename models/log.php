@@ -53,5 +53,4 @@ class Log extends AppModel {
 			return $results;
 		}
 	}
-
 }
