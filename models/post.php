@@ -2,6 +2,7 @@
 class Post extends AppModel {
 	var $name = 'Post';
 	var $displayField = 'subject';
+	var $order = 'Post.created DESC';
 	var $validate = array(
 		'subject' => array(
 			'notempty' => array(
