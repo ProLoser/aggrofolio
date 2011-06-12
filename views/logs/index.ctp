@@ -10,15 +10,19 @@
 </nav>
 <?php $this->Plate->stop()?>
 <style>
-.log > ul {
+ul.log {
 	list-style: none;
 	margin: 0;
 }
-.log > ul > li {
+ul.log > li {
 	margin: 25px 0;
+}
+.posts article {
+	margin: 10px 0 0;
 }
 .type-Project {
 	overflow: hidden;
+	margin: 0;
 }
 .type-Album section, .type-Project section {
 	overflow: auto;
@@ -57,72 +61,70 @@
 }
 article.half section {
 	float: right;
+	margin: -20px 0 0 5px;
 }
 </style>
-<div class="log">
-	<h2><?php __('Aggropholio Activity Feed'); ?></h2>
-	<ul class="posts">
-	<?php foreach ($logs as $log) : ?>
-		<li class="type-<?php echo $log['Log']['model']?>">
-		<?php switch ($log['Log']['model']) :
-			case 'Post': ?>
-			<article>
-				<header>
-					<h1><?php echo $this->Html->link($log['Post']['subject'], array('action' => 'view', $log['Post']['id'], $log['Post']['slug'])); ?></h1>
-					<time><?php echo $actions[$log['Log']['action']] . ' ' . $this->Time->nice($log['Post']['created']); ?></time>
-				</header>	
-				<?php 
-					$pos = strpos($log['Post']['body'], '<hr>');
-					if ($pos === false) {
-						echo $log['Post']['body'];
-					} else {
-						echo substr($log['Post']['body'], 0, $pos);
-						echo $this->Html->tag('footer', $this->Html->link('Read More...', array('controller' => 'posts', 'action' => 'view', $log['Post']['id'], $log['Post']['slug']), array('class' => 'readon')));
-					}
-				?>
-			</article>
-		<?php break; case 'MediaItem':?>
-			<?php if (!empty($log['MediaItem']['name'])): ?>
-				<h3><?php echo $log['MediaItem']['name']?></h3>
-			<?php endif; ?>
-			<section class="media">
-			<?php
-				echo $this->Html->link(
-					$this->Html->image('/uploads/thumb-' . $log['MediaItem']['attachment_file_name'], array('alt' => $log['MediaItem']['name'])), 
-					'/uploads/original-' . $log['MediaItem']['attachment_file_name'], 
-					array('escape' => false, 'title' => $log['MediaItem']['name'])
-				);
+<header>
+	<h2 class="log"><?php __('Aggropholio Activity Feed'); ?></h2>
+</header>
+<ul class="log posts">
+<?php foreach ($logs as $log) : ?>
+	<li class="type-<?php echo $log['Log']['model']?>">
+	<?php switch ($log['Log']['model']) :
+		case 'Post': ?>
+		<article>
+			<header>
+				<h1><?php echo $this->Html->link($log['Post']['subject'], array('action' => 'view', $log['Post']['id'], $log['Post']['slug'])); ?></h1>
+				<time><?php echo $actions[$log['Log']['action']] . ' ' . $this->Time->nice($log['Post']['created']); ?></time>
+			</header>	
+			<?php 
+				$pos = strpos($log['Post']['body'], '<hr>');
+				if ($pos === false) {
+					echo $log['Post']['body'];
+				} else {
+					echo substr($log['Post']['body'], 0, $pos);
+					echo $this->Html->tag('footer', $this->Html->link('Read More...', array('controller' => 'posts', 'action' => 'view', $log['Post']['id'], $log['Post']['slug']), array('class' => 'readon')));
+				}
 			?>
-			</section>
-		<?php break; case 'Album':?>
-			<h3>
-				<?php echo $log['Album']['name']?>
-				Album <?php echo $actions[$log['Log']['action']]?>
-				<?php echo $this->Html->link('»', array('controller' => 'albums', 'action' => 'view', $log['Album']['id'])); ?>
-			</h3>
-			<section>
-				<ul class="media">
-				<?php foreach ($log['Album']['MediaItem'] as $item): ?>
-					<li>
-					<?php
-						echo $this->Html->link(
-							$this->Html->image('/uploads/thumb-' . $item['attachment_file_name'], array('alt' => $item['name'])), 
-							'/uploads/original-' . $item['attachment_file_name'], 
-							array('escape' => false, 'rel' => 'album-' . $log['Album']['id'], 'title' => $item['name'])
-						);
-					?>
-					</li>
-				<?php endforeach ?>
-				</ul>
-			</section>
-		<?php break; case 'Project': ?>	
-			<article<?php if (count($log['Project']['MediaItem']) === 1) echo ' class="half"'?>>
-				<header>
-					<h1><?php echo $this->Html->link($log['Project']['name'], array('action' => 'view', $log['Project']['id'], Inflector::slug($log['Project']['name']))); ?></h1>
-					<time><?php echo $actions[$log['Log']['action']] . ' ' . $this->Time->nice($log['Project']['created']); ?></time>
-				</header>	
-				<?php echo $log['Project']['description']; ?>
-				<?php if (!empty($log['Project']['MediaItem'])): ?>
+		</article>
+	<?php break; case 'MediaItem':?>
+		<?php if (!empty($log['MediaItem']['name'])): ?>
+			<h3><?php echo $log['MediaItem']['name']?></h3>
+		<?php endif; ?>
+		<section class="media">
+		<?php
+			echo $this->Html->link(
+				$this->Html->image('/uploads/thumb-' . $log['MediaItem']['attachment_file_name'], array('alt' => $log['MediaItem']['name'])), 
+				'/uploads/original-' . $log['MediaItem']['attachment_file_name'], 
+				array('escape' => false, 'title' => $log['MediaItem']['name'])
+			);
+		?>
+		</section>
+	<?php break; case 'Album':?>
+		<h3>
+			<?php echo $log['Album']['name']?>
+			Album <?php echo $actions[$log['Log']['action']]?>
+			<?php echo $this->Html->link('»', array('controller' => 'albums', 'action' => 'view', $log['Album']['id'])); ?>
+		</h3>
+		<section>
+			<ul class="media">
+			<?php foreach ($log['Album']['MediaItem'] as $item): ?>
+				<li>
+				<?php
+					echo $this->Html->link(
+						$this->Html->image('/uploads/thumb-' . $item['attachment_file_name'], array('alt' => $item['name'])), 
+						'/uploads/original-' . $item['attachment_file_name'], 
+						array('escape' => false, 'rel' => 'album-' . $log['Album']['id'], 'title' => $item['name'])
+					);
+				?>
+				</li>
+			<?php endforeach ?>
+			</ul>
+		</section>
+	<?php break; case 'Project': ?>	
+		<article<?php if (count($log['Project']['MediaItem']) === 1) echo ' class="half"'?>>
+			<?php if (!empty($log['Project']['MediaItem'])): ?>
+				<?php $this->Plate->start()?>
 					<section>
 						<ul class="media">
 						<?php foreach ($log['Project']['MediaItem'] as $item): ?>
@@ -138,10 +140,17 @@ article.half section {
 						<?php endforeach ?>
 						</ul>
 					</section>
-				<?php endif; ?>
-			</article>
-		<?php endswitch; ?>
-		</li>
-	<?php endforeach; ?>
-	</ul>
-</div>
+				<?php $items = $this->Plate->stop()?>
+			<?php endif; ?>
+			<?php if (!empty($items) && count($log['Project']['MediaItem']) == 1) echo $items ?>
+			<header>
+				<h1><?php echo $this->Html->link($log['Project']['name'], array('action' => 'view', $log['Project']['id'], Inflector::slug($log['Project']['name']))); ?></h1>
+				<time><?php echo $actions[$log['Log']['action']] . ' ' . $this->Time->nice($log['Project']['created']); ?></time>
+			</header>	
+			<?php echo $log['Project']['description']; ?>
+			<?php if (!empty($items) && count($log['Project']['MediaItem']) > 1) echo $items ?>
+		</article>
+	<?php endswitch; ?>
+	</li>
+<?php endforeach; ?>
+</ul>

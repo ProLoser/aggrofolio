@@ -73,8 +73,10 @@
 		display: none;
 	}
 </style>
+<header>
+	<h2 class="resume">Resume</h2>
+</header>
 <div class="resumes">
-	<h2>Resume</h2>
 	<?php if (!empty($resume['Resume']['objective'])): ?>
 		<p id="objective"><?php echo $resume['Resume']['objective']?></p>	  	 
 	<?php endif; ?>

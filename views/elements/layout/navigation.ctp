@@ -1,11 +1,11 @@
 <h1><?php echo $this->Html->link('Dean Sofer', '/'); ?></h1>
 <ul id="mainNav">
-	<li><?php echo $this->Html->link('Resume', array('controller' => 'resumes', 'action' => 'index')); ?></li>
-	<li><?php echo $this->Html->link('Projects', array('controller' => 'projects', 'action' => 'index')); ?></li>
-	<li><?php echo $this->Html->link('Gallery', array('controller' => 'albums', 'action' => 'index')); ?></li>
-	<li><?php echo $this->Html->link('Blog', array('controller' => 'posts', 'action' => 'index')); ?></li>
-	<li><?php echo $this->Html->link('Bookmarks', array('controller' => 'bookmarks', 'action' => 'index')); ?></li>
-	<li><?php echo $this->Html->link('Contact', array('controller' => 'contacts', 'action' => 'index')); ?></li>
+	<li class="resume"><?php echo $this->Html->link('Resume', array('controller' => 'resumes', 'action' => 'index')); ?></li>
+	<li class="project"><?php echo $this->Html->link('Projects', array('controller' => 'projects', 'action' => 'index')); ?></li>
+	<li class="gallery"><?php echo $this->Html->link('Gallery', array('controller' => 'albums', 'action' => 'index')); ?></li>
+	<li class="blog"><?php echo $this->Html->link('Blog', array('controller' => 'posts', 'action' => 'index')); ?></li>
+	<li class="bookmark"><?php echo $this->Html->link('Bookmarks', array('controller' => 'bookmarks', 'action' => 'index')); ?></li>
+	<li class="contact"><?php echo $this->Html->link('Contact', array('controller' => 'contacts', 'action' => 'index')); ?></li>
 </ul>
 
 <?php if (!empty($nav_for_layout)): ?>

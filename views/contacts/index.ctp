@@ -1,4 +1,6 @@
-<h2><?php __('Contact Me'); ?></h2>
+<header>
+	<h2 class="contact"><?php __('Contact Me'); ?></h2>
+</header>
 <div class="contacts form">
 	<h3>By Phone</h3>
 	<p><strong>#</strong> (714) 900-2254</p>

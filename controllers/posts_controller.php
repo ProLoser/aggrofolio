@@ -13,13 +13,17 @@ class PostsController extends AppController {
 		$this->set(compact('posts', 'categories'));
 	}
 
-	function view($id = null) {
+	function view($id = null, $slug = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid post', true));
 			$this->redirect(array('action' => 'index'));
 		}
 		$this->Post->recursive = 1;
-		$this->set('post', $this->Post->read(null, $id));
+		$post = $this->Post->read(null, $id);
+		if ($slug != $post['Post']['slug']) {
+			$this->redirect(array($id, $post['Post']['slug']));
+		}
+		$this->set('post', $post);
 	}
 
 	function admin_index() {

@@ -1,4 +1,6 @@
-<h2><?php  echo $project['Project']['name'];?></h2>
+<header>
+	<h2 class="project"><?php  echo $project['Project']['name'];?></h2>
+</header>
 <?php if (!empty($project['MediaItem'])): ?>
 <div id="radial_container" class="media">
 	<ul class="list">

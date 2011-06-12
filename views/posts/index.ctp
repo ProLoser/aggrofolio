@@ -1,5 +1,5 @@
 <header>
-	<h2><?php __('Blog');?></h2>
+	<h2 class="blog"><?php __('Blog');?></h2>
 	<p class="paging">
 		<?php echo $this->Paginator->prev();?><?php echo $this->Paginator->numbers(array('separator'=>''));?><?php echo $this->Paginator->next();?>
 	</p>	
@@ -29,12 +29,3 @@
 	</article>
 <?php endforeach; ?>
 </div>
-<footer>
-	<p class="paging">
-		<?php echo $this->Paginator->prev();?><?php echo $this->Paginator->numbers(array('separator'=>''));?><?php echo $this->Paginator->next();?>
-	</p>	
-	<p class="sorting">
-		<span>Sort by:</span>
-		<?php echo $this->Paginator->sort('created');?><?php echo $this->Paginator->sort('name');?><?php echo $this->Paginator->sort('Category', 'post_category_id');?>
-	</p>
-</footer>
