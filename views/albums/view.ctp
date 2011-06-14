@@ -1,4 +1,6 @@
-<h2 class="gallery"><?php echo $album['Album']['name']?></h2>
+<header>
+	<h2 class="gallery"><?php echo $album['Album']['name']?></h2>
+</header>
 <div class="gallery media">
 	<ul>
 	<?php foreach ($album['MediaItem'] as $item): ?>

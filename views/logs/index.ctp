@@ -105,7 +105,7 @@ article.half section {
 			<h3>
 				<?php echo $log['Album']['name']?>
 				Album <?php echo $actions[$log['Log']['action']]?>
-				<?php echo $this->Html->link('»', array('controller' => 'albums', 'action' => 'view', $log['Album']['id'])); ?>
+				<?php echo $this->Html->link('»', array('controller' => 'media_items', 'action' => 'album', $log['Album']['id'])); ?>
 			</h3>
 			<time><?php echo $actions[$log['Log']['action']] . ' ' . $this->Time->nice($log['Post']['created']); ?></time>
 		</header>

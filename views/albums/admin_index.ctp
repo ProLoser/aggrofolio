@@ -63,7 +63,7 @@
 			<?php echo $this->Html->link($album['Account']['type'], array('controller' => 'accounts', 'action' => 'view', $album['Account']['id'])); ?>
 		</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('Scan', true), array('controller' => 'media_items', 'action' => 'scan', $album['Album']['id'])); ?>
+			<?php echo $this->Html->link(__('Scan', true), array('controller' => 'media_items', 'action' => 'scan', $album['Album']['id']), array('class' => 'scan')); ?>
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $album['Album']['id']), array('class' => 'view')); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $album['Album']['id']), array('class' => 'edit')); ?>
 			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $album['Album']['id']), array('class' => 'delete'), sprintf(__('Are you sure you want to delete # %s?', true), $album['Album']['id'])); ?>
