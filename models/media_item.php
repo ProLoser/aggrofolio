@@ -89,17 +89,23 @@ class MediaItem extends AppModel {
 		return $count;
 	}
 	
+	/**
+	 * Tricks the upload behavior into working with a file retrieved from a url instead of form POST
+	 *
+	 * @param string $url 
+	 * @return array $datao
+	 */
 	public function loadUrl($url) {
 		$name = array_pop(explode('/',$url));
 		$path = CACHE . md5($name);
+		$success = copy($url, $path);
 		$data = array(
 			'name' => $name,
 			'tmp_name' => $path,
-			'error' => (int) !copy($url, $path),
+			'error' => (int) !$success,
 			'size' => filesize($path),
 			'type' => null,
 		);
-		chmod($path, 644);
 		// TODO: install finfo onto server and figure out why types area always null in db
 		// $finfo = finfo_open();
 		// $data['type'] = finfo_file($finfo, $path, FILEINFO_MIME_TYPE);
