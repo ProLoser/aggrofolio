@@ -8,10 +8,10 @@ ul.log {
 	margin: 0;
 }
 ul.log > li {
-	margin: 25px 0;
+	margin: 0;
 }
 .posts article {
-	margin: 10px 0 0;
+	margin: 20px 0 10px;
 }
 .type-Project {
 	overflow: hidden;
