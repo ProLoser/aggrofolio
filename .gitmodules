@@ -73,3 +73,12 @@
 [submodule "plugins/joinable"]
 	path = plugins/joinable
 	url = git://github.com/ProLoser/CakePHP-Joinable.git
+[submodule "plugins/clear_cache"]
+	path = plugins/clear_cache
+	url = git://github.com/ceeram/clear_cache.git
+[submodule "plugins/http_socket_oauth"]
+	path = plugins/http_socket_oauth
+	url = git@github.com:ProLoser/http_socket_oauth.git
+[submodule "plugins/rest"]
+	path = plugins/rest
+	url = git@github.com:ProLoser/CakePHP-ReST-DataSource-Plugin.git

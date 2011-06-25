@@ -110,7 +110,8 @@ class AppController extends Controller {
 	function beforeRender() {
 		$this->_setTheme();
 		$this->loadModel('Account');
-		$this->set('navAccounts', $this->Account->cache('all', array('conditions' => array('Account.published' => true))));
+		if (!$this->Plate->prefix())
+			$this->set('navAccounts', $this->Account->cache('all', array('conditions' => array('Account.published' => true))));
 	}
 	
 /**

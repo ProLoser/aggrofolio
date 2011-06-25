@@ -38,6 +38,7 @@ class AppModel extends LazyModel {
 	var $actsAs = array(
 		'Linkable.Linkable', // TODO Possibly causing behavior errors when trying to bake
 		'Containable',
+		'Cacheable.Cacheable',
 	);
 	
 	/**

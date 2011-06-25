@@ -77,7 +77,8 @@ class MediaItem extends AppModel {
 					'description' => $mediaItem['MediaItem']['Description'][1]['value'],
 					'uuid' => $mediaItem['MediaItem']['guid']['value'],
 					'album_id' => $album['Album']['id'],
-					'attachment' => $this->loadUrl($response['url'], $mediaItem['MediaItem']['Title'][0]),
+					'attachment' => $this->loadUrl($response['url']),
+					'published' => $album['Album']['published'],
 				);
 				if (isset($album['Album']['project_id']))
 					$data['MediaItem']['project_id'] = $album['Album']['project_id'];
@@ -148,6 +149,8 @@ class MediaItem extends AppModel {
 					'name' => $photo['title'],
 					'uuid' => $photo['id'],
 					'album_id' => $album['Album']['id'],
+					'attachment' => $this->loadUrl(sprintf('http://farm%s.static.flickr.com/%s/%s_%s.jpg', $photo['farm'], $photo['server'], $photo['id'], $photo['secret'])),
+					'published' => $album['Album']['published'],
 				);
 				if (isset($album['Album']['project_id']))
 					$data['MediaItem']['project_id'] = $album['Album']['project_id'];

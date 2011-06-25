@@ -6,7 +6,7 @@ class Account extends AppModel {
 		'username' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'Please enter a valid username',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -16,11 +16,7 @@ class Account extends AppModel {
 		'type' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+				'message' => 'Please specify a valid type',
 			),
 		),
 	);
@@ -47,10 +43,6 @@ class Account extends AppModel {
 		'facebook'		=> 'Facebook',
 		'flickr'		=> 'Flickr',
 		'xmarks'		=> 'XMarks',
-	);
-	
-	var $actsAs = array(
-		'Cacheable.Cacheable',
 	);
 }
 ?>

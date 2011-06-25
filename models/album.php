@@ -87,6 +87,9 @@ class Album extends AppModel {
 			'fields' => 'people', 
 			'conditions' => array('username' => $account['Account']['username'])
 		));
+		if (!isset($username['user'])) {
+			return false;
+		}
 		$result = $this->find('all', array(
 			'fields' => 'sets', 
 			'conditions' => array('user_id' => $username['user']['nsid'])

@@ -9,7 +9,7 @@
 	</p>
 </header>
 <ul class="gallery">
-<?php foreach ($albums as $album): ?>
+<?php foreach ($albums as $album): if (!empty($album['MediaItem'])): ?>
 	<li<?php if (!empty($album['MediaCategory'])) echo " class='cat-{$album['MediaCategory']['id']}'";?>>
 	<?php 
 		$name = $album['Album']['name'];
@@ -19,5 +19,5 @@
 		if (!empty($album['MediaItem'])) echo $this->Html->image('/uploads/thumb-' . $album['MediaItem'][0]['attachment_file_name']);
 	?>
 	</li>
-<?php endforeach ?>
+<?php endif; endforeach ?>
 </ul>

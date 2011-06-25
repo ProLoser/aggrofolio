@@ -1,4 +1,12 @@
 <style type="text/css">
+	.download {
+		float: left;
+		font-weight: bold;
+		font-size: 120%;
+		margin: 0 10px;
+		padding: 6px 0 6px 35px;
+		background: no-repeat left center url(/aggropholio/img/icons/floppy.png);
+	}
 	#skills ul {
 		overflow: hidden;
 		margin: 5px 0;
@@ -46,8 +54,16 @@
 		display: none;
 	}
 </style>
+<?php $this->Plate->start('nav')?>
+<h3>Download</h3>
+<ul>
+	<li><?php echo $this->Html->link('PDF Format', '/DeanSoferResume.pdf')?></li>
+	<li><?php echo $this->Html->link('DOC Format', '/DeanSoferResume.doc')?></li>
+</ul>
+<?php $this->Plate->stop()?>
 <header>
 	<h2 class="resume">Resume</h2>
+	<p class="download"><?php echo $this->Html->link('PDF', '/DeanSoferResume.pdf')?> | <?php echo $this->Html->link('DOC', '/DeanSoferResume.doc')?></p>
 	<p class="sorting">
 		<span>Sections:</span>
 	<?php 

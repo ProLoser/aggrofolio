@@ -12,7 +12,6 @@
 		echo $this->Form->input('type');
 	?>
 	</fieldset>
-<?php echo $this->Form->end();?>
 	<footer>
 		<?php echo $this->Form->submit('Submit'); ?>
 		<h3><?php __('Actions'); ?></h3>
@@ -20,4 +19,5 @@
 			<li><?php echo $this->Html->link(__('List Accounts', true), array('action' => 'index'));?></li>
 		</ul>
 	</footer>
+<?php echo $this->Form->end();?>
 </article>
