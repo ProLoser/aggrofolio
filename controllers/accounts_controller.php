@@ -26,14 +26,8 @@ class AccountsController extends AppController {
 			$this->Plate->flash('Deviantart doesn\'t require authentication', array('action' => 'index'));
 		}
 		$this->Oauth->useDbConfig = $type;
-		$callback = array('action' => 'callback', $type);
-		if ($type == 'github') {
-			$key = $this->Session->read("OAuth.{$type}.oauth_consumer_key");
-			$callback = urlencode(Router::url($callback, true));
-			$this->redirect("https://github.com/login/oauth/authorize?client_id={$key}&redirect_uri={$callback}");
-		} else {
-			$this->Oauth->connect(array('action' => 'index'), $callback);
-		}
+
+		$this->Oauth->connect(array('action' => 'index'), array('action' => 'callback', $type));
 	}
 	
 	function admin_callback($useDbConfig = null) {
