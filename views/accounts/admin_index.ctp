@@ -51,14 +51,8 @@
 		<td><?php echo $account['Account']['type']; ?>&nbsp;</td>
 		<td><?php echo $account['Account']['published']; ?>&nbsp;</td>
 		<td class="actions">
-		<?php if (in_array($account['Account']['type'], array('deviantart', 'flickr'))): ?>
-			<?php echo $this->Html->link(__('Scan', true), array('controller' => 'albums', 'action' => 'scan', $account['Account']['id']), array('class' => 'scan')); ?>
-		<?php elseif ($account['Account']['type'] == 'xmarks'): ?>
-			<?php echo $this->Html->link(__('Scan', true), array('controller' => 'bookmarks', 'action' => 'scan', $account['Account']['id']), array('class' => 'scan')); ?>
-		<?php else: ?>
-			<?php $action = ($account['Account']['type'] == 'linkedin') ? 'login': 'scan'; ?>
-			<?php echo $this->Html->link(__('Scan', true), array('action' => $action, $account['Account']['id']), array('class' => 'scan')); ?>
-		<?php endif ?>
+			<?php echo $this->Html->link(__('Login', true), array('action' => 'connect', $account['Account']['id']), array('class' => 'login')); ?>
+			<?php echo $this->Html->link(__('Scan', true), array('action' => 'scan', $account['Account']['id']), array('class' => 'scan')); ?>
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $account['Account']['id']), array('class' => 'view')); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $account['Account']['id']), array('class' => 'edit')); ?>
 			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $account['Account']['id']), array('class' => 'delete'), sprintf(__('Are you sure you want to delete # %s?', true), $account['Account']['id'])); ?>

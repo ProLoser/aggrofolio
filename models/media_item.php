@@ -136,10 +136,15 @@ class MediaItem extends AppModel {
 	
 	public function scanFlickr($album) {
 		$this->useDbConfig = 'flickr';
-		$photos = $this->find('all', array(
-			'fields' => 'photos',
-			'conditions' => array('photoset_id' => $album['Album']['uuid']),
-		));
+		$options['fields'] = 'photos';
+		if (!empty($album['Album']['uuid'])) {
+			$options['conditions']['photoset_id'] = $album['Album']['uuid'];
+		}
+		$photos = $this->find('all', $options);
+		debug($photos);die;
+		if (isset($photos['photos'])) {
+			
+		}
 		$this->useDbConfig = 'default';
 		$count = 0;
 		if (!empty($photos)) {

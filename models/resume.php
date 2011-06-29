@@ -1,8 +1,8 @@
 <?php
 class Resume extends AppModel {
-	var $name = 'Resume';
-	var $displayField = 'purpose';
-	var $validate = array(
+	public $name = 'Resume';
+	public $displayField = 'purpose';
+	public $validate = array(
 		'purpose' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
@@ -17,11 +17,11 @@ class Resume extends AppModel {
 		),
 	);
 
-	var $belongsTo = array(
+	public $belongsTo = array(
 		'Account',
 	);
 	
-	var $hasMany = array(
+	public $hasMany = array(
 		'PostRelationship' => array(
 			'foreignKey' => 'foreign_key',
 			'conditions' => array('PostRelationship.foreign_model' => 'Resume'),
@@ -29,26 +29,42 @@ class Resume extends AppModel {
 		'ResumeItem',
 	);
 
-	var $hasAndBelongsToMany = array(
+	public $hasAndBelongsToMany = array(
 		'ResumeRecommendation',
 		'ResumeSchool',
 		'ResumeSkill',
 		'ResumeEmployer',
 	);
 	
-	var $actsAs = array(
+	public $actsAs = array(
 		'Log.Logable',
 		'Joinable.Joinable',
 	);
 	
-	public function scanLinkedin($data, $accountId = null) {
+	public function scanLinkedin($account) {
+		$this->Account->useDbConfig = 'linkedin';
+		$data = $this->Account->find('all', array(
+			'path' => 'people/~',
+			'fields' => array(
+				'first-name', 'last-name', 'summary', 'specialties', 'associations', 'honors', 'interests', 'twitter-accounts', 
+				'positions' => array('title', 'summary', 'start-date', 'end-date', 'is-current', 'company'), 
+				'educations', 
+				'certifications',
+				'skills' => array('id', 'skill', 'proficiency', 'years'), 
+				'recommendations-received',
+			),
+		));
+		if (!$data) {
+			return false;
+		}
+		
 		$date = array('day' => 1, 'month' => 1, 'year' => null);
 		foreach ($data['skills']['values'] as $i => $skill) {
 			$skills[$i]['uuid'] = $skill['id'];
 			$skills[$i]['name'] = $skill['skill']['name'];
 			$skills[$i]['years'] = $skill['years']['name'];
 			$skills[$i]['proficiency'] = $skill['proficiency']['name'];
-			$skills[$i]['account_id'] = $accountId;
+			$skills[$i]['account_id'] = $account['Account']['id'];
 		}
 		if (!empty($skills)) {
 			$this->ResumeSkill->saveAll($skills);
@@ -65,7 +81,7 @@ class Resume extends AppModel {
 				$employers[$i]['date_started'] = array_merge($date, $employer['startDate']);
 			if (isset($employer['endDate']))
 				$employers[$i]['date_ended'] = array_merge($date, $employer['endDate']);
-			$employers[$i]['account_id'] = $accountId;
+			$employers[$i]['account_id'] = $account['Account']['id'];
 		}
 		if (!empty($employers)) {
 			$this->ResumeEmployer->saveAll($employers);
@@ -82,7 +98,7 @@ class Resume extends AppModel {
 				$schools[$i]['date_started'] = array_merge($date, $school['startDate']);
 			if (isset($school['endDate']))
 				$schools[$i]['date_ended'] = array_merge($date, $school['endDate']);
-			$schools[$i]['account_id'] = $accountId;
+			$schools[$i]['account_id'] = $account['Account']['id'];
 		}
 		if (!empty($schools)) {
 			$this->ResumeSchool->saveAll($schools);
@@ -95,7 +111,7 @@ class Resume extends AppModel {
 			$recommendations[$i]['last_name'] = $recommendation['recommender']['lastName'];
 			$recommendations[$i]['recommendor_uuid'] = $recommendation['recommender']['id'];
 			$recommendations[$i]['text'] = $recommendation['recommendationText'];
-			$recommendations[$i]['account_id'] = $accountId;
+			$recommendations[$i]['account_id'] = $account['Account']['id'];
 		}
 		if (!empty($recommendations)) {
 			$this->ResumeRecommendation->saveAll($recommendations);
@@ -111,6 +127,8 @@ class Resume extends AppModel {
 		if (!empty($resume)) {
 			$this->save(array('Resume' => $resume));
 		}
+		
+		return $data;
 	}
 
 }

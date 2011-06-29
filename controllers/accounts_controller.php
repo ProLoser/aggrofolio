@@ -3,80 +3,54 @@ class AccountsController extends AppController {
 
 	var $name = 'Accounts';
 	var $components = array(
-		'Linkedin.Linkedin' => array(
-			'appKey' => '1KqQhz25v7ne60NEPWhdZjIE8ET3cEijT0m0RvgqKqKpFEZHXjwX14Vz-Hp5hMQ6',
-			'appSecret' => 'ldmVbU9wn08ea6l9_2EkBQKXnwbjLOf0EfKjptHzc0U-8ldBYE7J1TDIFEt9e9H4',
+		'Apis.Oauth' => array(			
+			'linkedin',
+			'codaset',
+			'github',
+			'flickr',
 		),
 	);
 	
-	function admin_linkedin($scan = false) {
-		$data = $this->Linkedin->profile(null, array(
-			'first-name', 'last-name', 'summary', 'specialties', 'associations', 'honors', 'interests', 'twitter-accounts', 
-			'positions' => array('title', 'summary', 'start-date', 'end-date', 'is-current', 'company'), 
-			'educations', 
-			'certifications',
-			'skills' => array('id', 'skill', 'proficiency', 'years'), 
-			'recommendations-received'
-		));
-		if (!$data) {
-			$this->Session->setFlash('There was an error: ' . $this->Linkedin->response['error']);
-		} elseif ($scan) {
-			$this->Account->Resume->scanLinkedin($data, $scan);
-			$this->Session->setFlash('Success!');
-		}
-		$this->redirect(array('action' => 'index'));
-		$this->set('profile', $data);
+	function admin_reset() {
+		$this->Session->delete('OAuth');
+		$this->Plate->flash('OAuth Session Reset');
 	}
 	
-	function admin_login($id = null) {
+	function admin_connect($id = null) {
 		if (!$id) {
-			$this->Session->setFlash(__('Invalid account', true));
+			$this->Session->setFlash(__('Invalid Account', true));
 			$this->redirect(array('action' => 'index'));
 		}
-		if ($this->Linkedin->login()) {
-			$this->Account->id = $id;
-			$this->Account->saveField('api_key', json_encode($this->Linkedin->response['linkedin']));
-			$this->Session->setFlash('You logged in');
-			$this->redirect(array('action' => 'linkedin', $id));
+		$type = $this->Account->field('type', array('Account.id' => $id));
+		if ($type == 'deviantart') {
+			$this->Plate->flash('Deviantart doesn\'t require authentication', array('action' => 'index'));
+		}
+		$this->Oauth->useDbConfig = $type;
+		$callback = array('action' => 'callback', $type);
+		if ($type == 'github') {
+			$key = $this->Session->read("OAuth.{$type}.oauth_consumer_key");
+			$callback = urlencode(Router::url($callback, true));
+			$this->redirect("https://github.com/login/oauth/authorize?client_id={$key}&redirect_uri={$callback}");
 		} else {
-			$this->Account->id = $id;
-			$this->Account->saveField('api_key', '');
-			$this->Session->setFlash('There was an error');
-			$this->redirect(array('action' => 'index'));
+			$this->Oauth->connect(array('action' => 'index'), $callback);
 		}
 	}
 	
-	function admin_logout() {
-		if ($this->Linkedin->logout()) {
-			$this->Session->setFlash('You logged out');
-		} else {
-			$this->Session->setFlash('There was an error');
-		}
-		$this->redirect(array('action' => 'index'));
-	}
-	
-	function admin_deviantart() {
-		
+	function admin_callback($useDbConfig = null) {
+		$this->Oauth->useDbConfig = $useDbConfig;
+		$this->Oauth->callback(array('action' => 'index'));
 	}
 	
 	function admin_scan($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid type', true));
-			$this->redirect(array('action' => 'index'));
-		}
-		$account = $this->Account->read(null, $id);
-		if (empty($account)) {
-			$this->Session->setFlash(__('Invalid account', true));
-			$this->redirect(array('action' => 'index'));
-		}
-		if ($this->Account->Project->scan($account)) {
-			$this->Session->setFlash(__('The projects have been saved', true));
+		} elseif ($this->Account->scan($id)) {
+			$this->Session->setFlash(__('The account has been scanned', true));
 		} else {
-			$this->Session->setFlash(__('There was an error saving the projects', true));
+			$this->Session->setFlash(__('There was an error scanning the account. Try logging in again.', true));
 		}
 		$this->redirect(array('action' => 'index'));
 	}
-	
 
 	function admin_index() {
 		$this->Account->recursive = 0;
@@ -98,7 +72,7 @@ class AccountsController extends AppController {
 			$this->Account->create();
 			if ($this->Account->save($this->data)) {
 				$this->Session->setFlash(__('The account has been saved', true));
-				$this->redirect(array('action' => 'login', $this->Account->id));
+				$this->redirect(array('action' => 'connect', $this->Account->id));
 			} else {
 				$this->Session->setFlash(__('The account could not be saved. Please, try again.', true));
 			}

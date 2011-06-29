@@ -39,16 +39,6 @@ class Album extends AppModel {
 		'Log.Logable',
 	);
 	
-	public function scan($accountId) {
-		$account = $this->Account->read(null, $accountId);
-		$account['Account']['username'] = strtolower($account['Account']['username']);
-		if ($account['Account']['type'] == 'deviantart') {
-			$this->scanDeviantart($account);
-		} elseif ($account['Account']['type'] == 'flickr') {
-			return $this->scanFlickr($account);
-		}
-	}
-	
 	public function scanDeviantart($account) {
 		$page = sprintf('http://%s.deviantart.com/gallery/', $account['Account']['username']);
 		$link = array('tag' => 'a', 'class' => 'tv150-cover');
@@ -68,6 +58,7 @@ class Album extends AppModel {
 		}
 		if (is_array($links) && is_array($titles) && !empty($links) && !empty($titles)) {
 			$folders = array_combine($links, $titles);
+			$count = 0;
 			foreach ($folders as $uuid => $name) {
 				$data['Album'] = array(
 					'uuid' => $uuid,
@@ -77,7 +68,11 @@ class Album extends AppModel {
 				);
 				$this->create();
 				$this->save($data);
+				$count++;
 			}
+			return $count;
+		} else {
+			return false;
 		}
 	}
 	

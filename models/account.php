@@ -8,9 +8,6 @@ class Account extends AppModel {
 				'rule' => array('notempty'),
 				'message' => 'Please enter a valid username',
 				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
 		'type' => array(
@@ -28,6 +25,7 @@ class Account extends AppModel {
 		'ResumeSchool',
 		'ResumeRecommendation',
 		'ResumeSkill',
+		'Album',
 	);
 	
 	var $types = array(
@@ -35,14 +33,43 @@ class Account extends AppModel {
 		'codaset'		=> 'Codaset',
 		'linkedin'		=> 'LinkedIn',
 		'deviantart'	=> 'DeviantArt',
+		'flickr'		=> 'Flickr',
 		'goodreads'		=> 'GoodReads',
 		'twitter'		=> 'Twitter',
 		'lastfm'		=> 'LastFm',
 		'grooveshark'	=> 'Grooveshark',
 		'pandora'		=> 'Pandora',
 		'facebook'		=> 'Facebook',
-		'flickr'		=> 'Flickr',
 		'xmarks'		=> 'XMarks',
+		'behance'		=> 'Behance',
+		'photobucket'	=> 'Photobucket',
 	);
+	
+	/**
+	 * Delegates scanning of content for the specific account
+	 *
+	 * @param string $id 
+	 * @return boolean $success
+	 */
+	function scan($id) {
+		$account = $this->read(null, $id);
+		switch ($account['Account']['type']) {
+			case 'linkedin':
+				return $this->Resume->scanLinkedin($account);
+			break;
+			case 'github':
+				return $this->Project->scanGithub($account);
+			break;
+			case 'codaset':
+				return $this->Project->scanCodaset($account);
+			break;
+			case 'flickr':
+				return $this->Album->scanFlickr($account);
+			break;
+			case 'deviantart':
+				$account['Account']['username'] = strtolower($account['Account']['username']);
+				return $this->Album->scanDeviantart($account);
+		}
+	}
 }
 ?>

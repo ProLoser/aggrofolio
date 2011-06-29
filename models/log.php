@@ -44,7 +44,7 @@ class Log extends AppModel {
 				'conditions' => array('Log.id = Ids.id'),
 			);
 			$query['conditions'] = array(
-				'Log.model' => array('Album', 'Post', 'Project'),
+				'Log.model' => array('Album', 'Post', 'Project', 'Resume'),
 			);
 			if (isset($this->belongsTo['User']))
 				$query['contain'][] = 'User';

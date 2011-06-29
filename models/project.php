@@ -88,25 +88,18 @@ class Project extends AppModel {
 		return $project;
 	}
 	
-/**
- * Delegates scanning to respective account type
- *
- * @param string $account 
- * @return void
- */
-	function scan($account) {
-		return $this->{'scan' . Inflector::classify($account['Account']['type'])}($account);
-	}
-	
 	function scanGithub($account) {
 		$default = $this->useDbConfig;
 		$this->useDbConfig = 'github';
 		$projects = $this->find('all', array(
-			'conditions' => array('owner' => $account['Account']['username']), 
+			'conditions' => array('user' => $account['Account']['username']), 
 			'fields' => 'repos'
 		));
+		if (empty($projects)) {
+			return false;
+		}
 		$this->useDbConfig = $default;
-		$i = 0;
+		$count = 0;
 		foreach ($projects['repositories'] as $project) {
 			$this->create();
 			$this->save(array('Project' => array(
@@ -116,9 +109,9 @@ class Project extends AppModel {
 				'description' => $project['description'],
 				'owner' => $project['owner'],
 			)));
-			$i++;
+			$count++;
 		}
-		return $i;
+		return $count;
 	}
 	
 	function scanCodaset($account) {
