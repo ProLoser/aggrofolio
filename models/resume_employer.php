@@ -34,9 +34,5 @@ class ResumeEmployer extends AppModel {
 	var $hasAndBelongsToMany = array(
 		'Resume',
 	);
-	
-	var $actsAs = array(
-		'Log.Logable',
-	);
 }
 ?>

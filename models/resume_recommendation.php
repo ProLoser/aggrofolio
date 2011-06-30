@@ -46,9 +46,5 @@ class ResumeRecommendation extends AppModel {
 		'Resume',
 	);
 
-	var $actsAs = array(
-		'Log.Logable',
-	);
-
 }
 ?>

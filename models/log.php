@@ -33,7 +33,7 @@ class Log extends AppModel {
 				),
 				'Post', 
 				'Project' => array(
-					'MediaItem' => array('limit' => 4)
+					'MediaItem',
 				),
 			);
 			// Used to retain the last item in the group
