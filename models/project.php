@@ -92,7 +92,6 @@ class Project extends AppModel {
 		$default = $this->useDbConfig;
 		$this->useDbConfig = 'github';
 		$projects = $this->find('all', array(
-			'conditions' => array('user' => $account['Account']['username']), 
 			'fields' => 'repos'
 		));
 		if (empty($projects)) {
@@ -100,14 +99,14 @@ class Project extends AppModel {
 		}
 		$this->useDbConfig = $default;
 		$count = 0;
-		foreach ($projects['repositories'] as $project) {
+		foreach ($projects as $project) {
 			$this->create();
 			$this->save(array('Project' => array(
 				'cvs_url' => $project['url'],
 				'account_id' => $account['Account']['id'],
 				'name' => $project['name'],
 				'description' => $project['description'],
-				'owner' => $project['owner'],
+				'owner' => $project['owner']['login'],
 			)));
 			$count++;
 		}

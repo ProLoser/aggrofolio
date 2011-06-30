@@ -42,8 +42,8 @@ class Resume extends AppModel {
 	);
 	
 	public function scanLinkedin($account) {
-		$this->Account->useDbConfig = 'linkedin';
-		$data = $this->Account->find('all', array(
+		$this->useDbConfig = 'linkedin';
+		$data = $this->find('all', array(
 			'path' => 'people/~',
 			'fields' => array(
 				'first-name', 'last-name', 'summary', 'specialties', 'associations', 'honors', 'interests', 'twitter-accounts', 
@@ -54,6 +54,8 @@ class Resume extends AppModel {
 				'recommendations-received',
 			),
 		));
+		$this->useDbConfig = 'default';
+		
 		if (!$data) {
 			return false;
 		}
