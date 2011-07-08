@@ -47,7 +47,7 @@ $(document).ready(function(){
 		});
 	});
 	
-	$('#mainNav a:not(.freset, .resume, .contact), #filters a:not(.freset)').click(function(){
+	$('#mainNav li:not(.freset, .resume, .contact) a, #filters a:not(.freset)').click(function(){
 		selector = '.' + $(this).attr('id');
 		$(selector).show().removeClass('faded', 1000).siblings(':not(' + selector + ')').addClass('faded', 1000, function(){
 			$(this).hide();
