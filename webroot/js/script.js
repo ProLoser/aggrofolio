@@ -47,38 +47,23 @@ $(document).ready(function(){
 		});
 	});
 	
-	$('#filters a:not(.freset)').click(function(){
+	$('#mainNav a:not(.freset, .resume, .contact), #filters a:not(.freset)').click(function(){
 		selector = '.' + $(this).attr('id');
 		$(selector).show().removeClass('faded', 1000).siblings(':not(' + selector + ')').addClass('faded', 1000, function(){
 			$(this).hide();
 		});
 		$(this).addClass('current').siblings().removeClass('current');
 		return false;
+	}).hover(function(){
+		selector = '.' + $(this).attr('id');
+		$(selector).siblings(':not(' + selector + ')').stop(true, true).animate({opacity: .4});
+	}, function(){
+		selector = '.' + $(this).attr('id');
+		$(selector).siblings(':not(' + selector + ')').stop(true, true).animate({opacity: 1});
 	});
-	$('#filters a.freset').click(function(){
+	$('#mainNav a.freset, #filters a.freset').click(function(){
 		$('.log > li').show().removeClass('faded', 1000);
 		$(this).addClass('current').siblings().removeClass('current');
 		return false;
 	});
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

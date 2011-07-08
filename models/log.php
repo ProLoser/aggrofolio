@@ -17,6 +17,9 @@ class Log extends AppModel {
 		'Project' => array(
 			'foreignKey' => 'model_id',
 		),
+		'Resume' => array(
+			'foreignKey' => 'model_id',
+		),
 	);
 	
 	var $actions = array(
@@ -27,6 +30,11 @@ class Log extends AppModel {
 
 	function _findDashboard($state, $query, $results = array()) {
 		if ($state == 'before') {
+			$query['conditions'] = array(
+				'(SELECT count(*) FROM logs AS l2 WHERE l2.model = Log.model AND l2.model_id = Log.model_id AND l2.action = \'delete\') = 0',
+				'(SELECT count(*) FROM logs AS l3 WHERE l3.model = Log.model AND l3.model_id = Log.model_id AND l3.created > Log.created) = 0',
+				'Log.model' => array('Album', 'Post', 'Project', 'Resume'),
+			);
 			$query['contain'] = array(
 				'Album' => array(
 					'MediaItem',
@@ -35,21 +43,20 @@ class Log extends AppModel {
 				'Project' => array(
 					'MediaItem',
 				),
+				'Resume',
 			);
-			// Used to retain the last item in the group
-			$query['joins'][] = array(
-				'table' => '(SELECT MAX(id) AS id FROM logs GROUP BY model, model_id)',
-				'alias' => 'Ids',
-				'type' => 'INNER',
-				'conditions' => array('Log.id = Ids.id'),
-			);
-			$query['conditions'] = array(
-				'Log.model' => array('Album', 'Post', 'Project', 'Resume'),
-			);
-			if (isset($this->belongsTo['User']))
+			if (isset($this->belongsTo['User'])) {
 				$query['contain'][] = 'User';
+			}
+			
+			if (!empty($query['operation'])) {
+				return $this->_findCount($state, $query, $results);
+			}
 			return $query;
 		} elseif ($state == 'after') {
+			if (!empty($query['operation'])) {
+				return $this->_findCount($state, $query, $results);
+			}
 			return $results;
 		}
 	}

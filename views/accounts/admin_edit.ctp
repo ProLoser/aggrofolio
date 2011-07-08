@@ -9,6 +9,7 @@
 		echo $this->Form->input('password');
 		echo $this->Form->input('api_key');
 		echo $this->Form->input('type');
+		echo $this->Form->input('published');
 	?>
 	</fieldset>
 	<footer>

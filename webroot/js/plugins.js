@@ -49,6 +49,13 @@ $(document).ready(function(){
 		'speedIn'		:	400, 
 		'speedOut'		:	200
 	});
+	
+	$('#mainNav .contact a').fancybox({
+		'transitionIn'	:	'elastic',
+		'transitionOut'	:	'elastic',
+		'speedIn'		:	400, 
+		'speedOut'		:	200
+	});
 	$('#categories a').qtip({
 		style: 'ui-tooltip-dark ui-tooltip-rounded',
 		position: {

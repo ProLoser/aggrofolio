@@ -52,7 +52,7 @@ class Post extends AppModel {
 			$this->data['Post']['slug'] = Inflector::slug($this->data['Post']['subject']);
 		return true;
 	}
-	
+
 	public function beforeSave() {
 		if (!empty($this->data['PostRelationship'])) {
 			foreach ($this->data['PostRelationship'] as $i => $relationship) {
@@ -61,9 +61,13 @@ class Post extends AppModel {
 				} else {
 					$model = $relationship['foreign_model'];
 					$key = $relationship['foreign_key'];
-					$related = $this->{$model}->find('first', array('conditions' => array("$model.id" => $key)));
-					$this->data['PostRelationship'][$i]['title'] = ($model == 'Resume') ? $related[$model]['purpose'] : $related[$model]['name'];
-					$this->data['PostRelationship'][$i]['url'] = Router::url(array('controller' => Inflector::tabelize($model), 'action' => 'view', $key));
+					$related = $this->PostRelationship->{$model}->find('first', array('conditions' => array("{$model}.id" => $key)));
+					if ($model == 'Resume') {
+						$this->data['PostRelationship'][$i]['title'] = $related[$model]['purpose'];
+					} else {
+						$this->data['PostRelationship'][$i]['title'] = $related[$model]['name'];
+					}
+					$this->data['PostRelationship'][$i]['url'] = Router::url(array('controller' => Inflector::tableize($model), 'action' => 'view', $key));
 				}
 			}
 		}

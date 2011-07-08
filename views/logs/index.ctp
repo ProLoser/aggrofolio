@@ -1,71 +1,15 @@
-<style>
-.faded {
-	opacity: 0;
-	height: 0;
-}
-ul.log {
-	list-style: none;
-	margin: 0;
-}
-ul.log > li {
-	margin: 0;
-}
-.posts article {
-	margin: 20px 0 10px;
-}
-.type-Project {
-	overflow: hidden;
-	margin: 0;
-}
-.type-Album section, .type-Project section {
-	overflow: auto;
-	margin: -10px -40px 0 -38px;
-}
-.type-Project section {
-	margin: 0;
-}
-.type-Album ul, .type-Project ul {
-	padding: 0 40px;
-	white-space: nowrap;
-	margin: 0;
-}
-.type-Project ul {
-	padding: 0;
-}
-.type-Album li, .type-Project li {
-	padding: 0;
-	margin: 0 2px;
-	display: inline-block;
-}
-.type-MediaItem section {
-	margin-top: -10px;
-}
-.type-Album header time {
-	margin-top: -42px;
-}
-.type-Album li a img, .type-MediaItem a img, .type-Project li a img {
-	border: 3px solid #000;
-	padding: 5px;
-	background: #fff;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-     -moz-box-shadow: 0px 0px 5px rgba(0,0,0,.5);
-  -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.5);
-          box-shadow: 0px 0px 5px rgba(0,0,0,.5);
-	height: 176px;
-}
-article.half section {
-	float: right;
-	margin: -20px 0 0 5px;
-}
-</style>
+<?php echo $this->Html->css('logs', null, array('inline' => false)); ?>
 <header>
 	<h2 class="log"><?php __('Activity Feed'); ?></h2>
-	<p id="filters" class="sorting">
-		<span>Filter:</span>
-		<?php echo $this->Html->link('Blogs Posts', array('controller' => 'posts', 'action' => 'index'), array('id' => 'type-Post')); ?><?php echo $this->Html->link('Gallery', array('controller' => 'albums', 'action' => 'index'), array('id' => 'type-Album')); ?><?php echo $this->Html->link('Projects', array('controller' => 'projects', 'action' => 'index'), array('id' => 'type-Project')); ?><a href="#" class="freset current">Show All</a>
-	</p>
+	<?php if (isset($paginate)): ?>
+		<p class="paging">
+			<?php echo $this->Paginator->prev();?><?php echo $this->Paginator->numbers(array('separator'=>''));?><?php echo $this->Paginator->next();?>
+		</p>
+		<p class="sorting">
+			<span>Sort by:</span>
+			<?php echo $this->Paginator->sort('created');?><?php echo $this->Paginator->sort('name');?><?php echo $this->Paginator->sort('Section', 'model');?>
+		</p>
+	<?php endif; ?>
 </header>
 <ul class="log posts">
 <?php foreach ($logs as $log) : ?>
@@ -107,7 +51,7 @@ article.half section {
 				Album <?php echo $actions[$log['Log']['action']]?>
 				<?php echo $this->Html->link('»', array('controller' => 'media_items', 'action' => 'album', $log['Album']['id'])); ?>
 			</h3>
-			<time><?php echo $actions[$log['Log']['action']] . ' ' . $this->Time->nice($log['Post']['created']); ?></time>
+			<time><?php echo $actions[$log['Log']['action']] . ' ' . $this->Time->nice($log['Log']['created']); ?></time>
 		</header>
 		<section>
 			<ul class="media">
@@ -124,6 +68,14 @@ article.half section {
 			<?php endforeach ?>
 			</ul>
 		</section>
+	<?php endif; break; case 'Resume': if ($log['Resume']['published']):?>
+		<article>
+			<header>
+				<h1><?php echo $this->Html->link($log['Resume']['purpose'] . ' Resume', array('controller' => 'resumes', 'action' => 'view', $log['Log']['model_id'])); ?></h1>
+				<time><?php echo $actions[$log['Log']['action']] . ' ' . $this->Time->nice($log['Log']['created']); ?></time>
+			</header>	
+			<p><?php echo $log['Resume']['summary']; ?></p>
+		</article>
 	<?php endif; break; case 'Project': if ($log['Project']['published']):?>
 		<article<?php if (count($log['Project']['MediaItem']) === 1) echo ' class="half"'?>>
 			<?php if (!empty($log['Project']['MediaItem'])): ?>
@@ -147,8 +99,8 @@ article.half section {
 			<?php endif; ?>
 			<?php if (!empty($items) && count($log['Project']['MediaItem']) == 1) echo $items ?>
 			<header>
-				<h1><?php echo $this->Html->link($log['Project']['name'], array('controller' => 'projects', 'action' => 'view', $log['Project']['id'], Inflector::slug($log['Project']['name']))); ?></h1>
-				<time><?php echo $actions[$log['Log']['action']] . ' ' . $this->Time->nice($log['Project']['created']); ?></time>
+				<h1><?php echo $this->Html->link($log['Project']['name'], array('controller' => 'projects', 'action' => 'view', $log['Log']['model_id'], Inflector::slug($log['Project']['name']))); ?></h1>
+				<time><?php echo $actions[$log['Log']['action']] . ' ' . $this->Time->nice($log['Log']['created']); ?></time>
 			</header>	
 			<?php echo $log['Project']['description']; ?>
 			<?php if (!empty($items) && count($log['Project']['MediaItem']) > 1) echo $items ?>

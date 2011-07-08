@@ -13,12 +13,12 @@
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          http://cakephp.org CakePHP(tm) Project
- * @package       cake
- * @subpackage    cake.app
- * @since         CakePHP(tm) v 0.2.9
- * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
+ * @copyright	  Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @link		  http://cakephp.org CakePHP(tm) Project
+ * @package		  cake
+ * @subpackage	  cake.app
+ * @since		  CakePHP(tm) v 0.2.9
+ * @license		  MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
 /**
@@ -27,8 +27,8 @@
  * Add your application-wide methods in the class below, your models
  * will inherit them.
  *
- * @package       cake
- * @subpackage    cake.app
+ * @package		  cake
+ * @subpackage	  cake.app
  */
 App::import('Lib', 'LazyModel.LazyModel');
 class AppModel extends LazyModel {
@@ -68,5 +68,50 @@ class AppModel extends LazyModel {
 				$this->data[$this->alias][$alias] = $this->data[$alias][$alias]; 
 			} 
 		} 
+	}
+	
+	/**
+	 * Custom Model::paginateCount() method to support custom model find pagination
+	 *
+	 * @param array $conditions
+	 * @param int $recursive
+	 * @param array $extra
+	 * @return array
+	 */
+	function paginateCount($conditions = array(), $recursive = 0, $extra = array()) {
+		$parameters = compact('conditions');
+
+		if ($recursive != $this->recursive) {
+			$parameters['recursive'] = $recursive;
+		}
+
+		if (isset($extra['type'])) {
+			$extra['operation'] = 'count';
+			return $this->find($extra['type'], array_merge($parameters, $extra));
+		} else {
+			return $this->find('count', array_merge($parameters, $extra));
+		}
+	}
+
+	/**
+	 * Removes 'fields' key from count query on custom finds when it is an array,
+	 * as it will completely break the Model::_findCount() call
+	 *
+	 * @param string $state Either "before" or "after"
+	 * @param array $query
+	 * @param array $data
+	 * @return int The number of records found, or false
+	 * @access protected
+	 * @see Model::find()
+	 */
+	function _findCount($state, $query, $results = array()) {
+		if ($state == 'before' && isset($query['operation'])) {
+			if (!empty($query['fields']) && is_array($query['fields'])) {
+				if (!preg_match('/^count/i', $query['fields'][0])) {
+					unset($query['fields']);
+				}
+			}
+		}
+		return parent::_findCount($state, $query, $results);
 	}
 }
