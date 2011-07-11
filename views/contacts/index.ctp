@@ -2,10 +2,8 @@
 	<h2 class="contact"><?php __('Contact Me'); ?></h2>
 </header>
 <div class="contacts form">
-	<h3>By Phone</h3>
-	<p><strong>#</strong> (714) 900-2254</p>
+	<p><strong>Phone #</strong> (714) 900-2254</p>
 	
-	<h3>By Email</h3>
 <?php echo $this->Form->create('Contact');?>
 
 <?php $this->Html->scriptStart(array('inline' => false))?>
