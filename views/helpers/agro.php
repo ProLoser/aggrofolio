@@ -48,27 +48,27 @@ class AgroHelper extends AppHelper {
 		),
 		'lastfm' => array(
 			'name' =>'LastFm',
-			'url' => 'https://github.com/:name',
+			'url' => 'http://www.last.fm/user/:name',
 		),
 		'grooveshark' => array(
 			'name' =>'Grooveshark',
-			'url' => 'https://github.com/:name',
+			'url' => 'http://grooveshark.com/#/:name',
 		),
 		'pandora' => array(
 			'name' =>'Pandora',
-			'url' => 'https://github.com/:name',
+			'url' => 'https://pandora.com/:name',
 		),
 		'facebook' => array(
 			'name' =>'Facebook',
-			'url' => 'https://github.com/:name',
+			'url' => 'https://facebook.com/:name',
 		),
 		'flickr' => array(
 			'name' =>'Flickr',
-			'url' => 'https://github.com/:name',
+			'url' => 'http://www.flickr.com/photos/:name',
 		),
 		'xmarks' => array(
 			'name' =>'XMarks',
-			'url' => 'https://github.com/:name',
+			'url' => 'https://xmarks.com/:name',
 		),
 	);
 
