@@ -15,7 +15,7 @@ class Project extends AppModel {
 			'allowEmpty' => true,
 		),
 	);
-
+	var $_findMethods = array('full' => true);
 	var $belongsTo = array(
 		'Account',
 		'ProjectCategory',
@@ -36,56 +36,92 @@ class Project extends AppModel {
 		'Log.Logable',
 	);
 	
-	function full($id) {
-		$project = $this->find('first', array(
-			'conditions' => array('Project.id' => $id),
-			'contain' => array(
+	/**
+	 * Retrieves a display-oriented record of a project full with api information
+	 *
+	 * @param string $state 
+	 * @param string $query 
+	 * @param string $results 
+	 * @return array $query | $results
+	 * @author Dean Sofer
+	 */
+	function _findFull($state, $query, $results = array()) {
+	    if ($state == 'before') {
+			if (isset($query['id'])) {
+				$query['conditions']['Project.id'] = $query['id'];
+				unset($query['id']);
+			}
+			$query['limit'] = 1;
+			$query['contain'] = array(
 				'Account',
 				'ProjectCategory',
 				'ResumeEmployer' => array('name'),
 				'ResumeSchool' => array('name'),
 				'MediaItem',
 				'PostRelationship' => 'Post',
-			),
-		));
-		$default = $this->useDbConfig;
-		$name = array_pop(explode('/', $project['Project']['cvs_url']));
-		if ($project['Account']['type'] == 'github') {
-			$this->useDbConfig = 'github';
-			$commits = $this->find('all', array(
-				'conditions' => array(
-					'owner' => $project['Project']['owner'],
-					'repo' => $name,
-					'branch' => 'master',
-				),
-				'fields' => 'commits'
-			));
-			$data = $this->find('all', array(
-				'conditions' => array(
-					'owner' => $project['Project']['owner'], 
-					'repo' => $name,
-				),
-				'fields' => 'repos'
-			));
-			$project = array_merge((array)$project, (array)$data, (array)$commits);
-		} elseif ($project['Account']['type'] == 'codaset') {
-			$this->useDbConfig = 'codaset';
-			$project['codaset'] = $this->find('all', array(
-				'conditions' => array(
-					'username' => $project['Project']['owner'], 
-					'project' => $name,
-				),
-			));
-			$project['blog'] = $this->find('all', array(
-				'conditions' => array(
-					'username' => $project['Project']['owner'], 
-					'project' => $name,
-				),
-				'fields' => 'blog'
-			));
+			);
+	        return $query;
+	    } elseif ($state == 'after') {
+			if (empty($results)) {
+				return $results;
+			} else {
+				$results = $results[0];
+			}
+			$default = $this->useDbConfig;
+			$name = array_pop(explode('/', $results['Project']['cvs_url']));
+			if ($results['Account']['type'] == 'github') {
+				$this->useDbConfig = 'github';
+				$results['commits'] = $this->find('all', array(
+					'conditions' => array(
+						'user' => $results['Project']['owner'],
+						'repo' => $name,
+						'branch' => 'master',
+					),
+					'fields' => 'commits'
+				));
+				$results['github'] = $this->find('all', array(
+					'conditions' => array(
+						'user' => $results['Project']['owner'], 
+						'repo' => $name,
+					),
+					'fields' => 'repos'
+				));
+			} elseif ($results['Account']['type'] == 'codaset') {
+				$this->useDbConfig = 'codaset';
+				$results['codaset'] = $this->find('all', array(
+					'conditions' => array(
+						'username' => $results['Project']['owner'], 
+						'project' => $name,
+					),
+				));
+				$results['blog'] = $this->find('all', array(
+					'conditions' => array(
+						'username' => $results['Project']['owner'], 
+						'project' => $name,
+					),
+					'fields' => 'blog'
+				));
+			}
+			$this->useDbConfig = $default;
+	        return $results;
+	    }
+	}
+	
+	/**
+	 * Convenience wrapper for full find type
+	 *
+	 * @param string $id 
+	 * @param string $cache 
+	 * @return void
+	 * @author Dean Sofer
+	 */
+	function full($id, $cache = true) {
+		if ($cache) {
+			$data = $this->cache('full', array('id' => $id));
+		} else {
+			$data = $this->find('full', array('id' => $id));
 		}
-		$this->useDbConfig = $default;
-		return $project;
+		return $data;
 	}
 	
 	function scanGithub($account) {
@@ -102,7 +138,7 @@ class Project extends AppModel {
 		foreach ($projects as $project) {
 			$this->create();
 			$this->save(array('Project' => array(
-				'cvs_url' => $project['url'],
+				'cvs_url' => $project['html_url'],
 				'account_id' => $account['Account']['id'],
 				'name' => $project['name'],
 				'description' => $project['description'],

@@ -19,14 +19,14 @@
 <?php if (!empty($project['Project']['url'])): ?>
 	<li class="url"><?php echo $this->Html->link($project['Project']['url'], $project['Project']['url'])?></li>
 <?php endif; ?>
-<?php if (!empty($project['repository']['has_downloads'])): ?>
+<?php if (!empty($project['github']['has_downloads'])): ?>
 	<li class="downloads"><?php echo $this->Html->link(__('Downloads', true), $project['Project']['cvs_url'] . '/downloads'); ?> </li>
 <?php endif ?>
-<?php if (!empty($project['repository']['has_wiki'])): ?>
+<?php if (!empty($project['github']['has_wiki'])): ?>
 	<li class="wiki"><?php echo $this->Html->link(__('Wiki', true), $project['Project']['cvs_url'] . '/wiki'); ?> </li>
 <?php endif ?>
-<?php if (!empty($project['repository']['has_issues'])): ?>
-	<li class="bugs"><?php echo $this->Html->link('Open Bugs: '.$project['repository']['open_issues'], $project['Project']['cvs_url'] . '/issues'); ?> </li>
+<?php if (!empty($project['github']['has_issues'])): ?>
+	<li class="bugs"><?php echo $this->Html->link('Open Bugs: '.$project['github']['open_issues'], $project['Project']['cvs_url'] . '/issues'); ?> </li>
 <?php endif ?>
 <?php if (!empty($project['ProjectCategory']['name'])): ?>
 	<li class="category"><?php echo $this->Html->link($project['ProjectCategory']['name'], array('controller' => 'projects', 'action' => 'index', 'category' => $project['ProjectCategory']['id']), array('title' => 'Category')); ?></li>		  	 
@@ -38,10 +38,10 @@
 	<li class="organization"><p title="Organization"><?php echo $project['ResumeSchool']['name']?></p></li>
 <?php endif; ?>
 	
-<?php if (!empty($project['repository'])): ?>
-	<li class="followers"><?php echo $this->Html->link('Followers: ' . $project['repository']['watchers'], $project['Project']['cvs_url'] . '/watchers'); ?></li>
-	<li class="forks"><?php echo $this->Html->link('Collaborators: ' . $project['repository']['forks'], $project['Project']['cvs_url'] . '/network'); ?></li>
-	<li class="updated"><p>Last Update: <?php echo $project['repository']['pushed_at']; ?></p></li>
+<?php if (!empty($project['github'])): ?>
+	<li class="followers"><?php echo $this->Html->link('Followers: ' . $project['github']['watchers'], $project['Project']['cvs_url'] . '/watchers'); ?></li>
+	<li class="forks"><?php echo $this->Html->link('Collaborators: ' . $project['github']['forks'], $project['Project']['cvs_url'] . '/network'); ?></li>
+	<li class="updated"><p>Last Update: <?php echo $project['github']['pushed_at']; ?></p></li>
 <?php endif ?>
 
 <?php if (!empty($project['codaset'])): ?>
@@ -84,16 +84,16 @@
 		<?php endforeach ?>
 	</section>
 	<?php endif ?>
-	<?php if (!empty($project['repository'])): ?>
+	<?php if (!empty($project['github'])): ?>
 	<section id="commits">
 		<h2>Recent Updates</h2>
 		<ul>
 		<?php foreach ($project['commits'] as $i => $commit): ?>
 			<li>
-				<h4><?php echo $this->Html->link($commit['message'], 'https://github.com' . $commit['url'], array('title' => 'Hash: ' . $commit['id']))?></h4>
+				<h4><?php echo $this->Html->link($commit['commit']['message'], str_replace(array('api.github.com/repos/', 'commits'), array('github.com/', 'commit'), $commit['url']), array('title' => 'Hash: ' . $commit['sha']))?></h4>
 				<p>
-					By <?php echo (empty($commit['author']['login'])) ? $commit['author']['name'] : $this->Html->link($commit['author']['name'], 'https://github.com/' . $commit['author']['login']);?>
-					<?php echo $this->Time->timeAgoInWords($commit['authored_date']);?>
+					By <?php echo (empty($commit['author']['login'])) ? $commit['commit']['author']['name'] : $this->Html->link($commit['commit']['author']['name'], 'https://github.com/' . $commit['author']['login']);?>
+					<?php echo $this->Time->timeAgoInWords($commit['commit']['author']['date']);?>
 				</p>
 			</li>
 		<?php endforeach ?>

@@ -3,6 +3,12 @@ class ProjectsController extends AppController {
 
 	var $name = 'Projects';
 	var $helpers = array('Time');
+	var $components = array(
+		'Apis.Oauth' => array(	
+			'codaset',
+			'github',
+		),
+	);
 	
 	function index() {
 		$this->paginate['limit'] = 12;
