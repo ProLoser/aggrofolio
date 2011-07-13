@@ -54,12 +54,6 @@ $(document).ready(function(){
 		});
 		$(this).addClass('current').siblings().removeClass('current');
 		return false;
-	}).hover(function(){
-		selector = '.' + $(this).attr('id');
-		$(selector).siblings(':not(' + selector + ')').stop(true, true).animate({opacity: .4});
-	}, function(){
-		selector = '.' + $(this).attr('id');
-		$(selector).siblings(':not(' + selector + ')').stop(true, true).animate({opacity: 1});
 	});
 	$('#mainNav a.freset, #filters a.freset').click(function(){
 		$('.log > li').show().removeClass('faded', 1000);
