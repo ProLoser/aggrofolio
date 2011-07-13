@@ -62,6 +62,7 @@ class AppController extends Controller {
 			'logoutRedirect' => array('action' => 'login'),
 			'loginRedirect' => '/',
 		),/**/
+		'AutoLogin.AutoLogin',
 	);
 	var $view = 'BakingPlate.ThemedAutoHelper';
 	var $attributesForLayout = array(

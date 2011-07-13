@@ -79,3 +79,6 @@
 [submodule "plugins/http_socket_oauth"]
 	path = plugins/http_socket_oauth
 	url = git://github.com/ProLoser/http_socket_oauth.git
+[submodule "plugins/auto_login"]
+	path = plugins/auto_login
+	url = git://github.com/milesj/cake-auto_login.git
