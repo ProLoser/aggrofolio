@@ -44,7 +44,7 @@
 			);
 		?>
 		</section>
-	<?php endif; break; case 'Album': if ($log['Album']['published']):?>
+	<?php endif; break; case 'Album': if ($log['Album']['published'] && !empty($log['Album']['MediaItem'])):?>
 		<header>
 			<h3>
 				<?php echo $log['Album']['name']?>
