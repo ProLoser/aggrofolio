@@ -101,8 +101,16 @@
 			<header>
 				<h1><?php echo $this->Html->link($log['Project']['name'], array('controller' => 'projects', 'action' => 'view', $log['Log']['model_id'], Inflector::slug($log['Project']['name']))); ?></h1>
 				<time><?php echo $actions[$log['Log']['action']] . ' ' . $this->Time->nice($log['Log']['created']); ?></time>
-			</header>	
-			<?php echo $log['Project']['description']; ?>
+			</header>
+			<?php
+				$pos = strpos($log['Project']['description'], '<hr>');
+				if ($pos === false) {
+					echo $log['Project']['description'];
+				} else {
+					echo substr($log['Project']['description'], 0, $pos);
+					echo $this->Html->tag('footer', $this->Html->link('Read More...', array('controller' => 'posts', 'action' => 'view', $log['Post']['id'], $log['Post']['slug']), array('class' => 'readon')));
+				}
+			?>
 			<?php if (!empty($items) && count($log['Project']['MediaItem']) > 1) echo $items ?>
 		</article>
 	<?php endif; endswitch; ?>
