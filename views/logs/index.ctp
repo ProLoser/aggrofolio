@@ -1,4 +1,5 @@
-<?php echo $this->Html->css('logs', null, array('inline' => false)); ?>
+<?php echo $this->Html->css(array('logs', '/js/mylibs/jscrollpane/jquery.jscrollpane'), null, array('inline' => false)); ?>
+<?php echo $this->Html->script(array('mylibs/jscrollpane/mwheelIntent', 'mylibs/jscrollpane/jquery.jscrollpane.min', 'logs'), array('inline' => false)); ?>
 <header>
 	<h2 class="log"><?php __('Activity Feed'); ?></h2>
 	<?php if (isset($paginate)): ?>

@@ -47,7 +47,7 @@ $(document).ready(function(){
 		});
 	});
 	
-	$('#mainNav li:not(.freset, .resume, .contact) a, #filters a:not(.freset)').click(function(){
+	$('#filters a:not(.freset)').click(function(){
 		selector = '.' + $(this).attr('id');
 		$(selector).show().removeClass('faded', 1000).siblings(':not(' + selector + ')').addClass('faded', 1000, function(){
 			$(this).hide();
@@ -55,7 +55,7 @@ $(document).ready(function(){
 		$(this).addClass('current').siblings().removeClass('current');
 		return false;
 	});
-	$('#mainNav a.freset, #filters a.freset').click(function(){
+	$('#filters a.freset').click(function(){
 		$('.log > li').show().removeClass('faded', 1000);
 		$(this).addClass('current').siblings().removeClass('current');
 		return false;
