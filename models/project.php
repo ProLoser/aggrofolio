@@ -93,14 +93,16 @@ class Project extends AppModel {
 						'username' => $results['Project']['owner'], 
 						'project' => $name,
 					),
+					'fields' => 'projects',
 				));
-				$results['blog'] = $this->find('all', array(
+				$results['blog'] = null;
+				/* DISABLING BECAUSE CODASET SUCKS $this->find('all', array(
 					'conditions' => array(
 						'username' => $results['Project']['owner'], 
 						'project' => $name,
 					),
 					'fields' => 'blog'
-				));
+				));*/
 			}
 			$this->useDbConfig = $default;
 	        return $results;
@@ -152,10 +154,9 @@ class Project extends AppModel {
 	function scanCodaset($account) {
 		$default = $this->useDbConfig;
 		$this->useDbConfig = 'codaset';
-		$projects = array_merge(
-			$this->find('all', array('conditions' => array('username' => $account['Account']['username']), 'fields' => 'projects')),
-			$this->find('all', array('conditions' => array('username' => $account['Account']['username']), 'fields' => 'collaborations'))
-		);
+		$projects = $this->find('all', array('conditions' => array('username' => $account['Account']['username']), 'fields' => 'projects'));
+		$collabs = $this->find('all', array('conditions' => array('username' => $account['Account']['username']), 'fields' => 'collaborations'));
+		$projects = array_merge($projects, $collabs);
 		$this->useDbConfig = $default;
 		$i = 0;
 		foreach ($projects as $project) {
