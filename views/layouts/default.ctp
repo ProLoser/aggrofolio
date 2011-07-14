@@ -49,9 +49,11 @@
 </head>
 <body>
 	<div id="container">
-		<aside id="navigation">
-			<?php echo $this->element('layout/navigation'); ?>
-		</aside>
+		<div id="nav-wrap">
+			<aside id="navigation">
+				<?php echo $this->element('layout/navigation'); ?>
+			</aside>
+		</div>
 		<div id="main">
 
 			<?php echo $this->Session->flash(); ?>

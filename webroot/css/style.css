@@ -220,6 +220,15 @@ legend {
 	padding-left: 260px;
 	min-width: 700px;
 }
+#nav-wrap {
+	height: 100px;
+	width: 300px;
+	background: no-repeat top left url(../img/header.png);
+	position: absolute;
+	top: -65px;
+	left: -35px;
+	z-index: 40;
+}
 #navigation {
 	position: fixed;
 	font-size: 120%;
