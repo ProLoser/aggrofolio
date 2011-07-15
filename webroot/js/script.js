@@ -60,4 +60,23 @@ $(document).ready(function(){
 		$(this).addClass('current').siblings().removeClass('current');
 		return false;
 	});
+	
+	/**
+	 * Fixed Static position Navigation menu. When the page is scrolled down the menu sticks to the top of the screen.
+	 *
+	 * Website: http://www.bennadel.com/blog/1810-Creating-A-Sometimes-Fixed-Position-Element-With-jQuery.htm
+	 */
+	// Bind to the window scroll and resize events. Remember, resizing can also change the scroll of the page.
+	$(window).bind("scroll resize", function(){	
+		$header = $('#main > header');
+		// Get the current scroll of the window.
+		var viewTop = $(this).scrollTop();
+		// Check to see if the view had scroll down past the top of the placeholder AND that the message is not yet fixed.
+		if ((viewTop > 0) && !$header.is(".hover")) {
+			$header.addClass("hover"); 
+		// Check to see if the view has scroll back up above the message AND that the message is currently fixed.
+		} else if ((viewTop <= 0) && $header.is(".hover")){
+			$header.removeClass("hover");
+		}
+	});
 });
