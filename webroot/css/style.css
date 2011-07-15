@@ -649,9 +649,6 @@ background-image:         linear-gradient(top, #D4D3C9, #F3F1E4);
           filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#D4D3C9', EndColorStr='#F3F1E4'); 
 }
 /* Blog */
-.posts {
-	margin-top: 70px;
-}
 .posts article, #comments form {
 	padding: 10px;
 	border-radius: 10px;
