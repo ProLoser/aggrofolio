@@ -1,6 +1,6 @@
 <header>
 	<h2 class="blog"><?php echo $post['Post']['subject']; ?></h2>
-	<time><?php echo $this->Time->nice($post['Post']['created']); ?></time>
+	<?php echo $this->Html->time($post['Post']['created'], array('pubdate' => true, 'format' => 'nice'))?>
 </header>
 <article class="posts view">
 	<?php echo $post['Post']['body']; ?>

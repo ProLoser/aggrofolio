@@ -67,19 +67,9 @@
 			<article>
 				<header>
 					<h1><?php echo $this->Html->link($post['Post']['subject'], array('controller' => 'posts', $post['Post']['id']))?></h1>
-					<time pubdate><?php echo $this->Time->timeAgoInWords($post['Post']['created']);?></time>
+					<?php echo $this->Html->time($post['Post']['created'], array('format' => 'timeAgoInWords'))?>
 				</header>
-				<?php 
-					$pos = strpos($post['Post']['body'], '<hr>');
-					if ($pos === false) {
-						echo $post['Post']['body'];
-					} else {
-						echo substr($post['Post']['body'], 0, $pos);
-						echo "<footer>\n";
-						echo $this->Html->link('Read More...', array('controller' => 'posts', 'action' => 'view', $post['Post']['id'], $post['Post']['slug']), array('class' => 'readon'));
-						echo "</footer>\n";
-					}
-				?>
+				<?php echo $this->Agro->truncate($post['Post']['body'], array('controller' => 'posts', 'action' => 'view', $post['Post']['id'], $post['Post']['slug'])); ?>
 			</article>
 		<?php endforeach ?>
 	</section>
