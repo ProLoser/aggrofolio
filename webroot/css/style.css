@@ -72,7 +72,6 @@ select, input, textarea, button { font:99% sans-serif; }
 /* normalize monospace sizing
  * en.wikipedia.org/wiki/MediaWiki_talk:Common.css/Archive_11#Teletype_style_fix_for_Chrome */
 pre, code, kbd, samp { font-family: monospace, sans-serif; }
-
 /*
  * minimal base styles
  */
@@ -198,7 +197,13 @@ button {  width: auto; overflow: visible; }
  /* Primary Styles
     Author: Dean Sofer (ProLoser)
  */
-
+code {
+	padding: 0 3px;
+	box-shadow: inset 0 0 5px rgba(0,0,0,.5);
+	-moz-box-shadow: inset 0 0 5px rgba(0,0,0,.5);
+	-webkit-box-shadow: inset 0 0 5px rgba(0,0,0,.5);
+	background: rgba(255,255,255,.4);
+}
 time {
 	float: right;
 	font-weight: bold;
