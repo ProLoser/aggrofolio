@@ -15,7 +15,7 @@
 		$name = $project['Project']['name'];
 		if (!empty($project['ProjectCategory']))
 			$name .= "<span>{$project['ProjectCategory']['name']}</span>";
-		echo $this->Html->link($name, array('action' => 'view', $project['Project']['id']), array('escape' => false)); 
+		echo $this->Html->link($name, array('action' => 'view', $project['Project']['id'], Inflector::slug($project['Project']['name'])), array('escape' => false)); 
 		if (!empty($project['MediaItem'])) echo $this->Html->image('/uploads/thumb-' . $project['MediaItem'][0]['attachment_file_name']);
 	?>
 	</li>
