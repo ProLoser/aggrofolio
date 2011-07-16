@@ -87,5 +87,31 @@ class AgroHelper extends AppHelper {
 		return $this->Html->link($name, $url, $options);
 	}
 	
+	/**
+	 * Truncates a string based if a token is found and appends a 'Read More' link.
+	 *
+	 * @param string $content 
+	 * @param mixed $target url to redirect the user with the readon link.
+	 * @param array $options
+	 * @return string
+	 * @author Dean Sofer
+	 */
+	function truncate($content, $target = false, $options = array()) {
+		$options = array_merge(array(
+			'more' => 'Read More...',
+			'token' => '<hr>',
+			'wrapper' => 'footer',
+		), $options);
+		$pos = strpos($content, $options['token']);
+		if ($pos === false) {
+			return $content;
+		} else {
+			$content = substr($content, 0, $pos);
+			if ($target) {
+				$content .= $this->Html->tag($options['wrapper'], $this->Html->link($options['more'], $target, array('class' => 'readon')));
+			}
+			return $content;
+		}
+	}
 	
 }

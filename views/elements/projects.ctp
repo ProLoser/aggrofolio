@@ -4,10 +4,10 @@
 	<ul>
 	<?php foreach ($projects as $project): ?>			
 		<li>
-			<h1><?php echo $this->Html->link($project['name'], array('controller' => 'projects', 'action' => 'view', $project['id']), array('rel' => 'project-'.$project['id'])); ?></h1>
+			<h1><?php echo $this->Html->link($project['name'], array('controller' => 'projects', 'action' => 'view', $project['id'], Inflector::slug($project['name'])), array('rel' => 'project-'.$project['id'])); ?></h1>
 			<?php if (!empty($project['MediaItem']) || !empty($project['description'])): ?>
 				<div>
-					<?php echo $project['description']?>
+					<?php echo $this->Agro->truncate($project['description'])?>
 					<p>
 					<?php foreach ($project['MediaItem'] as $item): ?>
 						<?php echo $this->Html->image('/uploads/thumb-' . $item['attachment_file_name'])?>

@@ -15,17 +15,7 @@
 			<h1><?php echo $this->Html->link($post['Post']['subject'], array('action' => 'view', $post['Post']['id'], $post['Post']['slug'])); ?></h1>
 			<time><?php echo $this->Time->nice($post['Post']['created']); ?></time>
 		</header>	
-		<?php 
-			$pos = strpos($post['Post']['body'], '<hr>');
-			if ($pos === false) {
-				echo $post['Post']['body'];
-			} else {
-				echo substr($post['Post']['body'], 0, $pos);
-				echo "<footer>\n";
-				echo $this->Html->link('Read More...', array('controller' => 'posts', 'action' => 'view', $post['Post']['id'], $post['Post']['slug']), array('class' => 'readon'));
-				echo "</footer>\n";
-			}
-		?>
+		<?php echo $this->Agro->truncate($post['Post']['body'], array('controller' => 'posts', 'action' => 'view', $post['Post']['id'], $post['Post']['slug']))?>
 	</article>
 <?php endforeach; ?>
 </div>

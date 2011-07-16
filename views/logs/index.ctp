@@ -22,15 +22,7 @@
 				<h1><?php echo $this->Html->link($log['Post']['subject'], array('controller' => 'posts', 'action' => 'view', $log['Post']['id'], $log['Post']['slug'])); ?></h1>
 				<time><?php echo $actions[$log['Log']['action']] . ' ' . $this->Time->nice($log['Post']['created']); ?></time>
 			</header>	
-			<?php 
-				$pos = strpos($log['Post']['body'], '<hr>');
-				if ($pos === false) {
-					echo $log['Post']['body'];
-				} else {
-					echo substr($log['Post']['body'], 0, $pos);
-					echo $this->Html->tag('footer', $this->Html->link('Read More...', array('controller' => 'posts', 'action' => 'view', $log['Post']['id'], $log['Post']['slug']), array('class' => 'readon')));
-				}
-			?>
+			<?php echo $this->Agro->truncate($log['Post']['body'], array('controller' => 'posts', 'action' => 'view', $log['Post']['id'], $log['Post']['slug'])); ?>
 		</article>
 	<?php break; case 'MediaItem': if ($log['MediaItem']['published']):?>
 		<?php if (!empty($log['MediaItem']['name'])): ?>
@@ -103,15 +95,7 @@
 				<h1><?php echo $this->Html->link($log['Project']['name'], array('controller' => 'projects', 'action' => 'view', $log['Log']['model_id'], Inflector::slug($log['Project']['name']))); ?></h1>
 				<time><?php echo $actions[$log['Log']['action']] . ' ' . $this->Time->nice($log['Log']['created']); ?></time>
 			</header>
-			<?php
-				$pos = strpos($log['Project']['description'], '<hr>');
-				if ($pos === false) {
-					echo $log['Project']['description'];
-				} else {
-					echo substr($log['Project']['description'], 0, $pos);
-					echo $this->Html->tag('footer', $this->Html->link('Read More...', array('controller' => 'posts', 'action' => 'view', $log['Post']['id'], $log['Post']['slug']), array('class' => 'readon')));
-				}
-			?>
+			<?php echo $this->Agro->truncate($log['Project']['description'], array('controller' => 'projects', 'action' => 'view', $log['Project']['id'], Inflector::slug($log['Project']['name'])))?>
 			<?php if (!empty($items) && count($log['Project']['MediaItem']) > 1) echo $items ?>
 		</article>
 	<?php endif; endswitch; ?>
