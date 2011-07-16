@@ -54,34 +54,14 @@
 		display: none;
 	}
 </style>
-<?php $this->Plate->start('nav')?>
-<h3>Download</h3>
-<ul>
-	<li><?php echo $this->Html->link('PDF Format', '/DeanSoferResume.pdf')?></li>
-	<li><?php echo $this->Html->link('DOC Format', '/DeanSoferResume.doc')?></li>
-</ul>
-<?php $this->Plate->stop()?>
 <header>
 	<h2 class="resume">Resume</h2>
-	<p class="download"><?php echo $this->Html->link('PDF', '/DeanSoferResume.pdf')?> | <?php echo $this->Html->link('DOC', '/DeanSoferResume.doc')?></p>
 	<p class="sorting">
-		<span>Sections:</span>
-	<?php 
-		if (!empty($resume['ResumeSkill']))
-			echo '<a href="#skills">Skills</a>';
-		if (!empty($resume['Resume']['interests']))
-			echo '<a href="#interests">Interests</a>';
-		if (!empty($resume['ResumeEmployer']))
-			echo '<a href="#experience">Experience</a>';
-		if (!empty($resume['ResumeSchool']))
-			echo '<a href="#education">Education</a>';
-		if (!empty($resume['Resume']['specialties']))
-			echo '<a href="#specialties">Specialties</a>';
-		if (!empty($resume['Resume']['honors']))
-			echo '<a href="#honors">Honors</a>';
-		if (!empty($resume['Resume']['associations']))
-			echo '<a href="#associations">Associations</a>';
-	?>
+		<span>Download:</span>
+		<?php 
+			echo $this->Html->link('Adobe PDF', '/DeanSoferResume.pdf');
+			echo $this->Html->link('Word DOC', '/DeanSoferResume.doc');
+		?>
 	</p>
 </header>
 <div class="resumes">

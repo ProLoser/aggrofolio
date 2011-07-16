@@ -13,7 +13,7 @@
 </div>
 <?php endif; ?>
 
-<div id="description"><p><?php echo $project['Project']['description']; ?></p></div>
+<article id="description"><p><?php echo $project['Project']['description']; ?></p></article>
 <h3>Project Stats</h3>
 <ul id="stats" class="clearfix">
 <?php if (!empty($project['Project']['url'])): ?>

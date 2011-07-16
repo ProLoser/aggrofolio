@@ -1,29 +1,24 @@
-<h1><?php __('Resume Employers');?></h1>
-<ul class="actions">
-	<li><?php echo $this->Html->link(__('New Resume Employer', true), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Accounts', true), array('controller' => 'accounts', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Account', true), array('controller' => 'accounts', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Post Relationships', true), array('controller' => 'post_relationships', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Post Relationship', true), array('controller' => 'post_relationships', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Projects', true), array('controller' => 'projects', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Project', true), array('controller' => 'projects', 'action' => 'add')); ?> </li>
+<header>
+	<hgroup><h1><?php __('Resume Employers');?></h1></hgroup>
+	<ul class="actions">
+		<li><?php echo $this->Html->link(__('New Resume Employer', true), array('action' => 'add')); ?></li>
 		<li><?php echo $this->Html->link(__('List Resumes', true), array('controller' => 'resumes', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Resume', true), array('controller' => 'resumes', 'action' => 'add')); ?> </li>
-</ul>
-<div class="resumeEmployers index">
-	<div class="header">
-		<h3>
-		<?php
+	</ul>
+</header>
+<article class="resumeEmployers index">
+	<header>
+		<h3><?php
 		echo $this->Paginator->counter(array(
 			'format' => __('Record %start% to %end% of %count% total', true)
 		));
-		?>	</h3>
-		<div class="paging">
+		?></h3>
+		<p class="paging">
 			<?php echo $this->Paginator->prev();?>
 			<?php echo $this->Paginator->numbers(array('separator' => ''));?>
 			<?php echo $this->Paginator->next();?>
-		</div>
-	</div>
+		</p>
+	</header>
 	<?php echo $this->Batch->create('ResumeEmployer')?>	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id');?></th>
@@ -35,7 +30,7 @@
 			<th><?php echo $this->Paginator->sort('currently_employed');?></th>
 			<th><?php echo $this->Paginator->sort('published');?></th>
 			<th><?php echo $this->Paginator->sort('deleted');?></th>
-			<th class="actions"><?php __('Actions');?></th>
+			<th class="actions"><?php __('Actions');?> <?php echo $this->Batch->all();?></th>
 	</tr>
 	<?php
 		echo $this->Batch->filter(array(
@@ -43,8 +38,8 @@
 			'name',
 			'account_id' => array('empty' => '-- None --'),
 			'title',
-			'date_started',
-			'date_ended',
+			null,
+			null,
 			'currently_employed',
 			'published',
 			'deleted',
@@ -81,17 +76,18 @@
 			'name',
 			'account_id' => array('empty' => '-- None --'),
 			'title',
-			'date_started',
-			'date_ended',
+			null,null,
 			'currently_employed',
 			'published',
 			'deleted',
 		));?> 
 	</table>
 	<?php echo $this->Batch->end()?> 
-	<div class="paging">
-		<?php echo $this->Paginator->prev();?>
-		<?php echo $this->Paginator->numbers(array('separator' => ''));?>
-		<?php echo $this->Paginator->next();?>
-	</div>
-</div>
+	<footer>
+		<p class="paging">
+			<?php echo $this->Paginator->prev();?>
+			<?php echo $this->Paginator->numbers(array('separator' => ''));?>
+			<?php echo $this->Paginator->next();?>
+		</p>
+	</footer>
+</article>

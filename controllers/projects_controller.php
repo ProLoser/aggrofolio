@@ -79,7 +79,7 @@ class ProjectsController extends AppController {
 			$this->data = $this->Project->read(null, $id);
 		}
 		$accounts = $this->Project->Account->find('list');
-		$projectCategories = $this->Project->ProjectCategory->find('list');
+		$projectCategories = $this->Project->ProjectCategory->generatetreelist(null, null, null, '- ');
 		$resumeEmployers = $this->Project->ResumeEmployer->find('list');
 		$resumeSchools = $this->Project->ResumeSchool->find('list');
 		$this->set(compact('accounts', 'projectCategories', 'resumeEmployers', 'resumeSchools'));

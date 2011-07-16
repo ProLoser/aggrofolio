@@ -1,25 +1,27 @@
-<h1><?php __('Resume Recommendations');?></h1>
-<ul class="actions">
-	<li><?php echo $this->Html->link(__('New Resume Recommendation', true), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Accounts', true), array('controller' => 'accounts', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Account', true), array('controller' => 'accounts', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Resumes', true), array('controller' => 'resumes', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Resume', true), array('controller' => 'resumes', 'action' => 'add')); ?> </li>
-</ul>
-<div class="resumeRecommendations index">
-	<div class="header">
+<header>
+	<hgroup><h1><?php __('Resume Recommendations');?></h1></hgroup>
+	<ul class="actions">
+		<li><?php echo $this->Html->link(__('New Resume Recommendation', true), array('action' => 'add')); ?></li>
+			<li><?php echo $this->Html->link(__('List Accounts', true), array('controller' => 'accounts', 'action' => 'index')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Account', true), array('controller' => 'accounts', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('List Resumes', true), array('controller' => 'resumes', 'action' => 'index')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Resume', true), array('controller' => 'resumes', 'action' => 'add')); ?> </li>
+	</ul>
+</header>
+<article class="resumeRecommendations index">
+	<header>
 		<h3>
 		<?php
 		echo $this->Paginator->counter(array(
 			'format' => __('Record %start% to %end% of %count% total', true)
 		));
 		?>	</h3>
-		<div class="paging">
+		<p class="paging">
 			<?php echo $this->Paginator->prev();?>
 			<?php echo $this->Paginator->numbers(array('separator' => ''));?>
 			<?php echo $this->Paginator->next();?>
-		</div>
-	</div>
+		</p>
+	</header>
 	<?php echo $this->Batch->create('ResumeRecommendation')?>	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id');?></th>
@@ -27,13 +29,12 @@
 			<th><?php echo $this->Paginator->sort('type');?></th>
 			<th><?php echo $this->Paginator->sort('uuid');?></th>
 			<th><?php echo $this->Paginator->sort('account_id');?></th>
-			<th><?php echo $this->Paginator->sort('text');?></th>
 			<th><?php echo $this->Paginator->sort('first_name');?></th>
 			<th><?php echo $this->Paginator->sort('last_name');?></th>
 			<th><?php echo $this->Paginator->sort('recommendor_uuid');?></th>
 			<th><?php echo $this->Paginator->sort('published');?></th>
 			<th><?php echo $this->Paginator->sort('deleted');?></th>
-			<th class="actions"><?php __('Actions');?></th>
+			<th class="actions"><?php __('Actions');?><?php echo $this->Batch->all()?></th>
 	</tr>
 	<?php
 		echo $this->Batch->filter(array(
@@ -42,7 +43,6 @@
 			'type',
 			'uuid',
 			'account_id' => array('empty' => '-- None --'),
-			'text',
 			'first_name',
 			'last_name',
 			'recommendor_uuid',
@@ -64,7 +64,6 @@
 		<td>
 			<?php echo $this->Html->link($resumeRecommendation['Account']['type'], array('controller' => 'accounts', 'action' => 'view', $resumeRecommendation['Account']['id'])); ?>
 		</td>
-		<td><?php echo $resumeRecommendation['ResumeRecommendation']['text']; ?>&nbsp;</td>
 		<td><?php echo $resumeRecommendation['ResumeRecommendation']['first_name']; ?>&nbsp;</td>
 		<td><?php echo $resumeRecommendation['ResumeRecommendation']['last_name']; ?>&nbsp;</td>
 		<td><?php echo $resumeRecommendation['ResumeRecommendation']['recommendor_uuid']; ?>&nbsp;</td>
@@ -84,7 +83,6 @@
 			'type',
 			'uuid',
 			'account_id' => array('empty' => '-- None --'),
-			'text',
 			'first_name',
 			'last_name',
 			'recommendor_uuid',
@@ -93,9 +91,11 @@
 		));?> 
 	</table>
 	<?php echo $this->Batch->end()?> 
-	<div class="paging">
-		<?php echo $this->Paginator->prev();?>
-		<?php echo $this->Paginator->numbers(array('separator' => ''));?>
-		<?php echo $this->Paginator->next();?>
-	</div>
-</div>
+	<footer>
+		<p class="paging">
+			<?php echo $this->Paginator->prev();?>
+			<?php echo $this->Paginator->numbers(array('separator' => ''));?>
+			<?php echo $this->Paginator->next();?>
+		</p>
+	</footer>
+</article>

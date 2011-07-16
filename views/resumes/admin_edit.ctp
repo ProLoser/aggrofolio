@@ -13,7 +13,7 @@
 		echo $this->Form->input('purpose');
 		echo $this->Form->input('attachment');
 		echo $this->Form->input('content');
-		echo $this->Form->input('visible');
+		echo $this->Form->input('published');
 		echo $this->Form->input('objective');
 		echo $this->Form->input('summary');
 		echo $this->Form->input('specialties');
