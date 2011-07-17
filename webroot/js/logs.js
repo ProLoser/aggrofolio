@@ -8,12 +8,10 @@ $(document).ready(function(){
 		$(selector).show().removeClass('faded', 1000).siblings(':not(' + selector + ')').addClass('faded', 1000, function(){
 			$(this).hide();
 		});
-		$(this).addClass('current').siblings().removeClass('current');
 		return false;
 	});
-	$('#mainNav a.freset').click(function(){
+	$('aside#navigation h1 a').click(function(){
 		$('.log > li').show().removeClass('faded', 1000);
-		$(this).addClass('current').siblings().removeClass('current');
 		return false;
 	});
 });
