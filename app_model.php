@@ -94,7 +94,7 @@ class AppModel extends LazyModel {
 	}
 
 	/**
-	 * Removes 'fields' key from count query on custom finds when it is an array,
+	 * Removes 'fields' key and 'contain' from count query on custom finds when it is an array,
 	 * as it will completely break the Model::_findCount() call
 	 *
 	 * @param string $state Either "before" or "after"
@@ -110,6 +110,9 @@ class AppModel extends LazyModel {
 				if (!preg_match('/^count/i', $query['fields'][0])) {
 					unset($query['fields']);
 				}
+			}
+			if (isset($query['contain'])) {
+				unset($query['contain']);
 			}
 		}
 		return parent::_findCount($state, $query, $results);
