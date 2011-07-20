@@ -1,3 +1,4 @@
+<?php echo $this->Html->meta('rss', '/.rss', array('inline' => false));?>
 <?php echo $this->Html->css(array('logs', '/js/mylibs/jscrollpane/jquery.jscrollpane'), null, array('inline' => false)); ?>
 <?php echo $this->Html->script(array('mylibs/jscrollpane/mwheelIntent', 'mylibs/jscrollpane/jquery.jscrollpane.min', 'logs'), array('inline' => false)); ?>
 <header>
