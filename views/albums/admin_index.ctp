@@ -32,7 +32,7 @@
 		<th><?php echo $this->Paginator->sort('media_category_id');?></th>
 		<th><?php echo $this->Paginator->sort('uuid');?></th>
 		<th><?php echo $this->Paginator->sort('account_id');?></th>
-		<th class="actions"><?php __('Actions');?></th>
+		<th class="actions"><?php __('Actions');?> <?php echo $this->Batch->all()?></th>
 	</tr>
 	<?php
 	echo $this->Batch->filter(array(
