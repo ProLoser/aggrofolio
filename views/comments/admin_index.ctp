@@ -5,6 +5,7 @@
 	</ul>
 </header>
 <article class="comments index">
+	<?php echo $this->Batch->create('Comment')?>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id');?></th>
@@ -16,9 +17,10 @@
 			<th><?php echo $this->Paginator->sort('website');?></th>
 			<th><?php echo $this->Paginator->sort('foreign_key');?></th>
 			<th><?php echo $this->Paginator->sort('foreign_model');?></th>
-			<th class="actions"><?php __('Actions');?></th>
+			<th class="actions"><?php __('Actions');?> <?php echo $this->Batch->all()?></th>
 	</tr>
 	<?php
+	echo $this->Batch->filter(array(null,null,null,'subject','body','name','website',null,null));
 	$i = 0;
 	foreach ($comments as $comment):
 		$class = null;
@@ -37,13 +39,16 @@
 		<td><?php echo $comment['Comment']['foreign_key']; ?>&nbsp;</td>
 		<td><?php echo $comment['Comment']['foreign_model']; ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $comment['Comment']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $comment['Comment']['id'])); ?>
-			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $comment['Comment']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $comment['Comment']['id'])); ?>
+			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $comment['Comment']['id']), array('class' => 'view')); ?>
+			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $comment['Comment']['id']), array('class' => 'edit')); ?>
+			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $comment['Comment']['id']), array('class' => 'delete'), sprintf(__('Are you sure you want to delete # %s?', true), $comment['Comment']['id'])); ?>
+			<?php echo $this->Batch->checkbox($comment['Comment']['id'])?>
 		</td>
 	</tr>
 <?php endforeach; ?>
+	<?php echo $this->Batch->batch(array(null,null,null,'subject','body','name','website',null,null));?>
 	</table>
+	<?php echo $this->Batch->end()?>
 	<footer>
 		<p>
 		<?php
