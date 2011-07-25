@@ -2,7 +2,7 @@
 	<hgroup><h1><?php __('Admin Edit Project'); ?></h1></hgroup>
 	<ul class="actions">
 		<li><?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $this->Form->value('Project.id')), null, sprintf(__('Are you sure you want to delete # %s?', true), $this->Form->value('Project.id'))); ?></li>
-		<li><?php echo $this->Html->link(__('Attach Media Item', true), array('controller' => 'media_items', 'action' => 'add', 'project' => $project['Project']['id']), array('class' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('Attach Media Item', true), array('controller' => 'media_items', 'action' => 'add', 'project' => $this->data['Project']['id']), array('class' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Projects', true), array('action' => 'index'));?></li>
 	</ul>
 </header>
