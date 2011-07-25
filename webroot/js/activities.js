@@ -11,7 +11,7 @@ $(document).ready(function(){
 		return false;
 	});
 	$('aside#navigation h1 a').click(function(){
-		$('.log > li').show().removeClass('faded', 1000);
+		$('.activity > li').show().removeClass('faded', 1000);
 		return false;
 	});
 });

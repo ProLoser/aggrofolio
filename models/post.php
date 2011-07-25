@@ -44,7 +44,7 @@ class Post extends AppModel {
 	);
 	
 	var $actsAs = array(
-		'Log.Logable',
+		'Activity',
 	);
 	
 	public function beforeValidate() {

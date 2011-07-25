@@ -1,3 +1,9 @@
+<?php $this->Plate->start('nav')?>
+<h3>Admin</h3>
+<ul>
+	<li><?php echo $this->Html->link('Edit Resume', array('admin' => true, 'action' => 'edit', $post['Post']['id'])); ?></li>
+</ul>
+<?php $this->Plate->stop()?>
 <header>
 	<h2 class="blog"><?php echo $post['Post']['subject']; ?></h2>
 	<?php echo $this->Html->time($post['Post']['created'], array('pubdate' => true, 'format' => 'nice'))?>

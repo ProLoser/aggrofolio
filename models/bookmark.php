@@ -35,7 +35,7 @@ class Bookmark extends AppModel {
 	);
 
 	var $actsAs = array(
-		'Log.Logable',
+		'Activity',
 	);
 	
 	function scan($accountId) {

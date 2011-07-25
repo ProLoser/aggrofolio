@@ -36,7 +36,7 @@ class Album extends AppModel {
 	);
 	
 	var $actsAs = array(
-		'Log.Logable',
+		'Activity',
 	);
 	
 	public function scanDeviantart($account) {

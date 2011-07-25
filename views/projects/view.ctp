@@ -1,3 +1,10 @@
+<?php $this->Plate->start('nav')?>
+<h3>Admin</h3>
+<ul>
+	<li><?php echo $this->Html->link('Edit Project', array('admin' => true, 'action' => 'edit', $project['Project']['id'])); ?></li>
+	<li><?php echo $this->Html->link('Add Media Item', array('admin' => true, 'controller' => 'media_items', 'action' => 'add')); ?></li>
+</ul>
+<?php $this->Plate->stop()?>
 <header>
 	<h2 class="project"><?php  echo $project['Project']['name'];?></h2>
 </header>

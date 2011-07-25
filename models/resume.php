@@ -37,7 +37,7 @@ class Resume extends AppModel {
 	);
 	
 	public $actsAs = array(
-		'Log.Logable',
+		'Activity',
 		'Joinable.Joinable',
 	);
 	

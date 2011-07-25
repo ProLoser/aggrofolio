@@ -33,7 +33,7 @@ class Project extends AppModel {
 	);
 
 	var $actsAs = array(
-		'Log.Logable',
+		'Activity',
 	);
 	
 	/**

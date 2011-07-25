@@ -2,11 +2,11 @@
 	opacity: 0;
 	height: 0;
 }
-ul.log {
+ul.activity {
 	list-style: none;
 	margin: 0;
 }
-ul.log > li {
+ul.activity > li {
 	margin: 0;
 }
 .posts article {

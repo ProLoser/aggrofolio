@@ -34,7 +34,9 @@ class MediaItem extends AppModel {
 	);
 
 	var $actsAs = array(
-		'Log.Logable',
+		'Activity' => array(
+			'parents' => array('Project', 'Album')
+		),
 		'UploadPack.Upload' => array(
 			'attachment' => array(
 				'path' => ':webroot/uploads/:style-:basename.:extension',

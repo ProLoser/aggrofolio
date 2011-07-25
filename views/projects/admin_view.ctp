@@ -3,12 +3,11 @@
 		<h1><?php  __('Project');?></h1>
 	</hgroup>
 	<ul class="actions">
-			<li><?php echo $this->Html->link(__('Edit Project', true), array('action' => 'edit', $project['Project']['id'])); ?> </li>
+		<li><?php echo $this->Html->link(__('Edit Project', true), array('action' => 'edit', $project['Project']['id'])); ?> </li>
 		<li><?php echo $this->Html->link(__('Delete Project', true), array('action' => 'delete', $project['Project']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $project['Project']['id'])); ?> </li>
+		<li><?php echo $this->Html->link(__('Attach Media Item', true), array('controller' => 'media_items', 'action' => 'add', 'project' => $project['Project']['id']), array('class' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Projects', true), array('action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Project', true), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Media Items', true), array('controller' => 'media_items', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Media Item', true), array('controller' => 'media_items', 'action' => 'add'), array('class' => 'add')); ?> </li>
 	</ul>
 </header>
 <article class="projects view">
