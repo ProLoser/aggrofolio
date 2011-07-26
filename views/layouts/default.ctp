@@ -69,6 +69,7 @@
 	echo $this->Plate->lib('jqueryui');
 	echo $this->Html->script(array(
 	#!# $this->AssetCompress->script(array(
+		'mylibs/jquery.placeholder.min',
 		'mylibs/radmenu/jQuery.radmenu',
 		'mylibs/fancybox/jquery.mousewheel-3.0.4.pack',
 		'mylibs/fancybox/jquery.fancybox-1.3.4.pack',

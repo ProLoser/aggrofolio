@@ -9,6 +9,7 @@ window.log = function(){
 
 // place any jQuery/helper plugins in here, instead of separate, slower script files.
 $(document).ready(function(){
+	$('input[placeholder], textarea[placeholder]').placeholder();
 	$("#radial_container").radmenu({
 		listClass: 'list', // the list class to look within for items
 		itemClass: 'item', // the items - NOTE: the HTML inside the item is copied into the menu item
@@ -54,7 +55,10 @@ $(document).ready(function(){
 		'transitionIn'	:	'elastic',
 		'transitionOut'	:	'elastic',
 		'speedIn'		:	400, 
-		'speedOut'		:	200
+		'speedOut'		:	200,
+		'onComplete'	:	function(){
+			$('#ContactIndexForm input[placeholder], #ContactIndexForm textarea[placeholder]').placeholder();
+		}
 	});
 	$('#categories a').qtip({
 		style: 'ui-tooltip-dark ui-tooltip-rounded',

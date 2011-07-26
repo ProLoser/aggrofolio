@@ -9,7 +9,7 @@ class ContactsController extends AppController {
 			$this->Contact->create();
 			if ($this->Contact->save($this->data)) {
 				$this->Session->setFlash(__('Thank you for the email', true));
-				
+				$this->helpers[] = 'Text';
 				$this->Email->reset();
 				$this->Email->to = 'deansofer+aggropholio@gmail.com';
 				$this->Email->from = $this->data['Contact']['email'];

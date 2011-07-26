@@ -41,6 +41,24 @@ class Contact extends AppModel {
 			'rule' => array('equalTo', '1'),
 			'message' => 'Nope, guess again',
 			'required' => true,
+		),
+		'inhuman' => array(
+			'rule' => array('equalTo', ''),
+			'message' => "I can't let you do that Dave.",
 		)
 	);
+
+/**
+ * Strips garbage before saving. I could do it on display but I decided to just reduce overhead in exchange for later versatility
+ *
+ * @param string $value 
+ * @return true
+ */
+	public function beforeSave() {
+		if (isset($this->data['Contact']['body'])) {
+			App::import('Lib', 'Sanitize');
+			$this->data['Contact']['body'] = Sanitize::html($this->data['Contact']['body']);
+		}
+		return true;
+	}
 }

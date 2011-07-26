@@ -13,10 +13,10 @@
 		<?php endforeach ?>
 		</ol>
 	<?php endif; ?>	
-	<?php echo $this->Form->create('Comment', array('action' => 'add'))?>
+	<?php echo $this->Form->create('Comment', array('action' => 'add', 'inputDefaults' => array('label' => false, 'placeholder' => true)))?>
 <?php $this->Html->scriptStart(array('inline' => false)); ?>
 	$(document).ready(function(){
-		$('form fieldset').append('<?php echo $this->Form->input('human', array('type' => 'checkbox', 'label' => 'Are You Human?'));?>');
+		$('form fieldset').append('<?php echo $this->Form->input('human', array('type' => 'checkbox', 'label' => 'Please fill the void'));?>');
 	});
 <?php $this->Html->scriptEnd(); ?>
 	<fieldset>
@@ -28,6 +28,7 @@
 		echo $this->Form->input('body');
 		echo $this->Form->input('foreign_model', array('type' => 'hidden', 'value' => Inflector::classify($this->params['controller'])));
 		echo $this->Form->input('foreign_key', array('type' => 'hidden', 'value' => $id));
+		echo $this->Form->input('inhuman', array('type' => 'hidden'));
 	?>
 	</fieldset>
 	<?php echo $this->Form->end('Submit')?>

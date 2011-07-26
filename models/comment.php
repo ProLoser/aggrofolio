@@ -1,7 +1,7 @@
 <?php
 class Comment extends AppModel {
-	var $name = 'Comment';
-	var $validate = array(
+	public $name = 'Comment';
+	public $validate = array(
 		'subject' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
@@ -35,8 +35,29 @@ class Comment extends AppModel {
 		),
 		'human' => array(
 			'rule' => array('equalTo', '1'),
-			'message' => 'Nope, guess again'
+			'message' => 'Check the damn box.'
+		),
+		'inhuman' => array(
+			'rule' => array('equalTo', ''),
+			'message' => "I can't let you do that Dave.",
 		)
 	);
+
+	public $belongsTo = array(
+		'Post',
+	);
+	
+/**
+ * Strips garbage before saving. I could do it on display but I decided to just reduce overhead in exchange for later versatility
+ *
+ * @param string $value 
+ * @return true
+ */
+	public function beforeSave() {
+		if (isset($this->data['Comment']['body'])) {
+			App::import('Lib', 'Sanitize');
+			$this->data['Comment']['body'] = Sanitize::html($this->data['Comment']['body']);
+		}
+		return true;
+	}
 }
-?>
