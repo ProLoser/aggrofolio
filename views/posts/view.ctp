@@ -1,3 +1,4 @@
+<?php $this->set('title_for_layout', $post['Post']['subject']); ?>
 <?php $this->Plate->start('nav')?>
 <h3>Admin</h3>
 <ul>

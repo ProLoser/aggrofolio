@@ -6,12 +6,12 @@
 			<li><?php echo $this->Html->link(__('List Resumes', true), array('action' => 'index'));?></li>
 		</ul>
 	</header>
-<?php echo $this->Form->create('Resume');?>
+<?php echo $this->Form->create('Resume', array('type' => 'file'));?>
 	<fieldset>
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('purpose');
-		echo $this->Form->input('attachment');
+		echo $this->Form->input('attachment', array('type' => 'file'));
 		echo $this->Form->input('content');
 		echo $this->Form->input('published');
 		echo $this->Form->input('objective');

@@ -27,7 +27,7 @@
 	<li class="url"><?php echo $this->Html->link($project['Project']['url'], $project['Project']['url'])?></li>
 <?php endif; ?>
 <?php if (!empty($project['github']['has_downloads'])): ?>
-	<li class="downloads"><?php echo $this->Html->link(__('Downloads', true), $project['Project']['cvs_url'] . '/downloads'); ?> </li>
+	<li class="downloads"><?php echo $this->Html->link(__('Download', true), $project['Project']['cvs_url'] . '/downloads'); ?> </li>
 <?php endif ?>
 <?php if (!empty($project['github']['has_wiki'])): ?>
 	<li class="wiki"><?php echo $this->Html->link(__('Wiki', true), $project['Project']['cvs_url'] . '/wiki'); ?> </li>

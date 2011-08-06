@@ -42,6 +42,7 @@ class AppModel extends LazyModel {
 	);
 	
 	/**
+	 * Adds translation to all validation messages
 	 * Repairs a glitch in aliases used with virtual fields
 	 *
 	 * @param string $id 
@@ -49,6 +50,17 @@ class AppModel extends LazyModel {
 	 * @param string $ds 
 	 */
 	function __construct($id = false, $table = null, $ds = null) {
+		foreach ($this->validate as $field => $rules) {
+			if (isset($this->validate[$field]['message'])) {
+				$this->validate[$field]['message'] = __($this->validate[$field]['message'], true);
+			} elseif (is_array($rules) && !isset($rules['rule'])) {
+				foreach ($rules as $slot => $rule) {
+					if (isset($rule['message'])) {
+						$this->validate[$field][$slot]['message'] = __($rule['message'], true);
+					}
+				}
+			}
+		}
 		parent::__construct($id, $table, $ds);
 		foreach ($this->virtualFields as $field => $value) {
 			$this->virtualFields[$field] = str_replace($this->name, $this->alias, $value);

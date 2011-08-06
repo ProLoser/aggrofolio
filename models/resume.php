@@ -39,6 +39,11 @@ class Resume extends AppModel {
 	public $actsAs = array(
 		'Activity',
 		'Joinable.Joinable',
+		'UploadPack.Upload' => array(
+			'attachment' => array(
+				'path' => ':webroot/resumes/:basename.:extension',
+			),
+		),
 	);
 	
 	public function scanLinkedin($account) {
