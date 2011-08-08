@@ -107,5 +107,22 @@ class Album extends AppModel {
 		}
 		return $count;
 	}
+	
+	/**
+	 * Updates all related media items if the company changed
+	 *
+	 * @param string $created 
+	 * @return void
+	 * @author Dean Sofer
+	 */
+	public function afterSave($created) {
+		if (!$created && isset($this->data['Album']['project_id'])) {
+			$pid = (empty($this->data['Album']['project_id'])) ? null : $this->data['Album']['project_id'];
+			$this->MediaItem->updateAll(
+				array('project_id' => $pid), 
+				array('MediaItem.album_id' => $this->id)
+			);
+		}
+	}
+	
 }
-?>

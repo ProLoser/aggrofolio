@@ -1,21 +1,15 @@
-<h1><?php  __('Album');?></h1>
-<ul class="actions">
-		<li><?php echo $this->Html->link(__('Edit Album', true), array('action' => 'edit', $album['Album']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('Delete Album', true), array('action' => 'delete', $album['Album']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $album['Album']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Albums', true), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Album', true), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Accounts', true), array('controller' => 'accounts', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Account', true), array('controller' => 'accounts', 'action' => 'add'), array('class' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Media Categories', true), array('controller' => 'media_categories', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Media Category', true), array('controller' => 'media_categories', 'action' => 'add'), array('class' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Media Items', true), array('controller' => 'media_items', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Media Item', true), array('controller' => 'media_items', 'action' => 'add'), array('class' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Resume Employers', true), array('controller' => 'resume_employers', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Resume Employer', true), array('controller' => 'resume_employers', 'action' => 'add'), array('class' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Resume Schools', true), array('controller' => 'resume_schools', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Resume School', true), array('controller' => 'resume_schools', 'action' => 'add'), array('class' => 'add')); ?> </li>
-</ul>
-<div class="albums view">
+<header>
+	<hgroup><h1><?php  __('Album');?></h1></hgroup>
+	<ul class="actions">
+			<li><?php echo $this->Html->link(__('Edit Album', true), array('action' => 'edit', $album['Album']['id'])); ?> </li>
+			<li><?php echo $this->Html->link(__('Delete Album', true), array('action' => 'delete', $album['Album']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $album['Album']['id'])); ?> </li>
+			<li><?php echo $this->Html->link(__('List Albums', true), array('action' => 'index')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Album', true), array('action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('List Media Items', true), array('controller' => 'media_items', 'action' => 'index')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Media Item', true), array('controller' => 'media_items', 'action' => 'add'), array('class' => 'add')); ?> </li>
+	</ul>
+</header>
+<article class="albums view">
 	<dl><?php $i = 0; $class = ' class="altrow"';?>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Id'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
@@ -68,14 +62,14 @@
 			&nbsp;
 		</dd>
 	</dl>
-</div>
-<div class="related">
-	<div class="header">
+</article>
+<article class="related">
+	<header>
 		<h1><?php __('Related Media Items');?></h1>
 		<ul>
 			<li><?php echo $this->Html->link(__('New Media Item', true), array('controller' => 'media_items', 'action' => 'add'), array('class' => 'add'));?> </li>
 		</ul>
-	</div>
+	</header>
 	<?php if (!empty($album['MediaItem'])):?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
@@ -85,11 +79,8 @@
 		<th><?php __('Name'); ?></th>
 		<th><?php __('Attachment File Name'); ?></th>
 		<th><?php __('Attachment File Size'); ?></th>
-		<th><?php __('Attachment Meta Type'); ?></th>
-		<th><?php __('Url'); ?></th>
 		<th><?php __('Source'); ?></th>
 		<th><?php __('Album Id'); ?></th>
-		<th><?php __('Description'); ?></th>
 		<th><?php __('Published'); ?></th>
 		<th><?php __('Uuid'); ?></th>
 		<th class="actions"><?php __('Actions');?></th>
@@ -109,13 +100,10 @@
 			<td><?php echo $mediaItem['name'];?></td>
 			<td><?php echo $mediaItem['attachment_file_name'];?></td>
 			<td><?php echo $mediaItem['attachment_file_size'];?></td>
-			<td><?php echo $mediaItem['attachment_meta_type'];?></td>
-			<td><?php echo $mediaItem['url'];?></td>
 			<td><?php echo $mediaItem['source'];?></td>
 			<td><?php echo $mediaItem['album_id'];?></td>
-			<td><?php echo $mediaItem['description'];?></td>
 			<td><?php echo $mediaItem['published'];?></td>
-			<td><?php echo $mediaItem['uuid'];?></td>
+			<td><?php echo $this->Html->link($mediaItem['uuid'], $mediaItem['url']);?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View', true), array('controller' => 'media_items', 'action' => 'view', $mediaItem['id']), array('class' => 'view')); ?>
 				<?php echo $this->Html->link(__('Edit', true), array('controller' => 'media_items', 'action' => 'edit', $mediaItem['id']), array('class' => 'edit')); ?>
@@ -126,14 +114,14 @@
 	</table>
 <?php endif; ?>
 
-</div>
-<div class="related">
-	<div class="header">
+</article>
+<article class="related">
+	<header>
 		<h1><?php __('Related Resume Employers');?></h1>
 		<ul>
 			<li><?php echo $this->Html->link(__('New Resume Employer', true), array('controller' => 'resume_employers', 'action' => 'add'), array('class' => 'add'));?> </li>
 		</ul>
-	</div>
+	</header>
 	<?php if (!empty($album['ResumeEmployer'])):?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
@@ -183,15 +171,14 @@
 	<?php endforeach; ?>
 	</table>
 <?php endif; ?>
-
-</div>
-<div class="related">
-	<div class="header">
+</article>
+<article class="related">
+	<header>
 		<h1><?php __('Related Resume Schools');?></h1>
 		<ul>
 			<li><?php echo $this->Html->link(__('New Resume School', true), array('controller' => 'resume_schools', 'action' => 'add'), array('class' => 'add'));?> </li>
 		</ul>
-	</div>
+	</header>
 	<?php if (!empty($album['ResumeSchool'])):?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
@@ -243,5 +230,4 @@
 	<?php endforeach; ?>
 	</table>
 <?php endif; ?>
-
-</div>
+</article>

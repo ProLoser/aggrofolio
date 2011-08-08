@@ -67,14 +67,14 @@ class Resume extends AppModel {
 		
 		$date = array('day' => 1, 'month' => 1, 'year' => null);
 		foreach ($data['skills']['values'] as $i => $skill) {
-			$skills[$i]['uuid'] = $skill['id'];
-			$skills[$i]['name'] = $skill['skill']['name'];
-			$skills[$i]['years'] = $skill['years']['name'];
-			$skills[$i]['proficiency'] = $skill['proficiency']['name'];
-			$skills[$i]['account_id'] = $account['Account']['id'];
+			$skills[$i]['ResumeSkill']['uuid'] = $skill['id'];
+			$skills[$i]['ResumeSkill']['name'] = $skill['skill']['name'];
+			$skills[$i]['ResumeSkill']['years'] = $skill['years']['name'];
+			$skills[$i]['ResumeSkill']['proficiency'] = $skill['proficiency']['name'];
+			$skills[$i]['ResumeSkill']['account_id'] = $account['Account']['id'];
 		}
 		if (!empty($skills)) {
-			$this->ResumeSkill->saveAll($skills);
+			$resume['ResumeSkill']['ResumeSkill'] = $this->saveAllIds($this->ResumeSkill, $skills);
 		}
 		
 		foreach ($data['positions']['values'] as $i => $employer) {
@@ -91,7 +91,7 @@ class Resume extends AppModel {
 			$employers[$i]['account_id'] = $account['Account']['id'];
 		}
 		if (!empty($employers)) {
-			$this->ResumeEmployer->saveAll($employers);
+			$resume['ResumeEmployer']['ResumeEmployer'] = $this->saveAllIds($this->ResumeEmployer, $employers);
 		}
 		
 		foreach ($data['educations']['values'] as $i => $school) {
@@ -108,8 +108,9 @@ class Resume extends AppModel {
 			$schools[$i]['account_id'] = $account['Account']['id'];
 		}
 		if (!empty($schools)) {
-			$this->ResumeSchool->saveAll($schools);
+			$resume['ResumeSchool']['ResumeSchool'] = $this->saveAllIds($this->ResumeSchool, $schools);
 		}
+		
 		
 		foreach ($data['recommendationsReceived']['values'] as $i => $recommendation) {
 			$recommendations[$i]['uuid'] = $recommendation['id'];
@@ -121,21 +122,41 @@ class Resume extends AppModel {
 			$recommendations[$i]['account_id'] = $account['Account']['id'];
 		}
 		if (!empty($recommendations)) {
-			$this->ResumeRecommendation->saveAll($recommendations);
+			$resume['ResumeRecommendation']['ResumeRecommendation'] = $this->saveAllIds($this->ResumeRecommendation, $recommendations);
 		}
 		
-		$resume['summary'] = $data['summary'];
-		$resume['specialties'] = $data['specialties'];
-		$resume['associations'] = $data['associations'];
-		$resume['honors'] = $data['honors'];
-		$resume['interests'] = $data['interests'];
-		$resume['first_name'] = $data['firstName'];
-		$resume['last_name'] = $data['lastName'];
+		$resume['Resume']['summary'] = $data['summary'];
+		$resume['Resume']['specialties'] = $data['specialties'];
+		$resume['Resume']['associations'] = $data['associations'];
+		$resume['Resume']['honors'] = $data['honors'];
+		$resume['Resume']['interests'] = $data['interests'];
+		$resume['Resume']['first_name'] = $data['firstName'];
+		$resume['Resume']['last_name'] = $data['lastName'];
+		
 		if (!empty($resume)) {
-			$this->save(array('Resume' => $resume));
+			$this->save($resume);
 		}
 		
 		return $data;
+	}
+	
+	/**
+	 * Saves multiple rows of the same model (like saveAll()) and returns the collection of insertIds
+	 * Must 
+	 *
+	 * @param object $Model 
+	 * @param array $data 
+	 * @return array collection of insertIds
+	 * @author Dean Sofer
+	 */
+	public function saveAllIds($Model, $data) {
+		$ids = array();
+		foreach ($data as $row) {
+			$Model->create();
+			$Model->save($row);
+			$ids[] = $Model->id;
+		}
+		return $ids;
 	}
 
 }
