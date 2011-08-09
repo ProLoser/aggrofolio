@@ -6,6 +6,8 @@
 			<li><?php echo $this->Html->link(__('New Account', true), array('controller' => 'accounts', 'action' => 'add')); ?> </li>
 			<li><?php echo $this->Html->link(__('List Resumes', true), array('controller' => 'resumes', 'action' => 'index')); ?> </li>
 			<li><?php echo $this->Html->link(__('New Resume', true), array('controller' => 'resumes', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('List Categories', true), array('controller' => 'resume_skill_categories', 'action' => 'index')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Category', true), array('controller' => 'resume_skill_categories', 'action' => 'add')); ?> </li>
 	</ul>
 </header>
 <article class="resumeSkills index">
@@ -22,7 +24,8 @@
 			<?php echo $this->Paginator->next();?>
 		</p>
 	</header>
-	<?php echo $this->Batch->create('ResumeSkill')?>	<table cellpadding="0" cellspacing="0">
+	<?php echo $this->Batch->create('ResumeSkill')?>	
+	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id');?></th>
 			<th><?php echo $this->Paginator->sort('created');?></th>
@@ -31,17 +34,19 @@
 			<th><?php echo $this->Paginator->sort('account_id');?></th>
 			<th><?php echo $this->Paginator->sort('years');?></th>
 			<th><?php echo $this->Paginator->sort('proficiency');?></th>
+			<th><?php echo $this->Paginator->sort('Category', 'resume_skill_category_id');?></th>
 			<th class="actions"><?php __('Actions');?><?php echo $this->Batch->all()?></th>
 	</tr>
 	<?php
 		echo $this->Batch->filter(array(
-			'id',
+			null,
 			null,
 			'name',
 			'uuid',
 			'account_id' => array('empty' => '-- None --'),
 			'years',
-			'proficiency'
+			'proficiency',
+			'resume_skill_category_id' => array('empty' => '-- None --'),
 		));
 	$i = 0;
 	foreach ($resumeSkills as $resumeSkill):
@@ -60,6 +65,9 @@
 		</td>
 		<td><?php echo $resumeSkill['ResumeSkill']['years']; ?>&nbsp;</td>
 		<td><?php echo $resumeSkill['ResumeSkill']['proficiency']; ?>&nbsp;</td>
+		<td>
+			<?php echo $this->Html->link($resumeSkill['ResumeSkillCategory']['name'], array('controller' => 'resume_skill_categories', 'action' => 'view', $resumeSkill['ResumeSkillCategory']['id'])); ?>
+		</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $resumeSkill['ResumeSkill']['id']), array('class' => 'view')); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $resumeSkill['ResumeSkill']['id']), array('class' => 'edit')); ?>
@@ -69,13 +77,14 @@
 	</tr>
 	<?php endforeach;
 		echo $this->Batch->batch(array(
-			'id',
+			null,
 			null,
 			'name',
 			'uuid',
 			'account_id' => array('empty' => '-- None --'),
 			'years',
-			'proficiency'
+			'proficiency',
+			'resume_skill_category_id' => array('empty' => '-- None --'),
 		));?> 
 	</table>
 	<?php echo $this->Batch->end()?> 

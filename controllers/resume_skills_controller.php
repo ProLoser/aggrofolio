@@ -5,7 +5,9 @@ class ResumeSkillsController extends AppController {
 
 	function admin_index() {
 		$this->ResumeSkill->recursive = 0;
-		$this->set('resumeSkills', $this->paginate());
+		$resumeSkills = $this->paginate();
+		$resumeSkillCategories = $this->ResumeSkill->ResumeSkillCategory->generatetreelist(array(), null, null, '- ');
+		$this->set(compact('resumeSkills', 'resumeSkillCategories'));
 	}
 
 	function admin_view($id = null) {
@@ -13,6 +15,7 @@ class ResumeSkillsController extends AppController {
 			$this->Session->setFlash(__('Invalid resume skill', true));
 			$this->redirect(array('action' => 'index'));
 		}
+		$this->ResumeSkill->recursive = 1;
 		$this->set('resumeSkill', $this->ResumeSkill->read(null, $id));
 	}
 
@@ -28,7 +31,8 @@ class ResumeSkillsController extends AppController {
 		}
 		$accounts = $this->ResumeSkill->Account->find('list');
 		$resumes = $this->ResumeSkill->Resume->find('list');
-		$this->set(compact('accounts', 'resumes'));
+		$resumeSkillCategories = $this->ResumeSkill->ResumeSkillCategory->generatetreelist(array(), null, null, '- ');
+		$this->set(compact('accounts', 'resumes', 'resumeSkillCategories'));
 	}
 
 	function admin_edit($id = null) {
@@ -45,11 +49,13 @@ class ResumeSkillsController extends AppController {
 			}
 		}
 		if (empty($this->data)) {
+			$this->ResumeSkill->recursive = 1;
 			$this->data = $this->ResumeSkill->read(null, $id);
 		}
 		$accounts = $this->ResumeSkill->Account->find('list');
 		$resumes = $this->ResumeSkill->Resume->find('list');
-		$this->set(compact('accounts', 'resumes'));
+		$resumeSkillCategories = $this->ResumeSkill->ResumeSkillCategory->generatetreelist(array(), null, null, '- ');
+		$this->set(compact('accounts', 'resumes', 'resumeSkillCategories'));
 	}
 
 	function admin_delete($id = null) {

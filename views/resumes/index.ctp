@@ -78,12 +78,31 @@
 	<?php if (!empty($resume['ResumeSkill'])): ?>
 	<section id="skills">
 		<h3>Skills</h3>
-		<ul>	  	 
-			<?php foreach ($resume['ResumeSkill'] as $skill): ?>
-			<li><?php $years = ($skill['years'] > 1) ? 'years' : 'year';
-			echo "<strong>{$skill['name']}</strong>: {$skill['proficiency']} - {$skill['years']} {$years}";?></li>
-			<?php endforeach ?>
-		</ul>
+		<?php
+		$skills = array();
+		$generalSkills = '';
+		foreach ($resume['ResumeSkill'] as $skill) {			
+			$years = ($skill['years'] > 1) ? 'years' : 'year';
+			$text = "\t<li><strong>{$skill['name']}</strong>: {$skill['proficiency']} - {$skill['years']} {$years}</li>\n";
+			if (empty($skill['ResumeSkillCategory']['name'])) {
+				$generalSkills .= $text;
+			} else {
+				if (!isset($skills[$skill['ResumeSkillCategory']['name']]))
+					$skills[$skill['ResumeSkillCategory']['name']] = '';
+				$skills[$skill['ResumeSkillCategory']['name']] .= $text;
+			}
+		}
+		if (!empty($generalSkills)): ?>
+			<ul>
+				<?php echo $generalSkills; ?>
+			</ul>
+		<?php endif; ?>
+		<?php foreach ($skills as $category => $skill): ?>
+			<h4><?php echo $category; ?></h4>
+			<ul>
+				<?php echo $skill; ?>
+			</ul>
+		<?php endforeach; ?>
 	</section>
 	<?php endif; ?>
 

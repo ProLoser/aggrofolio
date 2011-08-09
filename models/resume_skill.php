@@ -14,6 +14,7 @@ class ResumeSkill extends AppModel {
 	
 	var $belongsTo = array(
 		'Account',
+		'ResumeSkillCategory',
 	);
 
 	var $hasAndBelongsToMany = array(

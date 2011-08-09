@@ -4,34 +4,7 @@ class ResumesController extends AppController {
 	var $name = 'Resumes';
 	
 	function index() {
-		$this->set('resume', $this->Resume->find('first', array(
-			'contain' => array(
-				'Account',
-				'PostRelationship',
-				'ResumeRecommendation',
-				'ResumeSchool' => array(
-					'Project' => array(
-						'conditions' => array('Project.published' => true),
-						'MediaItem' => array(
-							'conditions' => array('MediaItem.published' => true),
-							'limit' => 2,
-						),
-					),
-				),
-				'ResumeSkill' => array(
-					'order' => array('proficiency ASC', 'years DESC')
-				),
-				'ResumeEmployer' => array(
-					'Project' => array(
-						'conditions' => array('Project.published' => true),
-						'MediaItem' => array(
-							'conditions' => array('MediaItem.published' => true),
-							'limit' => 2,
-						),
-					),
-				),
-			),
-		)));
+		$this->set('resume', $this->Resume->render());
 	}
 	
 	function view($id = null) {
@@ -39,16 +12,7 @@ class ResumesController extends AppController {
 			$this->Session->setFlash(__('Invalid resume', true));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->set('resume', $this->Resume->find('first', array(
-			'contain' => array(
-				'Account',
-				'PostRelationship',
-				'ResumeRecommendation',
-				'ResumeSchool',
-				'ResumeSkill',
-				'ResumeEmployer',
-			),
-		)));
+		$this->set('resume', $this->Resume->render($id));
 		$this->render('index');
 	}
 

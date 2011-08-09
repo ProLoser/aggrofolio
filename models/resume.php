@@ -46,6 +46,51 @@ class Resume extends AppModel {
 		),
 	);
 	
+	/**
+	 * Prepared find for resume rendering
+	 *
+	 * @param string $id 
+	 * @return void
+	 * @author Dean Sofer
+	 */
+	public function render($id = null) {
+		$conditions = array();
+		if ($id) {
+			$conditions['Resume.id'] = $id;
+		}
+		return $this->find('first', array(
+			'conditions' => $conditions,
+			'contain' => array(
+				'Account',
+				'PostRelationship',
+				'ResumeRecommendation',
+				'ResumeSchool' => array(
+					'Project' => array(
+						'conditions' => array('Project.published' => true),
+						'MediaItem' => array(
+							'conditions' => array('MediaItem.published' => true),
+							'limit' => 2,
+						),
+					),
+				),
+				'ResumeSkill' => array(
+					'order' => array('resume_skill_category_id', 'proficiency ASC', 'years DESC'),
+					'ResumeSkillCategory',
+				),
+				'ResumeEmployer' => array(
+					'Project' => array(
+						'conditions' => array('Project.published' => true),
+						'MediaItem' => array(
+							'conditions' => array('MediaItem.published' => true),
+							'limit' => 2,
+						),
+					),
+				),
+			),
+		));
+	}
+	
+	
 	public function scanLinkedin($account) {
 		$this->useDbConfig = 'linkedin';
 		$data = $this->find('all', array(
