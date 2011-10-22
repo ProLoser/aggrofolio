@@ -51,9 +51,9 @@
 		<td><?php echo $account['Account']['type']; ?>&nbsp;</td>
 		<td><?php echo $account['Account']['published']; ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('Login', true), array('action' => 'connect', $account['Account']['id']), array('class' => 'login')); ?>
-			<?php echo $this->Html->link(__('Scan', true), array('action' => 'scan', $account['Account']['id']), array('class' => 'scan')); ?>
-			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $account['Account']['id']), array('class' => 'view')); ?>
+			<?php echo $this->Html->link(__('Login', true), array('action' => 'connect', $account['Account']['id']), array('class' => 'login', 'title' => 'Login')); ?>
+			<?php echo $this->Html->link(__('Scan', true), array('action' => 'scan', $account['Account']['id']), array('class' => 'scan', 'title' => 'Scan')); ?>
+			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $account['Account']['id']), array('class' => 'view', 'title' => 'View')); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $account['Account']['id']), array('class' => 'edit')); ?>
 			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $account['Account']['id']), array('class' => 'delete'), sprintf(__('Are you sure you want to delete # %s?', true), $account['Account']['id'])); ?>
 			<?php echo $this->Batch->checkbox($account['Account']['id'])?>

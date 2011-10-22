@@ -65,8 +65,8 @@
 		</div>
 	</div>
 <?php	
-	echo $this->Plate->lib('jquery', array('fallback' => 'libs/jquery-1.5.0.min'));
-	echo $this->Plate->lib('jqueryui');
+	echo $this->Plate->lib('jquery', array('compressed' => true, 'fallback' => 'libs/jquery-1.6.1'));
+	echo $this->Plate->lib('jqueryui', array('compressed' => true, 'fallback' => 'libs/jquery-ui-1.8.15.min'));
 	echo $this->Html->script(array(
 	#!# $this->AssetCompress->script(array(
 		'mylibs/jquery.placeholder.min',

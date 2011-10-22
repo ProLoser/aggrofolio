@@ -14,11 +14,11 @@
 			'format' => __('Record %start% to %end% of %count% total', true)
 		));
 		?>	</h3>
-		<div class="paging">
+		<p class="paging">
 			<?php echo $this->Paginator->prev();?>
 		 	<?php echo $this->Paginator->numbers(array('separator' => ''));?>
 			<?php echo $this->Paginator->next();?>
-		</div>
+		</p>
 	</header>
 	<?php echo $this->Batch->create('Post')?>
 	<table cellpadding="0" cellspacing="0">
@@ -53,4 +53,15 @@
 	<?php echo $this->Batch->batch(array(null, null, 'subject', 'slug'))?>
 	</table>
 	<?php echo $this->Batch->end()?>
+	<footer>
+		<h3>Records:</h3>
+		<p class="paging limit">
+			<?php echo $this->Paginator->limit(array(10,20,50,100));?>
+		</p>
+		<p class="paging">
+			<?php echo $this->Paginator->prev();?>
+		 	<?php echo $this->Paginator->numbers(array('separator' => ''));?>
+			<?php echo $this->Paginator->next();?>
+		</p>
+	</footer>
 </article>

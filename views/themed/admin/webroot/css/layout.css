@@ -506,7 +506,6 @@ height: 34px;
 background: url(../img/table_sorter_header.png) repeat-x;
 text-align: left;
 text-indent: 10px;
-cursor: pointer;
 }
 
 table td {
@@ -523,13 +522,15 @@ height: 16px;
 td.actions .edit {background-image: url(../img/icn_edit.png)}
 td.actions .view {background-image: url(../img/icn_search.png)}
 td.actions .delete {background-image: url(../img/icn_trash.png)}
+td.actions .login {background-image: url(../img/icons/user_gray.png)}
+td.actions .scan {background-image: url(../img/icons/eye.png)}
 table input[type=image] {
 margin-right: 10px;
 }
 
 
 .paging, article header ul, article footer ul {
-margin: -5px 0;
+margin: -5px 0 -5px 4px;
 padding: 0;
 float: right;
 list-style: none;
@@ -543,6 +544,11 @@ box-shadow: 0 1px 0 #fff;
 border: 1px solid #ccc;
 font-weight: bold;
 text-shadow: 0 1px 0 #fff;
+}
+.paging.limit {
+float: none;
+display: inline-block;
+margin: -6px 0 -6px 4px;
 }
 .paging span, article header li, article footer li {
 float: left;
@@ -566,10 +572,10 @@ background: #F5F6F7;
 -moz-box-shadow: inset 0 1px 2px #999;
 box-shadow: inset 0 1px 2px #999;
 }
-.paging .current, .paging .prev, .paging .next, .paging .disabled {
+.paging span, .paging li {
 padding: 0 10px;
 }
-.paging .prev a, .paging .next a, .paging .disabled a {
+.paging span a, .paging li a {
 margin: 0 -10px;
 display: block;
 }

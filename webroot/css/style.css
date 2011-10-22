@@ -296,15 +296,19 @@ legend {
 	background: no-repeat center left;
 	padding: 2px 0 2px 36px;
 }
+#mainNav li a:hover {
+	color: #f99;
+}
 
-#categories, #filters {
+#categories, #filters li {
 	position: relative;
 }
 #categories .reset,  #filters .reset {
 	display: block;
 	width: 32px;
 	height: 32px;
-	margin: 0 auto;
+	position: absolute;
+	left: 0;
 	text-indent: -5000px;
 	background: no-repeat center url(../img/icons/remove_category.png);
 }
@@ -525,13 +529,6 @@ a.readmore {
 	display: none;
 }
 
-#comments li {
-	margin: 10px 0;
-}
-#comments li h2 {
-	font-size: 120%;
-}
-
 /* Paging */
 /*a.asc:after {
 	content: ' ⇑';
@@ -648,8 +645,8 @@ background-image:      -o-linear-gradient(top, #D4D3C9, #F3F1E4);
 background-image:         linear-gradient(top, #D4D3C9, #F3F1E4);
           filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#D4D3C9', EndColorStr='#F3F1E4'); 
 }
-/* Blog */
-.posts article, #comments form {
+/** Blog && Comments **/
+.posts article, #comments li {
 	padding: 10px;
 	border-radius: 10px;
 	-moz-border-radius: 10px;
@@ -659,8 +656,18 @@ background-image:         linear-gradient(top, #D4D3C9, #F3F1E4);
 	background: rgba(150,150,150,.1);
 	box-shadow: inset 0 1px 4px rgba(0,0,0,.1), 0 1px 2px rgba(255,255,255,.3);
 }
-.posts article header {
+.posts article header, #comments li header {
 	margin: -25px 15px 0;
+}
+#comments ul {
+	margin-left: 0;
+}
+#comments li {
+	list-style: none;
+}
+#comments li h2 {
+	font-size: 140%;
+	color: #933;
 }
 article hr {
 	display: none;

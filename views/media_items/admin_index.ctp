@@ -18,9 +18,8 @@
 		));
 		?>	</h3>
 		<div class="paging">
-			<?php echo $this->Paginator->prev();?>
-			<?php echo $this->Paginator->numbers(array('separator' => ''));?>
-			<?php echo $this->Paginator->next();?>
+			<span>Records:</span>
+			<?php echo $this->Paginator->limit(array(10,20,40));?>
 		</div>
 	</header>
 	<?php echo $this->Batch->create('MediaItem')?>	<table cellpadding="0" cellspacing="0">

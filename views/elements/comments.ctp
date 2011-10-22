@@ -1,7 +1,7 @@
 <section id="comments">
 	<h1>Comments</h1>
 	<?php if (!empty($comments)): ?>
-		<ol>
+		<ul>
 		<?php foreach ($comments as $comment): ?>
 			<li>
 				<header>
@@ -11,15 +11,15 @@
 				<?php echo $comment['body']?>
 			</li>		
 		<?php endforeach ?>
-		</ol>
+		</ul>
 	<?php endif; ?>	
 	<?php echo $this->Form->create('Comment', array('action' => 'add', 'inputDefaults' => array('label' => false, 'placeholder' => true)))?>
+	<h2>Add New Comment</h2>
 <?php $this->Html->scriptStart(array('inline' => false)); ?>
 	$(document).ready(function(){
 		$('form fieldset').append('<?php echo $this->Form->input('human', array('type' => 'checkbox', 'label' => 'Please fill the void'));?>');
 	});
 <?php $this->Html->scriptEnd(); ?>
-	<fieldset>
 	<?php
 		echo $this->Form->input('name');
 		echo $this->Form->input('email');
@@ -30,6 +30,5 @@
 		echo $this->Form->input('foreign_key', array('type' => 'hidden', 'value' => $id));
 		echo $this->Form->input('inhuman', array('type' => 'hidden'));
 	?>
-	</fieldset>
 	<?php echo $this->Form->end('Submit')?>
 </section>

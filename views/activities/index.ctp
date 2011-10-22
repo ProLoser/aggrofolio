@@ -41,9 +41,7 @@
 	<?php endif; break; case 'Album': if ($activity['Album']['published'] && !empty($activity['Album']['MediaItem'])):?>
 		<header>
 			<h3>
-				<?php echo $activity['Album']['name']?>
-				Album <?php echo $actions[$activity['Activity']['action']]?>
-				<?php echo $this->Html->link('»', array('controller' => 'media_items', 'action' => 'album', $activity['Album']['id'])); ?>
+				<?php echo $this->Html->link($activity['Album']['name'], array('controller' => 'media_items', 'action' => 'album', $activity['Album']['id'])); ?>
 			</h3>
 			<time><?php echo $actions[$activity['Activity']['action']] . ' ' . $this->Time->nice($activity['Activity']['created']); ?></time>
 		</header>

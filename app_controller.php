@@ -63,6 +63,7 @@ class AppController extends Controller {
 			'loginRedirect' => '/',
 		),/**/
 		'AutoLogin.AutoLogin',
+		'Webservice.Webservice',
 	);
 	var $view = 'BakingPlate.ThemedAutoHelper';
 	var $attributesForLayout = array(

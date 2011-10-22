@@ -27,15 +27,18 @@ $(document).ready(function(){
 		}, 600).siblings(':not(' + selector + ')').animate({
 			opacity: .4
 		}, 600);
-		if ($(selector).length)
-			$('#categories .reset').fadeIn(600);
+		if ($(selector).length) {
+			$(this).before('<a href="#" class="reset">Reset</a>').prev().fadeIn(600);
+		}
 		return false;
 	});
-	$('#categories a.reset').hide().click(function(){
+	$('#categories a.reset').click(function(){
+		$(this).fadeOut(600, function() {
+			$(this).remove();
+		});
 		$('ul.gallery li, .posts article').animate({
 			opacity: 1
 		}, 600);
-		$(this).fadeOut(600);
 		return false;
 	});
 	

@@ -18,7 +18,6 @@
 <nav id="categories">
 	<h3>Categories</h3>
 	<?php echo $this->Plate->tree($categories, array('callback' => '_categories'));?>
-	<a href="#" class="reset">Reset</a>
 </nav>		
 <?php endif;?>
 
@@ -29,6 +28,14 @@
 <?php foreach ($navAccounts as $account):?>
 		<li class="<?php echo $account['Account']['type']?>"><?php echo $this->Agro->account($account['Account'])?></li>
 <?php endforeach;?>
+	</ul>
+</nav>
+<?php endif; ?>
+
+<?php if ($this->Session->read('Auth.User')): ?>
+<nav>
+	<ul>
+		<li><?php echo $this->Html->link('Admin', '/admin'); ?></li>
 	</ul>
 </nav>
 <?php endif; ?>

@@ -71,5 +71,12 @@ class Account extends AppModel {
 				return $this->Album->scanDeviantart($account);
 		}
 	}
+	
+	function scanAll() {
+		$accounts = $this->find('list', array('conditions' => array('Account.published' => true)));
+		foreach ($accounts as $id => $username) {
+			$this->scan($id);
+		}
+	}
 }
 ?>
