@@ -11,8 +11,20 @@
 <?php if (!empty($nav_for_layout)): ?>
 <nav>
 	<?php echo $nav_for_layout; ?>
-</nav>		
+</nav>
 <?php endif;?>
+
+<?php if ($this->Session->read('Auth.User')): ?>
+<nav>
+	<h3>Admin</h3>
+	<ul>
+		<li><?php echo $this->Html->link('Control Panel', array('admin' => true))?></li>
+	<?php if (!empty($navAdmin)): foreach ($navAdmin as $item): ?>
+		<li><?php echo $item?></li>
+	<?php endforeach; endif; ?>
+	</ul>
+</nav>
+<?php endif; ?>
 
 <?php if (!empty($categories)): ?>
 <nav id="categories">
@@ -28,14 +40,6 @@
 <?php foreach ($navAccounts as $account):?>
 		<li class="<?php echo $account['Account']['type']?>"><?php echo $this->Agro->account($account['Account'])?></li>
 <?php endforeach;?>
-	</ul>
-</nav>
-<?php endif; ?>
-
-<?php if ($this->Session->read('Auth.User')): ?>
-<nav>
-	<ul>
-		<li><?php echo $this->Html->link('Admin', '/admin'); ?></li>
 	</ul>
 </nav>
 <?php endif; ?>

@@ -1,9 +1,7 @@
-<?php $this->Plate->start('nav')?>
-<h3>Admin</h3>
-<ul>
-	<li><?php echo $this->Html->link('Edit Resume', array('admin' => true, 'action' => 'edit', $resume['Resume']['id'])); ?></li>
-</ul>
-<?php $this->Plate->stop()?>
+<?php
+$this->set('navAdmin', array(
+	$this->Html->link('Edit Resume', array('admin' => true, 'action' => 'edit', $resume['Resume']['id'])),
+))?>
 <style type="text/css">
 	.download {
 		float: left;
