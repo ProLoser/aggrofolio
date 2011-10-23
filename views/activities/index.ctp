@@ -23,7 +23,10 @@
 				<h1><?php echo $this->Html->link($activity['Post']['subject'], array('controller' => 'posts', 'action' => 'view', $activity['Post']['id'], $activity['Post']['slug'])); ?></h1>
 				<time><?php echo $actions[$activity['Activity']['action']] . ' ' . $this->Time->nice($activity['Post']['created']); ?></time>
 			</header>	
-			<?php echo $this->Agro->truncate($activity['Post']['body'], array('controller' => 'posts', 'action' => 'view', $activity['Post']['id'], $activity['Post']['slug'])); ?>
+			<?php 
+				$activity['Post']['body'] = str_replace('/original-', '/thumb-', $activity['Post']['body']);
+				echo $this->Agro->truncate($activity['Post']['body'], array('controller' => 'posts', 'action' => 'view', $activity['Post']['id'], $activity['Post']['slug'])); 
+			?>
 		</article>
 	<?php break; case 'MediaItem': if ($activity['MediaItem']['published']):?>
 		<?php if (!empty($activity['MediaItem']['name'])): ?>

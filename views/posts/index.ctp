@@ -15,7 +15,10 @@
 			<h1><?php echo $this->Html->link($post['Post']['subject'], array('action' => 'view', $post['Post']['id'], $post['Post']['slug'])); ?></h1>
 			<time><?php echo $this->Time->nice($post['Post']['created']); ?></time>
 		</header>	
-		<?php echo $this->Agro->truncate($post['Post']['body'], array('controller' => 'posts', 'action' => 'view', $post['Post']['id'], $post['Post']['slug']))?>
+		<?php 
+			$post['Post']['body'] = str_replace('/original-', '/thumb-', $post['Post']['body']);
+			echo $this->Agro->truncate($post['Post']['body'], array('controller' => 'posts', 'action' => 'view', $post['Post']['id'], $post['Post']['slug']));
+		?>
 	</article>
 <?php endforeach; ?>
 </div>
