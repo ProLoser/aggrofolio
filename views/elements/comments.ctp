@@ -17,9 +17,10 @@
 	<h2>Add New Comment</h2>
 <?php $this->Html->scriptStart(array('inline' => false)); ?>
 	$(document).ready(function(){
-		$('form fieldset').append('<?php echo $this->Form->input('human', array('type' => 'checkbox', 'label' => 'Please fill the void'));?>');
+		$('#CommentAddForm fieldset').append('<?php echo $this->Form->input('human', array('type' => 'checkbox', 'label' => 'Please fill the void'));?>');
 	});
 <?php $this->Html->scriptEnd(); ?>
+	<fieldset>
 	<?php
 		echo $this->Form->input('name');
 		echo $this->Form->input('email');
@@ -30,5 +31,6 @@
 		echo $this->Form->input('foreign_key', array('type' => 'hidden', 'value' => $id));
 		echo $this->Form->input('inhuman', array('type' => 'hidden'));
 	?>
+	</fieldset>
 	<?php echo $this->Form->end('Submit')?>
 </section>

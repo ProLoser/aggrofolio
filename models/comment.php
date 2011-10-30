@@ -35,7 +35,8 @@ class Comment extends AppModel {
 		),
 		'human' => array(
 			'rule' => array('equalTo', '1'),
-			'message' => 'Check the damn box.'
+			'message' => 'Check the damn box.',
+			'required' => true,
 		),
 		'inhuman' => array(
 			'rule' => array('equalTo', ''),
