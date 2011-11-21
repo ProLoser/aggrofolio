@@ -1,4 +1,5 @@
 <?php
+App::uses('AuthComponent', 'Controller/Component');
 class User extends AppModel {
 	var $name = 'User';
 	var $validate = array(
@@ -28,6 +29,13 @@ class User extends AppModel {
 		'Project',
 		'Resume',
 	);
+	
+	public function beforeSave() {
+	    if (isset($this->data[$this->alias]['password'])) {
+	        $this->data[$this->alias]['password'] = AuthComponent::password($this->data[$this->alias]['password']);
+	    }
+	    return true;
+	}
 
 }
 ?>

@@ -12,6 +12,17 @@
 			<?php echo $this->Paginator->sort('created');?><?php echo $this->Paginator->sort('name');?><?php echo $this->Paginator->sort('Section', 'model');?>
 		</p>
 	<?php endif; ?>
+	<?php if ($this->Session->read('Auth.User')):?>
+	<p class="sorting">
+		<span>Add New</span>
+		<?php 
+		echo $this->Html->link('Post', array('admin' => true, 'controller' => 'posts', 'action' => 'add'));
+		echo $this->Html->link('Media Item', array('admin' => true, 'controller' => 'media_items', 'action' => 'add'));
+		echo $this->Html->link('Bookmark', array('admin' => true, 'controller' => 'bookmarks', 'action' => 'add'));
+		echo $this->Html->link('Project', array('admin' => true, 'controller' => 'projects', 'action' => 'add')); 
+		?>
+	</p>
+	<?php endif;?>
 </header>
 <ul class="activity posts">
 <?php foreach ($activities as $activity) : ?>

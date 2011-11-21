@@ -50,15 +50,19 @@ class AppController extends Controller {
 		'BakingPlate.Plate',
 		/* Auth Configuration */
 		'Auth' => array(
-			'fields' => array(
-				'username' => 'email', 
-				'password' => 'password',
+			'authenticate' => array(
+				'Form' => array(
+					'fields' => array(
+						'username' => 'email', 
+						'password' => 'password',
+					),					
+				),
 			),
 			'loginAction' => array('admin' => false, 'plugin' => null, 'controller' => 'users', 'action' => 'login'),
 			'logoutRedirect' => array('action' => 'login'),
 			'loginRedirect' => '/',
 		),/**/
-		'AutoLogin.AutoLogin',
+		// 'AutoLogin.AutoLogin',
 		//'Webservice.Webservice',
 	);
 	var $attributesForLayout = array(

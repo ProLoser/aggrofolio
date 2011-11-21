@@ -1,4 +1,6 @@
-<h2>Login</h2>
+<header>
+	<h2>Admin Login</h2>
+</header>
 <?php
     echo $this->Form->create('User');
     echo $this->Form->input('email');
