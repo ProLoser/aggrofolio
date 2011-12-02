@@ -5,19 +5,19 @@ class Bookmark extends AppModel {
 		'name' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'Name must not be empty',
 			),
 		),
 		'url' => array(
 			'notempty' => array(
-				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'rule' => array('url'),
+				'message' => 'Please enter a valid Url',
 			),
 		),
-		'account_id' => array(
+		'bookmark_category_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
+				'message' => 'Please enter a valid Bookmark Category',
 			),
 		),
 	);

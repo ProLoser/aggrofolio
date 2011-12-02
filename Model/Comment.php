@@ -56,7 +56,7 @@ class Comment extends AppModel {
  */
 	public function beforeSave() {
 		if (isset($this->data['Comment']['body'])) {
-			App::import('Lib', 'Sanitize');
+			App::uses('Sanitize', 'Utility');
 			$this->data['Comment']['body'] = Sanitize::html($this->data['Comment']['body']);
 		}
 		return true;

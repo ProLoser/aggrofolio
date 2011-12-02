@@ -56,7 +56,7 @@ class Contact extends AppModel {
  */
 	public function beforeSave() {
 		if (isset($this->data['Contact']['body'])) {
-			App::import('Lib', 'Sanitize');
+			App::uses('Sanitize', 'Utility');
 			$this->data['Contact']['body'] = Sanitize::html($this->data['Contact']['body']);
 		}
 		return true;

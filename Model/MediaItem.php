@@ -65,7 +65,7 @@ class MediaItem extends AppModel {
 		$count = 0;
 		if (!empty($mediaItems)) {
 			
-			App::import('Core', 'HttpSocket');
+			App::uses('HttpSocket', 'Network/Http');
 			$socket = new HttpSocket();
 			
 			foreach ($mediaItems as $mediaItem) {

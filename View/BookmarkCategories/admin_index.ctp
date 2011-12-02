@@ -2,8 +2,6 @@
 	<hgroup><h1><?php echo __('Bookmark Categories');?></h1></hgroup>
 	<ul>
 		<li><?php echo $this->Html->link(__('New Bookmark Category'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Bookmark Categories'), array('controller' => 'bookmark_categories', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Parent Bookmark Category'), array('controller' => 'bookmark_categories', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Bookmarks'), array('controller' => 'bookmarks', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Bookmark'), array('controller' => 'bookmarks', 'action' => 'add')); ?> </li>
 	</ul>
@@ -16,8 +14,6 @@
 			<th><?php echo $this->Paginator->sort('name');?></th>
 			<th><?php echo $this->Paginator->sort('description');?></th>
 			<th><?php echo $this->Paginator->sort('parent_id');?></th>
-			<th><?php echo $this->Paginator->sort('lft');?></th>
-			<th><?php echo $this->Paginator->sort('rght');?></th>
 			<th class="actions"><?php echo __('Actions');?></th>
 	</tr>
 	<?php
@@ -36,12 +32,10 @@
 		<td>
 			<?php echo $this->Html->link($bookmarkCategory['ParentBookmarkCategory']['name'], array('controller' => 'bookmark_categories', 'action' => 'view', $bookmarkCategory['ParentBookmarkCategory']['id'])); ?>
 		</td>
-		<td><?php echo $bookmarkCategory['BookmarkCategory']['lft']; ?>&nbsp;</td>
-		<td><?php echo $bookmarkCategory['BookmarkCategory']['rght']; ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $bookmarkCategory['BookmarkCategory']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $bookmarkCategory['BookmarkCategory']['id'])); ?>
-			<?php echo $this->Html->link(__('Delete'), array('action' => 'delete', $bookmarkCategory['BookmarkCategory']['id']), null, sprintf(__('Are you sure you want to delete # %s?'), $bookmarkCategory['BookmarkCategory']['id'])); ?>
+			<?php echo $this->Html->link(__('View'), array('action' => 'view', $bookmarkCategory['BookmarkCategory']['id']), array('class' => 'view')); ?>
+			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $bookmarkCategory['BookmarkCategory']['id']), array('class' => 'edit')); ?>
+			<?php echo $this->Html->link(__('Delete'), array('action' => 'delete', $bookmarkCategory['BookmarkCategory']['id']), array('class' => 'delete'), sprintf(__('Are you sure you want to delete # %s?'), $bookmarkCategory['BookmarkCategory']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

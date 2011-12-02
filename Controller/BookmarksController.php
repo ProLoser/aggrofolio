@@ -4,6 +4,11 @@ class BookmarksController extends AppController {
 	var $name = 'Bookmarks';
 	public $paginate = array();
 	
+	public function index() {
+		$this->Bookmark->recursive = 0;
+		$this->set('bookmarks', $this->paginate());
+	}
+	
 	function admin_index() {
 		$this->Bookmark->recursive = 0;
 		$this->set('bookmarks', $this->paginate());
@@ -23,7 +28,11 @@ class BookmarksController extends AppController {
 		$this->set('bookmark', $this->Bookmark->read(null, $id));
 	}
 
-	function admin_add() {
+	function admin_add($bookmarklet = false) {
+		//javascript:var a=document.title,b=document.location.href,c=document.getElementsByTagName('meta'),d='',x,y;for(x=0,y=c.length;x<y;x++){if(c[x].name.toLowerCase()=="description"){d=c[x];}}window.open("http://localhost/aggropholio/admin/bookmarks/add/bookmarklet/name:"+a+"/url:"+encodeURIComponent(b)+"/description:"+d,"New Bookmark",'width=400,height=370,location=no,directories=no,status=no,menubar=no,copyhistory=no,');
+		if ($bookmarklet) {
+			$this->layout = 'bookmarklet';
+		}
 		if (!empty($this->request->data)) {
 			$this->Bookmark->create();
 			if ($this->Bookmark->save($this->request->data)) {
@@ -32,9 +41,12 @@ class BookmarksController extends AppController {
 			} else {
 				$this->Session->setFlash(__('The bookmark could not be saved. Please, try again.'));
 			}
+		} else {
+			$this->request->data['Bookmark'] = $this->request->params['named'];
+			unset($this->request->data['Bookmark']['id']);
 		}
 		$accounts = $this->Bookmark->Account->find('list');
-		$bookmarkCategories = $this->Bookmark->BookmarkCategory->find('list');
+		$bookmarkCategories = $this->Bookmark->BookmarkCategory->generateTreeList(null, null, null, '- ');
 		$this->set(compact('accounts', 'bookmarkCategories'));
 	}
 
@@ -55,7 +67,7 @@ class BookmarksController extends AppController {
 			$this->request->data = $this->Bookmark->read(null, $id);
 		}
 		$accounts = $this->Bookmark->Account->find('list');
-		$bookmarkCategories = $this->Bookmark->BookmarkCategory->find('list');
+		$bookmarkCategories = $this->Bookmark->BookmarkCategory->generateTreeList(null, null, null, '- ');
 		$this->set(compact('accounts', 'bookmarkCategories'));
 	}
 

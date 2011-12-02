@@ -7,8 +7,8 @@
 		echo $this->Form->input('name');
 		echo $this->Form->input('url');
 		echo $this->Form->input('description');
-		echo $this->Form->input('account_id');
-		echo $this->Form->input('bookmark_category_id');
+		echo $this->Form->input('account_id', array('empty' => '-- None --'));
+		echo $this->Form->input('bookmark_category_id', array('empty' => '-- Select One --'));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit'));?>
