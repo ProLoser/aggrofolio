@@ -43,9 +43,6 @@
 [submodule "Plugin/asset_compress"]
 	path = Plugin/asset_compress
 	url = git://github.com/markstory/asset_compress.git
-[submodule "Plugin/navigation"]
-	path = Plugin/navigation
-	url = git://github.com/sams/cakephp-navigation.git
 [submodule "vendors/jsmin"]
 	path = vendors/jsmin
 	url = git://github.com/rgrove/jsmin-php.git
