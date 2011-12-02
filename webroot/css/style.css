@@ -197,6 +197,10 @@ time {
 	float: right;
 	font-weight: bold;
 }
+article iframe {
+	border: 1px solid #ccc;
+	width: 100%;
+}
 section {
 	margin: 30px 0;
 }
