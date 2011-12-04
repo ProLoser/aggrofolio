@@ -37,7 +37,7 @@ Router::connect('/gallery/*', array('controller' => 'albums', 'action' => 'index
 /*
  * Want localization instead?
  *#!#/
-App::import('Lib', 'LocalizedRouter');
+App::uses('LocalizedRouter', 'BakingPlate.Lib');
 LocalizedRouter::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
 LocalizedRouter::localize();
 /*^*/
