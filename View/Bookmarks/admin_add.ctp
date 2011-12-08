@@ -12,6 +12,7 @@
 	<?php
 		echo $this->Form->input('name');
 		echo $this->Form->input('url');
+		echo $this->Form->input('domain_only', array('type' => 'checkbox'));
 		echo $this->Form->input('description');
 		echo $this->Form->input('account_id', array('empty' => '-- None --'));
 		echo $this->Form->input('bookmark_category_id', array('empty' => '-- Select One --'));

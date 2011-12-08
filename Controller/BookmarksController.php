@@ -12,6 +12,8 @@ class BookmarksController extends AppController {
 	function admin_index() {
 		$this->Bookmark->recursive = 0;
 		$this->set('bookmarks', $this->paginate());
+		$bookmarkCategories = $this->Bookmark->BookmarkCategory->generateTreeList(null, null, null, '- ');
+		$this->set(compact('bookmarkCategories'));
 	}
 	
 	function admin_scan($accountId) {
@@ -28,26 +30,34 @@ class BookmarksController extends AppController {
 		$this->set('bookmark', $this->Bookmark->read(null, $id));
 	}
 
-	function admin_add($bookmarklet = false) {
-		//javascript:var a=document.title,b=document.location.href,c=document.getElementsByTagName('meta'),d='',x,y;for(x=0,y=c.length;x<y;x++){if(c[x].name.toLowerCase()=="description"){d=c[x];}}window.open("http://localhost/aggropholio/admin/bookmarks/add/bookmarklet/name:"+a+"/url:"+encodeURIComponent(b)+"/description:"+d,"New Bookmark",'width=400,height=370,location=no,directories=no,status=no,menubar=no,copyhistory=no,');
-		if ($bookmarklet) {
-			$this->layout = 'bookmarklet';
-		}
+	function admin_add() {
+		// http://localhost/aggropholio/admin/bookmarks/add/testing/thisis%20awesome/http://example.com
+		
 		if (!empty($this->request->data)) {
 			$this->Bookmark->create();
 			if ($this->Bookmark->save($this->request->data)) {
-				$this->Session->setFlash(__('The bookmark has been saved'));
-				$this->redirect(array('action' => 'index'));
+				if (isset($this->request->params['named']['url'])) {
+					die('<center><h1>Bookmark Saved</h1></center><script>self.resizeTo(400,100);setTimeout(self.close, 2000)</script>');
+				} else {
+					$this->Session->setFlash(__('The bookmark has been saved'));
+					$this->redirect(array('action' => 'index'));
+				}
 			} else {
 				$this->Session->setFlash(__('The bookmark could not be saved. Please, try again.'));
 			}
-		} else {
+		} elseif (isset($this->request->params['named']['url']) && empty($this->request->data)) {
+			// If Bookmarklet
 			$this->request->data['Bookmark'] = $this->request->params['named'];
-			unset($this->request->data['Bookmark']['id']);
+			$this->request->data['Bookmark']['url'] = str_replace(array('@s@','@c@','@h@','@q@'), array('/',':','#','?'), $this->request->data['Bookmark']['url']);
 		}
 		$accounts = $this->Bookmark->Account->find('list');
 		$bookmarkCategories = $this->Bookmark->BookmarkCategory->generateTreeList(null, null, null, '- ');
 		$this->set(compact('accounts', 'bookmarkCategories'));
+		if (isset($this->request->params['named']['url'])) {
+			$this->set('title_for_layout', 'Add Bookmark');
+			$this->layout = 'bookmarklet';
+			$this->render('bookmarklet');
+		}
 	}
 
 	function admin_edit($id = null) {

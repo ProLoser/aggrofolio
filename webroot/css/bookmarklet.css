@@ -1,0 +1,45 @@
+html, body {
+	margin: 0;
+	font-family: sans-serif;
+}
+header {
+	display: none;
+}
+form {
+	margin: 10px;
+	width: 95%;
+}
+fieldset {
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+label, input, textarea, select {
+	display: block;
+	margin: 2px 0;
+	width: 100%;
+}
+.checkbox input, .checkbox label {
+	width: auto;
+	margin-right: 4px;
+	display: inline;
+}
+.input {
+	margin: 10px 0;
+}
+button, .submit input {
+	display: block;
+	padding: 10px 0;
+	margin: 10px 0;
+	width: 50%;
+	float: left;
+	font-weight: bold;
+}
+.error-message {
+	color: red;
+}
+.required label:after {
+	color: #e32;
+	content: '*';
+	display:inline;
+}

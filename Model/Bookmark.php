@@ -63,5 +63,16 @@ class Bookmark extends AppModel {
 		}
 		return $count;
 	}
+	
+	public function beforeSave($options = array()) {
+		if (!empty($this->data['Bookmark']['domain_only'])) {
+			$url = parse_url($this->data['Bookmark']['url']);
+			$this->data['Bookmark']['url'] = $url['scheme'] . '://' . $url['host'];
+		}
+		if (!empty($this->data['Bookmark']['url'])) {
+			$this->data['Bookmark']['url'] = str_replace(' ', '%20', $this->data['Bookmark']['url']);
+		}
+		return true;
+	}
 }
 ?>

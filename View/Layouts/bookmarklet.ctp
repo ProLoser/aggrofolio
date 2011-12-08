@@ -20,39 +20,9 @@
 <!doctype html>
 <html>
 <head>
-<style>
-html, body {
-	margin: 0;
-	font-family: sans-serif;
-}
-header {
-	display: none;
-}
-form {
-	margin: 10px;
-	width: 95%;
-}
-fieldset {
-	border: none;
-	margin: 0;
-	padding: 0;
-}
-label, input, textarea, select {
-	display: block;
-	margin: 2px 0;
-	width: 100%;
-}
-.input {
-	margin: 10px 0;
-}
-.submit input {
-	display: block;
-	padding: 10px 0;
-}
-.error-message {
-	color: red;
-}
-</style>
+	<title><?php echo $title_for_layout; ?></title>
+	<?php echo $this->Html->css('bookmarklet'); ?>
+	<?php echo $this->Html->script('bookmarklet'); ?>
 </head>
 <body>
 <?php echo $content_for_layout; ?>
