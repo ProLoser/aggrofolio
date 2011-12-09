@@ -28,7 +28,7 @@
 	<tr>
 		<th><?php echo $this->Paginator->sort('name');?></th>
 		<th><?php echo $this->Paginator->sort('bookmark_category_id');?></th>
-		<th class="actions"><?php echo __('Actions');?></th>
+		<th class="actions"><?php echo __('Actions');?> <?php echo $this->Batch->all()?></th>
 	</tr>
 	<?php
 	echo $this->Batch->filter(array('name', 'bookmark_category_id'));
