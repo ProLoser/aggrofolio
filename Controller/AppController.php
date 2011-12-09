@@ -43,7 +43,7 @@ class AppController extends Controller {
 	);
 	var $components = array(
 		'Session',
-		//'RequestHandler',
+		'RequestHandler',
 		'Batch.Batch' => array(
 			'actions' => array('admin_index'),
 		),
@@ -63,7 +63,7 @@ class AppController extends Controller {
 			'loginRedirect' => '/',
 		),/**/
 		// 'AutoLogin.AutoLogin',
-		//'Webservice.Webservice',
+		'Webservice.Webservice',
 	);
 	var $attributesForLayout = array(
 		'id' => 'home',
@@ -71,7 +71,12 @@ class AppController extends Controller {
 	);
 	var $descriptionForLayout = '';
 	var $keywordsForLayout = '';
-	// $_GET keyword to force debug mode. Set to false or delete to disable.
+
+/**
+ * $_GET keyword to force debug mode. Set to false or delete to disable.
+ *
+ * @var string
+ */
 	var $debugOverride = 'debug';
 	
 /**
@@ -84,7 +89,6 @@ class AppController extends Controller {
 /**
  * This allows the enabling of debug mode even if debug is set to off. 
  * Simply pass ?debug=1 in the url
- *
  */
 	public function __construct($request = null, $response = null) {
 		if (!empty($this->debugOverride) && !empty($_GET[$this->debugOverride])) {
@@ -93,7 +97,7 @@ class AppController extends Controller {
 		if (Configure::read('debug')) {
 			// TODO: add interactive for debugkit or not
 			$this->components[] = 'DebugKit.Toolbar';
-			App::import('Vendor', 'DebugKit.FireCake');
+			App::uses('FireCake', 'DebugKit.Lib');
 		}
 		parent::__construct($request, $response);
 	}
@@ -156,12 +160,14 @@ class AppController extends Controller {
  * Place your theme-switching logic in here
  */
 	protected function _setTheme() {
-		if ($this->Plate->prefix('admin')) {
-			$this->viewClass = 'Theme';
-			$this->theme = 'admin';
-		} elseif (Configure::read('Config.language')) {
-			$this->viewClass = 'Theme';
-			$this->theme = Configure::read('Config.language');
+		if ($this->viewClass !== 'Webservice.Webservice') {
+			if ($this->Plate->prefix('admin')) {
+				$this->viewClass = 'Theme';
+				$this->theme = 'admin';
+			} elseif (Configure::read('Config.language')) {
+				$this->viewClass = 'Theme';
+				$this->theme = Configure::read('Config.language');
+			}
 		}
 	}
 
