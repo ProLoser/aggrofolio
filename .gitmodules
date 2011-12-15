@@ -1,81 +1,72 @@
-[submodule "Plugin/linkedin"]
-	path = Plugin/linkedin
+[submodule "Plugin/Linkedin"]
+	path = Plugin/Linkedin
 	url = git://github.com/ProLoser/CakePHP-LinkedIn.git
-[submodule "Plugin/github"]
-	path = Plugin/github
+[submodule "Plugin/Github"]
+	path = Plugin/Github
 	url = git://github.com/ProLoser/CakePHP-Github.git
-[submodule "Plugin/codaset"]
-	path = Plugin/codaset
+[submodule "Plugin/Codaset"]
+	path = Plugin/Codaset
 	url = git://github.com/ProLoser/Cakephp-Codaset.git
-[submodule "vendors/php-github-api"]
-	path = vendors/php-github-api
-	url = git://github.com/ornicar/php-github-api
-[submodule "Plugin/batch"]
-	path = Plugin/batch
+[submodule "Plugin/Batch"]
+	path = Plugin/Batch
 	url = git://github.com/ProLoser/CakePHP-Batch.git
-[submodule "Plugin/debug_kit"]
-	path = Plugin/debug_kit
+[submodule "Plugin/DebugKit"]
+	path = Plugin/DebugKit
 	url = git://github.com/cakephp/debug_kit.git
-[submodule "Plugin/lazy_model"]
-	path = Plugin/lazy_model
-	url = git://github.com/Phally/lazy_model.git
-[submodule "Plugin/linkable"]
-	path = Plugin/linkable
-	url = git://github.com/rafaelbandeira3/linkable.git
-[submodule "Plugin/rss"]
-	path = Plugin/rss
+[submodule "Plugin/Linkable"]
+	path = Plugin/Linkable
+	url = git://github.com/sams/linkable.git
+[submodule "Plugin/Rss"]
+	path = Plugin/Rss
 	url = git://github.com/ProLoser/CakePHP-RSS-Datasource.git
-[submodule "Plugin/flickr"]
-	path = Plugin/flickr
+[submodule "Plugin/Flickr"]
+	path = Plugin/Flickr
 	url = git://github.com/ProLoser/CakePHP-Flickr.git
-[submodule "Plugin/migrations"]
-	path = Plugin/migrations
+[submodule "Plugin/Migrations"]
+	path = Plugin/Migrations
 	url = git://github.com/CakeDC/migrations.git
-[submodule "Plugin/apis"]
-	path = Plugin/apis
+[submodule "Plugin/Apis"]
+	path = Plugin/Apis
 	url = git://github.com/ProLoser/CakePHP-Api-Datasources.git
-[submodule "Plugin/baking_plate"]
-	path = Plugin/baking_plate
+[submodule "Plugin/BakingPlate"]
+	path = Plugin/BakingPlate
 	url = git://github.com/ProLoser/BakingPlate.git
-[submodule "Plugin/analogue"]
-	path = Plugin/analogue
-	url = git://github.com/joebeeson/analogue.git
-[submodule "Plugin/asset_compress"]
-	path = Plugin/asset_compress
+[submodule "Plugin/AssetCompress"]
+	path = Plugin/AssetCompress
 	url = git://github.com/markstory/asset_compress.git
-[submodule "vendors/jsmin"]
-	path = vendors/jsmin
+[submodule "Vendor/jsmin"]
+	path = Vendor/jsmin
 	url = git://github.com/rgrove/jsmin-php.git
-[submodule "Plugin/url_cache"]
-	path = Plugin/url_cache
+[submodule "Plugin/UrlCache"]
+	path = Plugin/UrlCache
 	url = git://github.com/mcurry/url_cache.git
-[submodule "Plugin/log"]
-	path = Plugin/log
+[submodule "Plugin/Log"]
+	path = Plugin/Log
 	url = git://github.com/josegonzalez/log.git
-[submodule "Plugin/mi"]
-	path = Plugin/mi
+[submodule "Plugin/Mi"]
+	path = Plugin/Mi
 	url = git://github.com/AD7six/mi.git
 [submodule "webroot/js/mylibs/radmenu"]
 	path = webroot/js/mylibs/radmenu
 	url = git://github.com/ProLoser/jQuery-Radmenu-Plugin.git
-[submodule "Plugin/upload_pack"]
-	path = Plugin/upload_pack
+[submodule "Plugin/UploadPack"]
+	path = Plugin/UploadPack
 	url = git://github.com/ProLoser/uploadpack.git
-[submodule "Plugin/cacheable"]
-	path = Plugin/cacheable
+[submodule "Plugin/Cacheable"]
+	path = Plugin/Cacheable
 	url = git://github.com/ProLoser/CakePHP-Cacheable.git
-[submodule "Plugin/webservice"]
-	path = Plugin/webservice
+[submodule "Plugin/Webservice"]
+	path = Plugin/Webservice
 	url = git://github.com/josegonzalez/webservice_plugin.git
-[submodule "Plugin/joinable"]
-	path = Plugin/joinable
+[submodule "Plugin/Joinable"]
+	path = Plugin/Joinable
 	url = git://github.com/ProLoser/CakePHP-Joinable.git
-[submodule "Plugin/clear_cache"]
-	path = Plugin/clear_cache
+[submodule "Plugin/ClearCache"]
+	path = Plugin/ClearCache
 	url = git://github.com/ceeram/clear_cache.git
-[submodule "Plugin/http_socket_oauth"]
-	path = Plugin/http_socket_oauth
+[submodule "Plugin/HttpSocketOauth"]
+	path = Plugin/HttpSocketOauth
 	url = git://github.com/ProLoser/http_socket_oauth.git
-[submodule "Plugin/auto_login"]
-	path = Plugin/auto_login
+[submodule "Plugin/AutoLogin"]
+	path = Plugin/AutoLogin
 	url = git://github.com/milesj/cake-auto_login.git

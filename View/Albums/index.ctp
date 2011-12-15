@@ -5,7 +5,7 @@
 	</p>	
 	<p class="sorting">
 		<span>Sort by:</span>
-		<?php echo $this->Paginator->sort('created');?><?php echo $this->Paginator->sort('name');?><?php echo $this->Paginator->sort('Category', 'album_category_id');?>
+		<?php echo $this->Paginator->sort('created');?><?php echo $this->Paginator->sort('name');?><?php echo $this->Paginator->sort('album_category_id', 'Category');?>
 	</p>
 </header>
 <ul class="gallery">
