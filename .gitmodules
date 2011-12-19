@@ -4,9 +4,6 @@
 [submodule "Plugin/Github"]
 	path = Plugin/Github
 	url = git://github.com/ProLoser/CakePHP-Github.git
-[submodule "Plugin/Codaset"]
-	path = Plugin/Codaset
-	url = git://github.com/ProLoser/Cakephp-Codaset.git
 [submodule "Plugin/Batch"]
 	path = Plugin/Batch
 	url = git://github.com/ProLoser/CakePHP-Batch.git
