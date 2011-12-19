@@ -39,7 +39,7 @@
 	url = git://github.com/mcurry/url_cache.git
 [submodule "Plugin/Log"]
 	path = Plugin/Log
-	url = git://github.com/josegonzalez/log.git
+	url = git://github.com/simkimsia/Log.git
 [submodule "Plugin/Mi"]
 	path = Plugin/Mi
 	url = git://github.com/AD7six/mi.git
