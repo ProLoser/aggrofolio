@@ -69,40 +69,41 @@ class Project extends AppModel {
 			}
 			$default = $this->useDbConfig;
 			$name = array_pop(explode('/', $results['Project']['cvs_url']));
-			if ($results['Account']['type'] == 'github') {
-				$this->useDbConfig = 'github';
-				$results['commits'] = $this->find('all', array(
-					'conditions' => array(
-						'user' => $results['Project']['owner'],
-						'repo' => $name,
-						'branch' => 'master',
-					),
-					'fields' => 'commits'
-				));
-				$results['github'] = $this->find('all', array(
-					'conditions' => array(
-						'user' => $results['Project']['owner'], 
-						'repo' => $name,
-					),
-					'fields' => 'repos'
-				));
-			} elseif ($results['Account']['type'] == 'codaset') {
-				$this->useDbConfig = 'codaset';
-				$results['codaset'] = $this->find('all', array(
-					'conditions' => array(
-						'username' => $results['Project']['owner'], 
-						'project' => $name,
-					),
-					'fields' => 'projects',
-				));
-				$results['blog'] = null;
-				/* DISABLING BECAUSE CODASET SUCKS $this->find('all', array(
-					'conditions' => array(
-						'username' => $results['Project']['owner'], 
-						'project' => $name,
-					),
-					'fields' => 'blog'
-				));*/
+			switch ($this->useDbConfig = $results['Account']['type']) {
+				case 'github':
+					$results['commits'] = $this->find('all', array(
+						'conditions' => array(
+							'user' => $results['Project']['owner'],
+							'repo' => $name,
+							'branch' => 'master',
+						),
+						'fields' => 'commits'
+					));
+					$results['github'] = $this->find('all', array(
+						'conditions' => array(
+							'user' => $results['Project']['owner'], 
+							'repo' => $name,
+						),
+						'fields' => 'repos'
+					));
+					break;
+				/* Farewell Codaset... It was good while it lasted
+				case 'codaset':
+					$results['codaset'] = $this->find('all', array(
+						'conditions' => array(
+							'username' => $results['Project']['owner'], 
+							'project' => $name,
+						),
+						'fields' => 'projects',
+					));
+					$results['blog'] = null;
+					/* DISABLING BECAUSE CODASET SUCKS $this->find('all', array(
+						'conditions' => array(
+							'username' => $results['Project']['owner'], 
+							'project' => $name,
+						),
+						'fields' => 'blog'
+					));*/
 			}
 			$this->useDbConfig = $default;
 	        return $results;

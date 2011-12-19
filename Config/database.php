@@ -11,8 +11,7 @@ class DATABASE_CONFIG {
 	);
 	
 	var $linkedin = array(
-		'datasource' => 'Apis.Apis',
-		'driver' => 'Linkedin.Linkedin',
+		'datasource' => 'Linkedin.Linkedin',
 		'login' => '1KqQhz25v7ne60NEPWhdZjIE8ET3cEijT0m0RvgqKqKpFEZHXjwX14Vz-Hp5hMQ6',
 		'password' => 'ldmVbU9wn08ea6l9_2EkBQKXnwbjLOf0EfKjptHzc0U-8ldBYE7J1TDIFEt9e9H4',
 	);
@@ -25,8 +24,7 @@ class DATABASE_CONFIG {
 	);
 	
 	var $github = array(
-		'datasource' => 'Apis.Apis',
-		'driver' => 'Github.Github',
+		'datasource' => 'Github.Github',
 		'login' => '728139c3a2d13a537cd9',
 		'password' => '6d29f8b32792dc0151f068acd52267b705fb437c',
 	);
@@ -37,10 +35,8 @@ class DATABASE_CONFIG {
 	);
 	
 	var $flickr = array(
-		'datasource' => 'Apis.Apis',
-		'driver' => 'Flickr.Flickr',
+		'datasource' => 'Flickr.Flickr',
 		'login' => '80321c67bcc5f64e6322eceed5c887aa',
 		'password' => 'f66a8cf28922ccd7',
 	);
 }
-?>

@@ -5,7 +5,7 @@ class ProjectsController extends AppController {
 	var $helpers = array('Time');
 	var $components = array(
 		'Apis.Oauth' => array(	
-			'codaset',
+			//'codaset',
 			'github',
 		),
 	);

@@ -120,7 +120,7 @@ sub { bottom: -0.25em; }
 
 pre {
   /* www.pathf.com/blogs/2008/05/formatting-quoted-code-in-blog-posts-css21-white-space-pre-wrap/ */
-  white-space: pre; white-space: pre-wrap; white-space: pre-line; word-wrap: break-word;
+  white-space: pre; white-space: pre-wrap; word-wrap: break-word;
   padding: 15px;
   background: rgba(0,0,0,.1);
   border: 1px solid rgba(0,0,0,.2);
@@ -394,9 +394,6 @@ legend {
 	font-size: 80%;
 }
 
-.cake-debug, .cake-sql-log {
-	margin-left: 220px;
-}
 .activity span {
 	padding: 0 2px;
 }

@@ -30,7 +30,7 @@ class Account extends AppModel {
 	
 	var $types = array(
 		'github'		=> 'Github',
-		'codaset'		=> 'Codaset',
+		// 'codaset'		=> 'Codaset',
 		'linkedin'		=> 'LinkedIn',
 		'deviantart'	=> 'DeviantArt',
 		'flickr'		=> 'Flickr',
