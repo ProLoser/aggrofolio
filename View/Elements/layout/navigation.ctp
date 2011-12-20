@@ -43,3 +43,9 @@
 	</ul>
 </nav>
 <?php endif; ?>
+
+<?php if (!$this->Session->read('Auth.User')): ?>
+<nav id="login">
+	<?php echo $this->Html->link('Login', '/login')?>
+</nav>
+<?php endif; ?>

@@ -23,7 +23,7 @@ $this->set('navAdmin', array(
 <h3>Project Stats</h3>
 <ul id="stats" class="clearfix">
 <?php if (!empty($project['Project']['url'])): ?>
-	<li class="url"><?php echo $this->Html->link($project['Project']['url'], $project['Project']['url'])?></li>
+	<li class="url"><?php echo $this->Html->link($project['Project']['url'], $project['Project']['url'], array('title' => 'Project Url'))?></li>
 <?php endif; ?>
 <?php if (!empty($project['github']['has_downloads'])): ?>
 	<li class="downloads"><?php echo $this->Html->link(__('Download'), $project['Project']['cvs_url'] . '/downloads'); ?> </li>
@@ -33,6 +33,9 @@ $this->set('navAdmin', array(
 <?php endif ?>
 <?php if (!empty($project['github']['has_issues'])): ?>
 	<li class="bugs"><?php echo $this->Html->link('Open Bugs: '.$project['github']['open_issues'], $project['Project']['cvs_url'] . '/issues'); ?> </li>
+<?php endif ?>
+<?php if (!empty($project['Project']['bugs_url'])): ?>
+	<li class="bugs"><?php echo $this->Html->link('Issue Tracker', $project['Project']['bugs_url']); ?> </li>
 <?php endif ?>
 <?php if (!empty($project['ProjectCategory']['name'])): ?>
 	<li class="category"><?php echo $this->Html->link($project['ProjectCategory']['name'], array('controller' => 'projects', 'action' => 'index', 'category' => $project['ProjectCategory']['id']), array('title' => 'Category')); ?></li>		  	 

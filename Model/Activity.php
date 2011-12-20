@@ -74,7 +74,7 @@ class Activity extends AppModel {
 			$query['conditions'] = array(
 				'(SELECT count(*) FROM activities AS l2 WHERE l2.model = Activity.model AND l2.model_id = Activity.model_id AND l2.action = \'delete\') = 0',
 				'(SELECT count(*) FROM activities AS l3 WHERE l3.model = Activity.model AND l3.model_id = Activity.model_id AND l3.created > Activity.created) = 0',
-				'Activity.model' => array('Album', 'Post', 'Project', 'Resume'),
+				'Activity.model' => array('Album', 'Post', 'Project', 'Resume', 'Bookmark'),
 			);
 			$query['contain'] = array(
 				'Album' => array(
@@ -85,6 +85,7 @@ class Activity extends AppModel {
 					'MediaItem',
 				),
 				'Resume',
+				'Bookmark',
 			);
 			if (isset($this->belongsTo['User'])) {
 				$query['contain'][] = 'User';

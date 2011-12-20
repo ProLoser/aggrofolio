@@ -85,22 +85,22 @@ class ActivityBehavior extends ModelBehavior {
 			return true;
 		}
 		$activityData = array();
-		if (isset($this->Activity->_schema['description'])) {
-			$activityData['Activity']['description'] = $Model->alias;
-			if (isset($Model->data[$Model->alias][$Model->displayField]) && $Model->displayField != $Model->primaryKey) {
-				$activityData['Activity']['description'] .= ' "'.$Model->data[$Model->alias][$Model->displayField].'"';
-			}
-			if ($this->settings[$Model->alias]['description_ids']) {
-				$activityData['Activity']['description'] .= ' ('.$Model->id.') ';
-			}
-			$activityData['Activity']['description'] .= __('deleted');
-		 }
+
+		$activityData['Activity']['description'] = $Model->alias;
+		if (isset($Model->data[$Model->alias][$Model->displayField]) && $Model->displayField != $Model->primaryKey) {
+			$activityData['Activity']['description'] .= ' "'.$Model->data[$Model->alias][$Model->displayField].'"';
+		}
+		if ($this->settings[$Model->alias]['description_ids']) {
+			$activityData['Activity']['description'] .= ' ('.$Model->id.') ';
+		}
+		$activityData['Activity']['description'] .= __('deleted');
+
 		$activityData['Activity']['action'] = 'delete';
 		$this->_saveActivity($Model, $activityData);
 	}
 
 	function beforeSave(&$Model) {
-		if (isset($this->Activity->_schema['change']) && $Model->id) {
+		if ($this->Activity->schema('change') && $Model->id) {
 			$this->old = $Model->find('first', array('conditions' => array(
 				$Model->alias .'.'. $Model->primaryKey => $Model->id),
 				'recursive'=>-1
@@ -129,10 +129,10 @@ class ActivityBehavior extends ModelBehavior {
 		} elseif ($Model->insertId) {
 			$id = $Model->insertId;
 		}
-		if (isset($this->Activity->_schema[$this->settings[$Model->alias]['foreignKey']])) {
-			$activityData['Activity'][$this->settings[$Model->alias]['foreignKey']] = $id;
-		}
-		if (isset($this->Activity->_schema['description'])) {
+
+		$activityData['Activity'][$this->settings[$Model->alias]['foreignKey']] = $id;
+
+		if (!empty($activityData['Activity']['description'])) {
 			$activityData['Activity']['description'] = $Model->alias.' ';
 			if (isset($Model->data[$Model->alias][$Model->displayField]) && $Model->displayField != $Model->primaryKey) {
 				$activityData['Activity']['description'] .= '"'.$Model->data[$Model->alias][$Model->displayField].'" ';
@@ -148,17 +148,15 @@ class ActivityBehavior extends ModelBehavior {
 				$activityData['Activity']['description'] .= __('updated');
 			}
 		}
-		if (isset($this->Activity->_schema['action'])) {
-			if ($created) {
-				$activityData['Activity']['action'] = 'add';
-			} else {
-				$activityData['Activity']['action'] = 'edit';
-			}
+		if ($created) {
+			$activityData['Activity']['action'] = 'add';
+		} else {
+			$activityData['Activity']['action'] = 'edit';
 		}
 
-		if (isset($this->Activity->_schema['change'])) {
+		if ($this->Activity->schema('change')) {
 			$activityData['Activity']['change'] = '';
-			$db_fields = array_keys($Model->_schema);
+			$db_fields = array_keys($Model->schema());
 			$changed_fields = array();
 			foreach ($Model->data[$Model->alias] as $key => $value) {
 				if (isset($Model->data[$Model->alias][$Model->primaryKey]) && !empty($this->old) && isset($this->old[$Model->alias][$key])) {
@@ -216,12 +214,9 @@ class ActivityBehavior extends ModelBehavior {
 			$activityData['Activity']['title'] = $Model->field($Model->displayField);
 		}
 
-		if (isset($this->Activity->_schema[$this->settings[$Model->alias]['classField']])) {
-			// by miha nahtigal
-			$activityData['Activity'][$this->settings[$Model->alias]['classField']] = $Model->name;
-		}
+		$activityData['Activity'][$this->settings[$Model->alias]['classField']] = $Model->name;
 
-		if (isset($this->Activity->_schema[$this->settings[$Model->alias]['foreignKey']]) && !isset($activityData['Activity'][$this->settings[$Model->alias]['foreignKey']])) {
+		if (!isset($activityData['Activity'][$this->settings[$Model->alias]['foreignKey']])) {
 			if ($Model->id) {
 				$activityData['Activity'][$this->settings[$Model->alias]['foreignKey']] = $Model->id;
 			} elseif ($Model->insertId) {
@@ -229,35 +224,33 @@ class ActivityBehavior extends ModelBehavior {
 			}
 		}
 
-		if (!isset($this->Activity->_schema['action'])) {
-			unset($activityData['Activity']['action']);
-		} elseif (isset($Model->activityableAction) && !empty($Model->activityableAction)) {
+		if (!empty($Model->activityableAction)) {
 			$activityData['Activity']['action'] = implode(',',$Model->activityableAction); // . ' ' . $activityData['Activity']['action'];
 			unset($Model->activityableAction);
 		}
 
-		if (isset($this->Activity->_schema['version_id']) && isset($Model->version_id)) {
+		if (isset($Model->version_id)) {
 			$activityData['Activity']['version_id'] = $Model->version_id;
 			unset($Model->version_id);
 		}
 
-		if (isset($this->Activity->_schema['ip']) && $this->userIP) {
+		if ($this->userIP) {
 			$activityData['Activity']['ip'] = $this->userIP;
 		}
 
-		if (isset($this->Activity->_schema['browser']) && $this->userBrowser) {
+		if ($this->userBrowser) {
 			$activityData['Activity']['browser'] = $this->userBrowser;
 		}
 
-		if (isset($this->Activity->_schema['request']) && $this->requestParameters) {
+		if ($this->requestParameters) {
 			$activityData['Activity']['request'] = serialize($this->requestParameters);
 		}
 
-		if (isset($this->Activity->_schema[ $this->settings[$Model->alias]['userKey'] ]) && $this->user) {
+		if ($this->user) {
 			$activityData['Activity'][$this->settings[$Model->alias]['userKey']] = $this->user[$this->UserModel->alias][$this->UserModel->primaryKey];
 		}
 
-		if (isset($this->Activity->_schema['description'])) {
+		if (!empty($activityData['Activity']['description'])) {
 			if ($this->user && $this->UserModel) {
 				$activityData['Activity']['description'] .= ' by '.$this->settings[$Model->alias]['userModel'].' "'.
 						$this->user[$this->UserModel->alias][$this->UserModel->displayField].'"';

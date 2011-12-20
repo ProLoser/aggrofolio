@@ -36,7 +36,7 @@
 	url = git://github.com/rgrove/jsmin-php.git
 [submodule "Plugin/UrlCache"]
 	path = Plugin/UrlCache
-	url = git://github.com/mcurry/url_cache.git
+	url = git://github.com/sams/url_cache.git
 [submodule "Plugin/Log"]
 	path = Plugin/Log
 	url = git://github.com/simkimsia/Log.git

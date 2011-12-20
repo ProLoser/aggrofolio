@@ -39,6 +39,14 @@
 				echo $this->Agro->truncate($activity['Post']['body'], array('controller' => 'posts', 'action' => 'view', $activity['Post']['id'], $activity['Post']['slug'])); 
 			?>
 		</article>
+	<?php break; case 'Bookmark':?>
+		<article>
+			<header>
+				<h1>Bookmark: <?php echo $this->Html->link($activity['Bookmark']['name'], $activity['Bookmark']['url'])?></h1>
+				<time><?php echo $actions[$activity['Activity']['action']] . ' ' . $this->Time->nice($activity['Bookmark']['created']); ?></time>
+			</header>
+			<p><?php echo $activity['Bookmark']['description']?></p>
+		</article>
 	<?php break; case 'MediaItem': if ($activity['MediaItem']['published']):?>
 		<?php if (!empty($activity['MediaItem']['name'])): ?>
 			<h3><?php echo $activity['MediaItem']['name']?></h3>
