@@ -1,3 +1,7 @@
+#main article h3 {
+	margin-left: -10px;
+	margin-right: -10px;
+}
 .faded {
 	opacity: 0;
 	height: 0;
