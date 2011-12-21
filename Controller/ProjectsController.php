@@ -58,7 +58,7 @@ class ProjectsController extends AppController {
 			}
 		}
 		$accounts = $this->Project->Account->find('list');
-		$projectCategories = $this->Project->ProjectCategory->generatetreelist(null, null, null, '- ');
+		$projectCategories = $this->Project->ProjectCategory->generateTreeList(null, null, null, '- ');
 		$resumeEmployers = $this->Project->ResumeEmployer->find('list');
 		$resumeSchools = $this->Project->ResumeSchool->find('list');
 		$this->set(compact('accounts', 'projectCategories', 'resumeEmployers', 'resumeSchools'));
@@ -81,7 +81,7 @@ class ProjectsController extends AppController {
 			$this->request->data = $this->Project->read(null, $id);
 		}
 		$accounts = $this->Project->Account->find('list');
-		$projectCategories = $this->Project->ProjectCategory->generatetreelist(null, null, null, '- ');
+		$projectCategories = $this->Project->ProjectCategory->generateTreeList(null, null, null, '- ');
 		$resumeEmployers = $this->Project->ResumeEmployer->find('list');
 		$resumeSchools = $this->Project->ResumeSchool->find('list');
 		$this->set(compact('accounts', 'projectCategories', 'resumeEmployers', 'resumeSchools'));
