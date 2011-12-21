@@ -96,8 +96,8 @@ class AppController extends Controller {
 		}
 		if (Configure::read('debug')) {
 			// TODO: add interactive for debugkit or not
-			$this->components[] = 'DebugKit.Toolbar';
-			App::uses('FireCake', 'DebugKit.Lib');
+			//$this->components[] = 'DebugKit.Toolbar';
+			//App::uses('FireCake', 'DebugKit.Lib');
 		}
 		parent::__construct($request, $response);
 	}
