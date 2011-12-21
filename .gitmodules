@@ -34,12 +34,6 @@
 [submodule "Vendor/jsmin"]
 	path = Vendor/jsmin
 	url = git://github.com/rgrove/jsmin-php.git
-[submodule "Plugin/UrlCache"]
-	path = Plugin/UrlCache
-	url = git://github.com/sams/url_cache.git
-[submodule "Plugin/Log"]
-	path = Plugin/Log
-	url = git://github.com/simkimsia/Log.git
 [submodule "Plugin/Mi"]
 	path = Plugin/Mi
 	url = git://github.com/AD7six/mi.git
