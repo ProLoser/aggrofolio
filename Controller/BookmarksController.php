@@ -2,11 +2,21 @@
 class BookmarksController extends AppController {
 
 	var $name = 'Bookmarks';
+
+	var $components = array(
+		'Apis.Oauth' => array(	
+			'twitter',
+		),
+	);
 	public $paginate = array();
 	
 	public function index() {
-		$this->Bookmark->recursive = 0;
-		$this->set('bookmarks', $this->paginate());
+		$bookmarks = $this->Bookmark->BookmarkCategory->find('threaded', array(
+			'contain' => array('Bookmark' => array(
+
+			)),
+		));
+		$this->set(compact('bookmarks'));
 	}
 	
 	function admin_index() {

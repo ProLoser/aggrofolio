@@ -39,4 +39,10 @@ class DATABASE_CONFIG {
 		'login' => '80321c67bcc5f64e6322eceed5c887aa',
 		'password' => 'f66a8cf28922ccd7',
 	);
+
+	var $twitter = array(
+		'datasource' => 'Twitter.Twitter',
+		'login' => 'mrF3tJPeGCcOKkSBrRCOrQ',
+		'password' => 'XlDQD61nr8RW1031Ah4GZvDLMBOa8blNRm4qLRBBDnE'
+	);
 }

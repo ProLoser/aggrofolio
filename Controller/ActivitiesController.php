@@ -1,7 +1,7 @@
 <?php
 class ActivitiesController extends AppController {
 	public $name = 'Activities';
-	public $helpers = array('Time');
+	public $helpers = array('Time', 'Text');
 	public $paginate = array('dashboard');
 
 	function index() {

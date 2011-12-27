@@ -5,9 +5,9 @@ class AccountsController extends AppController {
 	var $components = array(
 		'Apis.Oauth' => array(			
 			'linkedin',
-			'codaset',
 			'github',
 			'flickr',
+			'twitter',
 		),
 	);
 	public $paginate = array();

@@ -1,4 +1,16 @@
 <?php
+$this->set('documentData', array(
+    'xmlns:dc' => 'http://purl.org/dc/elements/1.1/'
+));
+
+$this->set('channelData', array(
+    'title' => __('DeanSofer.com Activity Feed'),
+    'link' => $this->Html->url('/', true),
+    'description' => __('A live web presence feed of Deans activity online.'),
+    'language' => 'en-us'
+));
+
+App::uses('Sanitize', 'Utility');
 foreach ($activities as $post) {
     $postTime = strtotime($post['Activity']['created']);
 
@@ -15,8 +27,6 @@ foreach ($activities as $post) {
 		$post['Activity']['model_id'],
 		$slug
 	);
-    // You should import Sanitize
-    App::import('Sanitize');
     // This is the part where we clean the body text for output as the description 
     // of the rss item, this needs to have only text to make sure the feed validates
 	$bodyText = '';

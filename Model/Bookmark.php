@@ -74,5 +74,20 @@ class Bookmark extends AppModel {
 		}
 		return true;
 	}
+
+	public function afterSave($created) {
+		if ($created) {
+			$this->setDataSource('twitter');
+			$this->setSource('tweets');
+			$data = array(
+				'section' => 'tweets',
+				'status' => $this->data['Bookmark']['name'] . ' ' . $this->data['Bookmark']['url']
+			);
+			$this->create();
+			$this->save($data);
+			$this->setDataSource('default');
+			$this->setSource('bookmarks');
+		}
+	}
 }
 ?>
