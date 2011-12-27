@@ -66,6 +66,7 @@ class Bookmark extends AppModel {
 
 	public function scanJsfiddle($account) {
 		$this->setDatasource('jsfiddle');
+		$this->useTable = false;
 		$bookmarks = $this->find('all', array(
 			'fields' => 'fiddles',
 			'conditions' => array(
@@ -73,7 +74,9 @@ class Bookmark extends AppModel {
 			)
 		));
 		$this->setDataSource('default');
+		$this->useTable = 'bookmarks';
 		$count = 0;
+		debug($this->response);
 		diebug($bookmarks);
 		if (!empty($bookmarks)) {
 			foreach ($bookmarks as $bookmark) {
