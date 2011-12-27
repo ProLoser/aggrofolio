@@ -14,19 +14,24 @@ App::uses('Sanitize', 'Utility');
 foreach ($activities as $post) {
     $postTime = strtotime($post['Activity']['created']);
 
-	$slug = null;
-	if (isset($post[$post['Activity']['model']]['slug'])) {
-		$slug = $post[$post['Activity']['model']]['slug'];
-	} elseif (isset($post[$post['Activity']['model']]['name'])) {
-		$slug = Inflector::slug($post[$post['Activity']['model']]['name']);
-	}
+    if ($post['Activity']['model'] == 'Bookmark') {
+    	$postLink = $post['Bookmark']['url'];
+    } else {
+    	$slug = null;
+		if (isset($post[$post['Activity']['model']]['slug'])) {
+			$slug = $post[$post['Activity']['model']]['slug'];
+		} elseif (isset($post[$post['Activity']['model']]['name'])) {
+			$slug = Inflector::slug($post[$post['Activity']['model']]['name']);
+		}
 
-    $postLink = array(
-        'controller' => Inflector::pluralize($post['Activity']['model']),
-        'action' => 'view',
-		$post['Activity']['model_id'],
-		$slug
-	);
+	    $postLink = array(
+	        'controller' => Inflector::pluralize($post['Activity']['model']),
+	        'action' => 'view',
+			$post['Activity']['model_id'],
+			$slug
+		);
+    }
+    
     // This is the part where we clean the body text for output as the description 
     // of the rss item, this needs to have only text to make sure the feed validates
 	$bodyText = '';

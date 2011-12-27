@@ -1,7 +1,7 @@
 <?php
 class Bookmark extends AppModel {
-	var $name = 'Bookmark';
-	var $validate = array(
+	public $name = 'Bookmark';
+	public $validate = array(
 		'name' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
@@ -22,33 +22,59 @@ class Bookmark extends AppModel {
 		),
 	);
 
-	var $belongsTo = array(
+	public $belongsTo = array(
 		'Account',
 		'BookmarkCategory',
 	);
 	
-	var $hasMany = array(
+	public $hasMany = array(
 		'PostRelationship' => array(
 			'foreignKey' => 'foreign_key',
 			'conditions' => array('PostRelationship.foreign_model' => 'Bookmark'),
 		),
 	);
 
-	var $actsAs = array(
+	public $actsAs = array(
 		'Activity',
 	);
 	
-	function scan($accountId) {
+	public function scan($accountId) {
 		$account = $this->Account->read(null, $accountId);
 		return $this->scanXmarks($account);
 	}
 	
-	function scanXmarks($account) {
+	public function scanXmarks($account) {
 		$this->useDbConfig = 'rss';
 		$this->feedUrl = $account['Account']['username'];
 		$bookmarks = $this->find('all');
 		$this->useDbConfig = 'default';
 		$count = 0;
+		if (!empty($bookmarks)) {
+			foreach ($bookmarks as $bookmark) {
+				$data['Bookmark'] = array(
+					'name' => $bookmark['Bookmark']['title'],
+					'url' => $bookmark['Bookmark']['link'],
+					'account_id' => $account['Account']['id'],
+				);
+				$this->create();
+				$this->save($data);
+				$count++;
+			}
+		}
+		return $count;
+	}
+
+	public function scanJsfiddle($account) {
+		$this->setDatasource('jsfiddle');
+		$bookmarks = $this->find('all', array(
+			'fields' => 'fiddles',
+			'conditions' => array(
+				'user' => $account['Account']['username']
+			)
+		));
+		$this->setDataSource('default');
+		$count = 0;
+		diebug($bookmarks);
 		if (!empty($bookmarks)) {
 			foreach ($bookmarks as $bookmark) {
 				$data['Bookmark'] = array(
@@ -77,16 +103,17 @@ class Bookmark extends AppModel {
 
 	public function afterSave($created) {
 		if ($created) {
-			$this->setDataSource('twitter');
-			$this->setSource('tweets');
-			$data = array(
-				'section' => 'tweets',
-				'status' => $this->data['Bookmark']['name'] . ' ' . $this->data['Bookmark']['url']
-			);
-			$this->create();
-			$this->save($data);
-			$this->setDataSource('default');
-			$this->setSource('bookmarks');
+			// Auto Tweet Bookmarks
+			// $this->setDataSource('twitter');
+			// $this->setSource('tweets');
+			// $data = array(
+			// 	'section' => 'tweets',
+			// 	'status' => $this->data['Bookmark']['name'] . ' ' . $this->data['Bookmark']['url']
+			// );
+			// $this->create();
+			// $this->save($data);
+			// $this->setDataSource('default');
+			// $this->setSource('bookmarks');
 		}
 	}
 }

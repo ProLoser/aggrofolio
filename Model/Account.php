@@ -26,6 +26,7 @@ class Account extends AppModel {
 		'ResumeRecommendation',
 		'ResumeSkill',
 		'Album',
+		'Bookmark',
 	);
 	
 	var $types = array(
@@ -43,6 +44,7 @@ class Account extends AppModel {
 		'xmarks'		=> 'XMarks',
 		'behance'		=> 'Behance',
 		'photobucket'	=> 'Photobucket',
+		'jsfiddle'		=> 'JsFiddle',
 	);
 	
 	/**
@@ -69,6 +71,10 @@ class Account extends AppModel {
 			case 'deviantart':
 				$account['Account']['username'] = strtolower($account['Account']['username']);
 				return $this->Album->scanDeviantart($account);
+			breat;
+			case 'jsfiddle':
+				return $this->Bookmark->scanJsfiddle($account);
+			break;
 		}
 	}
 	

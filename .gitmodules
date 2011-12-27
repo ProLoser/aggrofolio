@@ -64,3 +64,6 @@
 [submodule "Plugin/Twitter"]
 	path = Plugin/Twitter
 	url = git://github.com/ProLoser/CakePHP-Twitter.git
+[submodule "Plugin/Jsfiddle"]
+	path = Plugin/Jsfiddle
+	url = git://github.com/ProLoser/CakePHP-jsFiddle.git

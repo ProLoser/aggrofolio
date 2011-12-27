@@ -67,7 +67,11 @@ class AccountsController extends AppController {
 			$this->Account->create();
 			if ($this->Account->save($this->request->data)) {
 				$this->Session->setFlash(__('The account has been saved'));
-				$this->redirect(array('action' => 'connect', $this->Account->id));
+				if ($this->request->data['Account']['type'] == 'jsfiddle') {
+					$this->redirect(array('action' => 'index'));
+				} else {
+					$this->redirect(array('action' => 'connect', $this->Account->id));
+				}
 			} else {
 				$this->Session->setFlash(__('The account could not be saved. Please, try again.'));
 			}
