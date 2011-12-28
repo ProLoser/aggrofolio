@@ -70,6 +70,10 @@ class AgroHelper extends AppHelper {
 			'name' =>'XMarks',
 			'url' => 'https://xmarks.com/:name',
 		),
+		'jsfiddle' => array(
+			'name' => 'JsFiddle',
+			'url' => 'http://jsfiddle.net/user/:name/fiddles/',
+		),
 	);
 
 	/**

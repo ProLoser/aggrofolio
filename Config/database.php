@@ -45,4 +45,8 @@ class DATABASE_CONFIG {
 		'login' => 'mrF3tJPeGCcOKkSBrRCOrQ',
 		'password' => 'XlDQD61nr8RW1031Ah4GZvDLMBOa8blNRm4qLRBBDnE'
 	);
+
+	var $jsfiddle = array(
+		'datasource' => 'Jsfiddle.Jsfiddle',
+	);
 }

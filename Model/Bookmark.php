@@ -76,13 +76,12 @@ class Bookmark extends AppModel {
 		$this->setDataSource('default');
 		$this->useTable = 'bookmarks';
 		$count = 0;
-		debug($this->response);
-		diebug($bookmarks);
 		if (!empty($bookmarks)) {
 			foreach ($bookmarks as $bookmark) {
 				$data['Bookmark'] = array(
-					'name' => $bookmark['Bookmark']['title'],
-					'url' => $bookmark['Bookmark']['link'],
+					'name' => $bookmark['title'],
+					'url' => $bookmark['url'],
+					'description' => $bookmark['description'],
 					'account_id' => $account['Account']['id'],
 				);
 				$this->create();
