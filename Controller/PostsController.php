@@ -56,7 +56,7 @@ class PostsController extends AppController {
 	function admin_related($model = null) {
 		if (empty($model))
 			die;
-		$this->view = 'Webservice.Webservice';
+		$this->viewClass = 'Webservice.Webservice';
 		$this->set('items', $this->Post->PostRelationship->{$model}->find('list'));
 	}
 	
