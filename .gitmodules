@@ -48,7 +48,7 @@
 	url = git://github.com/ProLoser/CakePHP-Cacheable.git
 [submodule "Plugin/Webservice"]
 	path = Plugin/Webservice
-	url = git://github.com/ProLoser/webservice_plugin.git
+	url = git://github.com/josegonzalez/webservice_plugin.git
 [submodule "Plugin/Joinable"]
 	path = Plugin/Joinable
 	url = git://github.com/ProLoser/CakePHP-Joinable.git

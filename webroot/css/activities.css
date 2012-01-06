@@ -1,3 +1,9 @@
+#container {
+	padding-left: 0;
+}
+#main > header {
+	margin: 0px;
+}
 #main article h3 {
 	margin-left: -10px;
 	margin-right: -10px;
@@ -14,8 +20,11 @@ ul.activity {
 ul.activity > li {
 	margin: 0;
 }
+header {
+	margin-left: 260px;
+}
 .posts article {
-	margin: 20px 0 10px;
+	margin: 20px 0 10px 260px;
 }
 .type-Project {
 	overflow: hidden;
@@ -23,7 +32,7 @@ ul.activity > li {
 }
 .type-Album section, .type-Project section {
 	overflow: auto;
-	margin: -10px -40px 0 -38px;
+	margin: -10px -40px 0 222px;
 }
 .type-Project section {
 	margin: 0;

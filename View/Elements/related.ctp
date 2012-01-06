@@ -46,6 +46,6 @@ $(document).ready(function(){
 		});
 	});
 });
-<?php echo $this->Html->scriptEnd(); ?>
+<?php $this->Html->scriptEnd(); ?>
 
 <div class="related"></div>
