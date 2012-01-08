@@ -313,7 +313,7 @@ legend {
 	position: relative;
 }
 #categories .reset,  #filters .reset {
-	display: block;
+	display: none;
 	width: 32px;
 	height: 32px;
 	position: absolute;

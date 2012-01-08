@@ -20,7 +20,7 @@ $(document).ready(function(){
 		});
 	});
 	
-	$('#categories ul a').click(function(){
+	$('#categories ul a:not(.reset)').click(function(){
 		selector = '.' + $(this).attr('id');
 		$(selector).animate({
 			opacity: 1
@@ -28,7 +28,8 @@ $(document).ready(function(){
 			opacity: .4
 		}, 600);
 		if ($(selector).length) {
-			$(this).before('<a href="#" class="reset">Reset</a>').prev().fadeIn(600);
+			$('#categories .reset').fadeOut(200);
+			$(this).prev().fadeIn(600);
 		}
 		return false;
 	});

@@ -3,6 +3,9 @@
 		<h1><?php echo __('Project');?></h1>
 	</hgroup>
 	<ul class="actions">
+		<?php if ($project['Project']['published']): ?>
+			<li><?php echo $this->Html->link(__('View Live'), array('admin' => false, 'action' => 'view', $project['Project']['id'], Inflector::slug($project['Project']['name']))); ?></li>
+		<?php endif; ?>
 		<li><?php echo $this->Html->link(__('Edit Project'), array('action' => 'edit', $project['Project']['id'])); ?> </li>
 		<li><?php echo $this->Html->link(__('Delete Project'), array('action' => 'delete', $project['Project']['id']), null, sprintf(__('Are you sure you want to delete # %s?'), $project['Project']['id'])); ?> </li>
 		<li><?php echo $this->Html->link(__('Attach Media Item'), array('controller' => 'media_items', 'action' => 'add', 'project' => $project['Project']['id']), array('class' => 'add')); ?> </li>

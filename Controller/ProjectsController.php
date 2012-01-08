@@ -52,7 +52,7 @@ class ProjectsController extends AppController {
 			$this->Project->create();
 			if ($this->Project->save($this->request->data)) {
 				$this->Session->setFlash(__('The project has been saved'));
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'view', $this->Project->id));
 			} else {
 				$this->Session->setFlash(__('The project could not be saved. Please, try again.'));
 			}
@@ -72,7 +72,7 @@ class ProjectsController extends AppController {
 		if (!empty($this->request->data)) {
 			if ($this->Project->save($this->request->data)) {
 				$this->Session->setFlash(__('The project has been saved'));
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'view', $this->Project->id));
 			} else {
 				$this->Session->setFlash(__('The project could not be saved. Please, try again.'));
 			}

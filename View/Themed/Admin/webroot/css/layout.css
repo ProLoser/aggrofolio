@@ -646,6 +646,25 @@ background: #D0D1D4 url(../img/btn_submit_2.png) repeat-x;
 text-shadow: 0 1px 0 #6CDCF9;
 color: #001217;
 }
+.batch th.actions input[type=submit]:first-child {
+	margin-right: 0;
+	-webkit-border-top-right-radius: 0;
+	-webkit-border-bottom-right-radius: 0;
+	-moz-border-radius-topright: 0;
+	-moz-border-radius-bottomright: 0;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+.batch th.actions input[type=submit]:last-child {
+	border-left: 0;
+	margin-left: 0;
+	-webkit-border-top-left-radius: 0;
+	-webkit-border-bottom-left-radius: 0;
+	-moz-border-radius-topleft: 0;
+	-moz-border-radius-bottomleft: 0;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
 header .submit, footer .submit {
 float: left;
 margin: -2px 5px -2px 0;

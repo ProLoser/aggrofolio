@@ -29,7 +29,16 @@
 <?php if (!empty($categories)): ?>
 <nav id="categories">
 	<h3>Categories</h3>
-	<?php echo $this->Plate->tree($categories, array('callback' => '_categories'));?>
+	<?php echo $this->Plate->tree($categories, array('callback' => function($view, $row) {
+		$model = key($row);
+		$result = '<a href="#" class="reset">Reset</a>';
+		$result .= $view->HtmlPlus->link(
+			$row[$model]['name'], 
+			array('category' => $row[$model]['id']), 
+			array('title' => strip_tags(str_replace('"', '\"', $row[$model]['description'])), 'id' => 'cat-' . $row[$model]['id'])
+		);
+		return $result;
+	}));?>
 </nav>		
 <?php endif;?>
 

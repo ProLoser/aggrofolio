@@ -78,7 +78,7 @@ class PostsController extends AppController {
 			$this->Post->create();
 			if ($this->Post->saveAll($this->request->data)) {
 				$this->Session->setFlash(__('The post has been saved'));
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'view', $this->Post->id));
 			} else {
 				$this->Session->setFlash(__('The post could not be saved. Please, try again.'));
 			}
@@ -96,7 +96,7 @@ class PostsController extends AppController {
 		if (!empty($this->request->data)) {
 			if ($this->Post->saveAll($this->request->data)) {
 				$this->Session->setFlash(__('The post has been saved'));
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'view', $this->Post->id));
 			} else {
 				$this->Session->setFlash(__('The post could not be saved. Please, try again.'));
 			}

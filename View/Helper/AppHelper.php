@@ -38,14 +38,4 @@ class AppHelper extends Helper {
 	 * @var boolean True: leave prefix in url, False: strip prefix from url if unset
 	 */
 	var $maintainPrefix = true;
-	
-	function _categories($row) {
-		$model = key($row);
-		$result = $this->HtmlPlus->link(
-			$row[$model]['name'], 
-			array('category' => $row[$model]['id']), 
-			array('title' => strip_tags(str_replace('"', '\"', $row[$model]['description'])), 'id' => 'cat-' . $row[$model]['id'])
-		);
-		return $result;
-	}
 }

@@ -36,6 +36,7 @@ class MediaItemsController extends AppController {
 	}
 
 	function admin_view($id = null) {
+		$this->MediaItem->recursive = 1;
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid media item'));
 			$this->redirect(array('action' => 'index'));
@@ -48,7 +49,7 @@ class MediaItemsController extends AppController {
 			$this->MediaItem->create();
 			if ($this->MediaItem->save($this->request->data)) {
 				$this->Session->setFlash(__('The media item has been saved'));
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'view', $this->MediaItem->id));
 			} else {
 				$this->Session->setFlash(__('The media item could not be saved. Please, try again.'));
 			}
@@ -68,7 +69,7 @@ class MediaItemsController extends AppController {
 		if (!empty($this->request->data)) {
 			if ($this->MediaItem->save($this->request->data)) {
 				$this->Session->setFlash(__('The media item has been saved'));
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'view', $this->MediaItem->id));
 			} else {
 				$this->Session->setFlash(__('The media item could not be saved. Please, try again.'));
 			}

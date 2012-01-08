@@ -35,7 +35,7 @@
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Attachment File Name'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $mediaItem['MediaItem']['attachment_file_name']; ?>
+			<?php echo $this->Html->link($mediaItem['MediaItem']['attachment_file_name'], '/uploads/original-' . $mediaItem['MediaItem']['attachment_file_name']); ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Attachment File Size'); ?></dt>
@@ -50,7 +50,7 @@
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Url'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $mediaItem['MediaItem']['url']; ?>
+			<?php echo $this->Html->link($mediaItem['MediaItem']['url'], $mediaItem['MediaItem']['url']); ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Source'); ?></dt>
@@ -76,6 +76,16 @@
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Uuid'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $mediaItem['MediaItem']['uuid']; ?>
+			&nbsp;
+		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Thumbnail'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $this->Html->image('/uploads/thumb-' . $mediaItem['MediaItem']['attachment_file_name']); ?>
+			&nbsp;
+		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Fullsize'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $this->Html->image('/uploads/original-' . $mediaItem['MediaItem']['attachment_file_name']); ?>
 			&nbsp;
 		</dd>
 	</dl>
