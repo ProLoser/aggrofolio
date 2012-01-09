@@ -33,6 +33,9 @@
 			<header>
 				<h1><?php echo $this->Html->link($activity['Post']['subject'], array('controller' => 'posts', 'action' => 'view', $activity['Post']['id'], $activity['Post']['slug'])); ?></h1>
 				<time><?php echo $actions[$activity['Activity']['action']] . ' ' . $this->Time->nice($activity['Post']['created']); ?></time>
+				<?php if (!empty($activity['Post']['PostCategory']['name'])): ?>				  	 
+					<h2><?php echo $activity['Post']['PostCategory']['name']?></h2>
+				<?php endif; ?>
 			</header>	
 			<?php 
 				$activity['Post']['body'] = str_replace('/original-', '/thumb-', $activity['Post']['body']);
@@ -44,6 +47,9 @@
 			<header>
 				<h1>Bookmark: <?php echo $this->Html->link($activity['Bookmark']['name'], $activity['Bookmark']['url'])?></h1>
 				<time><?php echo $actions[$activity['Activity']['action']] . ' ' . $this->Time->nice($activity['Bookmark']['created']); ?></time>
+				<?php if (!empty($activity['Bookmark']['BookmarkCategory']['name'])): ?>				  	 
+					<h2><?php echo $activity['Bookmark']['BookmarkCategory']['name']?></h2>
+				<?php endif; ?>
 			</header>
 			<p><?php echo $activity['Bookmark']['description']?></p>
 		</article>
@@ -62,9 +68,7 @@
 		</section>
 	<?php endif; break; case 'Album': if ($activity['Album']['published'] && !empty($activity['Album']['MediaItem'])):?>
 		<header>
-			<h3>
-				<?php echo $this->Html->link($activity['Album']['name'], array('controller' => 'media_items', 'action' => 'album', $activity['Album']['id'])); ?>
-			</h3>
+			<h3><?php echo $this->Html->link($activity['Album']['name'], array('controller' => 'media_items', 'action' => 'album', $activity['Album']['id'])); ?></h3>
 			<time><?php echo $actions[$activity['Activity']['action']] . ' ' . $this->Time->nice($activity['Activity']['created']); ?></time>
 		</header>
 		<section>

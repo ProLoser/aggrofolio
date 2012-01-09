@@ -80,12 +80,23 @@ class Activity extends AppModel {
 				'Album' => array(
 					'MediaItem',
 				),
-				'Post', 
+				'Post' => array(
+					'PostCategory' => array(
+						'fields' => array('name'),
+					),
+				),
 				'Project' => array(
 					'MediaItem',
+					'ProjectCategory' => array(
+						'fields' => array('name'),
+					),
 				),
 				'Resume',
-				'Bookmark',
+				'Bookmark' => array(
+					'BookmarkCategory' => array(
+						'fields' => array('name'),
+					),
+				),
 			);
 			if (isset($this->belongsTo['User'])) {
 				$query['contain'][] = 'User';
