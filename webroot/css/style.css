@@ -804,14 +804,41 @@ label {
 	margin: 0;
 	background: no-repeat left center;
 }
-#accounts .linkedin a { background-image: url(../img/accounts/linkedin.png); }
-#accounts .github a { background-image: url(../img/accounts/github.png); }
+#accounts .aim a { background-image: url(../img/accounts/aim.png); }
+#accounts .android a { background-image: url(../img/accounts/android.png); }
+#accounts .aol a { background-image: url(../img/accounts/aol.png); }
+#accounts .apple a { background-image: url(../img/accounts/apple.png); }
+#accounts .behance a { background-image: url(../img/accounts/behance.png); }
+#accounts .blogger a { background-image: url(../img/accounts/blogger.png); }
 #accounts .codaset a { background-image: url(../img/accounts/codaset.png); }
-#accounts .deviantart a { background-image: url(../img/accounts/deviantart.png); }
-#accounts .flickr a { background-image: url(../img/accounts/flickr-1.png); }
-#accounts .picasa a { background-image: url(../img/accounts/picasa.png); }
-#accounts .photobucket a { background-image: url(../img/accounts/photobucket.png); }
 #accounts .delicious a { background-image: url(../img/accounts/delicious.png); }
+#accounts .deviantart a { background-image: url(../img/accounts/deviantart.png); }
+#accounts .digg a { background-image: url(../img/accounts/digg.png); }
+#accounts .dribbble a { background-image: url(../img/accounts/dribbble.png); }
+#accounts .evernote a { background-image: url(../img/accounts/evernote.png); }
+#accounts .facebook a { background-image: url(../img/accounts/facebook.png); }
+#accounts .flickr a { background-image: url(../img/accounts/flickr-1.png); }
+#accounts .foursquare a { background-image: url(../img/accounts/foursquare.png); }
+#accounts .github a { background-image: url(../img/accounts/github.png); }
+#accounts .gmail a { background-image: url(../img/accounts/gmail.png); }
+#accounts .google a { background-image: url(../img/accounts/google.png); }
+#accounts .googlebuzz a { background-image: url(../img/accounts/googlebuzz.png); }
+#accounts .gtalk a { background-image: url(../img/accounts/gtalk.png); }
+#accounts .jsfiddle a { background-image: url(../img/accounts/jsfiddle.png); }
+#accounts .lastfm a { background-image: url(../img/accounts/lastfm.png); }
+#accounts .linkedin a { background-image: url(../img/accounts/linkedin.png); }
+#accounts .pandora a { background-image: url(../img/accounts/pandora.png); }
+#accounts .photobucket a { background-image: url(../img/accounts/photobucket.png); }
+#accounts .picasa a { background-image: url(../img/accounts/picasa.png); }
+#accounts .skype a { background-image: url(../img/accounts/skype.png); }
+#accounts .spotify a { background-image: url(../img/accounts/spotify.png); }
+#accounts .stumbleupon a { background-image: url(../img/accounts/stumbleupon.png); }
+#accounts .twitter a { background-image: url(../img/accounts/twitter.png); }
+#accounts .wordpress a { background-image: url(../img/accounts/wordpress.png); }
+#accounts .yahoo a { background-image: url(../img/accounts/yahoo.png); }
+#accounts .yelp a { background-image: url(../img/accounts/yelp.png); }
+#accounts .youtube a { background-image: url(../img/accounts/youtube.png); }
+
 
 .ui-tooltip {
 	text-align: center;
