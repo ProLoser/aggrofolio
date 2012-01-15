@@ -47,8 +47,8 @@ class DATABASE_CONFIG {
 		'deansofer.com' => array(
 			'datasource' => 'Database/Mysql',
 			'persistent' => false,
-			'host' => 'localhost',
-			'login' => 'mysql.holycrap.ws',
+			'host' => 'mysql.holycrap.ws',
+			'login' => 'holycrap',
 			'password' => 'gamegod',
 			'database' => 'deansofer',
 		),
