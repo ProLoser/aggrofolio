@@ -67,3 +67,9 @@
 [submodule "Plugin/Jsfiddle"]
 	path = Plugin/Jsfiddle
 	url = git://github.com/ProLoser/CakePHP-jsFiddle.git
+[submodule "Plugin/Closure"]
+	path = Plugin/Closure
+	url = git://github.com/ProLoser/CakePHP-ClosureBehavior.git
+[submodule "Plugin/Settings"]
+	path = Plugin/Settings
+	url = https://github.com/josegonzalez/settings.git

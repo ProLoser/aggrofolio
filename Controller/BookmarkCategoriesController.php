@@ -6,7 +6,9 @@ class BookmarkCategoriesController extends AppController {
 	
 	function admin_index() {
 		$this->BookmarkCategory->recursive = 0;
-		$this->set('bookmarkCategories', $this->paginate());
+		$bookmarkCategories = $this->paginate();
+		$parents = $this->BookmarkCategory->generateTreeList(null, null, null, '- ');
+		$this->set(compact('bookmarkCategories', 'parents'));
 	}
 
 	function admin_view($id = null) {

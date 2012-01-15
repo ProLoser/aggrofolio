@@ -1,7 +1,7 @@
 <?php
 class AlbumsController extends AppController {
 
-	var $name = 'Albums';
+	public $name = 'Albums';
 	public $paginate = array();
 	
 	function index() {

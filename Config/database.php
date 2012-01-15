@@ -1,13 +1,65 @@
 <?php
 class DATABASE_CONFIG {
 
+	public function __construct() {
+		if (!empty($_SERVER['HTTP_HOST'])) {
+			$name = explode('.', strtolower($_SERVER['HTTP_HOST']));
+			$count = count($name);
+			if ($count > 4)
+				$count = 4;
+			switch ($count) {
+				case 4:
+					// www.example.co.uk
+					$name[2] .= '.' . $name[3];
+				case 3:
+					// subdomain.example.com
+					if (isset($this->accounts[$name[0].'.'.$name[1].'.'.$name[2]])) {
+						$this->default = $this->accounts[$name[0].'.'.$name[1].'.'.$name[2]];
+						break;
+					} else {
+						array_shift($name);
+					}
+				case 2:
+					// example.com
+					if (isset($this->accounts[$name[0].'.'.$name[1]])) {
+						$this->default = $this->accounts[$name[0].'.'.$name[1]];
+						break;
+					}
+				case 1:
+					// localhost or example
+					if (isset($this->accounts[$name[0]])) {					
+						$this->default = $this->accounts[$name[0]];
+					}
+			}
+		}
+	}
+
 	var $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
 		'host' => 'mysql.holycrap.ws',
 		'login' => 'holycrap',
 		'password' => 'gamegod',
-		'database' => 'deansofer',
+		'database' => 'aggrofolio',
+	);
+	
+	var $accounts = array(
+		'deansofer.com' => array(
+			'datasource' => 'Database/Mysql',
+			'persistent' => false,
+			'host' => 'localhost',
+			'login' => 'mysql.holycrap.ws',
+			'password' => 'gamegod',
+			'database' => 'deansofer',
+		),
+		'localhost' => array(
+			'datasource' => 'Database/Mysql',
+			'persistent' => false,
+			'host' => 'localhost',
+			'login' => 'root',
+			'password' => 'root',
+			'database' => 'aggropholio',
+		),
 	);
 	
 	var $linkedin = array(

@@ -20,7 +20,8 @@
 			<?php echo $this->Paginator->next();?>
 		</p>
 	</header>
-	<?php echo $this->Batch->create('MediaCategory')?>	<table cellpadding="0" cellspacing="0">
+	<?php echo $this->Batch->create('MediaCategory')?>
+	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id');?></th>
 			<th><?php echo $this->Paginator->sort('created');?></th>
@@ -52,7 +53,7 @@
 		<td><?php echo $mediaCategory['MediaCategory']['modified']; ?>&nbsp;</td>
 		<td><?php echo $mediaCategory['MediaCategory']['name']; ?>&nbsp;</td>
 		<td><?php echo $mediaCategory['MediaCategory']['description']; ?>&nbsp;</td>
-		<td><?php echo $mediaCategory['MediaCategory']['parent_id']; ?>&nbsp;</td>
+		<td><?php if (!empty($parents[$mediaCategory['MediaCategory']['parent_id']])) echo $this->Html->link($parents[$mediaCategory['MediaCategory']['parent_id']], array('action' => 'view', $mediaCategory['MediaCategory']['parent_id'])); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $mediaCategory['MediaCategory']['id']), array('class' => 'view')); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $mediaCategory['MediaCategory']['id']), array('class' => 'edit')); ?>
