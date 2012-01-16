@@ -43,7 +43,7 @@
 		'style',
 	));
 	#!# echo $this->AssetCompress->includeCss();
-	echo $styles_for_layout; 
+	echo $styles_for_layout;
 	echo $this->Html->script('libs/modernizr-1.7.min');
 ?>
 </head>
@@ -81,6 +81,7 @@
 	echo $this->Plate->analytics();
 	#!# echo $this->AssetCompress->includeJs();
 	echo $scripts_for_layout;
+	echo $this->element('analytics', array('code' => Configure::read('Settings.google-analytics')), array('plugin' => 'BakingPlate'));
 ?>
 </body>
 </html>

@@ -64,6 +64,7 @@ class AppController extends Controller {
 		),/**/
 		// 'AutoLogin.AutoLogin',
 		'Webservice.Webservice',
+		'Settings.Settings',
 	);
 	var $attributesForLayout = array(
 		'id' => 'home',
