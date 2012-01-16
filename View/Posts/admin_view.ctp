@@ -1,6 +1,7 @@
 <header>
 	<hgroup><h1><?php echo __('Post');?></h1></hgroup>
 	<ul>
+		<li><?php echo $this->Html->link(__('Live View'), array('admin' => false, 'action' => 'view', $post['Post']['id'], $post['Post']['slug'])); ?> </li>
 		<li><?php echo $this->Html->link(__('Edit Post'), array('action' => 'edit', $post['Post']['id'])); ?> </li>
 		<li><?php echo $this->Html->link(__('Delete Post'), array('action' => 'delete', $post['Post']['id']), null, sprintf(__('Are you sure you want to delete # %s?'), $post['Post']['id'])); ?> </li>
 		<li><?php echo $this->Html->link(__('List Posts'), array('action' => 'index')); ?> </li>
