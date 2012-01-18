@@ -44,6 +44,14 @@ class DATABASE_CONFIG {
 	);
 	
 	var $accounts = array(
+		'aggrofolio.com' => array(			
+			'datasource' => 'Database/Mysql',
+			'persistent' => false,
+			'host' => 'mysql.holycrap.ws',
+			'login' => 'holycrap',
+			'password' => 'gamegod',
+			'database' => 'deansofer',
+		),
 		'deansofer.com' => array(
 			'datasource' => 'Database/Mysql',
 			'persistent' => false,
