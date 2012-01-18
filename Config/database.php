@@ -40,18 +40,10 @@ class DATABASE_CONFIG {
 		'host' => 'mysql.holycrap.ws',
 		'login' => 'holycrap',
 		'password' => 'gamegod',
-		'database' => 'aggrofolio',
+		'database' => 'deansofer',
 	);
 	
 	var $accounts = array(
-		'aggrofolio.com' => array(			
-			'datasource' => 'Database/Mysql',
-			'persistent' => false,
-			'host' => 'mysql.holycrap.ws',
-			'login' => 'holycrap',
-			'password' => 'gamegod',
-			'database' => 'deansofer',
-		),
 		'deansofer.com' => array(
 			'datasource' => 'Database/Mysql',
 			'persistent' => false,
