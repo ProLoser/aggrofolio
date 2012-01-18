@@ -1,7 +1,10 @@
 <?php
 class Account extends AppModel {
 	var $name = 'Account';
-	var $displayField = 'type';
+	var $displayField = 'label';
+	public $virtualFields = array(
+	    'label' => 'CONCAT(Account.type, " - ", Account.username)'
+	);
 	var $validate = array(
 		'username' => array(
 			'notempty' => array(

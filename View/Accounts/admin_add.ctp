@@ -6,9 +6,6 @@
 	<fieldset>
 	<?php
 		echo $this->Form->input('username');
-		echo $this->Form->input('email');
-		echo $this->Form->input('password');
-		echo $this->Form->input('api_key');
 		echo $this->Form->input('type');
 		echo $this->Form->input('published');
 	?>

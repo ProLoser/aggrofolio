@@ -1,5 +1,5 @@
 <header>
-	<hgroup><h1><?php echo __('Admin Edit Project'); ?></h1></hgroup>
+	<hgroup><h1><?php echo __('Edit Project'); ?></h1></hgroup>
 	<ul class="actions">
 		<li><?php echo $this->Html->link(__('View'), array('action' => 'view', $this->data['Project']['id'])); ?></li>
 		<li><?php echo $this->Html->link(__('Delete'), array('action' => 'delete', $this->Form->value('Project.id')), null, sprintf(__('Are you sure you want to delete # %s?'), $this->Form->value('Project.id'))); ?></li>
@@ -8,7 +8,13 @@
 	</ul>
 </header>
 <article class="projects form">
-<?php echo $this->Form->create('Project');?>
+<?php echo $this->Form->create('Project');?>	
+	<header>
+		<ul>
+			<li><?php echo $this->Html->link(__('Delete'), array('action' => 'delete', $this->Form->value('Project.id')), null, sprintf(__('Are you sure you want to delete # %s?'), $this->Form->value('Project.id'))); ?></li>
+		</ul>
+		<?php echo $this->Form->submit('Save'); ?>
+	</header>
 	<fieldset>
 	<?php
 		echo $this->Form->input('id');
@@ -27,7 +33,10 @@
 	?>
 	</fieldset>
 	<footer>
-		<?php echo $this->Form->submit('Submit'); ?>
+		<ul>
+			<li><?php echo $this->Html->link(__('Delete'), array('action' => 'delete', $this->Form->value('Project.id')), null, sprintf(__('Are you sure you want to delete # %s?'), $this->Form->value('Project.id'))); ?></li>
+		</ul>
+		<?php echo $this->Form->submit('Save'); ?>
 	</footer>
 <?php echo $this->Form->end();?>
 </article>

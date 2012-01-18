@@ -9,11 +9,11 @@
 </header>
 <article class="posts form">
 	<header>
-		<h3>Edit Post</h3>
 		<ul>
 			<li><?php echo $this->Html->link(__('Delete'), array('action' => 'delete', $this->Form->value('Post.id')), null, sprintf(__('Are you sure you want to delete # %s?'), $this->Form->value('Post.id'))); ?></li>
 			<li><a href="#" class="add-related">Add Related</a></li>
 		</ul>
+		<?php echo $this->Form->submit('Save'); ?>
 	</header>
 <?php echo $this->Form->create('Post');?>
 	<fieldset>
@@ -43,7 +43,7 @@
 			<li><?php echo $this->Html->link(__('Delete'), array('action' => 'delete', $this->Form->value('Post.id')), null, sprintf(__('Are you sure you want to delete # %s?'), $this->Form->value('Post.id'))); ?></li>
 			<li><a href="#" class="add-related">Add Related</a></li>
 		</ul>
-		<?php echo $this->Form->submit('Submit'); ?>
-</footer>
+		<?php echo $this->Form->submit('Save'); ?>
+	</footer>
 <?php echo $this->Form->end();?>
 </article>
