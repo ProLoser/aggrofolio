@@ -1,11 +1,14 @@
-<?php
-$this->set('navAdmin', array(
-	$this->Html->link('Edit Project', array('admin' => true, 'action' => 'edit', $project['Project']['id'])),
-	$this->Html->link('Add Media Item', array('admin' => true, 'controller' => 'media_items', 'action' => 'add')),
-))
-?>
 <header>
 	<h2 class="project"><?php  echo $project['Project']['name'];?></h2>
+	<?php if ($this->Session->read('Auth.User')):?>
+	<p class="sorting">
+		<span>Admin:</span>
+		<?php 
+		echo $this->Html->link('Edit Project', array('admin' => true, 'action' => 'edit', $project['Project']['id']));
+		echo $this->Html->link('Add Media Item', array('admin' => true, 'controller' => 'media_items', 'action' => 'add'));
+		?>
+	</p>
+	<?php endif;?>
 </header>
 <?php if (!empty($project['MediaItem'])): ?>
 <div id="radial_container" class="media">

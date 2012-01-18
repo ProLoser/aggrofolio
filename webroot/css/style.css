@@ -334,8 +334,8 @@ legend {
 #main > header {
 	position: fixed;
 	z-index: 10;
-	padding: 10px 10px 5px 260px;
-	margin: 0 0 0 -260px;
+	padding: 10px 0 5px;
+	margin: 0;
 	/*background: rgb(255, 255, 255);
 		background: rgba(255, 255, 255, 0.7);
 		-moz-box-shadow: 0 3px 10px #fff;
@@ -343,6 +343,7 @@ legend {
 		box-shadow: 0 3px 10px #fff;*/
 	width: 100%;
 	top: 0;
+	left: 0;
 	color: #b00;
 	background: url(../img/background.jpg) repeat-x bottom left;
 	overflow: hidden;
@@ -356,7 +357,7 @@ legend {
 #main > header h2 {
 	font-size: 40px;
 	float: left;
-	margin: -10px 5px 0 0;
+	margin: -10px 5px 0 260px;
 }
 #main > header h2.gallery, #main > header h2.blog, #main > header h2.resume, #main > header h2.project, #main > header h2.bookmark, #main > header h2.contact, #main > header h2.activity {
 	background: no-repeat center left;
@@ -376,8 +377,8 @@ legend {
 #mainNav .bookmark a { background-image: url(../img/icons/book-invert.png); }
 #mainNav .contact a { background-image: url(../img/icons/envelope-invert.png); }
 #main > header time {
-	margin: 0px 300px 0 0;
 	color: #444;
+	margin: 7px 10px 10px;
 }
 #main h3, #main section > h1, #main section > header h1 {
 	font-size: 20px;
@@ -569,7 +570,6 @@ a.desc:after {
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;
 	border-radius: 6px;
-	margin-right: 300px;
 	margin-left: 55px;
 }
 .sorting span {

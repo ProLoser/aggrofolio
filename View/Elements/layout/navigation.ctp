@@ -14,18 +14,6 @@
 </nav>
 <?php endif;?>
 
-<?php if ($this->Session->read('Auth.User')): ?>
-<nav>
-	<h3>Admin</h3>
-	<ul>
-		<li><?php echo $this->Html->link('Control Panel', array('admin' => true))?></li>
-	<?php if (!empty($navAdmin)): foreach ($navAdmin as $item): ?>
-		<li><?php echo $item?></li>
-	<?php endforeach; endif; ?>
-	</ul>
-</nav>
-<?php endif; ?>
-
 <?php if (!empty($categories)): ?>
 <nav id="categories">
 	<h3>Categories</h3>
@@ -53,8 +41,11 @@
 </nav>
 <?php endif; ?>
 
-<?php if (!$this->Session->read('Auth.User')): ?>
 <nav id="login">
-	<?php echo $this->Html->link('Login', '/login')?>
+<?php 
+if (!$this->Session->read('Auth.User')) {
+	echo $this->Html->link('Login', '/login');
+} else {
+	echo $this->Html->link('Control Panel', array('admin' => true));
+}?>
 </nav>
-<?php endif; ?>

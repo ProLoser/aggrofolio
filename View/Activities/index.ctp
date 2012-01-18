@@ -14,7 +14,7 @@
 	<?php endif; ?>
 	<?php if ($this->Session->read('Auth.User')):?>
 	<p class="sorting">
-		<span>Add New</span>
+		<span>Create New:</span>
 		<?php 
 		echo $this->Html->link('Post', array('admin' => true, 'controller' => 'posts', 'action' => 'add'));
 		echo $this->Html->link('Media Item', array('admin' => true, 'controller' => 'media_items', 'action' => 'add'));

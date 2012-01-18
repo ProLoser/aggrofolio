@@ -60,6 +60,30 @@ class DATABASE_CONFIG {
 			'password' => 'root',
 			'database' => 'aggropholio',
 		),
+		'usabilitycounts.aggrofolio.com' => array(
+			'datasource' => 'Database/Mysql',
+			'persistent' => false,
+			'host' => 'mysql.holycrap.ws',
+			'login' => 'holycrap',
+			'password' => 'gamegod',
+			'database' => 'aggrofolio_uxcounts',
+		),
+		'ana.aggrofolio.com' => array(
+			'datasource' => 'Database/Mysql',
+			'persistent' => false,
+			'host' => 'mysql.holycrap.ws',
+			'login' => 'holycrap',
+			'password' => 'gamegod',
+			'database' => 'aggrofolio_ana',
+		),
+		'ken.aggrofolio.com' => array(
+			'datasource' => 'Database/Mysql',
+			'persistent' => false,
+			'host' => 'mysql.holycrap.ws',
+			'login' => 'holycrap',
+			'password' => 'gamegod',
+			'database' => 'aggrofolio_ken',
+		),
 	);
 	
 	var $linkedin = array(
