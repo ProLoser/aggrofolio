@@ -77,7 +77,7 @@ class Album extends AppModel {
 	}
 	
 	public function scanFlickr($account) {
-		$this->useDbConfig = 'flickr';
+		$this->setDataSource('flickr');
 		$username = $this->find('all', array(
 			'fields' => 'people', 
 			'conditions' => array('username' => $account['Account']['username'])
@@ -89,7 +89,7 @@ class Album extends AppModel {
 			'fields' => 'sets', 
 			'conditions' => array('user_id' => $username['user']['nsid'])
 		));
-		$this->useDbConfig = 'default';
+		$this->setDataSource('default');
 		$count = 0;
 		if (!empty($result)) {
 			foreach ($result['photosets']['photoset'] as $photoset) {

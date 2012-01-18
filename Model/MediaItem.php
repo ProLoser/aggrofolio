@@ -117,7 +117,7 @@ class MediaItem extends AppModel {
 	}
 	
 	public function fetchDevArt($user, $albumId = null) {
-		$this->useDbConfig = 'rss';
+		$this->setDataSource('rss');
 		$mediaItems = array();
 		$offset = 0;
 		$path = "http://backend.deviantart.com/rss.xml?type=deviation&offset=:offset&q=gallery:" . $user;
@@ -132,12 +132,12 @@ class MediaItem extends AppModel {
 			$mediaItems = array_merge($mediaItems, $newItems);
 			$offset += $count;
 		} while ($count > 0);
-		$this->useDbConfig = 'default';
+		$this->setDataSource('default');
 		return $mediaItems;
 	}
 	
 	public function scanFlickr($album) {
-		$this->useDbConfig = 'flickr';
+		$this->setDataSource('flickr');
 		$options['fields'] = 'photos';
 		if (!empty($album['Album']['uuid'])) {
 			$options['conditions']['photoset_id'] = $album['Album']['uuid'];
@@ -147,7 +147,7 @@ class MediaItem extends AppModel {
 		if (isset($photos['photos'])) {
 			
 		}
-		$this->useDbConfig = 'default';
+		$this->setDataSource('default');
 		$count = 0;
 		if (!empty($photos)) {
 			foreach ($photos['photoset']['photo'] as $photo) {

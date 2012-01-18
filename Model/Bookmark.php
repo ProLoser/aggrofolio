@@ -44,10 +44,10 @@ class Bookmark extends AppModel {
 	}
 	
 	public function scanXmarks($account) {
-		$this->useDbConfig = 'rss';
+		$this->setDataSource('rss');
 		$this->feedUrl = $account['Account']['username'];
 		$bookmarks = $this->find('all');
-		$this->useDbConfig = 'default';
+		$this->setDataSource('default');
 		$count = 0;
 		if (!empty($bookmarks)) {
 			foreach ($bookmarks as $bookmark) {
@@ -65,8 +65,7 @@ class Bookmark extends AppModel {
 	}
 
 	public function scanJsfiddle($account) {
-		$this->setDatasource('jsfiddle');
-		$this->useTable = false;
+		$this->getDataSource('jsfiddle');
 		$bookmarks = $this->find('all', array(
 			'fields' => 'fiddles',
 			'conditions' => array(
@@ -74,7 +73,6 @@ class Bookmark extends AppModel {
 			)
 		));
 		$this->setDataSource('default');
-		$this->useTable = 'bookmarks';
 		$count = 0;
 		if (!empty($bookmarks)) {
 			foreach ($bookmarks as $bookmark) {
@@ -103,20 +101,18 @@ class Bookmark extends AppModel {
 		return true;
 	}
 
-	public function afterSave($created) {
+	/*public function afterSave($created) {
 		if ($created) {
 			// Auto Tweet Bookmarks
-			// $this->setDataSource('twitter');
-			// $this->setSource('tweets');
-			// $data = array(
-			// 	'section' => 'tweets',
-			// 	'status' => $this->data['Bookmark']['name'] . ' ' . $this->data['Bookmark']['url']
-			// );
-			// $this->create();
-			// $this->save($data);
-			// $this->setDataSource('default');
-			// $this->setSource('bookmarks');
+			$this->setDataSource('twitter');
+			$data = array(
+				'section' => 'tweets',
+				'status' => $this->data['Bookmark']['name'] . ' ' . $this->data['Bookmark']['url']
+			);
+			$this->create();
+			$this->save($data);
+			$this->setDataSource('default');
 		}
-	}
+	}*/
 }
 ?>

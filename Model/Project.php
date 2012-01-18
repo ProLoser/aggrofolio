@@ -67,9 +67,9 @@ class Project extends AppModel {
 			} else {
 				$results = $results[0];
 			}
-			$default = $this->useDbConfig;
+			$this->setDataSource($results['Account']['type']);
 			$name = array_pop(explode('/', $results['Project']['cvs_url']));
-			switch ($this->useDbConfig = $results['Account']['type']) {
+			switch ($results['Account']['type']) {
 				case 'github':
 					$results['commits'] = $this->find('all', array(
 						'conditions' => array(
@@ -105,7 +105,7 @@ class Project extends AppModel {
 						'fields' => 'blog'
 					));*/
 			}
-			$this->useDbConfig = $default;
+			$this->setDataSource('default');
 	        return $results;
 	    }
 	}
@@ -128,15 +128,14 @@ class Project extends AppModel {
 	}
 	
 	function scanGithub($account) {
-		$default = $this->useDbConfig;
-		$this->useDbConfig = 'github';
+		$this->setDataSource('github');
 		$projects = $this->find('all', array(
 			'fields' => 'repos'
 		));
 		if (empty($projects)) {
 			return false;
 		}
-		$this->useDbConfig = $default;
+		$this->setDataSource('default');
 		$count = 0;
 		foreach ($projects as $project) {
 			$this->create();
@@ -153,12 +152,11 @@ class Project extends AppModel {
 	}
 	
 	function scanCodaset($account) {
-		$default = $this->useDbConfig;
-		$this->useDbConfig = 'codaset';
+		$this->setDataSource('codaset');
 		$projects = $this->find('all', array('conditions' => array('username' => $account['Account']['username']), 'fields' => 'projects'));
 		$collabs = $this->find('all', array('conditions' => array('username' => $account['Account']['username']), 'fields' => 'collaborations'));
 		$projects = array_merge($projects, $collabs);
-		$this->useDbConfig = $default;
+		$this->setDataSource('default');
 		$i = 0;
 		foreach ($projects as $project) {
 			$this->create();
