@@ -60,8 +60,10 @@ class AppModel extends Model {
 				}
 			}
 		}
+		if (isset($_SERVER['HTTP_HOST'])) {
+			$this->actsAs['Cacheable.Cacheable']['folder'] = $_SERVER['HTTP_HOST'];
+		}
 		parent::__construct($id, $table, $ds);
-		$this->actsAs['Cacheable.Cacheable']['folder'] = $this->getDataSource()->config['database'];
 		foreach ($this->virtualFields as $field => $value) {
 			$this->virtualFields[$field] = str_replace($this->name, $this->alias, $value);
 		}
