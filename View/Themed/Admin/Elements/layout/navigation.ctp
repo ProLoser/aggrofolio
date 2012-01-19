@@ -9,18 +9,19 @@
 	</div>
 </header> 
 
+<h3>Admin</h3>
+<ul class="toggle">
+	<li class="icn_profile"><?php echo $this->Html->link('Users', array('controller' => 'users', 'action' => 'index')); ?></li>
+	<li class="icn_view_users"><?php echo $this->Html->link('Accounts', array('controller' => 'accounts', 'action' => 'index')); ?></li>
+	<li class="icn_edit_article"><?php echo $this->Html->link('Emails', array('controller' => 'contacts', 'action' => 'index')); ?></li>
+	<li class="icn_categories"><?php echo $this->Html->link('Settings', array('controller' => 'my_settings', 'action' => 'index')); ?></li>
+</ul>
 <h3>Blog</h3>
 <ul class="toggle">
 	<li class="icn_new_article"><?php echo $this->Html->link('New Post', array('controller' => 'posts', 'action' => 'add')); ?></li>
 	<li class="icn_edit_article"><?php echo $this->Html->link('Edit Posts', array('controller' => 'posts', 'action' => 'index')); ?></li>
 	<li class="icn_categories"><?php echo $this->Html->link('Categories', array('controller' => 'post_categories', 'action' => 'index')); ?></li>
 	<li class="icn_categories"><?php echo $this->Html->link('Comments', array('controller' => 'comments', 'action' => 'index')); ?></li>
-</ul>
-<h3>Admin</h3>
-<ul class="toggle">
-	<li class="icn_profile"><?php echo $this->Html->link('Users', array('controller' => 'users', 'action' => 'index')); ?></li>
-	<li class="icn_view_users"><?php echo $this->Html->link('Accounts', array('controller' => 'accounts', 'action' => 'index')); ?></li>
-	<li class="icn_edit_article"><?php echo $this->Html->link('Emails', array('controller' => 'contacts', 'action' => 'index')); ?></li>
 </ul>
 <h3>Media</h3>
 <ul class="toggle">
