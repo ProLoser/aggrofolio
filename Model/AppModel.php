@@ -37,7 +37,7 @@ class AppModel extends Model {
 	public $actsAs = array(
 		//'Linkable.Linkable', // TODO Possibly causing behavior errors when trying to bake
 		'Containable',
-		'Cacheable.Cacheable',
+		'Cacheable.Cacheable' => array(),
 	);
 	
 	/**
@@ -61,6 +61,7 @@ class AppModel extends Model {
 			}
 		}
 		parent::__construct($id, $table, $ds);
+		$this->actsAs['Cacheable.Cacheable']['folder'] = $this->getDataSource()->config['database'];
 		foreach ($this->virtualFields as $field => $value) {
 			$this->virtualFields[$field] = str_replace($this->name, $this->alias, $value);
 		}
