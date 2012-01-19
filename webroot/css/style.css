@@ -378,7 +378,7 @@ legend {
 #mainNav .contact a { background-image: url(../img/icons/envelope-invert.png); }
 #main > header time {
 	color: #444;
-	margin: 7px 10px 10px;
+	margin: 7px 40px 10px;
 }
 #main h3, #main section > h1, #main section > header h1 {
 	font-size: 20px;
@@ -553,7 +553,7 @@ a.desc:after {
 
 .paging, .sorting {
 	font-weight: bold;
-	margin: 0 10px 10px;
+	margin: 0 40px 10px;
 	display: inline-block;
 	background: rgba(0,0,0,.3);
 	-webkit-border-radius: 15px;
