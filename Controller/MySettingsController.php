@@ -14,5 +14,15 @@ class MySettingsController extends AppController{
 		}
 		$this->request->data = $this->Setting->find('all');
 	}
+
+	function asset($key) {
+		$this->layout = 'ajax';
+		$setting = $this->Setting->cache('first', array('conditions' => array('Setting.key' => $key)));
+		if (!$setting) {
+			throw new NotFoundException();
+		}
+		$this->RequestHandler->respondAs($key);
+		$this->set('setting', $setting['Setting']['value']);
+	}
 }
 ?>
