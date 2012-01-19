@@ -40,7 +40,7 @@
 	#!# $this->AssetCompress->css(array(
 		'/js/mylibs/fancybox/jquery.fancybox-1.3.4',
 		'/js/mylibs/qtip/jquery.qtip.min',
-		'/my_settings/asset/css/style'
+		'/asset/css/style'
 	));
 	#!# echo $this->AssetCompress->includeCss();
 	echo $styles_for_layout;
@@ -75,7 +75,7 @@
 		'mylibs/fancybox/jquery.fancybox-1.3.4.pack',
 		'mylibs/qtip/jquery.qtip.min',
 		'plugins',
-		'/my_settings/asset/js/script'
+		'/asset/js/script'
 	));
 	echo $this->Plate->pngFix();
 	echo $this->Plate->analytics();
