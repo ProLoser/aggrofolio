@@ -8,12 +8,6 @@ class MediaItem extends AppModel {
 				'message' => 'Please enter a name',
 			),
 		),
-		'album_id' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				'message' => 'Please select an album',
-			),
-		),
 		'uuid' => array(
 			'rule' => 'isUnique',
 			'message' => 'be unique dammit',
