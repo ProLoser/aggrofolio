@@ -26,7 +26,7 @@ class Resume extends AppModel {
 			'foreignKey' => 'foreign_key',
 			'conditions' => array('PostRelationship.foreign_model' => 'Resume'),
 		),
-		'ResumeItem',
+		// 'ResumeItem',
 	);
 
 	public $hasAndBelongsToMany = array(
@@ -111,62 +111,63 @@ class Resume extends AppModel {
 		}
 		
 		$date = array('day' => 1, 'month' => 1, 'year' => null);
-		foreach ($data['skills']['values'] as $i => $skill) {
-			$skills[$i]['ResumeSkill']['uuid'] = $skill['id'];
-			$skills[$i]['ResumeSkill']['name'] = $skill['skill']['name'];
-			$skills[$i]['ResumeSkill']['years'] = $skill['years']['name'];
-			$skills[$i]['ResumeSkill']['proficiency'] = $skill['proficiency']['name'];
-			$skills[$i]['ResumeSkill']['account_id'] = $account['Account']['id'];
-		}
-		if (!empty($skills)) {
+		
+		if (!empty($data['skills']['values'])) {
+			foreach ($data['skills']['values'] as $i => $skill) {
+				$skills[$i]['ResumeSkill']['uuid'] = $skill['id'];
+				$skills[$i]['ResumeSkill']['name'] = $skill['skill']['name'];
+				$skills[$i]['ResumeSkill']['years'] = $skill['years']['name'];
+				$skills[$i]['ResumeSkill']['proficiency'] = $skill['proficiency']['name'];
+				$skills[$i]['ResumeSkill']['account_id'] = $account['Account']['id'];
+			}
 			$resume['ResumeSkill']['ResumeSkill'] = $this->saveAllIds($this->ResumeSkill, $skills);
 		}
 		
-		foreach ($data['positions']['values'] as $i => $employer) {
-			if (isset($employer['company']['id'])) 
-				$employers[$i]['uuid'] = $employer['company']['id'];
-			$employers[$i]['name'] = $employer['company']['name'];
-			$employers[$i]['title'] = $employer['title'];
-			$employers[$i]['summary'] = $employer['summary'];
-			$employers[$i]['currently_employed'] = $employer['isCurrent'];
-			if (isset($employer['startDate']))
-				$employers[$i]['date_started'] = array_merge($date, $employer['startDate']);
-			if (isset($employer['endDate']))
-				$employers[$i]['date_ended'] = array_merge($date, $employer['endDate']);
-			$employers[$i]['account_id'] = $account['Account']['id'];
-		}
-		if (!empty($employers)) {
+		if (!empty($data['positions']['values'])) {
+			foreach ($data['positions']['values'] as $i => $employer) {
+				if (isset($employer['company']['id'])) 
+					$employers[$i]['uuid'] = $employer['company']['id'];
+				$employers[$i]['name'] = $employer['company']['name'];
+				$employers[$i]['title'] = $employer['title'];
+				$employers[$i]['summary'] = $employer['summary'];
+				$employers[$i]['currently_employed'] = $employer['isCurrent'];
+				if (isset($employer['startDate']))
+					$employers[$i]['date_started'] = array_merge($date, $employer['startDate']);
+				if (isset($employer['endDate']))
+					$employers[$i]['date_ended'] = array_merge($date, $employer['endDate']);
+				$employers[$i]['account_id'] = $account['Account']['id'];
+			}
 			$resume['ResumeEmployer']['ResumeEmployer'] = $this->saveAllIds($this->ResumeEmployer, $employers);
 		}
 		
-		foreach ($data['educations']['values'] as $i => $school) {
-			if (isset($school['id'])) $schools[$i]['uuid'] = $school['id'];
-			$schools[$i]['field_of_study'] = $school['fieldOfStudy'];
-			$schools[$i]['name'] = $school['schoolName'];
-			$schools[$i]['activities'] = $school['activities'];
-			$schools[$i]['notes'] = $school['notes'];
-			$schools[$i]['degree'] = $school['degree'];
-			if (isset($school['startDate']))
-				$schools[$i]['date_started'] = array_merge($date, $school['startDate']);
-			if (isset($school['endDate']))
-				$schools[$i]['date_ended'] = array_merge($date, $school['endDate']);
-			$schools[$i]['account_id'] = $account['Account']['id'];
-		}
-		if (!empty($schools)) {
+		if (!empty($data['educations']['values'])) {
+			foreach ($data['educations']['values'] as $i => $school) {
+				if (isset($school['id'])) $schools[$i]['uuid'] = $school['id'];
+				$schools[$i]['field_of_study'] = $school['fieldOfStudy'];
+				$schools[$i]['name'] = $school['schoolName'];
+				$schools[$i]['activities'] = $school['activities'];
+				$schools[$i]['notes'] = $school['notes'];
+				$schools[$i]['degree'] = $school['degree'];
+				if (isset($school['startDate']))
+					$schools[$i]['date_started'] = array_merge($date, $school['startDate']);
+				if (isset($school['endDate']))
+					$schools[$i]['date_ended'] = array_merge($date, $school['endDate']);
+				$schools[$i]['account_id'] = $account['Account']['id'];
+			}
 			$resume['ResumeSchool']['ResumeSchool'] = $this->saveAllIds($this->ResumeSchool, $schools);
 		}
 		
 		
-		foreach ($data['recommendationsReceived']['values'] as $i => $recommendation) {
-			$recommendations[$i]['uuid'] = $recommendation['id'];
-			$recommendations[$i]['type'] = $recommendation['recommendationType']['code'];
-			$recommendations[$i]['first_name'] = $recommendation['recommender']['firstName'];
-			$recommendations[$i]['last_name'] = $recommendation['recommender']['lastName'];
-			$recommendations[$i]['recommendor_uuid'] = $recommendation['recommender']['id'];
-			$recommendations[$i]['text'] = $recommendation['recommendationText'];
-			$recommendations[$i]['account_id'] = $account['Account']['id'];
-		}
-		if (!empty($recommendations)) {
+		if (!empty($data['recommendationsReceived']['values'])) {
+			foreach ($data['recommendationsReceived']['values'] as $i => $recommendation) {
+				$recommendations[$i]['uuid'] = $recommendation['id'];
+				$recommendations[$i]['type'] = $recommendation['recommendationType']['code'];
+				$recommendations[$i]['first_name'] = $recommendation['recommender']['firstName'];
+				$recommendations[$i]['last_name'] = $recommendation['recommender']['lastName'];
+				$recommendations[$i]['recommendor_uuid'] = $recommendation['recommender']['id'];
+				$recommendations[$i]['text'] = $recommendation['recommendationText'];
+				$recommendations[$i]['account_id'] = $account['Account']['id'];
+			}
 			$resume['ResumeRecommendation']['ResumeRecommendation'] = $this->saveAllIds($this->ResumeRecommendation, $recommendations);
 		}
 		
