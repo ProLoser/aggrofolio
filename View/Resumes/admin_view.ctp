@@ -7,12 +7,6 @@
 		<li><?php echo $this->Html->link(__('Delete Resume'), array('action' => 'delete', $resume['Resume']['id']), null, sprintf(__('Are you sure you want to delete # %s?'), $resume['Resume']['id'])); ?> </li>
 		<li><?php echo $this->Html->link(__('List Resumes'), array('action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Resume'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Accounts'), array('controller' => 'accounts', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Account'), array('controller' => 'accounts', 'action' => 'add'), array('class' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Post Relationships'), array('controller' => 'post_relationships', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Post Relationship'), array('controller' => 'post_relationships', 'action' => 'add'), array('class' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Resume Items'), array('controller' => 'resume_items', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Resume Item'), array('controller' => 'resume_items', 'action' => 'add'), array('class' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Resume Recommendations'), array('controller' => 'resume_recommendations', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Resume Recommendation'), array('controller' => 'resume_recommendations', 'action' => 'add'), array('class' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Resume Schools'), array('controller' => 'resume_schools', 'action' => 'index')); ?> </li>
@@ -65,9 +59,9 @@
 			<?php echo $resume['Resume']['content']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Visible'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Published'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $resume['Resume']['visible']; ?>
+			<?php echo $resume['Resume']['published']; ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Objective'); ?></dt>
