@@ -1,4 +1,4 @@
-<h1><?php echo $this->Html->link(Configure::read('Settings.site_name'), '/'); ?></h1>
+<h1><?php echo $this->Html->link($site_name, '/'); ?></h1>
 <ul id="mainNav">
 	<li class="resume"><?php echo $this->Html->link('Resume', array('controller' => 'resumes', 'action' => 'index')); ?></li>
 	<li class="blog"><?php echo $this->Html->link('Blog Posts', array('controller' => 'posts', 'action' => 'index'), array('id' => 'type-Post')); ?></li>

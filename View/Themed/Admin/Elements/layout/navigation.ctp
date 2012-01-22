@@ -14,7 +14,7 @@
 	<li class="icn_profile"><?php echo $this->Html->link('Users', array('controller' => 'users', 'action' => 'index')); ?></li>
 	<li class="icn_view_users"><?php echo $this->Html->link('Accounts', array('controller' => 'accounts', 'action' => 'index')); ?></li>
 	<li class="icn_edit_article"><?php echo $this->Html->link('Emails', array('controller' => 'contacts', 'action' => 'index')); ?></li>
-	<li class="icn_categories"><?php echo $this->Html->link('Settings', array('controller' => 'my_settings', 'action' => 'index')); ?></li>
+	<li class="icn_categories"><?php echo $this->Html->link('Settings', array('controller' => 'settings', 'action' => 'index')); ?></li>
 </ul>
 <h3>Blog</h3>
 <ul class="toggle">

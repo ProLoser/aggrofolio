@@ -1,7 +1,6 @@
 <?php
-class MySettingsController extends AppController{
-	var $name = 'MySettings';
-	var $uses = array('Settings.Setting');
+class SettingsController extends AppController{
+	var $name = 'Settings';
 
 	function admin_index() {
 		if (!empty($this->request->data)) {

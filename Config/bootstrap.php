@@ -21,6 +21,8 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
+$coreCaching = Cache::config('_cake_core_');
+Cache::config('default', array('engine' => $coreCaching['engine']));
 
 /**
  * The settings below can be used to set additional paths to models, views and controllers.

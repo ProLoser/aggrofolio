@@ -64,7 +64,6 @@ class AppController extends Controller {
 		),/**/
 		// 'AutoLogin.AutoLogin',
 		'Webservice.Webservice',
-		'Settings.Settings',
 	);
 	var $attributesForLayout = array(
 		'id' => 'home',
@@ -115,9 +114,22 @@ class AppController extends Controller {
  */
 	function beforeRender() {
 		$this->_setTheme();
-		$this->loadModel('Account');
-		if (!$this->Plate->prefix()) {
-			$this->set('navAccounts', $this->Account->cache('all', array('conditions' => array('Account.published' => true))));
+		if (!$this->Plate->prefix('admin')) {
+			if (!Cache::read('navAccounts')) {
+				$this->loadModel('Account');
+				$this->Account->refreshNav();
+			}
+			if (!Cache::read('google_analytics')) {
+				$this->loadModel('Setting');
+				$this->Setting->refreshCache('google_analytics');
+			}
+			if (!Cache::read('site_name')) {
+				$this->loadModel('Setting');
+				$this->Setting->refreshCache('site_name');
+			}
+			$this->set('navAccounts', Cache::read('navAccounts'));
+			$this->set('google_analytics', Cache::read('google_analytics'));
+			$this->set('site_name', Cache::read('site_name'));
 		}
 	}
 	

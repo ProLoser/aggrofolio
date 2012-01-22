@@ -442,6 +442,10 @@ color: #666;
 border: none;
 padding: 0;
 }
+legend {
+	font-size: 150%;
+	font-weight: bold;
+}
 
 
 /* Stats Module */

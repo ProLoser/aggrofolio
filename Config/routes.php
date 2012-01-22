@@ -24,7 +24,7 @@
 Router::parseExtensions('json', 'xml', 'rss', 'ajax');
  
 Router::connect('/', array('controller' => 'activities', 'action' => 'index'));
-Router::connect('/asset/*', array('controller' => 'my_settings', 'action' => 'asset'));
+Router::connect('/asset/*', array('controller' => 'settings', 'action' => 'asset'));
 Router::connect('/paginated', array('controller' => 'activities', 'action' => 'paginated'));
 Router::connect('/login', array('controller' => 'users', 'action' => 'login'));
 Router::connect('/logout', array('controller' => 'users', 'action' => 'logout'));

@@ -87,5 +87,16 @@ class Account extends AppModel {
 			$this->scan($id);
 		}
 	}
+	
+	public function afterSave() {
+		$this->refreshNav();
+	}
+	public function afterDelete() {
+		$this->refreshNav();
+	}
+	public function refreshNav() {
+		$navAccounts = $this->find('all', array('conditions' => array('Account.published' => true)));
+		Cache::write('navAccounts', $navAccounts);
+	}
 }
 ?>

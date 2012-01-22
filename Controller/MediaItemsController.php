@@ -60,6 +60,36 @@ class MediaItemsController extends AppController {
 		$projects = $this->MediaItem->Project->find('list');
 		$this->set(compact('albums', 'projects'));
 	}
+	
+	function admin_batch($count = 5) {
+		if (!empty($this->request->data)) {
+			foreach ($this->request->data['MediaItem'] as $i => $item) {
+				if (in_array($i, array('published', 'album_id', 'project_id'))) {
+					continue;
+				}
+				$this->request->data['MediaItem'][$i]['published'] = $this->request->data['MediaItem']['published'];
+				$this->request->data['MediaItem'][$i]['album_id'] = $this->request->data['MediaItem']['album_id'];
+				$this->request->data['MediaItem'][$i]['project_id'] = $this->request->data['MediaItem']['project_id'];
+			}
+			unset($this->request->data['MediaItem']['published']);
+			unset($this->request->data['MediaItem']['album_id']);
+			unset($this->request->data['MediaItem']['project_id']);
+			if ($this->MediaItem->saveAll($this->request->data['MediaItem'])) {
+				$this->Session->setFlash(__('The media item has been saved'));
+				$this->redirect(array('action' => 'view', $this->MediaItem->id));
+			} else {
+				$this->Session->setFlash(__('The media item could not be saved. Please, try again.'));
+				$this->request->data['MediaItem']['published']  = $this->request->data['MediaItem'][0]['published'];
+				$this->request->data['MediaItem']['album_id']   = $this->request->data['MediaItem'][0]['album_id'];
+				$this->request->data['MediaItem']['project_id'] = $this->request->data['MediaItem'][0]['project_id'];
+			}
+		} elseif (isset($this->request->params['named']['project'])) {
+			$this->request->data['MediaItem']['project_id'] = $this->request->params['named']['project'];
+		}
+		$albums = $this->MediaItem->Album->find('list');
+		$projects = $this->MediaItem->Project->find('list');
+		$this->set(compact('albums', 'projects', 'count'));
+	}
 
 	function admin_edit($id = null) {
 		if (!$id && empty($this->request->data)) {
