@@ -27,7 +27,7 @@
 		<th><?php echo $this->Paginator->sort('created');?></th>
 		<th><?php echo $this->Paginator->sort('subject');?></th>
 		<th><?php echo $this->Paginator->sort('slug');?></th>
-		<th class="actions"><?php echo __('Actions');?></th>
+		<th class="actions"><?php echo __('Actions');?> <?php echo $this->Batch->all()?></th>
 	</tr>
 	<?php echo $this->Batch->filter(array(null, null, 'subject', 'slug'));
 	$i = 0;

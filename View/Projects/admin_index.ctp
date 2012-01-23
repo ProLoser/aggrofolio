@@ -79,6 +79,10 @@
 	</table>
 	<?php echo $this->Batch->end()?> 
 	<footer>
+		<h3>Records:</h3>
+		<p class="paging limit">
+			<?php echo $this->Paginator->limit(array(10,20,50,100));?>
+		</p>
 		<p class="paging">
 			<?php echo $this->Paginator->prev();?>
 			<?php echo $this->Paginator->numbers(array('separator' => ''));?>
