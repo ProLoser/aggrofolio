@@ -2,8 +2,8 @@
 	<hgroup><h1><?php echo __('Resume Skills');?></h1></hgroup>
 	<ul class="actions">
 		<li><?php echo $this->Html->link(__('New Resume Skill'), array('action' => 'add')); ?></li>
-			<li><?php echo $this->Html->link(__('List Accounts'), array('controller' => 'accounts', 'action' => 'index')); ?> </li>
-			<li><?php echo $this->Html->link(__('New Account'), array('controller' => 'accounts', 'action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('List Skill Categories'), array('controller' => 'resume_skill_categories', 'action' => 'index')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Skill Category'), array('controller' => 'resume_skill_categories', 'action' => 'add')); ?> </li>
 			<li><?php echo $this->Html->link(__('List Resumes'), array('controller' => 'resumes', 'action' => 'index')); ?> </li>
 			<li><?php echo $this->Html->link(__('New Resume'), array('controller' => 'resumes', 'action' => 'add')); ?> </li>
 			<li><?php echo $this->Html->link(__('List Categories'), array('controller' => 'resume_skill_categories', 'action' => 'index')); ?> </li>

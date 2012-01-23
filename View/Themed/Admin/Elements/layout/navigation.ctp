@@ -47,6 +47,7 @@
 	<li class="icn_categories"><?php echo $this->Html->link('Schools', array('controller' => 'resume_schools', 'action' => 'index')); ?></li>
 	<li class="icn_categories"><?php echo $this->Html->link('Recommendations', array('controller' => 'resume_recommendations', 'action' => 'index')); ?></li>
 	<li class="icn_categories"><?php echo $this->Html->link('Skills', array('controller' => 'resume_skills', 'action' => 'index')); ?></li>
+	<li class="icn_categories"><?php echo $this->Html->link('Skill Categories', array('controller' => 'resume_skills_categories', 'action' => 'index')); ?></li>
 </ul>
 
 <footer>
