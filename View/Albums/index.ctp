@@ -16,7 +16,7 @@
 		if (!empty($album['AlbumCategory']))
 			$name .= "<span>{$album['AlbumCategory']['name']}</span>";
 		echo $this->Html->link($name, array('controller' => 'media_items', 'action' => 'album', $album['Album']['id'], Inflector::slug($album['Album']['name'])), array('escape' => false)); 
-		if (!empty($album['MediaItem'])) echo $this->Html->image('/uploads/thumb-' . $album['MediaItem'][0]['attachment_file_name']);
+		if (!empty($album['MediaItem'])) echo $this->Html->image('/uploads/media/thumb-' . $album['MediaItem'][0]['attachment_file_name']);
 	?>
 	</li>
 <?php endif; endforeach ?>

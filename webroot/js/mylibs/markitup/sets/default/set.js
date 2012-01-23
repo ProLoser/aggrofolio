@@ -31,7 +31,7 @@ mySettings = {
 		{name:'Stroke through', key:'S', openWith:'<del>', closeWith:'</del>' },
 		{separator:'---------------' },
 		{name:'Horizontal Rule', key:'H', replaceWith:'<hr>' },
-		{name:'Picture', key:'P', replaceWith:'<img src="[![Source:!:/uploads/original-]!]" alt="[![Alternative text]!]" />' },
+		{name:'Picture', key:'P', replaceWith:'<img src="[![Source:!:/uploads/media/original-]!]" alt="[![Alternative text]!]" />' },
 		{name:'Link', key:'L', openWith:'<a href="[![Link:!:http://]!]"(!( title="[![Title]!]")!)>', closeWith:'</a>', placeHolder:'Your text to link...' },
 		{separator:'---------------' },
 		{name:'Clean', className:'clean', replaceWith:function(markitup) { return markitup.selection.replace(/<(.*?)>/g, "") } },		

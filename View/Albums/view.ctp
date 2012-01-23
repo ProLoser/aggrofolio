@@ -14,8 +14,8 @@
 	<?php foreach ($album['MediaItem'] as $item): ?>
 		<li>
 		<?php
-			echo $this->Html->link($item['name'], '/uploads/original-' . $item['attachment_file_name'], array('title' => $item['name'], 'rel' => 'album')); 
-			echo $this->Html->image('/uploads/thumb-' . $item['attachment_file_name']);
+			echo $this->Html->link($item['name'], '/uploads/media/original-' . $item['attachment_file_name'], array('title' => $item['name'], 'rel' => 'album')); 
+			echo $this->Html->image('/uploads/media/thumb-' . $item['attachment_file_name']);
 		?>
 		</li>
 	<?php endforeach ?>

@@ -60,13 +60,18 @@ $this->set('navAdmin', array(
 </style>
 <header>
 	<h2 class="resume">Resume</h2>
+	<?php if (!empty($resume['Resume']['attachment_file_name']) || !empty($resume['Resume']['attachment_pdf_file_name']) || !empty($resume['Resume']['attachment_doc_file_name'])): ?>
 	<p class="sorting">
-		<span>Download:</span>
-		<?php 
-			echo $this->Html->link('Adobe PDF', '/DeanSoferResume.pdf');
-			echo $this->Html->link('Word DOC', '/DeanSoferResume.doc');
-		?>
+	<?php
+		if (!empty($resume['Resume']['attachment_file_name']))
+			echo $this->Html->link('Download', '/uploads/resumes/'.$resume['Resume']['attachment_file_name']);
+		if (!empty($resume['Resume']['attachment_pdf_file_name']))
+			echo $this->Html->link('Download', '/uploads/resumes/'.$resume['Resume']['attachment_pdf_file_name']);
+		if (!empty($resume['Resume']['attachment_doc_file_name']))
+			echo $this->Html->link('Download', '/uploads/resumes/'.$resume['Resume']['attachment_doc_file_name']);
+	?>
 	</p>
+	<?php endif; ?>
 </header>
 <div class="resumes">
 	<?php if (!empty($resume['Resume']['objective'])): ?>

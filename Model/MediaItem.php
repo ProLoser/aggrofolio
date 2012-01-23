@@ -33,7 +33,7 @@ class MediaItem extends AppModel {
 		),
 		'UploadPack.Upload' => array(
 			'attachment' => array(
-				'path' => ':webroot/uploads/:style-:basename.:extension',
+				'path' => ':webroot/uploads/media/:style-:basename.:extension',
 				'styles' => array(
 					'thumb' => '200x160',
 				),

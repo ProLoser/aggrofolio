@@ -41,7 +41,13 @@ class Resume extends AppModel {
 		'Joinable.Joinable',
 		'UploadPack.Upload' => array(
 			'attachment' => array(
-				'path' => ':webroot/resumes/:basename.:extension',
+				'path' => ':webroot/uploads/resumes/:basename.:extension',
+			),
+			'attachment_pdf' => array(
+				'path' => ':webroot/uploads/resumes/:basename.:extension',
+			),
+			'attachment_doc' => array(
+				'path' => ':webroot/uploads/resumes/:basename.:extension',
 			),
 		),
 	);

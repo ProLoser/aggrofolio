@@ -14,7 +14,7 @@
 <div id="radial_container" class="media">
 	<ul class="list">
 	<?php foreach ($project['MediaItem'] as $item): ?>
-		<li class="item"><?php echo $this->Html->link($this->Html->image('/uploads/thumb-' . $item['attachment_file_name'], array('class' => 'my_class')), '/uploads/original-' . $item['attachment_file_name'], array('escape' => false, 'rel' => 'Project')) ?></li>
+		<li class="item"><?php echo $this->Html->link($this->Html->image('/uploads/media/thumb-' . $item['attachment_file_name'], array('class' => 'my_class')), '/uploads/media/original-' . $item['attachment_file_name'], array('escape' => false, 'rel' => 'Project')) ?></li>
 	<?php endforeach ?>	
 	</ul>
 	<a href="#" class="arrow" id="radright">Right</a>

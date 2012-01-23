@@ -12,6 +12,8 @@
 		echo $this->Form->input('id');
 		echo $this->Form->input('purpose');
 		echo $this->Form->input('attachment', array('type' => 'file'));
+		echo $this->Form->input('attachment_pdf', array('type' => 'file'));
+		echo $this->Form->input('attachment_doc', array('type' => 'file'));
 		echo $this->Form->input('content');
 		echo $this->Form->input('published');
 		echo $this->Form->input('objective');

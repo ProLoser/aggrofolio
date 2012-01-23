@@ -48,7 +48,7 @@
 	?>
 	<tr<?php echo $class;?>>
 		<td><?php echo $mediaItem['MediaItem']['id']; ?>&nbsp;</td>
-		<td><?php echo $this->Html->link($mediaItem['MediaItem']['name'], '/uploads/original-' . $mediaItem['MediaItem']['attachment_file_name'], array('title' => 'View Image')); ?>&nbsp;</td>
+		<td><?php echo $this->Html->link($mediaItem['MediaItem']['name'], '/uploads/media/original-' . $mediaItem['MediaItem']['attachment_file_name'], array('title' => 'View Image')); ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($mediaItem['Album']['name'], array('controller' => 'albums', 'action' => 'view', $mediaItem['Album']['id'])); ?>
 		</td>

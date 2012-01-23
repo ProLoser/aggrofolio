@@ -10,7 +10,7 @@
 					<?php echo $this->Agro->truncate($project['description'])?>
 					<p>
 					<?php foreach ($project['MediaItem'] as $item): ?>
-						<?php echo $this->Html->image('/uploads/thumb-' . $item['attachment_file_name'])?>
+						<?php echo $this->Html->image('/uploads/media/thumb-' . $item['attachment_file_name'])?>
 					<?php endforeach ?>
 					</p>
 				</div>

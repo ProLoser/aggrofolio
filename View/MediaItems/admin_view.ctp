@@ -35,7 +35,7 @@
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Attachment File Name'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $this->Html->link($mediaItem['MediaItem']['attachment_file_name'], '/uploads/original-' . $mediaItem['MediaItem']['attachment_file_name']); ?>
+			<?php echo $this->Html->link($mediaItem['MediaItem']['attachment_file_name'], '/uploads/media/original-' . $mediaItem['MediaItem']['attachment_file_name']); ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Attachment File Size'); ?></dt>
@@ -80,12 +80,12 @@
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Thumbnail'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $this->Html->image('/uploads/thumb-' . $mediaItem['MediaItem']['attachment_file_name']); ?>
+			<?php echo $this->Html->image('/uploads/media/thumb-' . $mediaItem['MediaItem']['attachment_file_name']); ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Fullsize'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $this->Html->image('/uploads/original-' . $mediaItem['MediaItem']['attachment_file_name']); ?>
+			<?php echo $this->Html->image('/uploads/media/original-' . $mediaItem['MediaItem']['attachment_file_name']); ?>
 			&nbsp;
 		</dd>
 	</dl>

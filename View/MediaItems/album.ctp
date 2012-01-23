@@ -13,8 +13,8 @@
 <?php foreach ($items as $item): ?>
 	<li>
 	<?php
-		echo $this->Html->link($item['MediaItem']['name'], '/uploads/original-' . $item['MediaItem']['attachment_file_name'], array('rel' => 'gallery', 'title' => $item['MediaItem']['name'])); 
-		echo $this->Html->image('/uploads/thumb-' . $item['MediaItem']['attachment_file_name'], array('alt' => $item['MediaItem']['name']));
+		echo $this->Html->link($item['MediaItem']['name'], '/uploads/media/original-' . $item['MediaItem']['attachment_file_name'], array('rel' => 'gallery', 'title' => $item['MediaItem']['name'])); 
+		echo $this->Html->image('/uploads/media/thumb-' . $item['MediaItem']['attachment_file_name'], array('alt' => $item['MediaItem']['name']));
 	?>
 	</li>
 <?php endforeach ?>
