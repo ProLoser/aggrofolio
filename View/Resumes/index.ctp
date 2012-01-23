@@ -62,13 +62,14 @@ $this->set('navAdmin', array(
 	<h2 class="resume">Resume</h2>
 	<?php if (!empty($resume['Resume']['attachment_file_name']) || !empty($resume['Resume']['attachment_pdf_file_name']) || !empty($resume['Resume']['attachment_doc_file_name'])): ?>
 	<p class="sorting">
+		<span>Download:</span>
 	<?php
 		if (!empty($resume['Resume']['attachment_file_name']))
-			echo $this->Html->link('Download', '/uploads/resumes/'.$resume['Resume']['attachment_file_name']);
+			echo $this->Html->link('File', '/uploads/resumes/'.$resume['Resume']['attachment_file_name']);
 		if (!empty($resume['Resume']['attachment_pdf_file_name']))
-			echo $this->Html->link('Download', '/uploads/resumes/'.$resume['Resume']['attachment_pdf_file_name']);
+			echo $this->Html->link('Adobe PDF', '/uploads/resumes/'.$resume['Resume']['attachment_pdf_file_name']);
 		if (!empty($resume['Resume']['attachment_doc_file_name']))
-			echo $this->Html->link('Download', '/uploads/resumes/'.$resume['Resume']['attachment_doc_file_name']);
+			echo $this->Html->link('Word DOC', '/uploads/resumes/'.$resume['Resume']['attachment_doc_file_name']);
 	?>
 	</p>
 	<?php endif; ?>
