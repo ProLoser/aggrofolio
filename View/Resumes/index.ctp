@@ -72,6 +72,14 @@ $this->set('navAdmin', array(
 	?>
 	</p>
 	<?php endif; ?>
+	<?php if ($this->Session->read('Auth.User')):?>
+	<p class="sorting">
+		<span>Admin:</span>
+		<?php 
+		echo $this->Html->link('Edit Resume', array('admin' => true, 'controller' => 'resumes', 'action' => 'edit', $resume['Resume']['id']));
+		?>
+	</p>
+	<?php endif;?>
 </header>
 <div class="resumes">
 	<?php if (!empty($resume['Resume']['objective'])): ?>
