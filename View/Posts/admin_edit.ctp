@@ -27,16 +27,18 @@
 	</fieldset>
 	<fieldset>
 		<h3>Relationship Tags</h3>
+		<?php if (!empty($this->request->data['PostRelationship'])): ?>
 		<ul>
-		<?php if (!empty($this->request->data['PostRelationship'])): foreach ($this->request->data['PostRelationship'] as $relationship): ?>
+			<?php foreach ($this->request->data['PostRelationship'] as $relationship): ?>
 			<li>
 				<?php echo $this->Html->link('[Delete]', array('action' => 'delete_related', $relationship['id'], $this->Form->value('Post.id'))); ?>
 				<strong><?php echo $relationship['foreign_model']; ?></strong>
 				<?php echo $relationship['title']; ?>
 			</li>
-		<?php endforeach ?>
+			<?php endforeach ?>
 		</ul>
-		<?php echo $this->element('related'); endif; ?>
+		<?php endif ?>
+		<?php echo $this->element('related'); ?>
 	</fieldset>
 	<footer>
 		<ul>
