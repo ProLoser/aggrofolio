@@ -26,12 +26,3 @@
 	recurse($bookmarks);
 	?>
 </article>
-<style>
-.child {
-	margin: 0px 40px;
-}
-#main .child h3 {
-	margin-left: 0;
-	padding-left: 0;
-}
-</style>

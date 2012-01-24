@@ -2,62 +2,6 @@
 $this->set('navAdmin', array(
 	$this->Html->link('Edit Resume', array('admin' => true, 'action' => 'edit', $resume['Resume']['id'])),
 ))?>
-<style type="text/css">
-	.download {
-		float: left;
-		font-weight: bold;
-		font-size: 120%;
-		margin: 0 10px;
-		padding: 6px 0 6px 35px;
-		background: no-repeat left center url(/aggropholio/img/icons/floppy.png);
-	}
-	#skills ul {
-		overflow: hidden;
-		margin: 5px 0;
-		padding-left: 20px;
-	}
-	#skills li {
-		width: 33%;
-		list-style: circle;
-		float: left;
-	}
-	.resumes h4 {
-		margin-bottom: 5px;
-		color: #933;
-	}
-	.resumes h4 span {
-		color: #444;
-	}
-	.resumes .projects {
-		margin: 5px 0;
-	}
-	.resumes h5 {
-		float: left;
-		margin: 8px 5px 0 0;
-	}
-	.projects h1 {		
-		margin: 4px 0;
-	}
-	.projects a {
-		text-decoration: none;
-		color: white;
-		background: rgba(0,0,0,.3);
-		padding: 5px 10px;
-		text-shadow: 0 1px 1px rgba(0,0,0,.3);
-		border-radius: 5px;
-		-moz-border-radius: 5px;
-		-webkit-border-radius: 5px;
-		box-shadow: 0 -1px 1px rgba(0,0,0,.3), 0 1px 1px rgba(255,255,255,.3);
-		-webkit-box-shadow: 0 -1px 1px rgba(0,0,0,.3), 0 1px 1px rgba(255,255,255,.3);
-		-moz-box-shadow: 0 -1px 1px rgba(0,0,0,.3), 0 1px 1px rgba(255,255,255,.3);
-	}
-	.projects a:hover {
-		background: rgba(0,0,0,.7);
-	}
-	.projects li div {
-		display: none;
-	}
-</style>
 <header>
 	<h2 class="resume">Resume</h2>
 	<?php if (!empty($resume['Resume']['attachment_file_name']) || !empty($resume['Resume']['attachment_pdf_file_name']) || !empty($resume['Resume']['attachment_doc_file_name'])): ?>

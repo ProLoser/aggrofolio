@@ -1,15 +1,3 @@
-<style>
-.related fieldset {
-	position: relative;
-	display: none;
-}
-.related .cancel {
-	position: absolute;
-	top: -5px;
-	right: 6%;
-}
-</style>
-
 <?php $this->Html->scriptStart(array('inline' => false)); ?>
 $(document).ready(function(){
 	i = 0;
