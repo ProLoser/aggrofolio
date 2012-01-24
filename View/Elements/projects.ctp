@@ -7,12 +7,16 @@
 			<h1><?php echo $this->Html->link($project['name'], array('controller' => 'projects', 'action' => 'view', $project['id'], Inflector::slug($project['name'])), array('rel' => 'project-'.$project['id'])); ?></h1>
 			<?php if (!empty($project['MediaItem']) || !empty($project['description'])): ?>
 				<div>
-					<?php echo $this->Agro->truncate($project['description'])?>
-					<p>
-					<?php foreach ($project['MediaItem'] as $item): ?>
-						<?php echo $this->Html->image('/uploads/media/thumb-' . $item['attachment_file_name'])?>
-					<?php endforeach ?>
-					</p>
+					<?php if (!empty($project['description'])): ?>
+						<p><?php echo $this->Agro->truncate($project['description'], array('striptags' => true))?></p>	
+					<?php endif; ?>
+					<?php if (!empty($project['MediaItem'])): ?>
+						<p>
+						<?php foreach ($project['MediaItem'] as $item): ?>
+							<?php echo $this->Html->image('/uploads/media/thumb-' . $item['attachment_file_name'])?>
+						<?php endforeach ?>
+						</p>
+					<?php endif; ?>
 				</div>
 			<?php endif; ?>
 		</li>

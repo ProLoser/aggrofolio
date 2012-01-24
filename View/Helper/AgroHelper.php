@@ -105,12 +105,19 @@ class AgroHelper extends AppHelper {
 			'more' => 'Read More...',
 			'token' => '<hr>',
 			'wrapper' => 'footer',
+			'striptags' => false,
 		), $options);
 		$pos = strpos($content, $options['token']);
 		if ($pos === false) {
+			if ($options['striptags']) {
+				$content = strip_tags($content);
+			}
 			return $content;
 		} else {
 			$content = substr($content, 0, $pos);
+			if ($options['striptags']) {
+				$content = strip_tags($content);
+			}
 			if ($target) {
 				$content .= $this->Html->tag($options['wrapper'], $this->Html->link($options['more'], $target, array('class' => 'readon')));
 			}
