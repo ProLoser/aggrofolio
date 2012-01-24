@@ -118,7 +118,7 @@ class AgroHelper extends AppHelper {
 			if ($options['striptags']) {
 				$content = strip_tags($content);
 			}
-			if ($target && $options['more']) {
+			if ($target) {
 				$more = $this->Html->link($options['more'], $target, array('class' => 'readon'));
 				if ($options['wrapper'])
 					$more = $this->Html->tag($options['wrapper'], $more);

@@ -8,7 +8,7 @@
 			<?php if (!empty($project['MediaItem']) || !empty($project['description'])): ?>
 				<div>
 					<?php if (!empty($project['description'])): ?>
-						<p><?php echo $this->Agro->truncate($project['description'], array('striptags' => true, 'more' => false))?></p>	
+						<p><?php echo $this->Agro->truncate($project['description'], false, array('striptags' => true))?></p>	
 					<?php endif; ?>
 					<?php if (!empty($project['MediaItem'])): ?>
 						<p>
