@@ -96,7 +96,8 @@ $(document).ready(function(){
 			my: 'top center',
 			at: 'bottom center',
 			adjust: {
-				y: 4
+				y: 4,
+				method: 'none flip'
 			}
 		},
 		style: 'ui-tooltip-dark ui-tooltip-rounded',
