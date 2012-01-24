@@ -97,7 +97,8 @@ $(document).ready(function(){
 			at: 'bottom center',
 			adjust: {
 				y: 4,
-				method: 'none flip'
+				method: 'none flip',
+				viewport: true
 			}
 		},
 		style: 'ui-tooltip-dark ui-tooltip-rounded',
