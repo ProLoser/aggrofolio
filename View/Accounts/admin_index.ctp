@@ -48,7 +48,7 @@
 		<td><?php echo $account['Account']['modified']; ?>&nbsp;</td>
 		<td><?php echo $account['Account']['username']; ?>&nbsp;</td>
 		<td><?php echo $account['Account']['email']; ?>&nbsp;</td>
-		<td><?php echo $account['Account']['type']; ?>&nbsp;</td>
+		<td><?php echo $types[$account['Account']['type']]; ?>&nbsp;</td>
 		<td><?php echo $account['Account']['published']; ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('Login'), array('action' => 'connect', $account['Account']['id']), array('class' => 'login', 'title' => 'Login')); ?>

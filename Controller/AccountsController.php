@@ -23,9 +23,7 @@ class AccountsController extends AppController {
 			$this->redirect(array('action' => 'index'));
 		}
 		$type = $this->Account->field('type', array('Account.id' => $id));
-		if ($type == 'deviantart') {
-			$this->Plate->flash('Deviantart doesn\'t require authentication', array('action' => 'index'));
-		}
+		
 		$this->Oauth->useDbConfig = $type;
 
 		$this->Oauth->connect(array('action' => 'index'), array('action' => 'callback', $type));
@@ -67,7 +65,7 @@ class AccountsController extends AppController {
 			$this->Account->create();
 			if ($this->Account->save($this->request->data)) {
 				$this->Session->setFlash(__('The account has been saved'));
-				if ($this->request->data['Account']['type'] == 'jsfiddle') {
+				if (in_array($this->request->data['Account']['type'], array('jsfiddle', 'deviantart', 'blog'))) {
 					$this->redirect(array('action' => 'index'));
 				} else {
 					$this->redirect(array('action' => 'connect', $this->Account->id));

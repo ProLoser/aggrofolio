@@ -30,24 +30,28 @@ class Account extends AppModel {
 		'ResumeSkill',
 		'Album',
 		'Bookmark',
+		'Post',
 	);
 	
 	var $types = array(
 		'github'		=> 'Github',
-		// 'codaset'		=> 'Codaset',
+		'codaset'		=> 'Codaset (Disabled)',
+		// 'xmarks'		=> 'XMarks',
 		'linkedin'		=> 'LinkedIn',
 		'deviantart'	=> 'DeviantArt',
 		'flickr'		=> 'Flickr',
-		'goodreads'		=> 'GoodReads',
 		'twitter'		=> 'Twitter',
-		'lastfm'		=> 'LastFm',
-		'grooveshark'	=> 'Grooveshark',
-		'pandora'		=> 'Pandora',
-		'facebook'		=> 'Facebook',
-		'xmarks'		=> 'XMarks',
-		'behance'		=> 'Behance',
-		'photobucket'	=> 'Photobucket',
 		'jsfiddle'		=> 'JsFiddle',
+		'blog'			=> 'Blog',
+		'Coming Soon' => array(
+			'goodreads'		=> 'GoodReads',
+			'lastfm'		=> 'LastFm',
+			'grooveshark'	=> 'Grooveshark',
+			'pandora'		=> 'Pandora',
+			'facebook'		=> 'Facebook',
+			'behance'		=> 'Behance',
+			'photobucket'	=> 'Photobucket',
+		),
 	);
 	
 	/**
@@ -74,9 +78,12 @@ class Account extends AppModel {
 			case 'deviantart':
 				$account['Account']['username'] = strtolower($account['Account']['username']);
 				return $this->Album->scanDeviantart($account);
-			breat;
+			break;
 			case 'jsfiddle':
 				return $this->Bookmark->scanJsfiddle($account);
+			break;
+			case 'blog':
+				return $this->Post->scanBlog($account);
 			break;
 		}
 	}
