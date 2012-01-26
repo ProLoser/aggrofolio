@@ -13,6 +13,10 @@ class Bookmark extends AppModel {
 				'rule' => array('url'),
 				'message' => 'Please enter a valid Url',
 			),
+			'isUnique' => array(
+				'rule' => array('isUnique'),
+				'message' => 'Duplicate bookmark',
+			),
 		),
 		'bookmark_category_id' => array(
 			'numeric' => array(

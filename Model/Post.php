@@ -10,12 +10,6 @@ class Post extends AppModel {
 				'message' => 'Please enter a valid subject',
 			),
 		),
-		'url' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
-				'message' => 'Your custom message here',
-			),
-		),
 		'slug' => array(
 			'notempty' => array(
 				'rule' => '/^[a-z0-9-\s_]{3,}$/i',
@@ -82,17 +76,19 @@ class Post extends AppModel {
 		$this->setDataSource('default');
 		
 		$data = array();
+		$categories = $this->PostCategory->quickMatch();
 		foreach ($posts as $i => $post) {
 			$data[$i] = array(
-				'subject' => $post['title'],
-				'body' => $post['content:encoded'],
-				'url' => $post['link'],
-				'slug' => Inflector::slug($post['title'], '-'),
+				'subject' => $post['Post']['title'],
+				'body' => $post['Post']['content:encoded'],
+				'url' => $post['Post']['link'],
+				'slug' => Inflector::slug($post['Post']['title'], '-'),
 				'published' => $account['Account']['published'],
 				'account_id' => $account['Account']['id'],
+				'uuid' => $post['Post']['link'],
 			);
-			if ($post['category'] && $cat = $this->PostCategory->findByName($post['category'])) {
-				$data[$i]['post_category_id'] = $cat['PostCategory']['id'];
+			if ($post['Post']['category'] && isset($categories[strtoupper($post['Post']['category'])])) {
+				$data[$i]['post_category_id'] = $categories[strtoupper($post['Post']['category'])];
 			}
 		}
 		$this->saveMany($data);

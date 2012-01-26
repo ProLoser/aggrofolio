@@ -74,6 +74,10 @@ class AgroHelper extends AppHelper {
 			'name' => 'JsFiddle',
 			'url' => 'http://jsfiddle.net/user/:name/fiddles/',
 		),
+		'blog' => array(
+			'name' => 'Blog',
+			'url' => ':name',
+		)
 	);
 
 	/**

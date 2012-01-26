@@ -18,4 +18,14 @@ class PostCategory extends AppModel {
 	var $actsAs = array(
 		'Tree',
 	);
+	
+	public function quickMatch() {
+		$data = Cache::read('quickmatch');
+		if (!$data) {
+			$data = $this->find('list');
+			$data = array_flip(array_map('strtoupper', $data));
+			Cache::write('quickmatch', $data);
+		}
+		return $data;
+	}
 }
