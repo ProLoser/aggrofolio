@@ -18,7 +18,7 @@ ul.activity {
 	margin: 0;
 }
 ul.activity > li {
-	margin: 0;
+	margin: 40px 0;
 }
 .activity header h1 {
 	position: relative;
@@ -34,12 +34,23 @@ header {
 	margin-left: 260px;
 }
 .posts article {
-	margin: 20px 0 10px 260px;
+	margin: 0 0 0 260px;
 }
 .type-Project {
-	overflow: hidden;
 	margin: 0;
+	/* For IE 6/7 (trigger hasLayout) */
+    zoom:1;
 }
+/* For modern browsers */
+.type-Project:before,
+.type-Project:after {
+    content:"";
+    display:table;
+}
+.type-Project:after {
+    clear:both;
+}
+
 .type-Album section, .type-Project section {
 	overflow: auto;
 	margin: -10px -40px 0 222px;
