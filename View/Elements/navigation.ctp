@@ -1,10 +1,10 @@
 <h1><?php echo $this->Html->link($site_name, '/'); ?></h1>
 <ul id="mainNav">
-	<li class="resume"><?php echo $this->Html->link('Resume', array('controller' => 'resumes', 'action' => 'index')); ?></li>
-	<li class="blog"><?php echo $this->Html->link('Blog Posts', array('controller' => 'posts', 'action' => 'index'), array('id' => 'type-Post')); ?></li>
+	<li class="blog"><?php echo $this->Html->link('Blog', array('controller' => 'posts', 'action' => 'index'), array('id' => 'type-Post')); ?></li>
 	<li class="project"><?php echo $this->Html->link('Projects', array('controller' => 'projects', 'action' => 'index'), array('id' => 'type-Project')); ?></li>
 	<li class="gallery"><?php echo $this->Html->link('Albums', array('controller' => 'albums', 'action' => 'index'), array('id' => 'type-Album')); ?></li>
 	<li class="bookmark"><?php echo $this->Html->link('Bookmarks', array('controller' => 'bookmarks', 'action' => 'index'), array('id' => 'type-Bookmark')); ?></li>
+	<li class="resume"><?php echo $this->Html->link('Resume', array('controller' => 'resumes', 'action' => 'index')); ?></li>
 	<li class="contact"><?php echo $this->Html->link('Contact', array('controller' => 'contacts', 'action' => 'index')); ?></li>
 </ul>
 

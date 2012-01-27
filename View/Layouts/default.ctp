@@ -51,7 +51,7 @@
 	<div id="container">
 		<div id="nav-wrap">
 			<aside id="navigation">
-				<?php echo $this->element('layout/navigation'); ?>
+				<?php echo $this->element('navigation'); ?>
 			</aside>
 		</div>
 		<div id="main">
