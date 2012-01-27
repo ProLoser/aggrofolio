@@ -46,6 +46,8 @@
 if (!$this->Session->read('Auth.User')) {
 	echo $this->Html->link('Login', '/login');
 } else {
-	echo $this->Html->link('Control Panel', array('admin' => true));
+	echo $this->Html->link('Logout', '/logout');
+	echo " | ";
+	echo $this->Html->link('Admin', array('admin' => true));
 }?>
 </nav>

@@ -296,16 +296,16 @@ legend {
 	color: #f00;
 }
 #mainNav {
-	margin: 0 0 20px 5px;
+	margin: 0 0 20px;
 	font-size: 180%;
 }
 #mainNav li {
-	margin: 10px 0;
+	margin: 10px 20px;
 	list-style: none;
 }
 #mainNav li a {
 	background: no-repeat center left;
-	padding: 2px 0 2px 36px;
+	padding: 2px 0;
 }
 #mainNav li a:hover {
 	color: #f99;
@@ -315,6 +315,8 @@ legend {
 	bottom: 0;
 	text-align: center;
 	width: 200px;
+	text-shadow: none;
+	color: white;
 }
 #categories, #filters li {
 	position: relative;
@@ -370,12 +372,14 @@ legend {
 #main > header h2.bookmark { background-image: url(../img/icons/book.png); }
 #main > header h2.contact { background-image: url(../img/icons/envelope.png); }
 #main > header h2.activity { background-image: url(../img/icons/rss.png); }
+/*
 #mainNav .gallery a { background-image: url(../img/icons/photography-invert.png); }
 #mainNav .blog a { background-image: url(../img/icons/comment-invert.png); }
 #mainNav .resume a { background-image: url(../img/icons/id-invert.png); }
 #mainNav .project a { background-image: url(../img/icons/pushpin-2-invert.png); }
 #mainNav .bookmark a { background-image: url(../img/icons/book-invert.png); }
 #mainNav .contact a { background-image: url(../img/icons/envelope-invert.png); }
+*/
 #main > header time {
 	color: #444;
 	margin: 7px 40px 10px;
@@ -661,9 +665,9 @@ background-image:         linear-gradient(top, #D4D3C9, #F3F1E4);
 /** Blog && Comments **/
 .posts article, #comments li {
 	padding: 10px;
-	border-radius: 10px;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
 	margin: 20px 0;
 	border: 1px solid rgba(0,0,0,.1);
 	background: rgba(150,150,150,.1);
