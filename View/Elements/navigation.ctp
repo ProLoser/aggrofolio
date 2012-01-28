@@ -19,7 +19,7 @@
 	<h3>Categories</h3>
 	<?php echo $this->Plate->tree($categories, array('callback' => function($view, $row) {
 		$model = key($row);
-		$result = '<a href="#" class="reset">Reset</a>';
+		$result = '<a class="reset">Reset</a>';
 		$result .= $view->HtmlPlus->link(
 			$row[$model]['name'], 
 			array('category' => $row[$model]['id']), 

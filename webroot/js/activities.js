@@ -5,7 +5,7 @@ $(document).ready(function(){
 	$activities = $('.activity > li');
 	$('#mainNav li:not(.resume, .contact) a').click(function(e){
 		selector = '.' + $(this).attr('id');
-		$(this).closest('li').addClass('active').prepend('<a class="reset">Reset</a>').siblings().removeClass('active').find('a.reset').remove();
+		$(this).closest('li').addClass('active').prepend('<a class="reset">x</a>').siblings().removeClass('active').find('a.reset').remove();
 		$(selector).show().removeClass('faded', 1000).siblings(':not(' + selector + ')').addClass('faded', 1000, function(){
 			$(this).hide();
 		});

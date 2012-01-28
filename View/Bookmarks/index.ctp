@@ -3,9 +3,13 @@
 </header>
 <article class="bookmarks index">
 	<?php
-	function recurse($data) {	
+	function recurse($data, $recursive = false) {	
 		foreach ($data as $bookmarkCategory):?>
-			<h3><?php echo $bookmarkCategory['BookmarkCategory']['name']?></h3>
+			<?php if ($recursive): ?>
+				<h2><?php echo $bookmarkCategory['BookmarkCategory']['name']?></h2>
+		  	 <?php else: ?>
+				<h3><?php echo $bookmarkCategory['BookmarkCategory']['name']?></h3>
+			<?php endif; ?>
 			<ul>
 			<?php foreach ($bookmarkCategory['Bookmark'] as $bookmark):	?>
 				<li>
@@ -16,7 +20,7 @@
 			</ul>
 			<?php if (!empty($bookmarkCategory['children'])): ?>
 			<div class="child">
-				<?php recurse($bookmarkCategory['children']); ?>
+				<?php recurse($bookmarkCategory['children'], true); ?>
 			</div>
 			<?php endif ?>
 		<?php
