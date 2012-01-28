@@ -27,9 +27,10 @@
 		<th><?php echo $this->Paginator->sort('created');?></th>
 		<th><?php echo $this->Paginator->sort('subject');?></th>
 		<th><?php echo $this->Paginator->sort('slug');?></th>
+		<th><?php echo $this->Paginator->sort('published');?></th>
 		<th class="actions"><?php echo __('Actions');?> <?php echo $this->Batch->all()?></th>
 	</tr>
-	<?php echo $this->Batch->filter(array(null, null, 'subject', 'slug'));
+	<?php echo $this->Batch->filter(array(null, null, 'subject', 'slug', 'published'));
 	$i = 0;
 	foreach ($posts as $post):
 		$class = null;
@@ -42,6 +43,7 @@
 		<td><?php echo $post['Post']['created']; ?>&nbsp;</td>
 		<td><?php echo $post['Post']['subject']; ?>&nbsp;</td>
 		<td><?php echo $post['Post']['slug']; ?>&nbsp;</td>
+		<td><?php echo $post['Post']['published']; ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $post['Post']['id']), array('class' => 'view')); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $post['Post']['id']), array('class' => 'edit')); ?>
@@ -50,7 +52,7 @@
 		</td>
 	</tr>
 <?php endforeach; ?>
-	<?php echo $this->Batch->batch(array(null, null, 'subject', 'slug'))?>
+	<?php echo $this->Batch->batch(array(null, null, 'subject', 'slug', 'published'))?>
 	</table>
 	<?php echo $this->Batch->end()?>
 	<footer>

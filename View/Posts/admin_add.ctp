@@ -37,6 +37,7 @@ cursor: pointer;
 		echo $this->Form->input('Post.subject');
 		echo $this->Form->input('Post.slug', array('disabled' => true, 'div' => array('class' => 'PostSlug input')));
 		echo $this->Form->input('Post.body');
+		echo $this->Form->input('Post.published');
 		echo $this->Form->input('Post.post_category_id', array('empty' => '-- None --'));
 	?>
 	</fieldset>

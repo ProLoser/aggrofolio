@@ -44,5 +44,17 @@
 			<?php echo $post['Post']['body']; ?>
 			&nbsp;
 		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Published'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $post['Post']['published']; ?>
+			&nbsp;
+		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Category'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $this->Html->link($post['PostCategory']['name'], array('controller' => 'post_categories', $post['PostCategory']['id'])); ?>
+			&nbsp;
+		</dd>
 	</dl>
 </article>
