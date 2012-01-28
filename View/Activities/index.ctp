@@ -25,7 +25,14 @@
 	<?php endif;?>
 </header>
 <ul class="activity posts">
-<?php foreach ($activities as $activity) : ?>
+<?php 
+foreach ($activities as $activity): 
+	if (
+		!isset($activity[$activity['Activity']['model']]['published']) 
+		|| $activity[$activity['Activity']['model']]['published'] 
+		&& ($activity['Activity']['model'] !== 'Album' || !empty($activity['Album']['MediaItem']))
+	):
+?>
 	<li class="type-<?php echo $activity['Activity']['model']?>">
 	<?php switch ($activity['Activity']['model']) :
 		case 'Post': ?>
@@ -53,7 +60,7 @@
 			</header>
 			<p><?php echo $activity['Bookmark']['description']?></p>
 		</article>
-	<?php break; case 'MediaItem': if ($activity['MediaItem']['published']):?>
+	<?php break; case 'MediaItem': ?>
 		<?php if (!empty($activity['MediaItem']['name'])): ?>
 			<h3><?php echo $activity['MediaItem']['name']?></h3>
 		<?php endif; ?>
@@ -66,7 +73,7 @@
 			);
 		?>
 		</section>
-	<?php endif; break; case 'Album': if ($activity['Album']['published'] && !empty($activity['Album']['MediaItem'])):?>
+	<?php break; case 'Album': ?>
 		<header>
 			<h3><?php echo $this->Html->link($activity['Album']['name'], array('controller' => 'media_items', 'action' => 'album', $activity['Album']['id'])); ?></h3>
 			<time><?php echo $actions[$activity['Activity']['action']] . ' ' . $this->Time->nice($activity['Activity']['created']); ?></time>
@@ -86,7 +93,7 @@
 			<?php endforeach ?>
 			</ul>
 		</section>
-	<?php endif; break; case 'Resume': if ($activity['Resume']['published']):?>
+	<?php break; case 'Resume': ?>
 		<article>
 			<header>
 				<h1><?php echo $this->Html->link($activity['Resume']['purpose'] . ' Resume', array('controller' => 'resumes', 'action' => 'view', $activity['Activity']['model_id'])); ?></h1>
@@ -94,7 +101,7 @@
 			</header>	
 			<p><?php echo $activity['Resume']['summary']; ?></p>
 		</article>
-	<?php endif; break; case 'Project': if ($activity['Project']['published']):?>
+	<?php break; case 'Project':?>
 		<article<?php if (count($activity['Project']['MediaItem']) === 1) echo ' class="half"'?>>
 			<?php if (!empty($activity['Project']['MediaItem'])): ?>
 				<?php $this->Plate->start()?>
@@ -123,7 +130,7 @@
 			<?php echo $this->Agro->truncate($activity['Project']['description'], array('controller' => 'projects', 'action' => 'view', $activity['Project']['id'], Inflector::slug($activity['Project']['name'])))?>
 			<?php if (!empty($items) && count($activity['Project']['MediaItem']) > 1) echo $items ?>
 		</article>
-	<?php endif; endswitch; ?>
+	<?php endswitch; ?>
 	</li>
-<?php endforeach; ?>
+<?php endif; endforeach; ?>
 </ul>
