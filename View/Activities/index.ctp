@@ -28,9 +28,9 @@
 <?php 
 foreach ($activities as $activity): 
 	if (
-		!isset($activity[$activity['Activity']['model']]['published']) 
-		|| $activity[$activity['Activity']['model']]['published'] 
-		&& ($activity['Activity']['model'] !== 'Album' || !empty($activity['Album']['MediaItem']))
+		( !isset($activity[$activity['Activity']['model']]['published']) || $activity[$activity['Activity']['model']]['published'] )
+		&&
+		( $activity['Activity']['model'] !== 'Album' || !empty($activity['Album']['MediaItem']) )
 	):
 ?>
 	<li class="type-<?php echo $activity['Activity']['model']?>">
