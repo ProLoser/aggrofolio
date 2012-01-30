@@ -25,6 +25,15 @@ class PostsController extends AppController {
 			$this->redirect(array($id, $post['Post']['slug']));
 		}
 		$this->set('post', $post);
+		
+		$this->Comment;
+		$this->request->data['Comment'] = array(
+			'foreign_model' => 'Post',
+			'foreign_key' => $post['Post']['id'],
+			'name' => $this->Session->read('Auth.User.name'),
+			'email' => $this->Session->read('Auth.User.email'),
+			'user_id' => $this->Session->read('Auth.User.id'),
+		);
 	}
 
 	function admin_index() {

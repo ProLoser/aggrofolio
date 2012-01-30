@@ -45,7 +45,11 @@ class Comment extends AppModel {
 	);
 
 	public $belongsTo = array(
-		'Post',
+		'User',
+		'Post' => array(
+			'foreignKey' => 'foreign_key',
+			'conditions' => array('foreign_model' => 'Post'),
+		),
 	);
 	
 /**
@@ -60,5 +64,21 @@ class Comment extends AppModel {
 			$this->data['Comment']['body'] = Sanitize::html($this->data['Comment']['body']);
 		}
 		return true;
+	}
+	
+	public function afterSave($created) {
+		if ($created) {
+			$related = $this->{$this->data['Comment']['foreign_model']}->findById($this->data['Comment']['foreign_key']);
+			App::uses('CakeEmail', 'Network/Email');
+			$email = new CakeEmail();
+			$email->from(array($this->data['Comment']['email'] => $this->data['Comment']['name']))
+				->sender('no-reply@deansofer.com', 'Aggrofolio')
+			    ->to('deansofer+aggropholio@gmail.com')
+			    ->subject($this->data['Comment']['subject'])
+				->template('comment')
+			    ->emailFormat('html')
+				->viewVars(array('comment' => $this->data, 'related' => $related))
+			    ->send();			
+		}
 	}
 }

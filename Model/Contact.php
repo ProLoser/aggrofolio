@@ -45,7 +45,7 @@ class Contact extends AppModel {
 		'inhuman' => array(
 			'rule' => array('equalTo', ''),
 			'message' => "I can't let you do that Dave.",
-		)
+		),
 	);
 
 /**

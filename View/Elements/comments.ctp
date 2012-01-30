@@ -6,7 +6,13 @@
 			<li>
 				<header>
 					<time><?php echo $this->Time->nice($comment['created'])?></time>
-					<h2><?php echo (empty($comment['website'])) ? $comment['name'] : $this->Html->link($comment['name'], $comment['website'])?>: <?php echo $comment['subject']?></h2>
+					<h2>
+						<?php if ($this->Session->read('Auth.User')): ?>
+							<?php echo $this->Html->link('[X]', array('admin' => true, 'controller' => 'comments', 'action' => 'delete', $comment['id']), array('class' => 'delete'), sprintf(__('Are you sure you want to delete "%s"?'), $comment['subject'])); ?>
+						<?php endif;?>
+						<?php echo (empty($comment['website'])) ? $comment['name'] : $this->Html->link($comment['name'], $comment['website'])?>:
+						<?php echo $comment['subject']?>
+					</h2>
 				</header>
 				<?php echo $comment['body']?>
 			</li>		

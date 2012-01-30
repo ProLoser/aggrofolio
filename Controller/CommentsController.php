@@ -22,6 +22,9 @@ class CommentsController extends AppController {
 			$this->request->data['Comment'] = array(
 				'foreign_model' => $model,
 				'foreign_key' => $id,
+				'name' => $this->Session->read('Auth.User.name'),
+				'email' => $this->Session->read('Auth.User.email'),
+				'user_id' => $this->Session->read('Auth.User.id'),
 			);
 		}
 		$data = $this->Comment->{$this->request->data['Comment']['foreign_model']}->read(null, $this->request->data['Comment']['foreign_key']);
@@ -61,14 +64,14 @@ class CommentsController extends AppController {
 	function admin_delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for comment'));
-			$this->redirect(array('action'=>'index'));
+			$this->redirect($this->referer(array('action'=>'index'), true));
 		}
 		if ($this->Comment->delete($id)) {
 			$this->Session->setFlash(__('Comment deleted'));
-			$this->redirect(array('action'=>'index'));
+			$this->redirect($this->referer(array('action'=>'index'), true));
 		}
 		$this->Session->setFlash(__('Comment was not deleted'));
-		$this->redirect(array('action' => 'index'));
+		$this->redirect($this->referer(array('action'=>'index'), true));
 	}
 }
 ?>
