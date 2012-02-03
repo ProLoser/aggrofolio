@@ -7,5 +7,7 @@
 	)?>
 </h3>
 <p><strong>Commentor:</strong> <?php echo $this->Html->link($comment['Comment']['name'], 'mailto:'.$comment['Comment']['email']); ?></p>
-<p><strong>Website:</strong> <?php echo $this->Html->link($comment['Comment']['website'], $comment['Comment']['website']); ?></p>
+<?php if (!empty($comment['Comment']['website'])): ?>
+	<p><strong>Website:</strong> <?php echo $this->Html->link($comment['Comment']['website'], $comment['Comment']['website']); ?></p>
+<?php endif; ?>
 <pre style="font-family:sans-serif;"><?php echo $comment['Comment']['body']; ?></pre>
