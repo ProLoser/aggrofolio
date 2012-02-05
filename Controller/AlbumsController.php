@@ -7,6 +7,7 @@ class AlbumsController extends AppController {
 	function index() {
 		$this->paginate['conditions']['Album.published'] = true;
 		$this->paginate['contain']['MediaItem']['limit'] = 1;
+		$this->paginate['limit'] = 50;
 		$albums = $this->paginate();
 		$categories = $this->Album->MediaCategory->find('threaded');
 		$this->set(compact('albums', 'categories'));

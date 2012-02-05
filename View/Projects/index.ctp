@@ -2,7 +2,7 @@
 	<h2 class="project"><?php echo __('Projects');?></h2>
 	<p class="paging">
 		<?php echo $this->Paginator->prev();?><?php echo $this->Paginator->numbers(array('separator'=>''));?><?php echo $this->Paginator->next();?>
-	</p>	
+	</p>
 	<p class="sorting">
 		<span>Sort by:</span>
 		<?php echo $this->Paginator->sort('created');?><?php echo $this->Paginator->sort('name');?><?php echo $this->Paginator->sort('project_category_id', 'Category');?>

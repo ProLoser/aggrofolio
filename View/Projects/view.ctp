@@ -78,7 +78,7 @@
 		<?php foreach ($project['PostRelationship'] as $post): ?>
 			<article>
 				<header>
-					<h1><?php echo $this->Html->link($post['Post']['subject'], array('controller' => 'posts', $post['Post']['id']))?></h1>
+					<h1><?php echo $this->Html->link($post['Post']['subject'], array('controller' => 'posts', $post['Post']['id'], $post['Post']['slug']))?></h1>
 					<?php echo $this->Html->time($post['Post']['created'], array('format' => 'timeAgoInWords'))?>
 				</header>
 				<?php echo $this->Agro->truncate($post['Post']['body'], array('controller' => 'posts', 'action' => 'view', $post['Post']['id'], $post['Post']['slug'])); ?>

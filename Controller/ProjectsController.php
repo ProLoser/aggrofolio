@@ -12,7 +12,7 @@ class ProjectsController extends AppController {
 	public $paginate = array();
 	
 	function index() {
-		$this->paginate['limit'] = 12;
+		$this->paginate['limit'] = 50;
 		$this->paginate['conditions']['Project.published'] = true;
 		if (isset($this->request->params['named']['category']))
 			$this->paginate['conditions']['Project.project_category_id'] = $this->request->params['named']['category'];
