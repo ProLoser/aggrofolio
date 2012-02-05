@@ -19,8 +19,21 @@ class PostsController extends AppController {
 			$this->Session->setFlash(__('Invalid post'));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Post->recursive = 1;
-		$post = $this->Post->read(null, $id);
+		$post = $this->Post->find('first', array('conditions' => array('Post.id' => $id), 'contain' => array(
+			'PostRelationship' => array(
+				'order' => 'PostRelationship.foreign_model',
+				'Project',
+				'Album',
+				'MediaItem',
+				'Bookmark',
+				'Resume',
+				'ResumeEmployer',
+				'ResumeSchool',
+			),
+			'Comment',
+			'PostCategory',
+			'Account',
+		)));
 		if ($slug != $post['Post']['slug']) {
 			$this->redirect(array($id, $post['Post']['slug']));
 		}

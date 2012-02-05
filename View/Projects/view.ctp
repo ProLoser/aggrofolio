@@ -71,7 +71,7 @@
 
 <?php if (!empty($project['PostRelationship']) || !empty($project['commits'])):?>
 <section id="related" class="clearfix<?php if (!empty($project['PostRelationship']) && !empty($project['commits'])) echo ' half'?>">
-	<h1><?php echo __('Related'); ?></h1>
+	<h3><?php echo __('Related'); ?></h3>
 	<?php if (!empty($project['PostRelationship'])): ?>
 	<section class="posts">
 		<h2>Blog Posts</h2>

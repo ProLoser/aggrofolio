@@ -9,6 +9,7 @@
 	</ul>
 </header>
 <article class="posts form">
+<?php echo $this->Form->create('Post');?>
 	<header>
 		<ul>
 			<li><?php echo $this->Html->link(__('Delete'), array('action' => 'delete', $this->Form->value('Post.id')), null, sprintf(__('Are you sure you want to delete # %s?'), $this->Form->value('Post.id'))); ?></li>
@@ -16,7 +17,6 @@
 		</ul>
 		<?php echo $this->Form->submit('Save'); ?>
 	</header>
-<?php echo $this->Form->create('Post');?>
 	<fieldset>
 	<?php
 		echo $this->Form->input('id');
