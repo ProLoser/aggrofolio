@@ -14,6 +14,7 @@ class ProjectCategoriesController extends AppController {
 			$this->Session->setFlash(__('Invalid project category'));
 			$this->redirect(array('action' => 'index'));
 		}
+		$this->ProjectCategory->recursive = 1;
 		$this->set('projectCategory', $this->ProjectCategory->read(null, $id));
 	}
 

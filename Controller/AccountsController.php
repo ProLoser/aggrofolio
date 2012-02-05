@@ -57,6 +57,7 @@ class AccountsController extends AppController {
 			$this->Session->setFlash(__('Invalid account'));
 			$this->redirect(array('action' => 'index'));
 		}
+		$this->Account->recursive = 1;
 		$this->set('account', $this->Account->read(null, $id));
 	}
 

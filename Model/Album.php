@@ -25,6 +25,9 @@ class Album extends AppModel {
 		'Account',
 		'MediaCategory',
 		'Project',
+		'PrimaryMediaItem' => array(
+			'className' => 'MediaItem',
+		),
 	);
 
 	var $hasMany = array(

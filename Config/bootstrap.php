@@ -22,13 +22,20 @@
  */
 
 $coreCaching = Cache::config('_cake_core_');
-if (!is_dir(CACHE . $_SERVER['HTTP_HOST'])) {
-	mkdir(CACHE . $_SERVER['HTTP_HOST']);
+if (isset($_SERVER['HTTP_HOST'])) {
+	if (!is_dir(CACHE . $_SERVER['HTTP_HOST'])) {
+		mkdir(CACHE . $_SERVER['HTTP_HOST']);
+	}
+	Cache::config('default', array(
+		'engine' => $coreCaching['engine'],
+		'path' => CACHE . $_SERVER['HTTP_HOST'],
+	));
+} else {
+	Cache::config('default', array(
+		'engine' => $coreCaching['engine'],
+		'path' => CACHE,
+	));
 }
-Cache::config('default', array(
-	'engine' => $coreCaching['engine'],
-	'path' => CACHE . $_SERVER['HTTP_HOST']
-));
 
 /**
  * The settings below can be used to set additional paths to models, views and controllers.

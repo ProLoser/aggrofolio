@@ -37,6 +37,7 @@ class BookmarksController extends AppController {
 			$this->Session->setFlash(__('Invalid bookmark'));
 			$this->redirect(array('action' => 'index'));
 		}
+		$this->Bookmark->recursive = 1;
 		$this->set('bookmark', $this->Bookmark->read(null, $id));
 	}
 

@@ -14,6 +14,7 @@ class MediaCategoriesController extends AppController {
 			$this->Session->setFlash(__('Invalid media category'));
 			$this->redirect(array('action' => 'index'));
 		}
+		$this->MediaCategory->recursive = 1;
 		$this->set('mediaCategory', $this->MediaCategory->read(null, $id));
 	}
 

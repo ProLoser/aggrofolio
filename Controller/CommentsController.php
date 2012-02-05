@@ -40,6 +40,7 @@ class CommentsController extends AppController {
 			$this->Session->setFlash(__('Invalid comment'));
 			$this->redirect(array('action' => 'index'));
 		}
+		$this->Comment->recursive = 1;
 		$this->set('comment', $this->Comment->read(null, $id));
 	}
 

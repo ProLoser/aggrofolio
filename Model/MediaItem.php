@@ -25,6 +25,14 @@ class MediaItem extends AppModel {
 			'foreignKey' => 'foreign_key',
 			'conditions' => array('PostRelationship.foreign_model' => 'MediaItem'),
 		),
+		'ProjectPrimary' => array(
+			'className' => 'Project',
+			'foreignKey' => 'primary_media_item_id',
+		),
+		'AlbumPrimary' => array(
+			'className' => 'Album',
+			'foreignKey' => 'primary_media_item_id',
+		),
 	);
 
 	var $actsAs = array(

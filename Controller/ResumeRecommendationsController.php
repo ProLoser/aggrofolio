@@ -14,6 +14,7 @@ class ResumeRecommendationsController extends AppController {
 			$this->Session->setFlash(__('Invalid resume recommendation'));
 			$this->redirect(array('action' => 'index'));
 		}
+		$this->ResumeRecommendation->recursive = 1;
 		$this->set('resumeRecommendation', $this->ResumeRecommendation->read(null, $id));
 	}
 

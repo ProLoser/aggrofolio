@@ -21,6 +21,9 @@ class Project extends AppModel {
 		'ProjectCategory',
 		'ResumeEmployer',
 		'ResumeSchool',
+		'PrimaryMediaItem' => array(
+			'className' => 'MediaItem',
+		),
 	);
 	
 	var $hasMany = array(

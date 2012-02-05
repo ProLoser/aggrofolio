@@ -16,7 +16,7 @@ class ResumeSchoolsController extends AppController {
 			$this->Session->setFlash(__('Invalid resume school'));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->recursive = 1;
+		$this->ResumeSchool->recursive = 1;
 		$this->set('resumeSchool', $this->ResumeSchool->read(null, $id));
 	}
 

@@ -41,6 +41,7 @@ class MediaItemsController extends AppController {
 			$this->Session->setFlash(__('Invalid media item'));
 			$this->redirect(array('action' => 'index'));
 		}
+		$this->MediaItem->recursive = 1;
 		$this->set('mediaItem', $this->MediaItem->read(null, $id));
 	}
 
