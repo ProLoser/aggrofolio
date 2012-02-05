@@ -84,6 +84,14 @@ class DATABASE_CONFIG {
 			'password' => 'gamegod',
 			'database' => 'aggrofolio_ken',
 		),
+		'nikhil.aggrofolio.com' => array(
+			'datasource' => 'Database/Mysql',
+			'persistent' => false,
+			'host' => 'mysql.holycrap.ws',
+			'login' => 'holycrap',
+			'password' => 'gamegod',
+			'database' => 'aggrofolio_nikhil',
+		),
 	);
 	
 	var $linkedin = array(
