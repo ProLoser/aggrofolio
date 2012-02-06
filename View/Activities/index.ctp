@@ -126,6 +126,9 @@ foreach ($activities as $activity):
 			<header>
 				<h1><?php echo $this->Html->link($activity['Project']['name'], array('controller' => 'projects', 'action' => 'view', $activity['Activity']['model_id'], Inflector::slug($activity['Project']['name']))); ?></h1>
 				<time><?php echo $actions[$activity['Activity']['action']] . ' ' . $this->Time->nice($activity['Activity']['created']); ?></time>
+				<?php if (!empty($activity['Project']['ProjectCategory']['name'])): ?>				  	 
+					<h2><?php echo $activity['Project']['ProjectCategory']['name']?></h2>
+				<?php endif; ?>
 			</header>
 			<?php echo $this->Agro->truncate($activity['Project']['description'], array('controller' => 'projects', 'action' => 'view', $activity['Project']['id'], Inflector::slug($activity['Project']['name'])))?>
 			<?php if (!empty($items) && count($activity['Project']['MediaItem']) > 1) echo $items ?>

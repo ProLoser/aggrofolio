@@ -14,6 +14,9 @@
 		<header>
 			<h1><?php echo $this->Html->link($post['Post']['subject'], array('action' => 'view', $post['Post']['id'], $post['Post']['slug'])); ?></h1>
 			<time><?php echo $this->Time->nice($post['Post']['created']); ?></time>
+			<?php if (!empty($activity['Post']['PostCategory']['name'])): ?>				  	 
+				<h2><?php echo $activity['Post']['PostCategory']['name']?></h2>
+			<?php endif; ?>
 		</header>	
 		<?php 
 			$post['Post']['body'] = str_replace('/original-', '/thumb-', $post['Post']['body']);
