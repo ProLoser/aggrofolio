@@ -61,7 +61,9 @@ class Project extends AppModel {
 				'ResumeEmployer' => array('name'),
 				'ResumeSchool' => array('name'),
 				'MediaItem',
-				'PostRelationship' => 'Post',
+				'PostRelationship' => array(
+					'Post' => array('PostCategory')
+				),
 			);
 	        return $query;
 	    } elseif ($state == 'after') {

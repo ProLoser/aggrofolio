@@ -22,10 +22,10 @@ class PostsController extends AppController {
 		$post = $this->Post->find('first', array('conditions' => array('Post.id' => $id), 'contain' => array(
 			'PostRelationship' => array(
 				'order' => 'PostRelationship.foreign_model',
-				'Project',
-				'Album',
+				'Project' => array('ProjectCategory'),
+				'Album' => array('MediaCategory'),
 				'MediaItem',
-				'Bookmark',
+				'Bookmark' => array('BookmarkCategory'),
 				'Resume',
 				'ResumeEmployer',
 				'ResumeSchool',

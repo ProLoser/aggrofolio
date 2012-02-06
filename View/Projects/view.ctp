@@ -80,6 +80,9 @@
 				<header>
 					<h1><?php echo $this->Html->link($post['Post']['subject'], array('controller' => 'posts', 'action' => 'view', $post['Post']['id'], $post['Post']['slug']))?></h1>
 					<?php echo $this->Html->time($post['Post']['created'], array('format' => 'timeAgoInWords'))?>
+					<?php if (!empty($post['Post']['PostCategory']['name'])): ?>				  	 
+						<h2><?php echo $post['Post']['PostCategory']['name']?></h2>
+					<?php endif; ?>
 				</header>
 				<?php echo $this->Agro->truncate($post['Post']['body'], array('controller' => 'posts', 'action' => 'view', $post['Post']['id'], $post['Post']['slug'])); ?>
 			</article>

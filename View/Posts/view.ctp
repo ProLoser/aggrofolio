@@ -29,6 +29,9 @@
 					<header>
 						<h1><?php echo $this->Html->link($related['Project']['name'], array('controller' => 'projects', 'action' => 'view', $related['Project']['id'], Inflector::slug($related['Project']['name'])))?></h1>
 						<?php echo $this->Html->time($related['Project']['created'], array('format' => 'timeAgoInWords'))?>
+						<?php if (!empty($related['Project']['ProjectCategory']['name'])): ?>				  	 
+							<h2><?php echo $related['Project']['ProjectCategory']['name']?></h2>
+						<?php endif; ?>
 					</header>
 					<?php echo $this->Agro->truncate($related['Project']['description'], array('controller' => 'projects', 'action' => 'view', $related['Project']['id'], Inflector::slug($related['Project']['name']))); ?>
 				</article>
@@ -46,6 +49,9 @@
 					<header>
 						<h1><?php echo $this->Html->link($related['Bookmark']['name'], $related['Project']['url'])?></h1>
 						<?php echo $this->Html->time($related['Bookmark']['created'], array('format' => 'timeAgoInWords'))?>
+						<?php if (!empty($related['Bookmark']['BookmarkCategory']['name'])): ?>				  	 
+							<h2><?php echo $related['Bookmark']['BookmarkCategory']['name']?></h2>
+						<?php endif; ?>
 					</header>
 					<?php echo $related['Bookmark']['description']; ?>
 				</article>
