@@ -105,5 +105,25 @@ class Account extends AppModel {
 		$navAccounts = $this->find('all', array('conditions' => array('Account.published' => true)));
 		Cache::write('navAccounts', $navAccounts);
 	}
+	
+	public function getFollowers() {
+		// Auto Tweet Bookmarks
+		$this->setDataSource('twitter');
+		$followers = $this->find('all', array(
+			'fields' => 'followers',
+		));
+		$chunks = array_chunk($followers['ids'], 100);
+		$followers = array();
+		foreach ($chunks as $chunk) {
+			$followers = array_merge($followers, $this->find('all', array(
+				'fields' => 'users',
+				'conditions' => array(
+					'user_id' => implode(',', $chunk),
+				),
+			)));
+		}
+		$this->setDataSource('default');
+		return $followers;
+	}
 }
 ?>

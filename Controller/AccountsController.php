@@ -12,6 +12,11 @@ class AccountsController extends AppController {
 	);
 	public $paginate = array();
 	
+	public function admin_test() {
+		$followers = $this->Account->getFollowers();
+		diebug($followers);
+	}
+	
 	function admin_reset() {
 		$this->Session->delete('OAuth');
 		$this->Plate->flash('OAuth Session Reset');
