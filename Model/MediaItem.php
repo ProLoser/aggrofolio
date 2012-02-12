@@ -2,16 +2,15 @@
 class MediaItem extends AppModel {
 	var $name = 'MediaItem';
 	var $validate = array(
-		'name' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
-				'message' => 'Please enter a name',
-			),
-		),
 		'uuid' => array(
 			'rule' => 'isUnique',
 			'message' => 'be unique dammit',
 			'allowEmpty' => true,
+		),
+		'attachment' => array(
+			'rule' => 'attachmentPresence',
+			'message' => 'Please enter a valid attachment.',
+			'on' => 'create',
 		),
 	);
 
@@ -169,6 +168,14 @@ class MediaItem extends AppModel {
 			}
 		}
 		return $count;
+	}
+	
+	public function beforeSave($options = array()) {
+		if (empty($this->data['MediaItem']['name']) && !empty($this->data['MediaItem']['attachment_file_name'])) {
+			$file = pathinfo($this->data['MediaItem']['attachment_file_name']);
+			$this->data['MediaItem']['name'] = Inflector::humanize($file['filename']);
+		}
+		return true;
 	}
 }
 ?>

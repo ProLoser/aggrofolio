@@ -64,18 +64,17 @@ class MediaItemsController extends AppController {
 	
 	function admin_batch($count = 5) {
 		if (!empty($this->request->data)) {
-			foreach ($this->request->data['MediaItem'] as $i => $item) {
-				if (in_array($i, array('published', 'album_id', 'project_id'))) {
-					continue;
-				}
+			foreach ($this->request->data['MediaItem']['attachment'] as $i => $item) {
 				$this->request->data['MediaItem'][$i]['published'] = $this->request->data['MediaItem']['published'];
 				$this->request->data['MediaItem'][$i]['album_id'] = $this->request->data['MediaItem']['album_id'];
 				$this->request->data['MediaItem'][$i]['project_id'] = $this->request->data['MediaItem']['project_id'];
+				$this->request->data['MediaItem'][$i]['attachment'] = $item;
 			}
 			unset($this->request->data['MediaItem']['published']);
 			unset($this->request->data['MediaItem']['album_id']);
 			unset($this->request->data['MediaItem']['project_id']);
-			if ($this->MediaItem->saveAll($this->request->data['MediaItem'])) {
+			unset($this->request->data['MediaItem']['attachment']);
+			if ($this->MediaItem->saveMany($this->request->data['MediaItem'])) {
 				$this->Session->setFlash(__('The media item has been saved'));
 				$this->redirect(array('action' => 'view', $this->MediaItem->id));
 			} else {

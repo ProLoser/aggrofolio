@@ -5,7 +5,7 @@
 		<span>Admin:</span>
 		<?php 
 		echo $this->Html->link('Edit Project', array('admin' => true, 'action' => 'edit', $project['Project']['id']));
-		echo $this->Html->link('Add Media Item', array('admin' => true, 'controller' => 'media_items', 'action' => 'add'));
+		echo $this->Html->link('Add Media Item', array('admin' => true, 'controller' => 'media_items', 'action' => 'add', 'project' => $project['Project']['id']));
 		?>
 	</p>
 	<?php endif;?>

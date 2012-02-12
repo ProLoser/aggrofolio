@@ -13,18 +13,12 @@
 	<fieldset>
 		<legend>General Settings</legend>
 	<?php
-	echo $this->Form->input("MediaItem.published");
-	echo $this->Form->input("MediaItem.album_id", array('empty' => '-- Select One --'));
-	echo $this->Form->input("MediaItem.project_id", array('empty' => '-- None --'));
-	?></fieldset>
-	<?php for($i = 0; $i < $count; $i++): ?>
-	<fieldset>
-		<legend>Item <?php echo $i + 1;?></legend>
-	<?php
-		echo $this->Form->input("MediaItem.$i.name");
-		echo $this->Form->input("MediaItem.$i.attachment", array('type' => 'file'));
-	?></fieldset>	
-	<?php endfor; ?>
+		echo $this->Form->input("MediaItem.published");
+		echo $this->Form->input("MediaItem.album_id", array('empty' => '-- Select One --'));
+		echo $this->Form->input("MediaItem.project_id", array('empty' => '-- None --'));
+		echo $this->Form->input("MediaItem.attachment.", array('label' => 'Attachment', 'type' => 'file', 'multiple'));
+	?>
+	</fieldset>
 	<footer>
 		<?php echo $this->Form->submit('Submit'); ?>
 	</footer>
