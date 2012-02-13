@@ -78,7 +78,7 @@ class Activity extends AppModel {
 			);
 			$query['contain'] = array(
 				'Album' => array(
-					'MediaItem',
+					'MediaItem' => array('order' => 'MediaItem.created DESC'),
 				),
 				'Post' => array(
 					'PostCategory' => array(

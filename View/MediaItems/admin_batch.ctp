@@ -10,8 +10,10 @@
 </header>
 <article class="mediaItems form">
 <?php echo $this->Form->create('MediaItem', array('type' => 'file'));?>
+	<header>
+		<h3>General Settings</h3>
+	</header>
 	<fieldset>
-		<legend>General Settings</legend>
 	<?php
 		echo $this->Form->input("MediaItem.published");
 		echo $this->Form->input("MediaItem.album_id", array('empty' => '-- Select One --'));
