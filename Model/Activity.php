@@ -76,9 +76,9 @@ class Activity extends AppModel {
 				'(SELECT count(*) FROM activities AS l3 WHERE l3.model = Activity.model AND l3.model_id = Activity.model_id AND l3.created > Activity.created) = 0',
 				'Activity.model' => array('Album', 'Post', 'Project', 'Resume', 'Bookmark'),
 			);
-			$query['contain'] = array(
+			$query['link'] = array(
 				'Album' => array(
-					'MediaItem' => array('order' => 'MediaItem.created DESC'),
+					'MediaItem'// => array('class' => 'MediaItem'), //  => array('order' => 'MediaItem.created DESC'),
 				),
 				'Post' => array(
 					'PostCategory' => array(
@@ -86,7 +86,7 @@ class Activity extends AppModel {
 					),
 				),
 				'Project' => array(
-					'MediaItem',
+					'ProjectMediaItem' => array('class' => 'MediaItem'),
 					'ProjectCategory' => array(
 						'fields' => array('name'),
 					),
