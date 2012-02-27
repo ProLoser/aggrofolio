@@ -12,7 +12,7 @@
 	url = git://github.com/cakephp/debug_kit.git
 [submodule "Plugin/Linkable"]
 	path = Plugin/Linkable
-	url = git://github.com/sams/linkable.git
+	url = git://github.com/dereuromark/linkable.git
 [submodule "Plugin/Rss"]
 	path = Plugin/Rss
 	url = git://github.com/ProLoser/CakePHP-RSS-Datasource.git

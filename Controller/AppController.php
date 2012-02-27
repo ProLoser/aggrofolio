@@ -177,9 +177,6 @@ class AppController extends Controller {
 			if ($this->Plate->prefix('admin')) {
 				$this->viewClass = 'Theme';
 				$this->theme = 'Admin';
-			} elseif (Configure::read('Config.language')) {
-				$this->viewClass = 'Theme';
-				$this->theme = Configure::read('Config.language');
 			}
 		}
 	}

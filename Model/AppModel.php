@@ -120,6 +120,7 @@ class AppModel extends Model {
 	 */
 	function _findCount($state, $query, $results = array()) {
 		if ($state == 'before' && isset($query['operation'])) {
+			$this->findQueryType = 'count';
 			if (!empty($query['fields']) && is_array($query['fields'])) {
 				if (!preg_match('/^count/i', $query['fields'][0])) {
 					unset($query['fields']);
