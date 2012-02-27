@@ -12,7 +12,7 @@
 	url = git://github.com/cakephp/debug_kit.git
 [submodule "Plugin/Linkable"]
 	path = Plugin/Linkable
-	url = git://github.com/dereuromark/linkable.git
+	url = git://github.com/proloser/linkable.git
 [submodule "Plugin/Rss"]
 	path = Plugin/Rss
 	url = git://github.com/ProLoser/CakePHP-RSS-Datasource.git
@@ -49,9 +49,6 @@
 [submodule "Plugin/Webservice"]
 	path = Plugin/Webservice
 	url = git://github.com/josegonzalez/webservice_plugin.git
-[submodule "Plugin/Joinable"]
-	path = Plugin/Joinable
-	url = git://github.com/ProLoser/CakePHP-Joinable.git
 [submodule "Plugin/ClearCache"]
 	path = Plugin/ClearCache
 	url = git://github.com/ceeram/clear_cache.git

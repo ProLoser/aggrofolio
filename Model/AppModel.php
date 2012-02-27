@@ -35,7 +35,7 @@ class AppModel extends Model {
 	var $recursive = -1;
 	
 	public $actsAs = array(
-		//'Linkable.Linkable', // TODO Possibly causing behavior errors when trying to bake
+		'Linkable.Linkable', // TODO Possibly causing behavior errors when trying to bake
 		'Containable',
 		'Cacheable.Cacheable' => array(),
 	);
