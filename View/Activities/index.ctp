@@ -75,7 +75,7 @@ foreach ($activities as $activity):
 		</section>
 	<?php break; case 'Album': ?>
 		<header>
-			<h3><?php echo $this->Html->link($activity['Album']['name'], array('controller' => 'media_items', 'action' => 'album', $activity['Album']['id'])); ?></h3>
+			<h3><?php echo $this->Html->link($activity['Album']['name'], array('controller' => 'media_items', 'action' => 'album', $activity['Album']['id'], Inflector::slug($activity['Album']['name'], '-'))); ?></h3>
 			<time><?php echo $actions[$activity['Activity']['action']] . ' ' . $this->Time->nice($activity['Activity']['created']); ?></time>
 		</header>
 		<section>
@@ -87,6 +87,7 @@ foreach ($activities as $activity):
 						$this->Html->image('/uploads/media/thumb-' . $item['attachment_file_name'], array('alt' => $item['name'])), 
 						'/uploads/media/original-' . $item['attachment_file_name'], 
 						array('escape' => false, 'rel' => 'album-' . $activity['Album']['id'], 'title' => $item['name'])
+
 					);
 				?>
 				</li>
@@ -124,13 +125,13 @@ foreach ($activities as $activity):
 			<?php endif; ?>
 			<?php if (!empty($items) && count($activity['Project']['MediaItem']) == 1) echo $items ?>
 			<header>
-				<h1><?php echo $this->Html->link($activity['Project']['name'], array('controller' => 'projects', 'action' => 'view', $activity['Activity']['model_id'], Inflector::slug($activity['Project']['name']))); ?></h1>
+				<h1><?php echo $this->Html->link($activity['Project']['name'], array('controller' => 'projects', 'action' => 'view', $activity['Activity']['model_id'], Inflector::slug($activity['Project']['name'], '-'))); ?></h1>
 				<time><?php echo $actions[$activity['Activity']['action']] . ' ' . $this->Time->nice($activity['Activity']['created']); ?></time>
 				<?php if (!empty($activity['Project']['ProjectCategory']['name'])): ?>				  	 
 					<h2><?php echo $activity['Project']['ProjectCategory']['name']?></h2>
 				<?php endif; ?>
 			</header>
-			<?php echo $this->Agro->truncate($activity['Project']['description'], array('controller' => 'projects', 'action' => 'view', $activity['Project']['id'], Inflector::slug($activity['Project']['name'])))?>
+			<?php echo $this->Agro->truncate($activity['Project']['description'], array('controller' => 'projects', 'action' => 'view', $activity['Project']['id'], Inflector::slug($activity['Project']['name'], '-')))?>
 			<?php if (!empty($items) && count($activity['Project']['MediaItem']) > 1) echo $items ?>
 		</article>
 	<?php endswitch; ?>
