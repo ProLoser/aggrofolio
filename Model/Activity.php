@@ -78,21 +78,35 @@ class Activity extends AppModel {
 			);
 			$query['link'] = array(
 				'Album' => array(
-					'MediaItem'// => array('class' => 'MediaItem'), //  => array('order' => 'MediaItem.created DESC'),
+					'AlbumAccount' => array(
+						'class' => 'Account',
+					),
 				),
 				'Post' => array(
+					'PostAccount' => array(
+						'class' => 'Account',
+					),
 					'PostCategory' => array(
 						'fields' => array('name'),
 					),
 				),
 				'Project' => array(
-					'ProjectMediaItem' => array('class' => 'MediaItem'),
+					'ProjectAccount' => array(
+						'class' => 'Account',
+					),
 					'ProjectCategory' => array(
 						'fields' => array('name'),
 					),
 				),
-				'Resume',
+				'Resume' => array(
+					'ResumeAccount' => array(
+						'class' => 'Account',
+					),
+				),
 				'Bookmark' => array(
+					'BookmarkAccount' => array(
+						'class' => 'Account',
+					),
 					'BookmarkCategory' => array(
 						'fields' => array('name'),
 					),
@@ -106,6 +120,14 @@ class Activity extends AppModel {
 				return $this->_findCount($state, $query, $results);
 			}
 			return $query;
+		} elseif (empty($query['operation'])) {
+			foreach ($results as $i => $result) {
+				if ($result['Activity']['model'] === 'Album') {
+					$results[$i]['Album']['MediaItem'] = $this->Project->MediaItem->findAllByAlbumId($result['Activity']['model_id'], array(), array('MediaItem.created DESC'));
+				} elseif ($result['Activity']['model'] === 'Project') {
+					$results[$i]['Project']['MediaItem'] = $this->Project->MediaItem->findAllByProjectId($result['Activity']['model_id'], array(), array('MediaItem.created DESC'));
+				}
+			}
 		}
 		if (!empty($query['operation'])) {
 			return $this->_findCount($state, $query, $results);

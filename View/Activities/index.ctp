@@ -30,7 +30,7 @@ foreach ($activities as $activity):
 	if (
 		( !isset($activity[$activity['Activity']['model']]['published']) || $activity[$activity['Activity']['model']]['published'] )
 		&&
-		( $activity['Activity']['model'] !== 'Album' || !empty($activity['Album']['AlbumMediaItem']) )
+		( $activity['Activity']['model'] !== 'Album' || !empty($activity['Album']['MediaItem']) )
 	):
 ?>
 	<li class="type-<?php echo $activity['Activity']['model']?>">
@@ -80,13 +80,13 @@ foreach ($activities as $activity):
 		</header>
 		<section>
 			<ul class="media">
-			<?php foreach ($activity['Album']['AlbumMediaItem'] as $item): ?>
+			<?php foreach ($activity['Album']['MediaItem'] as $item): ?>
 				<li>
 				<?php
 					echo $this->Html->link(
-						$this->Html->image('/uploads/media/thumb-' . $item['attachment_file_name'], array('alt' => $item['name'])), 
-						'/uploads/media/original-' . $item['attachment_file_name'], 
-						array('escape' => false, 'rel' => 'album-' . $activity['Album']['id'], 'title' => $item['name'])
+						$this->Html->image('/uploads/media/thumb-' . $item['MediaItem']['attachment_file_name'], array('alt' => $item['MediaItem']['name'])), 
+						'/uploads/media/original-' . $item['MediaItem']['attachment_file_name'], 
+						array('escape' => false, 'rel' => 'album-' . $activity['Album']['id'], 'title' => $item['MediaItem']['name'])
 
 					);
 				?>
@@ -103,19 +103,19 @@ foreach ($activities as $activity):
 			<p><?php echo $activity['Resume']['summary']; ?></p>
 		</article>
 	<?php break; case 'Project':?>
-		<article<?php if (count($activity['Project']['ProjectMediaItem']) === 1) echo ' class="half"'?>>
+		<article<?php if (count($activity['Project']['MediaItem']) === 1) echo ' class="half"'?>>
 			<?php debug($activity)?>
-			<?php if (!empty($activity['Project']['ProjectMediaItem'])): ?>
+			<?php if (!empty($activity['Project']['MediaItem'])): ?>
 				<?php $this->Plate->start()?>
 					<section>
 						<ul class="media">
-						<?php foreach ($activity['Project']['ProjectMediaItem'] as $item): ?>
+						<?php foreach ($activity['Project']['MediaItem'] as $item): ?>
 							<li>
 							<?php
 								echo $this->Html->link(
-									$this->Html->image('/uploads/media/thumb-' . $item['attachment_file_name'], array('alt' => $item['name'])), 
-									'/uploads/media/original-' . $item['attachment_file_name'], 
-									array('escape' => false, 'rel' => 'project-' . $activity['Project']['id'], 'title' => $item['name'])
+									$this->Html->image('/uploads/media/thumb-' . $item['MediaItem']['attachment_file_name'], array('alt' => $item['MediaItem']['name'])), 
+									'/uploads/media/original-' . $item['MediaItem']['attachment_file_name'], 
+									array('escape' => false, 'rel' => 'project-' . $activity['Project']['id'], 'title' => $item['MediaItem']['name'])
 								);
 							?>
 							</li>
@@ -124,7 +124,7 @@ foreach ($activities as $activity):
 					</section>
 				<?php $items = $this->Plate->stop()?>
 			<?php endif; ?>
-			<?php if (!empty($items) && count($activity['Project']['ProjectMediaItem']) == 1) echo $items ?>
+			<?php if (!empty($items) && count($activity['Project']['MediaItem']) == 1) echo $items ?>
 			<header>
 				<h1><?php echo $this->Html->link($activity['Project']['name'], array('controller' => 'projects', 'action' => 'view', $activity['Activity']['model_id'], Inflector::slug($activity['Project']['name'], '-'))); ?></h1>
 				<time><?php echo $actions[$activity['Activity']['action']] . ' ' . $this->Time->nice($activity['Activity']['created']); ?></time>
@@ -133,7 +133,7 @@ foreach ($activities as $activity):
 				<?php endif; ?>
 			</header>
 			<?php echo $this->Agro->truncate($activity['Project']['description'], array('controller' => 'projects', 'action' => 'view', $activity['Project']['id'], Inflector::slug($activity['Project']['name'], '-')))?>
-			<?php if (!empty($items) && count($activity['Project']['ProjectMediaItem']) > 1) echo $items ?>
+			<?php if (!empty($items) && count($activity['Project']['MediaItem']) > 1) echo $items ?>
 		</article>
 	<?php endswitch; ?>
 	</li>
