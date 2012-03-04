@@ -38,7 +38,6 @@ class Resume extends AppModel {
 	
 	public $actsAs = array(
 		'Activity',
-		'Joinable.Joinable',
 		'UploadPack.Upload' => array(
 			'attachment' => array(
 				'path' => ':webroot/uploads/resumes/:basename.:extension',
