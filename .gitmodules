@@ -67,3 +67,6 @@
 [submodule "Plugin/Closure"]
 	path = Plugin/Closure
 	url = git://github.com/ProLoser/CakePHP-ClosureBehavior.git
+[submodule "Plugin/Youtube"]
+	path = Plugin/Youtube
+	url = git://github.com/ProLoser/CakePHP-YouTube.git
