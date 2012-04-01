@@ -144,6 +144,9 @@ class Project extends AppModel {
 		$count = 0;
 		foreach ($projects as $project) {
 			$this->create();
+			if (strpos($project['homepage'], '://') === false) {
+				$project['homepage'] = 'http://' . $project['homepage'];
+			}
 			$this->save(array('Project' => array(
 				'cvs_url' => $project['html_url'],
 				'account_id' => $account['Account']['id'],
