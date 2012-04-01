@@ -150,6 +150,7 @@ class Project extends AppModel {
 				'name' => $project['name'],
 				'description' => $project['description'],
 				'owner' => $project['owner']['login'],
+				'url' => $project['homepage'],
 			)));
 			$count++;
 		}

@@ -141,4 +141,11 @@ class DATABASE_CONFIG {
 	var $jsfiddle = array(
 		'datasource' => 'Jsfiddle.Jsfiddle',
 	);
+	
+	var $youtube = array(
+		'datasource' => 'Youtube.Youtube',
+		'key' => 'AI39si6s7g6zq4eh8drY3dpViKQWlyzjAqtIQIupvwwmPz1S_HZYvUrlyXs2GG6a2eqCCd4AthiWW_T050wrBdeVAhoezI0KAA',
+		'login' => '1070283566684.apps.googleusercontent.com',
+		'password' => '7cafa94185b64f9be9486758d4b0aab2f2f3110f-privatekey.p12',
+	);
 }
