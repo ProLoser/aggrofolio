@@ -6,7 +6,7 @@
 		echo $this->Form->input('description');
 		echo $this->Form->input('account_id', array('empty' => '-- None --'));
 		echo $this->Form->input('bookmark_category_id', array('empty' => '-- Select One --'));
-		echo $this->Form->button('Submit', array('type' => 'submit', 'label' => false));
-		echo $this->Form->button('Cancel', array('label' => false, 'onclick' => 'self.close()'));
 	?>
+	<button type="submit">Submit</button>
+	<button onclick="self.close()">Cancel</button>
 <?php echo $this->Form->end();?>
