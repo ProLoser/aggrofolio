@@ -1,4 +1,4 @@
-<header>
+<header><hgroup>
 	<h2 class="project"><?php  echo $project['Project']['name'];?></h2>
 	<?php if ($this->Session->read('Auth.User')):?>
 	<p class="sorting">
@@ -9,7 +9,7 @@
 		?>
 	</p>
 	<?php endif;?>
-</header>
+</hgroup></header>
 <?php if (!empty($project['MediaItem'])): ?>
 <div id="radial_container" class="media">
 	<ul class="list">

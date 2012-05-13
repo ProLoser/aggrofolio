@@ -2,7 +2,7 @@
 $this->set('navAdmin', array(
 	$this->Html->link('Edit Resume', array('admin' => true, 'action' => 'edit', $resume['Resume']['id'])),
 ))?>
-<header>
+<header><hgroup>
 	<h2 class="resume">Resume</h2>
 	<?php if (!empty($resume['Resume']['attachment_file_name']) || !empty($resume['Resume']['attachment_pdf_file_name']) || !empty($resume['Resume']['attachment_doc_file_name'])): ?>
 	<p class="sorting">
@@ -25,7 +25,7 @@ $this->set('navAdmin', array(
 		?>
 	</p>
 	<?php endif;?>
-</header>
+</hgroup></header>
 <div class="resumes">
 	<?php if (!empty($resume['Resume']['objective'])): ?>
 		<p id="objective"><?php echo $resume['Resume']['objective']?></p>	  	 

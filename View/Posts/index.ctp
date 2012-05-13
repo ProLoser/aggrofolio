@@ -1,4 +1,4 @@
-<header>
+<header><hgroup>
 	<h2 class="blog"><?php echo __('Blog');?></h2>
 	<p class="paging">
 		<?php echo $this->Paginator->prev();?><?php echo $this->Paginator->numbers(array('separator'=>''));?><?php echo $this->Paginator->next();?>
@@ -7,7 +7,7 @@
 		<span>Sort by:</span>
 		<?php echo $this->Paginator->sort('created');?><?php echo $this->Paginator->sort('name');?><?php echo $this->Paginator->sort('post_category_id', 'Category');?>
 	</p>
-</header>
+</hgroup></header>
 <div class="posts index">	
 	<?php foreach ($posts as $post):?>
 	<article<?php if (!empty($post['PostCategory'])) echo " class='cat-{$post['PostCategory']['id']}'";?>>

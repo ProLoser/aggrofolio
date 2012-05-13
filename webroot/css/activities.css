@@ -1,6 +1,3 @@
-#container {
-	padding-left: 0;
-}
 #main > header {
 	margin: 0px;
 }
@@ -29,12 +26,6 @@ ul.activity > li {
 	margin: -7px 0 0 15px;
 	position: relative;
 	z-index: 2;
-}
-header {
-	margin-left: 260px;
-}
-.posts article {
-	margin: 0 0 0 260px;
 }
 .type-Project {
 	margin: 0;

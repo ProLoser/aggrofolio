@@ -1,4 +1,4 @@
-<header>
+<header><hgroup>
 	<h2 class="gallery"><?php echo $album['Album']['name']?></h2>
 	<?php if ($this->Session->read('Auth.User')):?>
 	<p class="sorting">
@@ -8,7 +8,7 @@
 		?>
 	</p>
 	<?php endif;?>
-</header>
+</hgroup></header>
 <div class="gallery media">
 	<ul>
 	<?php foreach ($album['MediaItem'] as $item): ?>

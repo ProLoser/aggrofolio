@@ -1,4 +1,4 @@
-<header>
+<header><hgroup>
 	<h2 class="project"><?php echo __('Projects');?></h2>
 	<p class="paging">
 		<?php echo $this->Paginator->prev();?><?php echo $this->Paginator->numbers(array('separator'=>''));?><?php echo $this->Paginator->next();?>
@@ -7,7 +7,7 @@
 		<span>Sort by:</span>
 		<?php echo $this->Paginator->sort('created');?><?php echo $this->Paginator->sort('name');?><?php echo $this->Paginator->sort('project_category_id', 'Category');?>
 	</p>
-</header>
+</hgroup></header>
 <ul class="gallery">
 <?php foreach ($projects as $project): ?>
 	<li<?php if (!empty($project['ProjectCategory'])) echo " class='cat-{$project['ProjectCategory']['id']}'";?>>

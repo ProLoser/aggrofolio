@@ -1,4 +1,4 @@
-<header>
+<header><hgroup>
 	<h2 class="gallery">Albums</h2>
 	<p class="paging">
 		<?php echo $this->Paginator->prev();?><?php echo $this->Paginator->numbers(array('separator'=>''));?><?php echo $this->Paginator->next();?>
@@ -7,7 +7,7 @@
 		<span>Sort by:</span>
 		<?php echo $this->Paginator->sort('created');?><?php echo $this->Paginator->sort('name');?><?php echo $this->Paginator->sort('album_category_id', 'Category');?>
 	</p>
-</header>
+</hgroup></header>
 <ul class="gallery">
 <?php foreach ($albums as $album): if (!empty($album['MediaItem'])): ?>
 	<li<?php if (!empty($album['MediaCategory'])) echo " class='cat-{$album['MediaCategory']['id']}'";?>>
