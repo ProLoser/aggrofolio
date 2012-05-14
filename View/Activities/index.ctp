@@ -104,7 +104,6 @@ foreach ($activities as $activity):
 		</article>
 	<?php break; case 'Project':?>
 		<article<?php if (count($activity['Project']['MediaItem']) === 1) echo ' class="half"'?>>
-			<?php debug($activity)?>
 			<?php if (!empty($activity['Project']['MediaItem'])): ?>
 				<?php $this->Plate->start()?>
 					<section>
