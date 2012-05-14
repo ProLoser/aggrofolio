@@ -1,6 +1,6 @@
-<header>
+<header><hgroup>
 	<h2><?php echo __('Bookmarks');?></h2>
-</header>
+</hgroup></header>
 <article class="bookmarks index">
 	<?php
 	function recurse($data, $recursive = false) {	

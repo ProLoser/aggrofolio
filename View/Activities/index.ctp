@@ -1,7 +1,7 @@
 <?php echo $this->Html->meta('rss', '/.rss', array('inline' => false));?>
 <?php echo $this->Html->css(array('activities', '/js/mylibs/jscrollpane/jquery.jscrollpane'), null, array('inline' => false)); ?>
 <?php echo $this->Html->script(array('mylibs/jscrollpane/mwheelIntent', 'mylibs/jscrollpane/jquery.jscrollpane.min'), array('inline' => false)); ?>
-<header>
+<header><hgroup>
 	<h2 class="activity"><?php echo __('Activity Feed'); ?></h2>
 	<?php if (isset($paginate)): ?>
 		<p class="paging">
@@ -23,7 +23,7 @@
 		?>
 	</p>
 	<?php endif;?>
-</header>
+</hgroup></header>
 <ul class="activity posts">
 <?php 
 foreach ($activities as $activity): 

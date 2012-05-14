@@ -1,6 +1,6 @@
-<header>
+<header><hgroup>
 	<h2 class="contact"><?php echo __('Contact Me'); ?></h2>
-</header>
+</hgroup></header>
 <div class="contacts form">
 	<h3>Wait a minute!</h3>
 	<p>Are you having trouble with a plugin?</p>

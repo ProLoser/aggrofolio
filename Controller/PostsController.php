@@ -80,7 +80,11 @@ class PostsController extends AppController {
 		if (empty($model))
 			die;
 		$this->viewClass = 'Webservice.Webservice';
-		$this->set('items', $this->Post->PostRelationship->{$model}->find('list'));
+		$this->set('items', $this->Post->PostRelationship->{$model}->find('list', array(
+			'conditions' => array('published' => true),
+			'order' => 'name',
+		)));
+		
 	}
 	
 	function admin_delete_related($id = null, $postId = null) {

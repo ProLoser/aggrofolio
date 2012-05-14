@@ -1,5 +1,5 @@
 <?php $this->set('title_for_layout', $post['Post']['subject']);?>
-<header>
+<header><hgroup>
 	<h2 class="blog"><?php echo $post['Post']['subject']; ?></h2>
 	<?php if ($this->Session->read('Auth.User')):?>
 	<p class="sorting">
@@ -10,7 +10,7 @@
 	</p>
 	<?php endif;?>
 	<?php echo $this->Html->time($post['Post']['created'], array('pubdate' => true, 'format' => 'nice'))?>
-</header>
+</hgroup></header>
 <article class="posts view">
 	<?php echo $post['Post']['body']; ?>
 </article>
