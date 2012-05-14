@@ -44,13 +44,14 @@ ul.activity > li {
 
 .type-Album section, .type-Project section {
 	overflow: auto;
-	margin: -10px -40px 0 222px;
+	margin: -10px -40px 0 -260px;
+	padding-left: 260px;
 }
 .type-Project section {
 	margin: 0;
 }
 .type-Album ul, .type-Project ul {
-	padding: 0 40px;
+	padding: 0 40px 0 0;
 	white-space: nowrap;
 	margin: 0;
 }
