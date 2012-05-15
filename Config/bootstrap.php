@@ -20,6 +20,11 @@
  * @since         CakePHP(tm) v 0.10.8.2117
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
+ 
+if (substr_count ($_SERVER["HTTP_HOST"], '.') > 1) {
+	$tmp = explode('.', $_SERVER["HTTP_HOST"], 1);
+	Configure::write('subdomain', $tmp[0]);
+}
 
 /**
  * The settings below can be used to set additional paths to models, views and controllers.
