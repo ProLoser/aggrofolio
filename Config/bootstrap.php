@@ -21,22 +21,6 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
-$coreCaching = Cache::config('_cake_core_');
-if (isset($_SERVER['HTTP_HOST'])) {
-	if (!is_dir(CACHE . $_SERVER['HTTP_HOST'])) {
-		mkdir(CACHE . $_SERVER['HTTP_HOST']);
-	}
-	Cache::config('default', array(
-		'engine' => $coreCaching['engine'],
-		'path' => CACHE . $_SERVER['HTTP_HOST'],
-	));
-} else {
-	Cache::config('default', array(
-		'engine' => $coreCaching['engine'],
-		'path' => CACHE,
-	));
-}
-
 /**
  * The settings below can be used to set additional paths to models, views and controllers.
  * This is related to Ticket #470 (https://trac.cakephp.org/ticket/470)

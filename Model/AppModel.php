@@ -37,7 +37,7 @@ class AppModel extends Model {
 	public $actsAs = array(
 		'Linkable.Linkable', // TODO Possibly causing behavior errors when trying to bake
 		'Containable',
-		'Cacheable.Cacheable' => array(),
+		'Cacheable.Cacheable',
 	);
 	
 	/**
@@ -59,9 +59,6 @@ class AppModel extends Model {
 					}
 				}
 			}
-		}
-		if (isset($_SERVER['HTTP_HOST'])) {
-			$this->actsAs['Cacheable.Cacheable']['folder'] = $_SERVER['HTTP_HOST'];
 		}
 		parent::__construct($id, $table, $ds);
 		foreach ($this->virtualFields as $field => $value) {
