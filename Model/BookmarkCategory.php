@@ -9,10 +9,6 @@ class BookmarkCategory extends AppModel {
 			),
 		),
 	);
-	
-	var $actsAs = array(
-		'Tree',
-	);
 
 	var $hasMany = array(
 		'Bookmark',

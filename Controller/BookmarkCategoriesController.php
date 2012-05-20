@@ -6,9 +6,8 @@ class BookmarkCategoriesController extends AppController {
 	
 	function admin_index() {
 		$this->BookmarkCategory->recursive = 0;
-		$this->paginate['conditions']['user_id'] = $this->BookmarkCategory->userId();
 		$bookmarkCategories = $this->paginate();
-		$parents = $this->BookmarkCategory->generateTreeList(array('user_id' => $this->BookmarkCategory->userId()), null, null, '- ');
+		$parents = $this->BookmarkCategory->find('list');
 		$this->set(compact('bookmarkCategories', 'parents'));
 	}
 
@@ -32,7 +31,7 @@ class BookmarkCategoriesController extends AppController {
 				$this->Session->setFlash(__('The bookmark category could not be saved. Please, try again.'));
 			}
 		}
-		$parents = $this->BookmarkCategory->generateTreeList(array('user_id' => $this->BookmarkCategory->userId()), null, null, '- ');
+		$parents = $this->BookmarkCategory->find('list');
 		$this->set(compact('parents'));
 	}
 
@@ -52,7 +51,7 @@ class BookmarkCategoriesController extends AppController {
 		if (empty($this->request->data)) {
 			$this->request->data = $this->BookmarkCategory->read(null, $id);
 		}
-		$parents = $this->BookmarkCategory->generateTreeList(array('id !=' => $id, 'user_id' => $this->BookmarkCategory->userId()), null, null, '- ');
+		$parents = $this->BookmarkCategory->find('list', array('conditions' => array('id !=' => $id)));
 		$this->set(compact('parents'));
 	}
 

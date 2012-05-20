@@ -12,14 +12,13 @@ class SettingsController extends AppController{
 			}
 		}
 		$this->request->data = $this->Setting->find('first', array(
-			'conditions' => array('Setting.user_id' => $this->Setting->userId()),
 			'contain' => array('User')
 		));
 	}
 
 	function asset($key) {
 		$this->layout = 'ajax';
-		$setting = $this->Setting->cache('first', array('conditions' => array('user_id' => $this->Setting->userId())));
+		$setting = $this->Setting->cache('first');
 		if (!$setting) {
 			throw new NotFoundException();
 		}

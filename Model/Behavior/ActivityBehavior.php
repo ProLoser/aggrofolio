@@ -188,6 +188,7 @@ class ActivityBehavior extends ModelBehavior {
 			}
 			$activityData['Activity']['changes'] = $changes;
 		}
+		$activityData['Activity']['user_id'] = $Model->userId();
 		$this->_saveActivity($Model, $activityData);
 	}
 	

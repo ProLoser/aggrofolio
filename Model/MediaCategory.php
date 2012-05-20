@@ -9,10 +9,6 @@ class MediaCategory extends AppModel {
 			),
 		),
 	);
-	
-	var $actsAs = array(
-		'Tree',
-	);
 
 	var $hasMany = array(
 		'Album',

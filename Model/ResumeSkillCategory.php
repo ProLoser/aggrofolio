@@ -14,10 +14,6 @@ class ResumeSkillCategory extends AppModel {
 		'ResumeSkill',
 	);
 	
-	var $actsAs = array(
-		'Tree',
-	);
-	
 	var $belongsTo = array(
 		'User',
 	);

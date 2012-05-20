@@ -18,10 +18,6 @@ class PostCategory extends AppModel {
 		'User',
 	);
 	
-	var $actsAs = array(
-		'Tree',
-	);
-	
 	public function quickMatch() {
 		$data = Cache::read('quickmatch');
 		if (!$data) {

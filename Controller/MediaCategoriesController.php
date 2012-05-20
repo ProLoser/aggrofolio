@@ -29,7 +29,7 @@ class MediaCategoriesController extends AppController {
 				$this->Session->setFlash(__('The media category could not be saved. Please, try again.'));
 			}
 		}
-		$parents = $this->MediaCategory->generateTreeList(array('user_id' => $this->MediaCategory->userId()), null, null, '- ');
+		$parents = $this->MediaCategory->find('list');
 		$this->set(compact('parents'));
 	}
 
@@ -49,7 +49,7 @@ class MediaCategoriesController extends AppController {
 		if (empty($this->request->data)) {
 			$this->request->data = $this->MediaCategory->read(null, $id);
 		}
-		$parents = $this->MediaCategory->generateTreeList(array('id !=' => $id, 'user_id' => $this->MediaCategory->userId()), null, null, '- ');
+		$parents = $this->MediaCategory->find('list');
 		$this->set(compact('parents'));
 	}
 

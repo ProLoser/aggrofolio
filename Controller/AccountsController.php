@@ -52,7 +52,6 @@ class AccountsController extends AppController {
 
 	function admin_index() {
 		$this->Account->recursive = 0;
-		$this->paginate['conditions']['user_id'] = $this->Account->userId();
 		$accounts = $this->paginate();
 		$types = $this->Account->types;
 		$this->set(compact('accounts', 'types'));

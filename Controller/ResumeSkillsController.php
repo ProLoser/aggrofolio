@@ -7,7 +7,7 @@ class ResumeSkillsController extends AppController {
 	function admin_index() {
 		$this->ResumeSkill->recursive = 0;
 		$resumeSkills = $this->paginate();
-		$resumeSkillCategories = $this->ResumeSkill->ResumeSkillCategory->generateTreeList(array('user_id' => $this->ResumeSkill->userId()), null, null, '- ');
+		$resumeSkillCategories = $this->ResumeSkill->ResumeSkillCategory->find('list');
 		$this->set(compact('resumeSkills', 'resumeSkillCategories'));
 	}
 
@@ -33,7 +33,7 @@ class ResumeSkillsController extends AppController {
 		}
 		$accounts = $this->ResumeSkill->Account->find('list');
 		$resumes = $this->ResumeSkill->Resume->find('list');
-		$resumeSkillCategories = $this->ResumeSkill->ResumeSkillCategory->generateTreeList(array('user_id' => $this->ResumeSkill->userId()), null, null, '- ');
+		$resumeSkillCategories = $this->ResumeSkill->ResumeSkillCategory->find('list');
 		$this->set(compact('accounts', 'resumes', 'resumeSkillCategories'));
 	}
 
@@ -56,7 +56,7 @@ class ResumeSkillsController extends AppController {
 		}
 		$accounts = $this->ResumeSkill->Account->find('list');
 		$resumes = $this->ResumeSkill->Resume->find('list');
-		$resumeSkillCategories = $this->ResumeSkill->ResumeSkillCategory->generateTreeList(array('id !=' => $id, 'user_id' => $this->ResumeSkill->userId()), null, null, '- ');
+		$resumeSkillCategories = $this->ResumeSkill->ResumeSkillCategory->find('list', array('conditions' => array('ResumeSkillCategory.id !=' => $id)));
 		$this->set(compact('accounts', 'resumes', 'resumeSkillCategories'));
 	}
 

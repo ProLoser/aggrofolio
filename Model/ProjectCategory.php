@@ -14,10 +14,6 @@ class ProjectCategory extends AppModel {
 		'Project',
 	);
 	
-	var $actsAs = array(
-		'Tree',
-	);
-	
 	var $belongsTo = array(
 		'User',
 	);

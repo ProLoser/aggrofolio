@@ -29,7 +29,7 @@ class ProjectCategoriesController extends AppController {
 				$this->Session->setFlash(__('The project category could not be saved. Please, try again.'));
 			}
 		}
-		$parents = $this->ProjectCategory->generateTreeList(array('user_id' => $this->ProjectCategory->userId()), null, null, '- ');
+		$parents = $this->ProjectCategory->find('list');
 		$this->set(compact('parents'));
 	}
 
@@ -49,7 +49,7 @@ class ProjectCategoriesController extends AppController {
 		if (empty($this->request->data)) {
 			$this->request->data = $this->ProjectCategory->read(null, $id);
 		}
-		$parents = $this->ProjectCategory->generateTreeList(array('id !=' => $id, 'user_id' => $this->ProjectCategory->userId()), null, null, '- ');
+		$parents = $this->ProjectCategory->find('list', array('conditions' => array('ProjectCategory.id !=' => $id)));
 		$this->set(compact('parents'));
 	}
 

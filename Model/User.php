@@ -41,6 +41,9 @@ class User extends AppModel {
 		'ResumeSkill',
 		'ResumeSchool',
 		'ResumeEmployer',
+	);
+	
+	var $hasOne = array(
 		'Setting',
 	);
 	

@@ -72,11 +72,12 @@ class Activity extends AppModel {
 
 	protected function _findDashboard($state, $query, $results = array()) {
 		if ($state == 'before') {
-			$query['conditions'] = array(
-				'(SELECT count(*) FROM activities AS l2 WHERE l2.model = Activity.model AND l2.model_id = Activity.model_id AND l2.action = \'delete\') = 0',
-				'(SELECT count(*) FROM activities AS l3 WHERE l3.model = Activity.model AND l3.model_id = Activity.model_id AND l3.created > Activity.created) = 0',
-				'Activity.model' => array('Album', 'Post', 'Project', 'Resume', 'Bookmark'),
-			);
+			$query['conditions'] = array_merge($query['conditions'], $query['conditions'] = array(
+					'Activity.user_id' => $this->userId(),
+					'(SELECT count(*) FROM activities AS l2 WHERE l2.model = Activity.model AND l2.model_id = Activity.model_id AND l2.action = \'delete\') = 0',
+					'(SELECT count(*) FROM activities AS l3 WHERE l3.model = Activity.model AND l3.model_id = Activity.model_id AND l3.created > Activity.created) = 0',
+					'Activity.model' => array('Album', 'Post', 'Project', 'Resume', 'Bookmark'),
+			));
 			$query['link'] = array(
 				'Album' => array(
 					'AlbumAccount' => array(

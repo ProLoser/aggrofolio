@@ -104,7 +104,10 @@ class AppController extends Controller {
 	
 	function beforeFilter() {
 		$this->_setAuth();
-		if ((Configure::read('subdomain') && $this->prefix == 'manager') || (!Configure::read('subdomain') && $this->prefix == 'admin')) {
+		if (
+			(Configure::read('subdomain') && ($this->Plate->prefix('manager') || (isset($this->main) && in_array($this->action, $this->main))))
+			|| (!Configure::read('subdomain') && ($this->Plate->prefix('admin') || !$this->Plate->prefix('manager') && (!isset($this->main) || !in_array($this->action, $this->main))))
+		) {
 			throw new NotFoundException();
 		}
 		#$this->_setLanguage();

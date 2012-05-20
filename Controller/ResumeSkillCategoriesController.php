@@ -30,7 +30,7 @@ class ResumeSkillCategoriesController extends AppController {
 				$this->Session->setFlash(__('The resume skill category could not be saved. Please, try again.'));
 			}
 		}
-		$parents = $this->ResumeSkillCategory->generateTreeList(array(), null, null, '» ');
+		$parents = $this->ResumeSkillCategory->find('list');
 		$this->set(compact('parents'));
 	}
 
@@ -51,7 +51,7 @@ class ResumeSkillCategoriesController extends AppController {
 			$this->ResumeSkillCategory->recursive = 1;
 			$this->request->data = $this->ResumeSkillCategory->read(null, $id);
 		}
-		$parents = $this->ResumeSkillCategory->generateTreeList(array('ResumeSkillCategory.id !=' => $this->request->data['ResumeSkillCategory']['id']), null, null, '» ');
+		$parents = $this->ResumeSkillCategory->find('list', array('conditions' => array('ResumeSkillCategory.id !=' => $this->request->data['ResumeSkillCategory']['id'])));
 		$this->set(compact('parents'));
 	}
 

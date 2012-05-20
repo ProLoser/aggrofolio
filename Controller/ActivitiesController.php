@@ -5,7 +5,6 @@ class ActivitiesController extends AppController {
 	public $paginate = array('dashboard');
 	
 	function index() {
-		$this->paginate['conditions']['user_id'] = $this->Activity->userId();
 		if (!isset($this->paginate['limit']))
 			$this->paginate['limit'] = '40';
 		$activities = $this->paginate();
