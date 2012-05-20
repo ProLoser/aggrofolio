@@ -38,6 +38,7 @@ class ResumeSchool extends AppModel {
 
 	var $belongsTo = array(
 		'Account',
+		'User',
 	);
 	
 	var $hasMany = array(

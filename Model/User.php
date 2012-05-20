@@ -25,16 +25,30 @@ class User extends AppModel {
 	
 	var $hasMany = array(
 		'Account',
+		'Activity',
 		'Album',
+		'Bookmark',
+		'BookmarkCategory',
+		'Contact',
+		'MediaItem',
+		'MediaCategory',
+		'Post',
+		'PostCategory',
 		'Project',
+		'ProjectCategory',
 		'Resume',
+		'ResumeSkillCategory',
+		'ResumeSkill',
+		'ResumeSchool',
+		'ResumeEmployer',
+		'Setting',
 	);
 	
 	public function beforeSave() {
-	    if (isset($this->data[$this->alias]['password'])) {
-	        $this->data[$this->alias]['password'] = AuthComponent::password($this->data[$this->alias]['password']);
-	    }
-	    return true;
+		if (isset($this->data[$this->alias]['password'])) {
+			$this->data[$this->alias]['password'] = AuthComponent::password($this->data[$this->alias]['password']);
+		}
+		return true;
 	}
 
 }

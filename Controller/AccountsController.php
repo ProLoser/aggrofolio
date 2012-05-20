@@ -52,6 +52,7 @@ class AccountsController extends AppController {
 
 	function admin_index() {
 		$this->Account->recursive = 0;
+		$this->paginate['conditions']['user_id'] = $this->Account->userId();
 		$accounts = $this->paginate();
 		$types = $this->Account->types;
 		$this->set(compact('accounts', 'types'));
@@ -69,6 +70,7 @@ class AccountsController extends AppController {
 	function admin_add() {
 		if (!empty($this->request->data)) {
 			$this->Account->create();
+			$this->request->data['Account']['user_id'] = $this->Auth->user('id');
 			if ($this->Account->save($this->request->data)) {
 				$this->Session->setFlash(__('The account has been saved'));
 				if (in_array($this->request->data['Account']['type'], array('jsfiddle', 'deviantart', 'blog'))) {

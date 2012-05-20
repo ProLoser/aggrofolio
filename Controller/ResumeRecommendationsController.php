@@ -21,6 +21,7 @@ class ResumeRecommendationsController extends AppController {
 	function admin_add() {
 		if (!empty($this->request->data)) {
 			$this->ResumeRecommendation->create();
+			$this->request->data['ResumeRecommendation']['user_id'] = $this->Auth->user('id');
 			if ($this->ResumeRecommendation->save($this->request->data)) {
 				$this->Session->setFlash(__('The resume recommendation has been saved'));
 				$this->redirect(array('action' => 'index'));

@@ -13,8 +13,11 @@ class PostCategory extends AppModel {
 	var $hasMany = array(
 		'Post',
 	);
-
-
+	
+	var $belongsTo = array(
+		'User',
+	);
+	
 	var $actsAs = array(
 		'Tree',
 	);

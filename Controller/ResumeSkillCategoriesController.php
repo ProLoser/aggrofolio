@@ -22,6 +22,7 @@ class ResumeSkillCategoriesController extends AppController {
 	function admin_add() {
 		if (!empty($this->request->data)) {
 			$this->ResumeSkillCategory->create();
+			$this->request->data['ResumeSkillCategory']['user_id'] = $this->Auth->user('id');
 			if ($this->ResumeSkillCategory->save($this->request->data)) {
 				$this->Session->setFlash(__('The resume skill category has been saved'));
 				$this->redirect(array('action' => 'index'));

@@ -1,6 +1,10 @@
 <?php
 class Setting extends AppModel {
 	public $name = 'Setting';
+	
+	var $belongsTo = array(
+		'User',
+	);
 
 	public function __construct($id = false, $table = null, $ds = null) {
 		parent::__construct();

@@ -24,6 +24,7 @@ class Project extends AppModel {
 		'PrimaryMediaItem' => array(
 			'className' => 'MediaItem',
 		),
+		'User',
 	);
 	
 	var $hasMany = array(

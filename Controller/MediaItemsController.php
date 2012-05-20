@@ -48,6 +48,7 @@ class MediaItemsController extends AppController {
 	function admin_add() {
 		if (!empty($this->request->data)) {
 			$this->MediaItem->create();
+			$this->request->data['MediaItem']['user_id'] = $this->Auth->user('id');
 			if ($this->MediaItem->save($this->request->data)) {
 				$this->Session->setFlash(__('The media item has been saved'));
 				$this->redirect(array('action' => 'view', $this->MediaItem->id));

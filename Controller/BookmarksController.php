@@ -12,8 +12,8 @@ class BookmarksController extends AppController {
 	
 	public function index() {
 		$bookmarks = $this->Bookmark->BookmarkCategory->find('threaded', array(
+			'conditions' => array('user_id' => $this->Bookmark->userId()),
 			'contain' => array('Bookmark' => array(
-
 			)),
 		));
 		$this->set(compact('bookmarks'));
@@ -21,8 +21,9 @@ class BookmarksController extends AppController {
 	
 	function admin_index() {
 		$this->Bookmark->recursive = 0;
+		$this->paginate['conditions']['user_id'] = $this->Bookmark->userId();
 		$this->set('bookmarks', $this->paginate());
-		$bookmarkCategories = $this->Bookmark->BookmarkCategory->generateTreeList(null, null, null, '- ');
+		$bookmarkCategories = $this->Bookmark->BookmarkCategory->generateTreeList(array('user_id' => $this->Bookmark->userId()), null, null, '- ');
 		$this->set(compact('bookmarkCategories'));
 	}
 	
@@ -46,6 +47,7 @@ class BookmarksController extends AppController {
 		
 		if (!empty($this->request->data)) {
 			$this->Bookmark->create();
+			$this->request->data['Bookmark']['user_id'] = $this->Auth->user('id');
 			if ($this->Bookmark->save($this->request->data)) {
 				if (isset($this->request->params['named']['url'])) {
 					die('<center><h1>Bookmark Saved</h1></center><script>self.resizeTo(400,100);setTimeout(self.close, 2000)</script>');
@@ -62,7 +64,7 @@ class BookmarksController extends AppController {
 			$this->request->data['Bookmark']['url'] = str_replace(array('@s@','@c@','@h@','@q@'), array('/',':','#','?'), $this->request->data['Bookmark']['url']);
 		}
 		$accounts = $this->Bookmark->Account->find('list');
-		$bookmarkCategories = $this->Bookmark->BookmarkCategory->generateTreeList(null, null, null, '- ');
+		$bookmarkCategories = $this->Bookmark->BookmarkCategory->generateTreeList(array('user_id' => $this->Bookmark->userId()), null, null, '- ');
 		$this->set(compact('accounts', 'bookmarkCategories'));
 		if (isset($this->request->params['named']['url'])) {
 			$this->set('title_for_layout', 'Add Bookmark');
@@ -88,7 +90,7 @@ class BookmarksController extends AppController {
 			$this->request->data = $this->Bookmark->read(null, $id);
 		}
 		$accounts = $this->Bookmark->Account->find('list');
-		$bookmarkCategories = $this->Bookmark->BookmarkCategory->generateTreeList(null, null, null, '- ');
+		$bookmarkCategories = $this->Bookmark->BookmarkCategory->generateTreeList(array('user_id' => $this->Bookmark->userId()), null, null, '- ');
 		$this->set(compact('accounts', 'bookmarkCategories'));
 	}
 

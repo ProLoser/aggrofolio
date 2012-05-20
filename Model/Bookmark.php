@@ -29,6 +29,7 @@ class Bookmark extends AppModel {
 	public $belongsTo = array(
 		'Account',
 		'BookmarkCategory',
+		'User',
 	);
 	
 	public $hasMany = array(

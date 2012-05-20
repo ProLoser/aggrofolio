@@ -11,12 +11,12 @@ class SettingsController extends AppController{
 				$this->Session->setFlash(__('The settings could not be saved', true));
 			}
 		}
-		$this->request->data = $this->Setting->find('all');
+		$this->request->data = $this->Setting->find('all', array('conditions' => array('user_id' => $this->Setting->userId())));
 	}
 
 	function asset($key) {
 		$this->layout = 'ajax';
-		$setting = $this->Setting->cache('first', array('conditions' => array('Setting.key' => $key)));
+		$setting = $this->Setting->cache('first', array('conditions' => array('Setting.key' => $key, 'user_id' => $this->Setting->userId())));
 		if (!$setting) {
 			throw new NotFoundException();
 		}

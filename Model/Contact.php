@@ -47,6 +47,10 @@ class Contact extends AppModel {
 			'message' => "I can't let you do that Dave.",
 		),
 	);
+	
+	var $belongsTo = array(
+		'User',
+	);
 
 /**
  * Strips garbage before saving. I could do it on display but I decided to just reduce overhead in exchange for later versatility

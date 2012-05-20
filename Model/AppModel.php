@@ -82,6 +82,18 @@ class AppModel extends Model {
 	}
 	
 	/**
+	 * Convenience wrapper for retrieving the current subdomain's user id
+	 *
+	 * @return int
+	 */
+	public function userId() {
+		return $this->User->findBySubdomain(
+			Configure::read('subdomain'),
+			array('id')
+		);
+	}
+	
+	/**
 	 * Custom Model::paginateCount() method to support custom model find pagination
 	 *
 	 * @param array $conditions

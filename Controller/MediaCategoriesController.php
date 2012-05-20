@@ -21,6 +21,7 @@ class MediaCategoriesController extends AppController {
 	function admin_add() {
 		if (!empty($this->request->data)) {
 			$this->MediaCategory->create();
+			$this->request->data['MediaCategory']['user_id'] = $this->Auth->user('id');
 			if ($this->MediaCategory->save($this->request->data)) {
 				$this->Session->setFlash(__('The media category has been saved'));
 				$this->redirect(array('action' => 'index'));
@@ -28,7 +29,7 @@ class MediaCategoriesController extends AppController {
 				$this->Session->setFlash(__('The media category could not be saved. Please, try again.'));
 			}
 		}
-		$parents = $this->MediaCategory->generateTreeList(null, null, null, '- ');
+		$parents = $this->MediaCategory->generateTreeList(array('user_id' => $this->MediaCategory->userId()), null, null, '- ');
 		$this->set(compact('parents'));
 	}
 
@@ -48,7 +49,7 @@ class MediaCategoriesController extends AppController {
 		if (empty($this->request->data)) {
 			$this->request->data = $this->MediaCategory->read(null, $id);
 		}
-		$parents = $this->MediaCategory->generateTreeList(array('MediaCategory.id !=' => $id), null, null, '- ');
+		$parents = $this->MediaCategory->generateTreeList(array('id !=' => $id, 'user_id' => $this->MediaCategory->userId()), null, null, '- ');
 		$this->set(compact('parents'));
 	}
 

@@ -18,4 +18,8 @@ class BookmarkCategory extends AppModel {
 		'Bookmark',
 	);
 
+	var $belongsTo = array(
+		'User',
+	);
+
 }

@@ -22,6 +22,7 @@ class PostCategoriesController extends AppController {
 	function admin_add() {
 		if (!empty($this->request->data)) {
 			$this->PostCategory->create();
+			$this->request->data['PostCategory']['user_id'] = $this->Auth->user('id');
 			if ($this->PostCategory->save($this->request->data)) {
 				$this->Session->setFlash(__('The post category has been saved'));
 				$this->redirect(array('action' => 'index'));
@@ -29,7 +30,7 @@ class PostCategoriesController extends AppController {
 				$this->Session->setFlash(__('The post category could not be saved. Please, try again.'));
 			}
 		}
-		$parents = $this->PostCategory->generateTreeList(null, null, null, '- ');
+		$parents = $this->PostCategory->generateTreeList(array('user_id' => $this->PostCategory->userId()), null, null, '- ');
 		$this->set(compact('parents'));
 	}
 
@@ -49,7 +50,7 @@ class PostCategoriesController extends AppController {
 		if (empty($this->request->data)) {
 			$this->request->data = $this->PostCategory->read(null, $id);
 		}
-		$parents = $this->PostCategory->generateTreeList(array('PostCategory.id !=' => $id), null, null, '- ');
+		$parents = $this->PostCategory->generateTreeList(array('id !=' => $id, 'user_id' => $this->PostCategory->userId()), null, null, '- ');
 		$this->set(compact('parents'));
 	}
 

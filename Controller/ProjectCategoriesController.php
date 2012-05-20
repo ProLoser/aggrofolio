@@ -21,6 +21,7 @@ class ProjectCategoriesController extends AppController {
 	function admin_add() {
 		if (!empty($this->request->data)) {
 			$this->ProjectCategory->create();
+			$this->request->data['ProjectCategory']['user_id'] = $this->Auth->user('id');
 			if ($this->ProjectCategory->save($this->request->data)) {
 				$this->Session->setFlash(__('The project category has been saved'));
 				$this->redirect(array('action' => 'index'));
@@ -28,7 +29,7 @@ class ProjectCategoriesController extends AppController {
 				$this->Session->setFlash(__('The project category could not be saved. Please, try again.'));
 			}
 		}
-		$parents = $this->ProjectCategory->generateTreeList(null, null, null, '- ');
+		$parents = $this->ProjectCategory->generateTreeList(array('user_id' => $this->ProjectCategory->userId()), null, null, '- ');
 		$this->set(compact('parents'));
 	}
 
@@ -48,7 +49,7 @@ class ProjectCategoriesController extends AppController {
 		if (empty($this->request->data)) {
 			$this->request->data = $this->ProjectCategory->read(null, $id);
 		}
-		$parents = $this->ProjectCategory->generateTreeList(array('ProjectCategory.id !=' => $id), null, null, '- ');
+		$parents = $this->ProjectCategory->generateTreeList(array('id !=' => $id, 'user_id' => $this->ProjectCategory->userId()), null, null, '- ');
 		$this->set(compact('parents'));
 	}
 

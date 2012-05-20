@@ -7,6 +7,7 @@ class AlbumsController extends AppController {
 	function index() {
 		$this->paginate['conditions']['Album.published'] = true;
 		$this->paginate['contain']['MediaItem']['limit'] = 1;
+		$this->paginate['conditions']['user_id'] = $this->Album->userId();
 		$this->paginate['limit'] = 50;
 		$albums = $this->paginate();
 		$categories = $this->Album->MediaCategory->find('threaded');
@@ -24,6 +25,7 @@ class AlbumsController extends AppController {
 
 	function admin_index() {
 		$this->Album->recursive = 0;
+		$this->paginate['conditions']['user_id'] = $this->Album->userId();
 		$albums = $this->paginate();
 		$accounts = $this->Album->Account->find('list');
 		$mediaCategories = $this->Album->MediaCategory->find('list');
@@ -48,6 +50,7 @@ class AlbumsController extends AppController {
 	function admin_add() {
 		if (!empty($this->request->data)) {
 			$this->Album->create();
+			$this->request->data['Album']['user_id'] = $this->Auth->user('id');
 			if ($this->Album->save($this->request->data)) {
 				$this->Session->setFlash(__('The album has been saved'));
 				$this->redirect(array('action' => 'index'));

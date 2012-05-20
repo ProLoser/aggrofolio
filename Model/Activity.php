@@ -61,6 +61,7 @@ class Activity extends AppModel {
 		'ResumeSchool' => array(
 			'foreignKey' => 'related_model_id',
 		),
+		'User',
 	);
 	
 	public $actions = array(

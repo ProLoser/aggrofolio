@@ -50,6 +50,7 @@ class ProjectsController extends AppController {
 	function admin_add() {
 		if (!empty($this->request->data)) {
 			$this->Project->create();
+			$this->request->data['Project']['user_id'] = $this->Auth->user('id');
 			if ($this->Project->save($this->request->data)) {
 				$this->Session->setFlash(__('The project has been saved'));
 				$this->redirect(array('action' => 'view', $this->Project->id));
@@ -58,7 +59,7 @@ class ProjectsController extends AppController {
 			}
 		}
 		$accounts = $this->Project->Account->find('list');
-		$projectCategories = $this->Project->ProjectCategory->generateTreeList(null, null, null, '- ');
+		$projectCategories = $this->Project->ProjectCategory->generateTreeList(array('user_id' => $this->Project->userId()), null, null, '- ');
 		$resumeEmployers = $this->Project->ResumeEmployer->find('list');
 		$resumeSchools = $this->Project->ResumeSchool->find('list');
 		$this->set(compact('accounts', 'projectCategories', 'resumeEmployers', 'resumeSchools'));
@@ -81,7 +82,7 @@ class ProjectsController extends AppController {
 			$this->request->data = $this->Project->read(null, $id);
 		}
 		$accounts = $this->Project->Account->find('list');
-		$projectCategories = $this->Project->ProjectCategory->generateTreeList(null, null, null, '- ');
+		$projectCategories = $this->Project->ProjectCategory->generateTreeList(array('user_id' => $this->Project->userId()), null, null, '- ');
 		$resumeEmployers = $this->Project->ResumeEmployer->find('list');
 		$resumeSchools = $this->Project->ResumeSchool->find('list');
 		$this->set(compact('accounts', 'projectCategories', 'resumeEmployers', 'resumeSchools'));

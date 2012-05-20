@@ -18,5 +18,9 @@ class MediaCategory extends AppModel {
 		'Album',
 	);
 
+	var $belongsTo = array(
+		'User',
+	);
+	
 }
 ?>

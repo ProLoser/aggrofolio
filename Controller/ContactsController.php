@@ -44,6 +44,7 @@ class ContactsController extends AppController {
 	function admin_add() {
 		if (!empty($this->request->data)) {
 			$this->Contact->create();
+			$this->request->data['Contact']['user_id'] = $this->Auth->user('id');
 			if ($this->Contact->save($this->request->data)) {
 				$this->Session->setFlash(__('The contact has been saved'));
 				$this->redirect(array('action' => 'index'));

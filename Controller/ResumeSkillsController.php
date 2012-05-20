@@ -7,7 +7,7 @@ class ResumeSkillsController extends AppController {
 	function admin_index() {
 		$this->ResumeSkill->recursive = 0;
 		$resumeSkills = $this->paginate();
-		$resumeSkillCategories = $this->ResumeSkill->ResumeSkillCategory->generateTreeList(array(), null, null, '- ');
+		$resumeSkillCategories = $this->ResumeSkill->ResumeSkillCategory->generateTreeList(array('user_id' => $this->ResumeSkill->userId()), null, null, '- ');
 		$this->set(compact('resumeSkills', 'resumeSkillCategories'));
 	}
 
@@ -23,6 +23,7 @@ class ResumeSkillsController extends AppController {
 	function admin_add() {
 		if (!empty($this->request->data)) {
 			$this->ResumeSkill->create();
+			$this->request->data['ResumeSkill']['user_id'] = $this->Auth->user('id');
 			if ($this->ResumeSkill->save($this->request->data)) {
 				$this->Session->setFlash(__('The resume skill has been saved'));
 				$this->redirect(array('action' => 'index'));
@@ -32,7 +33,7 @@ class ResumeSkillsController extends AppController {
 		}
 		$accounts = $this->ResumeSkill->Account->find('list');
 		$resumes = $this->ResumeSkill->Resume->find('list');
-		$resumeSkillCategories = $this->ResumeSkill->ResumeSkillCategory->generateTreeList(array(), null, null, '- ');
+		$resumeSkillCategories = $this->ResumeSkill->ResumeSkillCategory->generateTreeList(array('user_id' => $this->ResumeSkill->userId()), null, null, '- ');
 		$this->set(compact('accounts', 'resumes', 'resumeSkillCategories'));
 	}
 
@@ -55,7 +56,7 @@ class ResumeSkillsController extends AppController {
 		}
 		$accounts = $this->ResumeSkill->Account->find('list');
 		$resumes = $this->ResumeSkill->Resume->find('list');
-		$resumeSkillCategories = $this->ResumeSkill->ResumeSkillCategory->generateTreeList(array(), null, null, '- ');
+		$resumeSkillCategories = $this->ResumeSkill->ResumeSkillCategory->generateTreeList(array('id !=' => $id, 'user_id' => $this->ResumeSkill->userId()), null, null, '- ');
 		$this->set(compact('accounts', 'resumes', 'resumeSkillCategories'));
 	}
 

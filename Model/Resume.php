@@ -19,6 +19,7 @@ class Resume extends AppModel {
 
 	public $belongsTo = array(
 		'Account',
+		'User',
 	);
 	
 	public $hasMany = array(

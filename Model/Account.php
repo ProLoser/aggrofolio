@@ -33,6 +33,10 @@ class Account extends AppModel {
 		'Post',
 	);
 	
+	var $belongsTo = array(
+		'User',
+	);
+	
 	var $types = array(
 		'github'		=> 'Github',
 		'codaset'		=> 'Codaset (Disabled)',

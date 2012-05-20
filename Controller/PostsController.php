@@ -103,6 +103,7 @@ class PostsController extends AppController {
 	function admin_add() {
 		if (!empty($this->request->data)) {
 			$this->Post->create();
+			$this->request->data['Post']['user_id'] = $this->Auth->user('id');
 			if ($this->Post->saveAll($this->request->data)) {
 				$this->Session->setFlash(__('The post has been saved'));
 				$this->redirect(array('action' => 'view', $this->Post->id));
@@ -111,7 +112,7 @@ class PostsController extends AppController {
 			}
 		}
 		$this->_setRelated();
-		$this->set('postCategories', $this->Post->PostCategory->generateTreeList(null, null, null, '- '));
+		$this->set('postCategories', $this->Post->PostCategory->generateTreeList(array('user_id' => $this->Post->userId()), null, null, '- '));
 		
 	}
 
@@ -133,7 +134,7 @@ class PostsController extends AppController {
 			$this->request->data = $this->Post->read(null, $id);
 		}
 		$this->_setRelated();
-		$this->set('postCategories', $this->Post->PostCategory->generateTreeList(null, null, null, '- '));
+		$this->set('postCategories', $this->Post->PostCategory->generateTreeList(array('id !=' => $id, 'user_id' => $this->Post->userId()), null, null, '- '));
 	}
 
 	function admin_delete($id = null) {

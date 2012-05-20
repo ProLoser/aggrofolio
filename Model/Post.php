@@ -36,6 +36,7 @@ class Post extends AppModel {
 	var $belongsTo = array(
 		'PostCategory',
 		'Account',
+		'User',
 	);
 	
 	var $actsAs = array(

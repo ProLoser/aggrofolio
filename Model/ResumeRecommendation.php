@@ -40,6 +40,7 @@ class ResumeRecommendation extends AppModel {
 
 	var $belongsTo = array(
 		'Account',
+		'User',
 	);
 
 	var $hasAndBelongsToMany = array(
