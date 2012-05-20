@@ -87,10 +87,11 @@ class AppModel extends Model {
 	 * @return int
 	 */
 	public function userId() {
-		return $this->User->findBySubdomain(
+		$user = $this->User->findBySubdomain(
 			Configure::read('subdomain'),
 			array('id')
 		);
+		return $user['User']['id'];
 	}
 	
 	/**
