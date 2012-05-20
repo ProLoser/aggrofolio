@@ -1,0 +1,31 @@
+@charset "utf-8";
+/* CSS Document */
+
+h1 {
+	font-size: 14px;
+	font-weight: bold;
+	color: #000000;
+}
+h2 {
+	font-size: 10px;
+	font-weight: bold;
+	color: #000066;
+}
+h3 {
+	font-size: 12px;
+	font-weight: bold;
+	color: #000000;
+}
+body,td,th {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+}
+a {
+	color: #000000;
+}
+.row1text {
+	background-color: #CCCCCC;
+}
+.row2text {
+	background-color: #DFDFDF;
+}

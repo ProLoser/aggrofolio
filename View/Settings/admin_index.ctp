@@ -7,14 +7,18 @@
 	</header>
 	<?php echo $this->Form->create('Setting'); ?>
 		<fieldset>
-			<?php foreach($this->request->data as $key => &$setting) : ?>
-				<?php echo $this->Form->input("Setting." . $setting['Setting']['id'] . ".id", array('value' => $setting['Setting']['id'])); ?>
-				<?php $params = array('label' => $setting['Setting']['title'], 'type' => $setting['Setting']['input_type'], 'value' => $setting['Setting']['value'], 'placeholder' => $setting['Setting']['description']); ?>
-				<?php if (isset($selects[$setting['Setting']['key']])) : ?>
-					<?php $params = array_merge(array('options' => $selects[$setting['Setting']['key']]), $params); ?>
-				<?php endif; ?>
-				<?php echo $this->Form->input("Setting." . $setting['Setting']['id'] . ".value", $params); ?>
-			<?php endforeach; ?>
+		<?php
+			echo $this->Form->input('Setting.id');
+			echo $this->Form->input('User.id');
+			echo $this->Form->input('Setting.site_name');
+			echo $this->Form->input('User.name');
+			echo $this->Form->input('User.email');
+			//echo $this->Form->input('User.password');
+			echo $this->Form->input('Setting.css');
+			echo $this->Form->input('Setting.js');
+			echo $this->Form->input('Setting.google_analytics');
+			
+		?>
 		</fieldset>	
 		<footer>
 			<?php echo $this->Form->submit(__('Change Settings'), array('div' => 'submit cancel')); ?>

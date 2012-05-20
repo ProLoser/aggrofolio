@@ -4,6 +4,7 @@
 	echo $this->Form->input('name');
 	echo $this->Form->input('email');
 	echo $this->Form->input('password');
+	//echo $this->Form->input('confirmpassword');
 	echo $this->Form->input('subdomain');
 	echo $this->Form->end('Register');
 ?>

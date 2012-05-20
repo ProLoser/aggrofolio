@@ -21,7 +21,7 @@
 <head>
 	<?php echo $this->Html->charset(); ?> 
 	<title>
-		<?php echo $title_for_layout; ?> &#9762; DeanSofer.com
+		<?php echo $title_for_layout." | ".$site_name; ?> 
 	</title>
 	
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">

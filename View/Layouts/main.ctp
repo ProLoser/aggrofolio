@@ -21,7 +21,7 @@
 <head>
 	<?php echo $this->Html->charset(); ?> 
 	<title>
-		<?php echo $title_for_layout; ?> &#9762; DeanSofer.com
+		unfol.io
 	</title>
 	
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -50,9 +50,10 @@
 <body>
 	<div id="container">
 		<div id="nav-wrap">
-			<aside id="navigation">
-				<?php echo $this->element('navigation'); ?>
-			</aside>
+			<!-- Add back for Navigation Bar -->
+			<!-- <aside id="navigation"> -->
+				<?php //echo $this->element('navigation'); ?>
+			<!-- </aside> -->
 		</div>
 		<div id="main">
 
