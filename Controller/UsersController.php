@@ -4,18 +4,19 @@ class UsersController extends AppController {
 	var $name = 'Users';
 	public $paginate = array();
 	
-	// function register() {
-	// 	if (!empty($this->request->data)) {
-	// 		$this->User->create();
-	// 		if ($this->User->save($this->request->data)) {
-	// 			$this->Session->setFlash(__('The user has been saved'));
-	// 			$this->redirect(array('action' => 'login'));
-	// 		} else {
-	// 			$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
-	// 		}
-	// 	}
-	// 	
-	// }
+	function register() {
+		$this->layout = 'main';
+		if (!empty($this->request->data)) {
+			$this->User->create();
+			if ($this->User->save($this->request->data)) {
+				$this->Session->setFlash(__('The user has been saved'));
+				$this->redirect(array('action' => 'login'));
+			} else {
+				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+			}
+		}
+		
+	}
 	
 	function login() {
 		if ($this->Auth->login()) {

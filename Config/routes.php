@@ -22,8 +22,12 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 Router::parseExtensions('json', 'xml', 'rss', 'ajax');
- 
-Router::connect('/', array('controller' => 'activities', 'action' => 'index'));
+
+if (Configure::read('subdomain')) {
+	Router::connect('/', array('controller' => 'activities', 'action' => 'index'));	
+} else {
+	Router::connect('/', array('controller' => 'users', 'action' => 'register'));
+}
 Router::connect('/asset/*', array('controller' => 'settings', 'action' => 'asset'));
 Router::connect('/paginated', array('controller' => 'activities', 'action' => 'paginated'));
 Router::connect('/login', array('controller' => 'users', 'action' => 'login'));
