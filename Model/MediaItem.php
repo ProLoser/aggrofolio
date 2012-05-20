@@ -172,6 +172,9 @@ class MediaItem extends AppModel {
 	}
 	
 	public function beforeSave($options = array()) {
+		if (!parent::beforeSave($options)) {
+			return false;
+		}
 		if (empty($this->data['MediaItem']['name']) && !empty($this->data['MediaItem']['attachment_file_name'])) {
 			$file = pathinfo($this->data['MediaItem']['attachment_file_name']);
 			$this->data['MediaItem']['name'] = Inflector::humanize($file['filename']);

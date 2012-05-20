@@ -44,12 +44,18 @@ class Post extends AppModel {
 	);
 	
 	public function beforeValidate() {
+		if (!parent::beforeValidate()) {
+			return true;
+		}
 		if (isset($this->data['Post']['slug']) && empty($this->data['Post']['slug']))
 			$this->data['Post']['slug'] = Inflector::slug($this->data['Post']['subject']);
 		return true;
 	}
 
-	public function beforeSave() {
+	public function beforeSave($options = array()) {
+		if (!parent::beforeSave($options)) {
+			return false;
+		}
 		if (!empty($this->data['PostRelationship'])) {
 			foreach ($this->data['PostRelationship'] as $i => $relationship) {
 				if (empty($relationship['foreign_model']) || empty($relationship['foreign_key'])) {

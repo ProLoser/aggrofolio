@@ -99,10 +99,12 @@ class Account extends AppModel {
 		}
 	}
 	
-	public function afterSave() {
+	public function afterSave($created) {
+		parent::afterSave($created);
 		$this->refreshNav();
 	}
 	public function afterDelete() {
+		parent::afterDelete();
 		$this->refreshNav();
 	}
 	public function refreshNav() {

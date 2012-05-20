@@ -58,7 +58,10 @@ class Contact extends AppModel {
  * @param string $value 
  * @return true
  */
-	public function beforeSave() {
+	public function beforeSave($options = array()) {
+		if (!parent::beforeSave($options)) {
+			return false;
+		}
 		if (isset($this->data['Contact']['body'])) {
 			App::uses('Sanitize', 'Utility');
 			$this->data['Contact']['body'] = Sanitize::html($this->data['Contact']['body']);

@@ -96,6 +96,9 @@ class Bookmark extends AppModel {
 	}
 	
 	public function beforeSave($options = array()) {
+		if (!parent::beforeSave($options)) {
+			return false;
+		}
 		if (!empty($this->data['Bookmark']['domain_only'])) {
 			$url = parse_url($this->data['Bookmark']['url']);
 			$this->data['Bookmark']['url'] = $url['scheme'] . '://' . $url['host'];
@@ -107,6 +110,7 @@ class Bookmark extends AppModel {
 	}
 
 	/*public function afterSave($created) {
+		parent::afterSave($created);
 		if ($created) {
 			// Auto Tweet Bookmarks
 			$this->setDataSource('twitter');

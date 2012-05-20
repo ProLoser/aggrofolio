@@ -58,7 +58,10 @@ class Comment extends AppModel {
  * @param string $value 
  * @return true
  */
-	public function beforeSave() {
+	public function beforeSave($options = array()) {
+		if (!parent::beforeSave($options)) {
+			return false;
+		}
 		if (isset($this->data['Comment']['body'])) {
 			App::uses('Sanitize', 'Utility');
 			$this->data['Comment']['body'] = Sanitize::html($this->data['Comment']['body']);
@@ -67,6 +70,7 @@ class Comment extends AppModel {
 	}
 	
 	public function afterSave($created) {
+		parent::afterSave($created);
 		if ($created) {
 			$related = $this->{$this->data['Comment']['foreign_model']}->findById($this->data['Comment']['foreign_key']);
 			App::uses('CakeEmail', 'Network/Email');

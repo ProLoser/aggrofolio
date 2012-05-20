@@ -120,6 +120,7 @@ class Album extends AppModel {
 	 * @author Dean Sofer
 	 */
 	public function afterSave($created) {
+		parent::afterSave($created);
 		if (!$created && isset($this->data['Album']['project_id'])) {
 			$pid = (empty($this->data['Album']['project_id'])) ? null : $this->data['Album']['project_id'];
 			$this->MediaItem->updateAll(
