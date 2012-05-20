@@ -45,8 +45,8 @@ class Setting extends AppModel {
 		$this->refreshCache('google_analytics');
 	}
 	public function refreshCache($key) {
-		$value = $this->field('value', array('key' => $key));
-		Cache::write($key, $value);
+		$setting = $this->field($key, array('user_id' => $this->userId()));
+		Cache::write($key, $setting);
 	}
 }
 ?>

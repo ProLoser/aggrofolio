@@ -16,12 +16,12 @@ class SettingsController extends AppController{
 
 	function asset($key) {
 		$this->layout = 'ajax';
-		$setting = $this->Setting->cache('first', array('conditions' => array('Setting.key' => $key, 'user_id' => $this->Setting->userId())));
+		$setting = $this->Setting->cache('first', array('conditions' => array('user_id' => $this->Setting->userId())));
 		if (!$setting) {
 			throw new NotFoundException();
 		}
 		$this->RequestHandler->respondAs($key);
-		$this->set('setting', $setting['Setting']['value']);
+		$this->set('setting', $setting['Setting'][$key]);
 	}
 }
 ?>
