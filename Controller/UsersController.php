@@ -5,7 +5,6 @@ class UsersController extends AppController {
 	public $paginate = array();
 	
 	function register() {
-		$this->layout = 'main';
 		if (!empty($this->request->data)) {
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {

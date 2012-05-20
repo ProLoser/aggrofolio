@@ -104,6 +104,9 @@ class AppController extends Controller {
 	
 	function beforeFilter() {
 		$this->_setAuth();
+		if ((Configure::read('subdomain') && $this->prefix == 'manager') || (!Configure::read('subdomain') && $this->prefix == 'admin')) {
+			throw new NotFoundException();
+		}
 		#$this->_setLanguage();
 		#$this->_setMaintenance();
 	}
@@ -114,23 +117,6 @@ class AppController extends Controller {
  */
 	function beforeRender() {
 		$this->_setTheme();
-		if (!$this->Plate->prefix('admin')) {
-			if (!Cache::read('navAccounts')) {
-				$this->loadModel('Account');
-				$this->Account->refreshNav();
-			}
-			if (!Cache::read('google_analytics')) {
-				$this->loadModel('Setting');
-				$this->Setting->refreshCache('google_analytics');
-			}
-			if (!Cache::read('site_name')) {
-				$this->loadModel('Setting');
-				$this->Setting->refreshCache('site_name');
-			}
-			$this->set('navAccounts', Cache::read('navAccounts'));
-			$this->set('google_analytics', Cache::read('google_analytics'));
-			$this->set('site_name', Cache::read('site_name'));
-		}
 	}
 	
 /**
@@ -177,6 +163,28 @@ class AppController extends Controller {
 			if ($this->Plate->prefix('admin')) {
 				$this->viewClass = 'Theme';
 				$this->theme = 'Admin';
+			} elseif ($this->Plate->prefix('manager')) {
+				$this->viewClass = 'Theme';
+				$this->theme = 'Manager';
+			} elseif (!Configure::read('subdomain')) {
+				$this->viewClass = 'Theme';
+				$this->theme = 'Main';
+			} else {
+				if (!Cache::read('navAccounts')) {
+					$this->loadModel('Account');
+					$this->Account->refreshNav();
+				}
+				if (!Cache::read('google_analytics')) {
+					$this->loadModel('Setting');
+					$this->Setting->refreshCache('google_analytics');
+				}
+				if (!Cache::read('site_name')) {
+					$this->loadModel('Setting');
+					$this->Setting->refreshCache('site_name');
+				}
+				$this->set('navAccounts', Cache::read('navAccounts'));
+				$this->set('google_analytics', Cache::read('google_analytics'));
+				$this->set('site_name', Cache::read('site_name'));
 			}
 		}
 	}

@@ -82,7 +82,7 @@
 	echo $this->Plate->analytics();
 	#!# echo $this->AssetCompress->includeJs();
 	echo $scripts_for_layout;
-	echo $this->element('analytics', array('code' => $google_analytics), array('plugin' => 'BakingPlate'));
+	echo $this->element('analytics', array('code' => 'UA-31891793-1', 'domain' => 'unfol.io'), array('plugin' => 'BakingPlate'));
 ?>
 </body>
 </html>
