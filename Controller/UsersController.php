@@ -10,8 +10,12 @@ class UsersController extends AppController {
 		if (!empty($this->request->data)) {
 			$this->User->create();
 			if ($this->User->saveAssociated($this->request->data)) {
-				$this->Session->setFlash(__('The user has been saved'));
-				$this->redirect(array('action' => 'login'));
+				$this->request->data['User']['id'] = $this->User->id;
+				$this->Auth->login($this->request->data);
+				$this->Session->setFlash(__('Registration Was a Success!'));
+				$redirect = Router::url(array('admin' => true, 'controller' => 'importer', 'action' => 'index'), true);
+				$redirect = str_replace($_SERVER['HTTP_HOST'], $this->request->data['User']['subdomain'] . '.' . $_SERVER['HTTP_HOST'], $redirect);
+				$this->redirect($redirect);
 			} else {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
 			}
