@@ -11,7 +11,7 @@ class BookmarksController extends AppController {
 	public $paginate = array();
 	
 	public function index() {
-		$bookmarks = $this->Bookmark->BookmarkCategory->find('all', array(
+		$bookmarks = $this->Bookmark->BookmarkCategory->find('threaded', array(
 			'contain' => array('Bookmark'),
 		));
 		$this->set(compact('bookmarks'));
