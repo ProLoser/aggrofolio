@@ -21,13 +21,14 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
-$tmp = explode('.', $_SERVER["HTTP_HOST"], 3);
+$host = $_SERVER['HTTP_HOST'];
+$tmp = explode('.', $_SERVER['HTTP_HOST'], 3);
 if (count($tmp) > 2) {
 	Configure::write('subdomain', $tmp[0]);
+	$host = $tmp[1] . '.' . $tmp[2];
 }
-
 // Maintain session across subdomains
-ini_set('session.cookie_domain', '.unfol.io');
+ini_set('session.cookie_domain', '.' . $host);
 
 /**
  * The settings below can be used to set additional paths to models, views and controllers.

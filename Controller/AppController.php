@@ -159,7 +159,6 @@ class AppController extends Controller {
 		}
 		
 		if ($this->Plate->prefix('manager') && $this->Auth->user('role') !== 'admin') {
-			diebug($this->Auth->user('role'));
 			$this->Session->setFlash('You do not have permission to access this section');
 			$this->redirect('/');
 		}
