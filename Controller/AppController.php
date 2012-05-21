@@ -103,10 +103,11 @@ class AppController extends Controller {
 	}
 	
 	function beforeFilter() {
+		$this->_setOwner();
 		$this->_setAuth();
 		if (
-			(Configure::read('subdomain') && ($this->Plate->prefix('manager') || (isset($this->main) && in_array($this->action, $this->main))))
-			|| (!Configure::read('subdomain') && ($this->Plate->prefix('admin') || !$this->Plate->prefix('manager') && (!isset($this->main) || !in_array($this->action, $this->main))))
+			(Configure::read('owner') && ($this->Plate->prefix('manager') || (isset($this->main) && in_array($this->action, $this->main))))
+			|| (!Configure::read('owner') && ($this->Plate->prefix('admin') || !$this->Plate->prefix('manager') && (!isset($this->main) || !in_array($this->action, $this->main))))
 		) {
 			throw new NotFoundException();
 		}
@@ -121,7 +122,24 @@ class AppController extends Controller {
 	function beforeRender() {
 		$this->_setTheme();
 	}
-	
+
+/**
+ * Populates the configuration with the current subdomain's owner info
+ */
+	protected function _setOwner() {
+		$subdomain = Configure::read('subdomain');
+		if ($subdomain) {
+			$this->loadModel('User');
+			$owner = $this->User->find('first', array(
+				'conditions' => array('User.subdomain' => $subdomain),
+				'link' => array('Setting' => array('fields' => array('site_name', 'google_analytics'))),
+				'fields' => array('User.id'),
+			));
+			Configure::write('owner', $owner['User']['id']);
+			$this->set('owner', $owner);
+		}
+	}
+
 /**
  * Configure your Auth environment here
  */
@@ -131,6 +149,17 @@ class AppController extends Controller {
 		
 		if (!$this->Plate->prefix('admin')) {
 			$this->Auth->allow();
+		}
+		
+		if ($this->Plate->prefix('admin') && ($this->Auth->user('role') !== 'admin' || Configure::read('owner') !== $this->Auth->user('id'))) {
+			$this->Session->setFlash('You are not the owner of this account');
+			$this->redirect('/');
+		}
+		
+		if ($this->Plate->prefix('manager') && $this->Auth->user('role') !== 'admin') {
+			diebug($this->Auth->user('role'));
+			$this->Session->setFlash('You do not have permission to access this section');
+			$this->redirect('/');
 		}
 	}
 	
@@ -169,7 +198,7 @@ class AppController extends Controller {
 			} elseif ($this->Plate->prefix('manager')) {
 				$this->viewClass = 'Theme';
 				$this->theme = 'Manager';
-			} elseif (!Configure::read('subdomain')) {
+			} elseif (!Configure::read('owner')) {
 				$this->viewClass = 'Theme';
 				$this->theme = 'Main';
 			} else {
@@ -177,17 +206,7 @@ class AppController extends Controller {
 					$this->loadModel('Account');
 					$this->Account->refreshNav();
 				}
-				if (!Cache::read('google_analytics')) {
-					$this->loadModel('Setting');
-					$this->Setting->refreshCache('google_analytics');
-				}
-				if (!Cache::read('site_name')) {
-					$this->loadModel('Setting');
-					$this->Setting->refreshCache('site_name');
-				}
 				$this->set('navAccounts', Cache::read('navAccounts'));
-				$this->set('google_analytics', Cache::read('google_analytics'));
-				$this->set('site_name', Cache::read('site_name'));
 			}
 		}
 	}

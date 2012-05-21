@@ -1,4 +1,4 @@
-<h1><?php echo $this->Html->link($site_name, '/'); ?></h1>
+<h1><?php echo $this->Html->link($owner['Setting']['site_name'], '/'); ?></h1>
 <ul id="mainNav">
 	<li class="blog<?php if ($this->request->controller === 'posts') echo ' active'; ?>"><?php echo $this->Html->link('Blog', array('controller' => 'posts', 'action' => 'index'), array('id' => 'type-Post')); ?></li>
 	<li class="project<?php if ($this->request->controller === 'projects') echo ' active'; ?>"><?php echo $this->Html->link('Projects', array('controller' => 'projects', 'action' => 'index'), array('id' => 'type-Project')); ?></li>
@@ -47,7 +47,9 @@ if (!$this->Session->read('Auth.User')) {
 	echo $this->Html->link('Login', '/login');
 } else {
 	echo $this->Html->link('Logout', '/logout');
-	echo " | ";
-	echo $this->Html->link('Admin', array('admin' => true));
+	if ($owner['User']['id'] === $this->Session->read('Auth.User.id') || $this->Session->read('Auth.User.role') === 'admin') {
+		echo " | ";
+		echo $this->Html->link('Admin', array('admin' => true));
+	}
 }?>
 </nav>

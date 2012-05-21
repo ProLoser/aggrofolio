@@ -20,10 +20,14 @@
  * @since         CakePHP(tm) v 0.10.8.2117
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
-if (substr_count ($_SERVER["HTTP_HOST"], '.') > 1) {
-	$tmp = explode('.', $_SERVER["HTTP_HOST"], 2);
+
+$tmp = explode('.', $_SERVER["HTTP_HOST"], 3);
+if (count($tmp) > 2) {
 	Configure::write('subdomain', $tmp[0]);
 }
+
+// Maintain session across subdomains
+ini_set('session.cookie_domain', '.unfol.io');
 
 /**
  * The settings below can be used to set additional paths to models, views and controllers.

@@ -82,30 +82,17 @@ class AppModel extends Model {
 	}
 	
 	public function beforeFind($queryData) {
-		if ($this->hasField('user_id') && Configure::read('subdomain') && !isset($queryData['conditions']["{$this->alias}.user_id"])) {
-			$queryData['conditions']["{$this->alias}.user_id"] = $this->userId();
+		if ($this->hasField('user_id') && Configure::read('owner') && !isset($queryData['conditions']["{$this->alias}.user_id"])) {
+			$queryData['conditions']["{$this->alias}.user_id"] = Configure::read('owner');
 		}
 		return $queryData;
 	}
 	
 	public function beforeSave($options = array()) {
-		if ($this->hasField('user_id') && Configure::read('subdomain') && !isset($this->data[$this->alias]['user_id'])) {
-			$this->data[$this->alias]['user_id'] = $this->userId();
+		if ($this->hasField('user_id') && Configure::read('owner') && !isset($this->data[$this->alias]['user_id'])) {
+			$this->data[$this->alias]['user_id'] = Configure::read('owner');
 		}
 		return true;
-	}
-	
-	/**
-	 * Convenience wrapper for retrieving the current subdomain's user id
-	 *
-	 * @return int
-	 */
-	public function userId() {
-		$user = $this->User->findBySubdomain(
-			Configure::read('subdomain'),
-			array('id')
-		);
-		return $user['User']['id'];
 	}
 	
 	/**

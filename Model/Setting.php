@@ -35,20 +35,5 @@ class Setting extends AppModel {
 			),
 		);
 	}
-	
-	public function afterSave($created) {
-		parent::afterSave($created);
-		$this->refreshCache('site_name');
-		$this->refreshCache('google_analytics');
-	}
-	public function afterDelete() {
-		parent::afterDelete();
-		$this->refreshCache('site_name');
-		$this->refreshCache('google_analytics');
-	}
-	public function refreshCache($key) {
-		$setting = $this->field($key, array('user_id' => $this->userId()));
-		Cache::write($key, $setting);
-	}
 }
 ?>
