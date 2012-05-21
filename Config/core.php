@@ -305,13 +305,16 @@ if (Configure::read('debug') >= 1) {
 	$duration = '+10 seconds';
 }
 
+// Prefix each application on the same server with a different string, to avoid Memcache and APC conflicts.
+$prefix = 'unfolio_';
+
 /**
  * Configure the cache used for general framework caching.  Path information,
  * object listings, and translation cache files are stored with this configuration.
  */
 Cache::config('_cake_core_', array(
 	'engine' => $engine,
-	'prefix' => 'cake_core_',
+	'prefix' => $prefix . 'cake_core_',
 	'path' => CACHE . 'persistent' . DS,
 	'serialize' => ($engine === 'File'),
 	'duration' => $duration
@@ -323,8 +326,14 @@ Cache::config('_cake_core_', array(
  */
 Cache::config('_cake_model_', array(
 	'engine' => $engine,
-	'prefix' => 'cake_model_',
+	'prefix' => $prefix . 'cake_model_',
 	'path' => CACHE . 'models' . DS,
 	'serialize' => ($engine === 'File'),
 	'duration' => $duration
+));
+
+Cache::config('default', array(
+	'engine' => $engine, //[required]
+	'duration'=> $duration, //[optional]
+	'prefix' => $prefix, //[optional]  prefix every cache file with this string
 ));
