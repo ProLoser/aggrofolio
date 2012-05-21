@@ -4,6 +4,7 @@ class UsersController extends AppController {
 	var $name = 'Users';
 	public $paginate = array();
 	public $main = array('register');
+	public $both = array('login', 'logout');
 	
 	function register() {
 		if (!empty($this->request->data)) {
@@ -32,7 +33,9 @@ class UsersController extends AppController {
 
 	function manager_index() {
 		$this->User->recursive = 0;
-		$this->set('users', $this->paginate());
+		$users = $this->paginate();
+		$roles = $this->User->roles;
+		$this->set(compact('users', 'roles'));
 	}
 
 	function manager_view($id = null) {

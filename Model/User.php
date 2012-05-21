@@ -47,6 +47,11 @@ class User extends AppModel {
 		'Setting',
 	);
 	
+	public $roles = array(
+		'user' => 'User',
+		'admin' => 'Admin',
+	);
+	
 	public function beforeSave($options = array()) {
 		if (!parent::beforeSave($options)) {
 			return false;

@@ -50,10 +50,9 @@
 <body>
 	<div id="container">
 		<div id="nav-wrap">
-			<!-- Add back for Navigation Bar -->
-			<!-- <aside id="navigation"> -->
-				<?php //echo $this->element('navigation'); ?>
-			<!-- </aside> -->
+			<aside id="navigation">
+				<?php echo $this->element('navigation'); ?>
+			</aside>
 		</div>
 		<div id="main">
 

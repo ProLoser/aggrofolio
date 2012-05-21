@@ -45,7 +45,7 @@ class AppController extends Controller {
 		'Session',
 		'RequestHandler',
 		'Batch.Batch' => array(
-			'actions' => array('admin_index'),
+			'actions' => array('admin_index', 'manager_index'),
 		),
 		'BakingPlate.Plate',
 		/* Auth Configuration */
@@ -109,7 +109,9 @@ class AppController extends Controller {
 			(Configure::read('owner') && ($this->Plate->prefix('manager') || (isset($this->main) && in_array($this->action, $this->main))))
 			|| (!Configure::read('owner') && ($this->Plate->prefix('admin') || !$this->Plate->prefix('manager') && (!isset($this->main) || !in_array($this->action, $this->main))))
 		) {
-			throw new NotFoundException();
+			if (!isset($this->both) || !in_array($this->action, $this->both)) {
+				throw new NotFoundException();
+			}
 		}
 		#$this->_setLanguage();
 		#$this->_setMaintenance();
