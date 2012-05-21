@@ -2,7 +2,7 @@
 	<hgroup><h1><?php echo __('Bookmarks');?></h1></hgroup>
 	<ul class="actions">
 		<li><?php echo $this->Html->link(__('New Bookmark'), array('action' => 'add')); ?></li>
-		<li><a href="javascript:%20var%20a=document.title,b=document.location.href,c=document.getElementsByTagName('meta'),d='',i=c.length;while(i--){if(c[i].name.toLowerCase()=='description'){d=c[i].content;}}%20window.open('http://deansofer.com/admin/bookmarks/add/name:'+a%20+'/description:'+d%20+'/url:'+b.replace(/\//g,'@s@').replace(/:/g,'@c@').replace(/#/g,'@h@').replace(/\?/g,'@q@'),'New%20Bookmark','width=400,height=400,location=0,directories=0,status=0,menubar=0,copyhistory=0');">Bookmarklet</a></li>
+		<li><a href="javascript:%20var%20a=document.title,b=document.location.href,c=document.getElementsByTagName('meta'),d='',i=c.length;while(i--){if(c[i].name.toLowerCase()=='description'){d=c[i].content;}}%20window.open('<?php echo $this->Html->url('/', true)?>admin/bookmarks/add/name:'+a%20+'/description:'+d%20+'/url:'+b.replace(/\//g,'@s@').replace(/:/g,'@c@').replace(/#/g,'@h@').replace(/\?/g,'@q@'),'New%20Bookmark','width=400,height=400,location=0,directories=0,status=0,menubar=0,copyhistory=0');">Bookmarklet</a></li>
 		<li><?php echo $this->Html->link(__('List Accounts'), array('controller' => 'accounts', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Account'), array('controller' => 'accounts', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Bookmark Categories'), array('controller' => 'bookmark_categories', 'action' => 'index')); ?> </li>
