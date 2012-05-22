@@ -21,9 +21,11 @@
 }
 div.timeline {
 	overflow: hidden;
+	height: 1000px;
 }
 div.timeline ul {
 	width: 25%;
+	height: 100%;
 	float: left;
 	margin: 10px 0;
 	padding: 0;

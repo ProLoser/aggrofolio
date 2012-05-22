@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 19, 2012 at 10:33 PM
+-- Generation Time: May 21, 2012 at 09:04 PM
 -- Server version: 5.1.44
 -- PHP Version: 5.3.2
 
@@ -107,10 +107,8 @@ CREATE TABLE `bookmark_categories` (
   `created` datetime DEFAULT NULL,
   `name` varchar(100) NOT NULL,
   `description` text,
-  `parent_id` int(10) DEFAULT NULL,
-  `lft` int(10) NOT NULL,
-  `rght` int(10) NOT NULL,
   `user_id` int(10) unsigned NOT NULL,
+  `parent_id` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
@@ -179,9 +177,6 @@ CREATE TABLE `media_categories` (
   `modified` datetime DEFAULT NULL,
   `name` varchar(255) NOT NULL,
   `description` text,
-  `parent_id` int(11) DEFAULT NULL,
-  `lft` int(11) NOT NULL,
-  `rght` int(11) NOT NULL,
   `user_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
@@ -259,9 +254,6 @@ CREATE TABLE `post_categories` (
   `modified` datetime DEFAULT NULL,
   `name` varchar(255) NOT NULL,
   `description` text,
-  `parent_id` int(11) DEFAULT NULL,
-  `lft` int(11) NOT NULL,
-  `rght` int(11) NOT NULL,
   `user_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
@@ -338,9 +330,6 @@ CREATE TABLE `project_categories` (
   `modified` datetime DEFAULT NULL,
   `name` varchar(255) NOT NULL,
   `description` text,
-  `parent_id` int(11) DEFAULT NULL,
-  `lft` int(11) DEFAULT NULL,
-  `rght` int(11) DEFAULT NULL,
   `user_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
@@ -590,9 +579,6 @@ CREATE TABLE `resume_skill_categories` (
   `modified` datetime DEFAULT NULL,
   `name` varchar(255) NOT NULL,
   `description` text,
-  `parent_id` int(11) DEFAULT NULL,
-  `lft` int(11) DEFAULT NULL,
-  `rght` int(11) DEFAULT NULL,
   `user_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
@@ -606,13 +592,13 @@ CREATE TABLE `resume_skill_categories` (
 CREATE TABLE `settings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `options` text COMMENT 'One option per line',
-  `css` text NOT NULL,
-  `js` text NOT NULL,
-  `google_analytics` varchar(9) NOT NULL,
-  `site_name` varchar(255) NOT NULL,
-  `user_id` int(11) unsigned NOT NULL,
+  `css` text,
+  `js` text,
+  `google_analytics` varchar(9) DEFAULT NULL,
+  `site_name` varchar(255) DEFAULT NULL,
+  `user_id` int(11) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
 
 -- --------------------------------------------------------
 
@@ -628,8 +614,10 @@ CREATE TABLE `users` (
   `password` varchar(40) NOT NULL,
   `name` varchar(100) NOT NULL,
   `subdomain` varchar(255) NOT NULL,
+  `role` varchar(10) NOT NULL DEFAULT 'user',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+
 
 
 -- phpMyAdmin SQL Dump

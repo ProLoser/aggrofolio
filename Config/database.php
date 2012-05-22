@@ -7,7 +7,7 @@ class DATABASE_CONFIG {
 		'host' => 'mysql.holycrap.ws',
 		'login' => 'holycrap',
 		'password' => 'gamegod',
-		'database' => 'deansofer',
+		'database' => 'unfolio',
 		/* Local * /
 		'host' => 'localhost',
 		'login' => 'root',
