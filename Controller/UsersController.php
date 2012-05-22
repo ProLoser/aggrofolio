@@ -11,7 +11,7 @@ class UsersController extends AppController {
 			$this->User->create();
 			if ($this->User->saveAssociated($this->request->data)) {
 				$this->request->data['User']['id'] = $this->User->id;
-				$this->Auth->login($this->request->data);
+				$this->Auth->login($this->request->data['User']);
 				$this->Session->setFlash(__('Registration Was a Success!'));
 				$redirect = Router::url(array('admin' => true, 'controller' => 'importer', 'action' => 'index'), true);
 				$redirect = str_replace($_SERVER['HTTP_HOST'], $this->request->data['User']['subdomain'] . '.' . $_SERVER['HTTP_HOST'], $redirect);
