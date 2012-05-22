@@ -148,14 +148,15 @@ class Project extends AppModel {
 			if (strpos($project['homepage'], '://') === false) {
 				$project['homepage'] = 'http://' . $project['homepage'];
 			}
-			$this->save(array('Project' => array(
+			$data = array('Project' => array(
 				'cvs_url' => $project['html_url'],
 				'account_id' => $account['Account']['id'],
 				'name' => $project['name'],
 				'description' => $project['description'],
 				'owner' => $project['owner']['login'],
 				'url' => $project['homepage'],
-			)));
+			));
+			$this->save($data);
 			$count++;
 		}
 		return $count;
