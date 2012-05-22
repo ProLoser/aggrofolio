@@ -44,7 +44,9 @@ class User extends AppModel {
 	);
 	
 	var $hasOne = array(
-		'Setting',
+		'Setting' => array(
+			'dependent' => true,
+		),
 	);
 	
 	public $roles = array(
