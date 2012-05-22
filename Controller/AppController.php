@@ -153,7 +153,7 @@ class AppController extends Controller {
 			$this->Auth->allow();
 		}
 		
-		if ($this->Plate->prefix('admin') && ($this->Auth->user('role') !== 'admin' || Configure::read('owner') !== $this->Auth->user('id'))) {
+		if ($this->Plate->prefix('admin') && $this->Auth->user('role') !== 'admin' && Configure::read('owner') !== $this->Auth->user('id')) {
 			$this->Session->setFlash('You are not the owner of this account');
 			$this->redirect('/');
 		}
