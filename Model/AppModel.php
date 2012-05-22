@@ -143,4 +143,29 @@ class AppModel extends Model {
 		}
 		return parent::_findCount($state, $query, $results);
 	}
+	
+	/**
+	 * Utility method to smoothly switch dbconfigs without woes
+	 *
+	 * @param string $source 
+	 * @param string $useTable 
+	 * @return void
+	 * @author Ceeram
+	 */
+	public function setDbConfig($source = null, $useTable = null) {
+        $this->getDataSource()->flushMethodCache();
+        if ($source) {
+            $this->oldSource = array('useTable' => $this->useTable, 'useDbConfig' => $this->useDbConfig);
+            $this->setDataSource($source);
+            if ($useTable !== null) {
+                $this->setSource($useTable);
+            }
+        } else {
+            if ($this->oldSource) {
+                $this->setDataSource($this->oldSource['useDbConfig']);
+                $this->setSource($this->oldSource['useTable']);
+                $this->oldSource = array();
+            }
+        }
+    }
 }
