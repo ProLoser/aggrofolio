@@ -18,7 +18,8 @@ class ImporterController extends AppController {
 		$schools = $this->User->ResumeSchool->find('list');
 		$mediaItems = $this->User->MediaItem->find('list');
 		$posts = $this->User->Post->find('list');
-		$this->set(compact('projects','works','schools','mediaItems','posts'));
+		$accounts = $this->User->Account->find('list');
+		$this->set(compact('projects','works','schools','mediaItems','posts', 'accounts'));
 	}
 }
 ?>
