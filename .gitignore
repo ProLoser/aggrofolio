@@ -6,12 +6,13 @@
 
 ## CakePHP ##
 tmp/*
-config/database.php
+Config/core.php
+Config/database.php
 webroot/cache_css/*
 webroot/cache_js/*
 webroot/uploads/*
 app/tmp/*
-app/config/database.php
+app/Config/database.php
 vendors/simpletest
 !empty
 

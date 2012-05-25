@@ -134,14 +134,14 @@ class Project extends AppModel {
 	}
 	
 	function scanGithub($account) {
-		$this->setDataSource('github');
+		$this->setDbConfig('github');
 		$projects = $this->find('all', array(
 			'fields' => 'repos'
 		));
 		if (empty($projects)) {
 			return false;
 		}
-		$this->setDataSource('default');
+		$this->setDbConfig();
 		$count = 0;
 		foreach ($projects as $project) {
 			$this->create();

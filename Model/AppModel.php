@@ -1,53 +1,53 @@
 <?php
 /**
- * Application model for Cake.
- *
- * This file is application-wide model file. You can put all
- * application-wide model-related methods here.
- *
- * PHP versions 4 and 5
- *
- * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
- *
- * Licensed under The MIT License
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright	  Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link		  http://cakephp.org CakePHP(tm) Project
- * @package		  cake
- * @subpackage	  cake.app
- * @since		  CakePHP(tm) v 0.2.9
- * @license		  MIT License (http://www.opensource.org/licenses/mit-license.php)
- */
+	* Application model for Cake.
+	*
+	* This file is application-wide model file. You can put all
+	* application-wide model-related methods here.
+	*
+	* PHP versions 4 and 5
+	*
+	* CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
+* Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+*
+	* Licensed under The MIT License
+	* Redistributions of files must retain the above copyright notice.
+	*
+	* @copyright	  Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+* @link		  http://cakephp.org CakePHP(tm) Project
+* @package		  cake
+	* @subpackage	  cake.app
+	* @since		  CakePHP(tm) v 0.2.9
+	* @license		  MIT License (http://www.opensource.org/licenses/mit-license.php)
+*/
 
 /**
- * Application model for Cake.
- *
- * Add your application-wide methods in the class below, your models
- * will inherit them.
- *
- * @package		  cake
- * @subpackage	  cake.app
- */
+	* Application model for Cake.
+	*
+	* Add your application-wide methods in the class below, your models
+	* will inherit them.
+	*
+	* @package		  cake
+	* @subpackage	  cake.app
+	*/
 class AppModel extends Model {
 
 	var $recursive = -1;
-	
+
 	public $actsAs = array(
 		'Linkable.Linkable', // TODO Possibly causing behavior errors when trying to bake
-		'Containable',
+	'Containable',
 		'Cacheable.Cacheable',
-	);
-	
+		);
+
 	/**
-	 * Adds translation to all validation messages
-	 * Repairs a glitch in aliases used with virtual fields
-	 *
-	 * @param string $id 
-	 * @param string $table 
-	 * @param string $ds 
-	 */
+		* Adds translation to all validation messages
+		* Repairs a glitch in aliases used with virtual fields
+		*
+		* @param string $id 
+		* @param string $table 
+		* @param string $ds 
+		*/
 	function __construct($id = false, $table = null, $ds = null) {
 		foreach ($this->validate as $field => $rules) {
 			if (isset($this->validate[$field]['message'])) {
@@ -65,13 +65,13 @@ class AppModel extends Model {
 			$this->virtualFields[$field] = str_replace($this->name, $this->alias, $value);
 		}
 	}
-	
+
 	/**
-	 * Before Validate
-	 *
-	 * @return void
-	 * @author Dean
-	 */
+		* Before Validate
+		*
+		* @return void
+		* @author Dean
+		*/
 	public function beforeValidate() {
 		// Makes the HABTM fields validateable
 		foreach($this->hasAndBelongsToMany as $alias => $options) { 
@@ -80,29 +80,29 @@ class AppModel extends Model {
 			} 
 		} 
 	}
-	
+
 	public function beforeFind($queryData) {
 		if ($this->hasField('user_id') && Configure::read('owner') && !isset($queryData['conditions']["{$this->alias}.user_id"])) {
 			$queryData['conditions']["{$this->alias}.user_id"] = Configure::read('owner');
 		}
 		return $queryData;
 	}
-	
+
 	public function beforeSave($options = array()) {
 		if ($this->hasField('user_id') && Configure::read('owner') && !isset($this->data[$this->alias]['user_id'])) {
 			$this->data[$this->alias]['user_id'] = Configure::read('owner');
 		}
 		return true;
 	}
-	
+
 	/**
-	 * Custom Model::paginateCount() method to support custom model find pagination
-	 *
-	 * @param array $conditions
-	 * @param int $recursive
-	 * @param array $extra
-	 * @return array
-	 */
+		* Custom Model::paginateCount() method to support custom model find pagination
+		*
+		* @param array $conditions
+		* @param int $recursive
+		* @param array $extra
+		* @return array
+		*/
 	function paginateCount($conditions = array(), $recursive = 0, $extra = array()) {
 		$parameters = compact('conditions');
 
@@ -119,16 +119,16 @@ class AppModel extends Model {
 	}
 
 	/**
-	 * Removes 'fields' key and 'contain' from count query on custom finds when it is an array,
-	 * as it will completely break the Model::_findCount() call
-	 *
-	 * @param string $state Either "before" or "after"
-	 * @param array $query
-	 * @param array $data
-	 * @return int The number of records found, or false
-	 * @access protected
-	 * @see Model::find()
-	 */
+		* Removes 'fields' key and 'contain' from count query on custom finds when it is an array,
+		* as it will completely break the Model::_findCount() call
+		*
+		* @param string $state Either "before" or "after"
+		* @param array $query
+		* @param array $data
+		* @return int The number of records found, or false
+		* @access protected
+		* @see Model::find()
+		*/
 	function _findCount($state, $query, $results = array()) {
 		if ($state == 'before' && isset($query['operation'])) {
 			$this->findQueryType = 'count';
@@ -143,7 +143,7 @@ class AppModel extends Model {
 		}
 		return parent::_findCount($state, $query, $results);
 	}
-	
+
 	/**
 	 * Utility method to smoothly switch dbconfigs without woes
 	 *
@@ -153,19 +153,22 @@ class AppModel extends Model {
 	 * @author Ceeram
 	 */
 	public function setDbConfig($source = null, $useTable = null) {
-        $this->getDataSource()->flushMethodCache();
-        if ($source) {
-            $this->oldSource = array('useTable' => $this->useTable, 'useDbConfig' => $this->useDbConfig);
-            $this->setDataSource($source);
-            if ($useTable !== null) {
-                $this->setSource($useTable);
-            }
-        } else {
-            if ($this->oldSource) {
-                $this->setDataSource($this->oldSource['useDbConfig']);
-                $this->setSource($this->oldSource['useTable']);
-                $this->oldSource = array();
-            }
-        }
-    }
+		$datasource = $this->getDataSource();
+		if (method_exists($datasource, 'flushMethodCache')) {
+			$datasource->flushMethodCache();
+		}
+		if ($source) {
+			$this->oldSource = array('useTable' => $this->useTable, 'useDbConfig' => $this->useDbConfig);
+			$this->setDataSource($source);
+			if ($useTable !== null) {
+				$this->setSource($useTable);
+			}
+		} else {
+			if ($this->oldSource) {
+				$this->setDataSource($this->oldSource['useDbConfig']);
+				$this->setSource($this->oldSource['useTable']);
+				$this->oldSource = array();
+			}
+		}
+	}
 }
