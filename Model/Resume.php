@@ -98,7 +98,7 @@ class Resume extends AppModel {
 	
 	
 	public function scanLinkedin($account) {
-		$this->setDataSource('linkedin');
+		$this->setDbConfig('linkedin');
 		$data = $this->find('all', array(
 			'path' => 'people/~',
 			'fields' => array(
@@ -110,7 +110,7 @@ class Resume extends AppModel {
 				'recommendations-received',
 			),
 		));
-		$this->setDataSource('default');
+		$this->setDbConfig();
 		
 		if (!$data) {
 			return false;

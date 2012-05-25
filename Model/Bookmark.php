@@ -49,10 +49,10 @@ class Bookmark extends AppModel {
 	}
 	
 	public function scanXmarks($account) {
-		$this->setDataSource('rss');
+		$this->setDbConfig('rss');
 		$this->feedUrl = $account['Account']['username'];
 		$bookmarks = $this->find('all');
-		$this->setDataSource('default');
+		$this->setDbConfig();
 		$count = 0;
 		if (!empty($bookmarks)) {
 			foreach ($bookmarks as $bookmark) {
@@ -77,7 +77,7 @@ class Bookmark extends AppModel {
 				'user' => $account['Account']['username']
 			)
 		));
-		$this->setDataSource('default');
+		$this->setDbConfig();
 		$count = 0;
 		if (!empty($bookmarks)) {
 			foreach ($bookmarks as $bookmark) {
@@ -113,14 +113,14 @@ class Bookmark extends AppModel {
 		parent::afterSave($created);
 		if ($created) {
 			// Auto Tweet Bookmarks
-			$this->setDataSource('twitter');
+			$this->setDbConfig('twitter');
 			$data = array(
 				'section' => 'tweets',
 				'status' => $this->data['Bookmark']['name'] . ' ' . $this->data['Bookmark']['url']
 			);
 			$this->create();
 			$this->save($data);
-			$this->setDataSource('default');
+			$this->setDbConfig();
 		}
 	}*/
 }

@@ -73,7 +73,7 @@ class Project extends AppModel {
 			} else {
 				$results = $results[0];
 			}
-			$this->setDataSource($results['Account']['type']);
+			$this->setDbConfig($results['Account']['type']);
 			$name = array_pop(explode('/', $results['Project']['cvs_url']));
 			switch ($results['Account']['type']) {
 				case 'github':
@@ -111,7 +111,7 @@ class Project extends AppModel {
 						'fields' => 'blog'
 					));*/
 			}
-			$this->setDataSource('default');
+			$this->setDbConfig();
 	        return $results;
 	    }
 	}
@@ -163,11 +163,11 @@ class Project extends AppModel {
 	}
 	
 	function scanCodaset($account) {
-		$this->setDataSource('codaset');
+		$this->setDbConfig('codaset');
 		$projects = $this->find('all', array('conditions' => array('username' => $account['Account']['username']), 'fields' => 'projects'));
 		$collabs = $this->find('all', array('conditions' => array('username' => $account['Account']['username']), 'fields' => 'collaborations'));
 		$projects = array_merge($projects, $collabs);
-		$this->setDataSource('default');
+		$this->setDbConfig();
 		$i = 0;
 		foreach ($projects as $project) {
 			$this->create();

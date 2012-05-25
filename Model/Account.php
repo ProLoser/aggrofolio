@@ -114,7 +114,7 @@ class Account extends AppModel {
 	
 	public function getFollowers() {
 		// Auto Tweet Bookmarks
-		$this->setDataSource('twitter');
+		$this->setDbConfig('twitter');
 		$followers = $this->find('all', array(
 			'fields' => 'followers',
 		));
@@ -128,7 +128,7 @@ class Account extends AppModel {
 				),
 			)));
 		}
-		$this->setDataSource('default');
+		$this->setDbConfig();
 		return $followers;
 	}
 }

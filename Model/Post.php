@@ -77,10 +77,10 @@ class Post extends AppModel {
 	}
 	
 	public function scanBlog($account) {
-		$this->setDataSource('rss');
+		$this->setDbConfig('rss');
 		$this->feedUrl = $this->getRss($account['Account']['username']);
 		$posts = $this->find('all');
-		$this->setDataSource('default');
+		$this->setDbConfig();
 		
 		$data = array();
 		$categories = $this->PostCategory->quickMatch();
