@@ -1,4 +1,10 @@
 <style>
+#sidebar {
+	display: none;
+}
+section#main {
+	width: 100%;
+}
 .timeline header {
 	position: fixed;
 	top: 0;
