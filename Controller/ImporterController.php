@@ -21,5 +21,9 @@ class ImporterController extends AppController {
 		$accounts = $this->User->Account->find('list');
 		$this->set(compact('projects','works','schools','mediaItems','posts', 'accounts'));
 	}
+	
+	public function admin_add($type) {
+		
+	}
 }
 ?>

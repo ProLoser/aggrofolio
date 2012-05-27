@@ -128,4 +128,10 @@ class DATABASE_CONFIG {
 		'login' => '1070283566684.apps.googleusercontent.com',
 		'password' => '7cafa94185b64f9be9486758d4b0aab2f2f3110f-privatekey.p12',
 	);
+	
+	var $instagram = array(
+		'datasource' => 'Instagram.Instagram',
+		'login' => 'd568f36b301045109e2185b4883b3252',
+		'password' => 'ba479f837caf44628ca8564e0d0f273e',
+	);
 }
