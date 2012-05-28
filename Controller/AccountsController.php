@@ -40,7 +40,8 @@ class AccountsController extends AppController {
 	
 	function admin_callback($useDbConfig = null) {
 		$this->Oauth->useDbConfig = $useDbConfig;
-		$this->Oauth->callback(array('action' => 'index'));
+		$tokens = $this->Oauth->callback();
+		diebug($tokens);
 	}
 	
 	function admin_scan($id = null) {
