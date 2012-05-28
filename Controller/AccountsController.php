@@ -3,7 +3,7 @@ class AccountsController extends AppController {
 
 	var $name = 'Accounts';
 	var $components = array(
-		'Apis.Oauth' => array(			
+		'Apis.Oauth' => array(
 			'linkedin',
 			'github',
 			'flickr',
@@ -27,7 +27,11 @@ class AccountsController extends AppController {
 			$this->Session->setFlash(__('Invalid Account'));
 			$this->redirect(array('action' => 'index'));
 		}
-		$type = $this->Account->field('type', array('Account.id' => $id));
+		if (is_numeric($id)) {
+			$type = $this->Account->field('type', array('Account.id' => $id));
+		} else {
+			$type = $id;
+		}
 		
 		$this->Oauth->useDbConfig = $type;
 
@@ -48,6 +52,16 @@ class AccountsController extends AppController {
 			$this->Session->setFlash(__('There was an error scanning the account. Try logging in again.'));
 		}
 		$this->redirect(array('action' => 'index'));
+	}
+	
+	public function admin_importer() {
+		$projects = $this->Account->Project->find('list');
+		$works = $this->Account->ResumeEmployer->find('list');
+		$schools = $this->Account->ResumeSchool->find('list');
+		$mediaItems = $this->Account->MediaItem->find('list');
+		$posts = $this->Account->Post->find('list');
+		$accounts = $this->Account->find('list');
+		$this->set(compact('projects','works','schools','mediaItems','posts', 'accounts'));
 	}
 
 	function admin_index() {

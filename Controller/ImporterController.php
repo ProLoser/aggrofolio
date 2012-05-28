@@ -3,7 +3,7 @@ class ImporterController extends AppController {
 
 	var $name = 'Importer';
 	var $components = array(
-		'Apis.Oauth' => array(			
+		'Apis.Oauth' => array(
 			'linkedin',
 			'github',
 			'flickr',
@@ -22,8 +22,16 @@ class ImporterController extends AppController {
 		$this->set(compact('projects','works','schools','mediaItems','posts', 'accounts'));
 	}
 	
-	public function admin_add($type) {
+	function admin_connect($type = null) {
+		if (!$type) {
+			$this->Session->setFlash(__('Invalid Account'));
+			$this->redirect(array('action' => 'index'));
+		}
 		
+		$this->Oauth->useDbConfig = $type;
+
+		$this->Oauth->connect(array('controller' => 'accounts', 'action' => 'index'), array('controller' => 'accounts', 'action' => 'callback', $type));
 	}
+	
+	
 }
-?>

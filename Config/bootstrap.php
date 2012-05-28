@@ -21,14 +21,16 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
-$host = $_SERVER['HTTP_HOST'];
-$tmp = explode('.', $_SERVER['HTTP_HOST'], 3);
-if (count($tmp) > 2) {
-	Configure::write('subdomain', $tmp[0]);
-	$host = $tmp[1] . '.' . $tmp[2];
+if (isset($_SERVER['HTTP_HOST'])) {
+	$host = $_SERVER['HTTP_HOST'];
+	$tmp = explode('.', $_SERVER['HTTP_HOST'], 3);
+	if (count($tmp) > 2) {
+		Configure::write('subdomain', $tmp[0]);
+		$host = $tmp[1] . '.' . $tmp[2];
+	}
+	// Maintain session across subdomains
+	ini_set('session.cookie_domain', '.' . $host);
 }
-// Maintain session across subdomains
-ini_set('session.cookie_domain', '.' . $host);
 
 /**
  * The settings below can be used to set additional paths to models, views and controllers.

@@ -62,7 +62,7 @@ class AppController extends Controller {
 			'logoutRedirect' => array('action' => 'login'),
 			'loginRedirect' => '/',
 		),/**/
-		// 'AutoLogin.AutoLogin',
+		'RememberMe.RememberMe',
 		'Webservice.Webservice',
 	);
 	var $attributesForLayout = array(
@@ -113,8 +113,21 @@ class AppController extends Controller {
 				throw new NotFoundException();
 			}
 		}
-		#$this->_setLanguage();
-		#$this->_setMaintenance();
+		// $this->_setLanguage();
+		// $this->_setMaintenance();
+	}
+	
+	public function afterFilter() {
+		$this->_rememberMember();
+	}
+	
+	/**
+	 * Refresh the logged in user's cookie
+	 */
+	function _rememberMember() {
+	    if ($this->params['action'] != 'logout') {
+	        $this->RememberMe->checkUser();
+	    }
 	}
 	
 	

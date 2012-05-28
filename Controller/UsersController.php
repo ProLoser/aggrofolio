@@ -13,7 +13,7 @@ class UsersController extends AppController {
 				$this->request->data['User']['id'] = $this->User->id;
 				$this->Auth->login($this->request->data['User']);
 				$this->Session->setFlash(__('Registration Was a Success!'));
-				$redirect = Router::url(array('admin' => true, 'controller' => 'importer', 'action' => 'index'), true);
+				$redirect = Router::url(array('admin' => true, 'controller' => 'accounts', 'action' => 'importer'), true);
 				$redirect = str_replace($_SERVER['HTTP_HOST'], $this->request->data['User']['subdomain'] . '.' . $_SERVER['HTTP_HOST'], $redirect);
 				$this->redirect($redirect);
 			} else {
@@ -24,6 +24,12 @@ class UsersController extends AppController {
 	}
 	
 	function login() {
+		if ($this->Auth->user()) {
+			if (!empty($this->request->data)) {
+				$this->RememberMe->setRememberMe($this->request->data[$this->User->alias]);
+			}
+			$this->redirect($this->Auth->loginRedirect);
+		}
 		if (!empty($this->request->data)) {
 			if ($this->Auth->login()) {
 				$this->redirect($this->Auth->redirect());
@@ -33,8 +39,8 @@ class UsersController extends AppController {
 		}
 	}    
 	
-	function logout() {        
-		$this->redirect($this->Auth->logout());    
+	function logout() {
+		$this->redirect($this->Auth->logout());
 	}
 
 	function manager_index() {

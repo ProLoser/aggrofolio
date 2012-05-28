@@ -22,15 +22,16 @@ class Account extends AppModel {
 	);
 	
 	var $hasMany = array(
+		'Album',
+		'Bookmark',
+		'MediaItem',
+		'Post',
 		'Project',
 		'Resume',
 		'ResumeEmployer',
 		'ResumeSchool',
 		'ResumeRecommendation',
 		'ResumeSkill',
-		'Album',
-		'Bookmark',
-		'Post',
 	);
 	
 	var $belongsTo = array(
