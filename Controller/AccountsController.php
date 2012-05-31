@@ -58,6 +58,7 @@ class AccountsController extends AppController {
 		$account = array();
 		if ($id) {
 			$account = $this->Account->scan($id);
+			$this->request->data = $account;
 		}
 		$this->set(compact('projects','works','schools','mediaItems','posts', 'account'));
 	}

@@ -129,17 +129,18 @@ div.timeline li {
 		<li>Posts</li>
 	</ul>
 </header>
-<?php if (!empty($account)): ?>
+<?php if (!empty($this->request->data)): ?>
 <div class="modal">
 	<h2>Scan Account</h2>
 	<div>
 		<?php echo $this->Form->create('Account'); ?>
+			<?php echo $this->Form->input('Account.id') ?>
 			<?php echo $this->Form->input('Account.published', array('label' => 'Auto-Publish New Content')); ?>
 			<?php debug($account); ?>
 		<?php echo $this->Form->end(); ?>
 	</div>
 </div>
-<?php endif ?>
+<?php else: ?>
 <div class="modal">
 	<h2>Select an Account</h2>
 	<div>
@@ -186,6 +187,7 @@ div.timeline li {
 		</ul>
 	</div>
 </div>
+<?php endif ?>
 <div class="timeline">
 	<ul id="experience">
 	<?php foreach ($schools as $id => $school): ?>

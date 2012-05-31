@@ -1,11 +1,11 @@
 <?php
 class Account extends AppModel {
-	var $name = 'Account';
-	var $displayField = 'label';
+	public $name = 'Account';
+	public $displayField = 'label';
 	public $virtualFields = array(
 	    'label' => 'CONCAT(Account.type, " - ", Account.username)'
 	);
-	var $validate = array(
+	public $validate = array(
 		'username' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
@@ -21,7 +21,7 @@ class Account extends AppModel {
 		),
 	);
 
-	var $hasMany = array(
+	public $hasMany = array(
 		'Album',
 		'Bookmark',
 		'MediaItem',
@@ -34,11 +34,11 @@ class Account extends AppModel {
 		'ResumeSkill',
 	);
 
-	var $belongsTo = array(
+	public $belongsTo = array(
 		'User',
 	);
 
-	var $types = array(
+	public $types = array(
 		'github'		=> 'Github',
 		'codaset'		=> 'Codaset (Disabled)',
 		// 'xmarks'		=> 'XMarks',
@@ -99,8 +99,11 @@ class Account extends AppModel {
 	 * @param string $id
 	 * @return boolean $success
 	 */
-	function scan($id) {
+	public function scan($id) {
 		$account = $this->read(null, $id);
+		if (empty($account)) {
+			return false;
+		}
 		switch ($account['Account']['type']) {
 			case 'linkedin':
 				return $this->Resume->scanLinkedin($account);
@@ -127,7 +130,7 @@ class Account extends AppModel {
 		}
 	}
 
-	function scanAll() {
+	public function scanAll() {
 		$accounts = $this->find('list', array('conditions' => array('Account.published' => true)));
 		foreach ($accounts as $id => $username) {
 			$this->scan($id);
