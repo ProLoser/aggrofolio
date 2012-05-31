@@ -129,13 +129,13 @@ div.timeline li {
 		<li>Posts</li>
 	</ul>
 </header>
-<?php if (!empty($imported)): ?>
+<?php if (!empty($account)): ?>
 <div class="modal">
 	<h2>Scan Account</h2>
 	<div>
 		<?php echo $this->Form->create('Account'); ?>
 			<?php echo $this->Form->input('Account.published', array('label' => 'Auto-Publish New Content')); ?>
-			<h3>Loading Content...</h3>
+			<?php debug($account); ?>
 		<?php echo $this->Form->end(); ?>
 	</div>
 </div>
