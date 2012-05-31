@@ -1,8 +1,8 @@
 <?php
 class AccountsController extends AppController {
 
-	var $name = 'Accounts';
-	var $components = array(
+	public $name = 'Accounts';
+	public $components = array(
 		'Apis.Oauth' => array(
 			'linkedin',
 			'github',
@@ -11,18 +11,18 @@ class AccountsController extends AppController {
 		),
 	);
 	public $paginate = array();
-	
+
 	public function admin_test() {
 		$followers = $this->Account->getFollowers();
 		diebug($followers);
 	}
-	
-	function admin_reset() {
+
+	public function admin_reset() {
 		$this->Session->delete('OAuth');
 		$this->Plate->flash('OAuth Session Reset');
 	}
-	
-	function admin_connect($id = null) {
+
+	public function admin_connect($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid Account'));
 			$this->redirect(array('action' => 'index'));
@@ -32,23 +32,23 @@ class AccountsController extends AppController {
 		} else {
 			$type = $id;
 		}
-		
+
 		$this->Oauth->useDbConfig = $type;
 
 		$this->Oauth->connect(array('action' => 'index'), array('action' => 'callback', $type));
 	}
-	
-	function admin_callback($useDbConfig = null) {
+
+	public function admin_callback($useDbConfig = null) {
 		$this->Oauth->useDbConfig = $useDbConfig;
 		$tokens = $this->Oauth->callback();
 		$this->Account->setup($useDbConfig, $tokens);
 		$this->redirect(array('action' => 'importer', $this->Account->id));
 	}
-	
-	function admin_scan($id = null) {
+
+	public function admin_scan($id = null) {
 		return $this->Account->scan($id);
 	}
-	
+
 	public function admin_importer($id = null) {
 		$projects = $this->Account->Project->find('list');
 		$works = $this->Account->ResumeEmployer->find('list');
@@ -57,19 +57,19 @@ class AccountsController extends AppController {
 		$posts = $this->Account->Post->find('list');
 		$account = array();
 		if ($id) {
-			$account = $this->find('first', array('conditions' => array('Account.id' => $id)));
+			$account = $this->Account->scan($id);
 		}
 		$this->set(compact('projects','works','schools','mediaItems','posts', 'account'));
 	}
 
-	function admin_index() {
+	public function admin_index() {
 		$this->Account->recursive = 0;
 		$accounts = $this->paginate();
 		$types = $this->Account->types;
 		$this->set(compact('accounts', 'types'));
 	}
 
-	function admin_view($id = null) {
+	public function admin_view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid account'));
 			$this->redirect(array('action' => 'index'));
@@ -78,7 +78,7 @@ class AccountsController extends AppController {
 		$this->set('account', $this->Account->read(null, $id));
 	}
 
-	function admin_add() {
+	public function admin_add() {
 		if (!empty($this->request->data)) {
 			$this->Account->create();
 			$this->request->data['Account']['user_id'] = $this->Auth->user('id');
@@ -97,7 +97,7 @@ class AccountsController extends AppController {
 		$this->set(compact('types'));
 	}
 
-	function admin_edit($id = null) {
+	public function admin_edit($id = null) {
 		if (!$id && empty($this->request->data)) {
 			$this->Session->setFlash(__('Invalid account'));
 			$this->redirect(array('action' => 'index'));
@@ -117,7 +117,7 @@ class AccountsController extends AppController {
 		$this->set(compact('types'));
 	}
 
-	function admin_delete($id = null) {
+	public function admin_delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for account'));
 			$this->redirect(array('action'=>'index'));

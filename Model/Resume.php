@@ -114,10 +114,6 @@ class Resume extends AppModel {
 		));
 		$this->setDbConfig();
 
-		if (!$data) {
-			return false;
-		}
-
 		$date = array('day' => 1, 'month' => 1, 'year' => null);
 
 		if (!empty($data['skills']['values'])) {
@@ -129,6 +125,7 @@ class Resume extends AppModel {
 				$skills[$i]['ResumeSkill']['account_id'] = $account['Account']['id'];
 			}
 			$resume['ResumeSkill']['ResumeSkill'] = $this->saveAllIds($this->ResumeSkill, $skills);
+			$account['ResumeSkill'] = $skills;
 		}
 
 		if (!empty($data['positions']['values'])) {
@@ -146,6 +143,7 @@ class Resume extends AppModel {
 				$employers[$i]['account_id'] = $account['Account']['id'];
 			}
 			$resume['ResumeEmployer']['ResumeEmployer'] = $this->saveAllIds($this->ResumeEmployer, $employers);
+			$account['ResumeEmployer'] = $employers;
 		}
 
 		if (!empty($data['educations']['values'])) {
@@ -163,8 +161,8 @@ class Resume extends AppModel {
 				$schools[$i]['account_id'] = $account['Account']['id'];
 			}
 			$resume['ResumeSchool']['ResumeSchool'] = $this->saveAllIds($this->ResumeSchool, $schools);
+			$account['ResumeSchool'] = $schools;
 		}
-
 
 		if (!empty($data['recommendationsReceived']['values'])) {
 			foreach ($data['recommendationsReceived']['values'] as $i => $recommendation) {
@@ -177,21 +175,26 @@ class Resume extends AppModel {
 				$recommendations[$i]['account_id'] = $account['Account']['id'];
 			}
 			$resume['ResumeRecommendation']['ResumeRecommendation'] = $this->saveAllIds($this->ResumeRecommendation, $recommendations);
+			$account['ResumeRecommendation'] = $recommendations;
 		}
 
-		$resume['Resume']['summary'] = $data['summary'];
-		$resume['Resume']['specialties'] = $data['specialties'];
-		$resume['Resume']['associations'] = $data['associations'];
-		$resume['Resume']['honors'] = $data['honors'];
-		$resume['Resume']['interests'] = $data['interests'];
-		$resume['Resume']['first_name'] = $data['firstName'];
-		$resume['Resume']['last_name'] = $data['lastName'];
+		if (!empty($data)) {
+			$resume['Resume']['summary'] = $data['summary'];
+			$resume['Resume']['specialties'] = $data['specialties'];
+			$resume['Resume']['associations'] = $data['associations'];
+			$resume['Resume']['honors'] = $data['honors'];
+			$resume['Resume']['interests'] = $data['interests'];
+			$resume['Resume']['first_name'] = $data['firstName'];
+			$resume['Resume']['last_name'] = $data['lastName'];
+		}
 
 		if (!empty($resume)) {
 			$this->save($resume);
+			$resume['Resume']['id'] = $this->id;
+			$account['Resume'] = $resume['Resume'];
 		}
 
-		return $data;
+		return $account;
 	}
 
 	/**
@@ -203,12 +206,12 @@ class Resume extends AppModel {
 	 * @return array collection of insertIds
 	 * @author Dean Sofer
 	 */
-	public function saveAllIds($Model, $data) {
+	public function saveAllIds($Model, &$data) {
 		$ids = array();
 		foreach ($data as $row) {
 			$Model->create();
 			$Model->save($row);
-			$ids[] = $Model->id;
+			$ids[] = $row['id'] = $Model->id;
 		}
 		return $ids;
 	}

@@ -138,11 +138,11 @@ class Project extends AppModel {
 		$projects = $this->find('all', array(
 			'fields' => 'repos'
 		));
-		if (empty($projects)) {
-			return false;
-		}
 		$this->setDbConfig();
-		$count = 0;
+		if (empty($projects)) {
+			return $account;
+		}
+		$account['Project'] = array();
 		foreach ($projects as $project) {
 			$this->create();
 			if (strpos($project['homepage'], '://') === false) {
@@ -157,9 +157,10 @@ class Project extends AppModel {
 				'url' => $project['homepage'],
 			));
 			$this->save($data);
-			$count++;
+			$data['Project']['id'] = $this->id;
+			$account['Project'][] = $data['Project'];
 		}
-		return $count;
+		return $account;
 	}
 
 	function scanCodaset($account) {

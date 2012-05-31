@@ -60,6 +60,40 @@ class Account extends AppModel {
 	);
 
 	/**
+	 * Prepares an account record for further scanning
+	 *
+	 * @param string $provider
+	 * @param string $tokens
+	 * @return void
+	 * @author Dean Sofer
+	 */
+	public function setup($provider, $tokens) {
+		$data['Account'] = array(
+			'api_key' => $tokens,
+			'type' => $provider,
+		);
+		$this->setDbConfig($provider);
+		switch ($provider) {
+			case 'github':
+				$user = $this->find('all', array('fields' => 'user'));
+				$data['Account']['username'] = $user['login'];
+				$data['Account']['email'] = $user['email'];
+			break;
+			case 'linkedin';
+				$user = $this->find('all', array('path' => 'people/~', 'fields' => array('id')));
+				$data['Account']['username'] = $user['id'];
+			break;
+			case 'jsfiddle':
+			break;
+			case 'vimeo':
+			break;
+		}
+		$this->setDbConfig();
+
+		$this->save($data);
+	}
+
+	/**
 	 * Delegates scanning of content for the specific account
 	 *
 	 * @param string $id
@@ -146,40 +180,6 @@ class Account extends AppModel {
 		}
 		$this->setDbConfig();
 		return $followers;
-	}
-
-	/**
-	 * Prepares an account record for further scanning
-	 *
-	 * @param string $provider
-	 * @param string $tokens
-	 * @return void
-	 * @author Dean Sofer
-	 */
-	public function setup($provider, $tokens) {
-		$data['Account'] = array(
-			'api_key' => $tokens,
-			'type' => $provider,
-		);
-		$this->setDbConfig($provider);
-		switch ($provider) {
-			case 'github':
-				$user = $this->find('all', array('fields' => 'user'));
-				$data['Account']['username'] = $user['login'];
-				$data['Account']['email'] = $user['email'];
-			break;
-			case 'linkedin';
-				$user = $this->find('all', array('path' => 'people/~', 'fields' => array('id')));
-				$data['Account']['username'] = $user['id'];
-			break;
-			case 'jsfiddle':
-			break;
-			case 'vimeo':
-			break;
-		}
-		$this->setDbConfig();
-
-		$this->save($data);
 	}
 }
 ?>
