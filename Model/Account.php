@@ -20,7 +20,7 @@ class Account extends AppModel {
 			),
 		),
 	);
-	
+
 	var $hasMany = array(
 		'Album',
 		'Bookmark',
@@ -33,11 +33,11 @@ class Account extends AppModel {
 		'ResumeRecommendation',
 		'ResumeSkill',
 	);
-	
+
 	var $belongsTo = array(
 		'User',
 	);
-	
+
 	var $types = array(
 		'github'		=> 'Github',
 		'codaset'		=> 'Codaset (Disabled)',
@@ -58,11 +58,11 @@ class Account extends AppModel {
 			'photobucket'	=> 'Photobucket',
 		),
 	);
-	
+
 	/**
 	 * Delegates scanning of content for the specific account
 	 *
-	 * @param string $id 
+	 * @param string $id
 	 * @return boolean $success
 	 */
 	function scan($id) {
@@ -92,14 +92,28 @@ class Account extends AppModel {
 			break;
 		}
 	}
-	
+
 	function scanAll() {
 		$accounts = $this->find('list', array('conditions' => array('Account.published' => true)));
 		foreach ($accounts as $id => $username) {
 			$this->scan($id);
 		}
 	}
-	
+
+	public function beforeSave($options = array()) {
+		if (isset($this->data['Account']['api_key'])) {
+			$this->data['Account']['api_key'] = serialize($this->data['Account']['api_key']);
+		}
+		return true;
+	}
+
+	public function afterFind($results, $primary = false) {
+		if (!empty($results['Account']['api_key'])) {
+			$results['Account']['api_key'] = unserialize($results['Account']['api_key']);
+		}
+		return $results;
+	}
+
 	public function afterSave($created) {
 		parent::afterSave($created);
 		$this->refreshNav();
@@ -108,11 +122,12 @@ class Account extends AppModel {
 		parent::afterDelete();
 		$this->refreshNav();
 	}
+
 	public function refreshNav() {
 		$navAccounts = $this->find('all', array('conditions' => array('Account.published' => true)));
 		Cache::write('navAccounts', $navAccounts);
 	}
-	
+
 	public function getFollowers() {
 		// Auto Tweet Bookmarks
 		$this->setDbConfig('twitter');
@@ -131,6 +146,40 @@ class Account extends AppModel {
 		}
 		$this->setDbConfig();
 		return $followers;
+	}
+
+	/**
+	 * Prepares an account record for further scanning
+	 *
+	 * @param string $provider
+	 * @param string $tokens
+	 * @return void
+	 * @author Dean Sofer
+	 */
+	public function setup($provider, $tokens) {
+		$data['Account'] = array(
+			'api_key' => $tokens,
+			'type' => $provider,
+		);
+		$this->setDbConfig($provider);
+		switch ($provider) {
+			case 'github':
+				$user = $this->find('all', array('fields' => 'user'));
+				$data['Account']['username'] = $user['login'];
+				$data['Account']['email'] = $user['email'];
+			break;
+			case 'linkedin';
+				$user = $this->find('all', array('path' => 'people/~', 'fields' => array('id')));
+				$data['Account']['username'] = $user['id'];
+			break;
+			case 'jsfiddle':
+			break;
+			case 'vimeo':
+			break;
+		}
+		$this->setDbConfig();
+
+		$this->save($data);
 	}
 }
 ?>

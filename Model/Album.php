@@ -38,17 +38,17 @@ class Album extends AppModel {
 			'conditions' => array('PostRelationship.foreign_model' => 'Album'),
 		),
 	);
-	
+
 	var $actsAs = array(
 		'Activity',
 	);
-	
+
 	public function scanDeviantart($account) {
 		$page = sprintf('http://%s.deviantart.com/gallery/', $account['Account']['username']);
 		$link = array('tag' => 'a', 'class' => 'tv150-cover');
 		$title = array('tag' => 'div', 'class' => 'tv150-tag');
 		$links = $titles = array();
-		
+
 		libxml_use_internal_errors(true);
 		$doc = new DOMDocument();
 		$doc->validateOnParse = true;
@@ -79,18 +79,18 @@ class Album extends AppModel {
 			return false;
 		}
 	}
-	
+
 	public function scanFlickr($account) {
 		$this->setDbConfig('flickr');
 		$username = $this->find('all', array(
-			'fields' => 'people', 
+			'fields' => 'people',
 			'conditions' => array('username' => $account['Account']['username'])
 		));
 		if (!isset($username['user'])) {
 			return false;
 		}
 		$result = $this->find('all', array(
-			'fields' => 'sets', 
+			'fields' => 'sets',
 			'conditions' => array('user_id' => $username['user']['nsid'])
 		));
 		$this->setDbConfig();
@@ -111,11 +111,17 @@ class Album extends AppModel {
 		}
 		return $count;
 	}
-	
+
+	public function refreshNav() {
+		$navGallery = $this->find('count', array('conditions' => array('Album.published' => true)));
+		$navGallery += $this->MediaItem->find('count', array('conditions' => array('MediaItem.published' => true)));
+		Cache::write('navGallery', $navGallery);
+	}
+
 	/**
 	 * Updates all related media items if the company changed
 	 *
-	 * @param string $created 
+	 * @param string $created
 	 * @return void
 	 * @author Dean Sofer
 	 */
@@ -124,10 +130,10 @@ class Album extends AppModel {
 		if (!$created && isset($this->data['Album']['project_id'])) {
 			$pid = (empty($this->data['Album']['project_id'])) ? null : $this->data['Album']['project_id'];
 			$this->MediaItem->updateAll(
-				array('project_id' => $pid), 
+				array('project_id' => $pid),
 				array('MediaItem.album_id' => $this->id)
 			);
 		}
 	}
-	
+
 }

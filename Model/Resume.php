@@ -21,7 +21,7 @@ class Resume extends AppModel {
 		'Account',
 		'User',
 	);
-	
+
 	public $hasMany = array(
 		'PostRelationship' => array(
 			'foreignKey' => 'foreign_key',
@@ -36,7 +36,7 @@ class Resume extends AppModel {
 		'ResumeSkill',
 		'ResumeEmployer',
 	);
-	
+
 	public $actsAs = array(
 		'Activity',
 		'UploadPack.Upload' => array(
@@ -51,16 +51,18 @@ class Resume extends AppModel {
 			),
 		),
 	);
-	
+
 	/**
 	 * Prepared find for resume rendering
 	 *
-	 * @param string $id 
+	 * @param string $id
 	 * @return void
 	 * @author Dean Sofer
 	 */
 	public function render($id = null) {
-		$conditions = array();
+		$conditions = array(
+			'Resume.published' => true
+		);
 		if ($id) {
 			$conditions['Resume.id'] = $id;
 		}
@@ -95,29 +97,29 @@ class Resume extends AppModel {
 			),
 		));
 	}
-	
-	
+
+
 	public function scanLinkedin($account) {
 		$this->setDbConfig('linkedin');
 		$data = $this->find('all', array(
 			'path' => 'people/~',
 			'fields' => array(
-				'first-name', 'last-name', 'summary', 'specialties', 'associations', 'honors', 'interests', 'twitter-accounts', 
-				'positions' => array('title', 'summary', 'start-date', 'end-date', 'is-current', 'company'), 
-				'educations', 
+				'first-name', 'last-name', 'summary', 'specialties', 'associations', 'honors', 'interests', 'twitter-accounts',
+				'positions' => array('title', 'summary', 'start-date', 'end-date', 'is-current', 'company'),
+				'educations',
 				'certifications',
-				'skills' => array('id', 'skill', 'proficiency', 'years'), 
+				'skills' => array('id', 'skill', 'proficiency', 'years'),
 				'recommendations-received',
 			),
 		));
 		$this->setDbConfig();
-		
+
 		if (!$data) {
 			return false;
 		}
-		
+
 		$date = array('day' => 1, 'month' => 1, 'year' => null);
-		
+
 		if (!empty($data['skills']['values'])) {
 			foreach ($data['skills']['values'] as $i => $skill) {
 				$skills[$i]['ResumeSkill']['uuid'] = $skill['id'];
@@ -128,10 +130,10 @@ class Resume extends AppModel {
 			}
 			$resume['ResumeSkill']['ResumeSkill'] = $this->saveAllIds($this->ResumeSkill, $skills);
 		}
-		
+
 		if (!empty($data['positions']['values'])) {
 			foreach ($data['positions']['values'] as $i => $employer) {
-				if (isset($employer['company']['id'])) 
+				if (isset($employer['company']['id']))
 					$employers[$i]['uuid'] = $employer['company']['id'];
 				$employers[$i]['name'] = $employer['company']['name'];
 				$employers[$i]['title'] = $employer['title'];
@@ -145,7 +147,7 @@ class Resume extends AppModel {
 			}
 			$resume['ResumeEmployer']['ResumeEmployer'] = $this->saveAllIds($this->ResumeEmployer, $employers);
 		}
-		
+
 		if (!empty($data['educations']['values'])) {
 			foreach ($data['educations']['values'] as $i => $school) {
 				if (isset($school['id'])) $schools[$i]['uuid'] = $school['id'];
@@ -162,8 +164,8 @@ class Resume extends AppModel {
 			}
 			$resume['ResumeSchool']['ResumeSchool'] = $this->saveAllIds($this->ResumeSchool, $schools);
 		}
-		
-		
+
+
 		if (!empty($data['recommendationsReceived']['values'])) {
 			foreach ($data['recommendationsReceived']['values'] as $i => $recommendation) {
 				$recommendations[$i]['uuid'] = $recommendation['id'];
@@ -176,7 +178,7 @@ class Resume extends AppModel {
 			}
 			$resume['ResumeRecommendation']['ResumeRecommendation'] = $this->saveAllIds($this->ResumeRecommendation, $recommendations);
 		}
-		
+
 		$resume['Resume']['summary'] = $data['summary'];
 		$resume['Resume']['specialties'] = $data['specialties'];
 		$resume['Resume']['associations'] = $data['associations'];
@@ -184,20 +186,20 @@ class Resume extends AppModel {
 		$resume['Resume']['interests'] = $data['interests'];
 		$resume['Resume']['first_name'] = $data['firstName'];
 		$resume['Resume']['last_name'] = $data['lastName'];
-		
+
 		if (!empty($resume)) {
 			$this->save($resume);
 		}
-		
+
 		return $data;
 	}
-	
+
 	/**
 	 * Saves multiple rows of the same model (like saveAll()) and returns the collection of insertIds
-	 * Must 
+	 * Must
 	 *
-	 * @param object $Model 
-	 * @param array $data 
+	 * @param object $Model
+	 * @param array $data
 	 * @return array collection of insertIds
 	 * @author Dean Sofer
 	 */
@@ -209,6 +211,11 @@ class Resume extends AppModel {
 			$ids[] = $Model->id;
 		}
 		return $ids;
+	}
+
+	public function refreshNav() {
+		$navResume = $this->find('count', array('conditions' => array('Resume.published' => true)));
+		Cache::write('navResume', $navResume);
 	}
 
 }

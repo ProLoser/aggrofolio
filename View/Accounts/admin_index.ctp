@@ -4,6 +4,7 @@
 	</hgroup>
 	<ul class="actions">
 		<li><?php echo $this->Html->link(__('New Account'), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('Importer'), array('action' => 'importer')); ?></li>
 	</ul>
 </header>
 <article class="accounts index">
@@ -59,7 +60,7 @@
 			<?php echo $this->Batch->checkbox($account['Account']['id'])?>
 		</td>
 	</tr>
-<?php endforeach; 
+<?php endforeach;
 echo $this->Batch->batch(array(null, null, null, 'username', 'email', 'type', 'published'));?>
 	</table>
 	<?php echo $this->Batch->end()?>

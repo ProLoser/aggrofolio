@@ -41,28 +41,25 @@ class AccountsController extends AppController {
 	function admin_callback($useDbConfig = null) {
 		$this->Oauth->useDbConfig = $useDbConfig;
 		$tokens = $this->Oauth->callback();
-		diebug($tokens);
+		$this->Account->setup($useDbConfig, $tokens);
+		$this->redirect(array('action' => 'importer', $this->Account->id));
 	}
 	
 	function admin_scan($id = null) {
-		if (!$id) {
-			$this->Session->setFlash(__('Invalid type'));
-		} elseif ($this->Account->scan($id)) {
-			$this->Session->setFlash(__('The account has been scanned'));
-		} else {
-			$this->Session->setFlash(__('There was an error scanning the account. Try logging in again.'));
-		}
-		$this->redirect(array('action' => 'index'));
+		return $this->Account->scan($id);
 	}
 	
-	public function admin_importer() {
+	public function admin_importer($id = null) {
 		$projects = $this->Account->Project->find('list');
 		$works = $this->Account->ResumeEmployer->find('list');
 		$schools = $this->Account->ResumeSchool->find('list');
 		$mediaItems = $this->Account->MediaItem->find('list');
 		$posts = $this->Account->Post->find('list');
-		$accounts = $this->Account->find('list');
-		$this->set(compact('projects','works','schools','mediaItems','posts', 'accounts'));
+		$account = array();
+		if ($id) {
+			$account = $this->find('first', array('conditions' => array('Account.id' => $id)));
+		}
+		$this->set(compact('projects','works','schools','mediaItems','posts', 'account'));
 	}
 
 	function admin_index() {

@@ -31,7 +31,7 @@ class Bookmark extends AppModel {
 		'BookmarkCategory',
 		'User',
 	);
-	
+
 	public $hasMany = array(
 		'PostRelationship' => array(
 			'foreignKey' => 'foreign_key',
@@ -42,12 +42,12 @@ class Bookmark extends AppModel {
 	public $actsAs = array(
 		'Activity',
 	);
-	
+
 	public function scan($accountId) {
 		$account = $this->Account->read(null, $accountId);
 		return $this->scanXmarks($account);
 	}
-	
+
 	public function scanXmarks($account) {
 		$this->setDbConfig('rss');
 		$this->feedUrl = $account['Account']['username'];
@@ -94,7 +94,12 @@ class Bookmark extends AppModel {
 		}
 		return $count;
 	}
-	
+
+	public function refreshNav() {
+		$navBookmarks = $this->find('count');
+		Cache::write('navBookmarks', $navBookmarks);
+	}
+
 	public function beforeSave($options = array()) {
 		if (!parent::beforeSave($options)) {
 			return false;

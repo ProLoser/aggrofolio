@@ -129,6 +129,17 @@ div.timeline li {
 		<li>Posts</li>
 	</ul>
 </header>
+<?php if (!empty($imported)): ?>
+<div class="modal">
+	<h2>Scan Account</h2>
+	<div>
+		<?php echo $this->Form->create('Account'); ?>
+			<?php echo $this->Form->input('Account.published', array('label' => 'Auto-Publish New Content')); ?>
+			<h3>Loading Content...</h3>
+		<?php echo $this->Form->end(); ?>
+	</div>
+</div>
+<?php endif ?>
 <div class="modal">
 	<h2>Select an Account</h2>
 	<div>
@@ -137,7 +148,7 @@ div.timeline li {
 			<li class="linkedin"><?php echo $this->Html->link('LinkedIn', array('action' => 'connect', 'linkedin')); ?></li>
 			<li class="facebook"><?php echo $this->Html->link('Facebook', array('action' => 'connect', 'facebook')); ?></li>
 		</ul>
-		
+
 		<h3>Projects</h3>
 		<ul>
 			<li class="github"><?php echo $this->Html->link('Github', array('action' => 'connect', 'github')); ?></li>
@@ -145,7 +156,7 @@ div.timeline li {
 			<li class="basecamp"><?php echo $this->Html->link('BaseCamp', array('action' => 'connect', 'basecamp')); ?></li>
 			<li class="asana"><?php echo $this->Html->link('Asana', array('action' => 'connect', 'asana')); ?></li>
 		</ul>
-	
+
 		<h3>Media</h3>
 		<ul>
 			<li class="instagram"><?php echo $this->Html->link('Instagram', array('action' => 'connect', 'instagram')); ?></li>
@@ -165,7 +176,7 @@ div.timeline li {
 			<li class="delicious"><?php echo $this->Html->link('Delicious', array('action' => 'connect', 'delicious')); ?></li>
 			<li class="stackoverflow"><?php echo $this->Html->link('Stack Overflow', array('action' => 'connect', 'stackoverflow')); ?></li>
 		</ul>
-	
+
 		<h3>Blogs</h3>
 		<ul>
 			<li class="rss"><?php echo $this->Html->link('RSS', array('action' => 'connect', 'rss')); ?></li>

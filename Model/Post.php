@@ -18,11 +18,11 @@ class Post extends AppModel {
 			'isUnique'=>array(
 				'rule' => 'isUnique',
 				'message' => 'This slug is already taken.',
-			),	
+			),
 			'allowEmpty' => true,
 		),
 	);
-	
+
 	var $hasMany = array(
 		'PostRelationship',
 		'Comment' => array(
@@ -32,17 +32,17 @@ class Post extends AppModel {
 			)
 		)
 	);
-	
+
 	var $belongsTo = array(
 		'PostCategory',
 		'Account',
 		'User',
 	);
-	
+
 	var $actsAs = array(
 		'Activity',
 	);
-	
+
 	public function beforeValidate() {
 		if (!parent::beforeValidate()) {
 			return true;
@@ -75,13 +75,13 @@ class Post extends AppModel {
 		}
 		return true;
 	}
-	
+
 	public function scanBlog($account) {
 		$this->setDbConfig('rss');
 		$this->feedUrl = $this->getRss($account['Account']['username']);
 		$posts = $this->find('all');
 		$this->setDbConfig();
-		
+
 		$data = array();
 		$categories = $this->PostCategory->quickMatch();
 		foreach ($posts as $i => $post) {
@@ -99,6 +99,11 @@ class Post extends AppModel {
 			}
 		}
 		$this->saveMany($data);
+	}
+
+	public function refreshNav() {
+		$navBlog = $this->find('count', array('conditions' => array('Post.published' => true)));
+		Cache::write('navBlog', $navBlog);
 	}
 
 	/**

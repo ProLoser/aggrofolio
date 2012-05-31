@@ -31,9 +31,9 @@
  * @subpackage    cake.app
  */
 class AppController extends Controller {
-	
+
 	var $helpers = array(
-		'Session',	
+		'Session',
 		'Time',
 		'BakingPlate.Plate',
 		'Agro',
@@ -53,9 +53,9 @@ class AppController extends Controller {
 			'authenticate' => array(
 				'Form' => array(
 					'fields' => array(
-						'username' => 'email', 
+						'username' => 'email',
 						'password' => 'password',
-					),					
+					),
 				),
 			),
 			'loginAction' => array('admin' => false, 'plugin' => null, 'controller' => 'users', 'action' => 'login'),
@@ -78,16 +78,16 @@ class AppController extends Controller {
  * @var string
  */
 	var $debugOverride = 'debug';
-	
+
 /**
  * Used to set a max for the pagination limit
  *
  * @var int
  */
     var $paginationMaxLimit = 25;
-	
+
 /**
- * This allows the enabling of debug mode even if debug is set to off. 
+ * This allows the enabling of debug mode even if debug is set to off.
  * Simply pass ?debug=1 in the url
  */
 	public function __construct($request = null, $response = null) {
@@ -101,8 +101,8 @@ class AppController extends Controller {
 		}
 		parent::__construct($request, $response);
 	}
-	
-	function beforeFilter() {
+
+	public function beforeFilter() {
 		$this->_setOwner();
 		$this->_setAuth();
 		if (
@@ -116,26 +116,25 @@ class AppController extends Controller {
 		// $this->_setLanguage();
 		// $this->_setMaintenance();
 	}
-	
+
 	public function afterFilter() {
 		$this->_rememberMember();
 	}
-	
-	/**
-	 * Refresh the logged in user's cookie
-	 */
-	function _rememberMember() {
-	    if ($this->params['action'] != 'logout') {
-	        $this->RememberMe->checkUser();
-	    }
-	}
-	
-	
+
 /**
  * Changes the layout of the page if the prefix changes - switch to basic layout for errors
  */
-	function beforeRender() {
+	public function beforeRender() {
 		$this->_setTheme();
+	}
+
+/**
+ * Refresh the logged in user's cookie
+ */
+	protected function _rememberMember() {
+	    if ($this->params['action'] != 'logout') {
+	        $this->RememberMe->checkUser();
+	    }
 	}
 
 /**
@@ -161,22 +160,22 @@ class AppController extends Controller {
 	protected function _setAuth() {
 		$this->Auth->authError = __('Sorry, but you need to login to access this location.');
 		$this->Auth->loginError = __('Invalid e-mail / password combination.  Please try again');
-		
+
 		if (!$this->Plate->prefix('admin')) {
 			$this->Auth->allow();
 		}
-		
+
 		if ($this->Plate->prefix('admin') && $this->Auth->user('role') !== 'admin' && Configure::read('owner') !== $this->Auth->user('id')) {
 			$this->Session->setFlash('You are not the owner of this account');
 			$this->redirect('/');
 		}
-		
+
 		if ($this->Plate->prefix('manager') && $this->Auth->user('role') !== 'admin') {
 			$this->Session->setFlash('You do not have permission to access this section');
 			$this->redirect('/');
 		}
 	}
-	
+
 /**
  * Place your language switching logic here (if you use it)
  */
@@ -221,6 +220,31 @@ class AppController extends Controller {
 					$this->Account->refreshNav();
 				}
 				$this->set('navAccounts', Cache::read('navAccounts'));
+				if (!Cache::read('navResume')) {
+					$this->loadModel('Account');
+					$this->Account->Resume->refreshNav();
+				}
+				$this->set('navResume', Cache::read('navResume'));
+				if (!Cache::read('navProjects')) {
+					$this->loadModel('Account');
+					$this->Account->Project->refreshNav();
+				}
+				$this->set('navProjects', Cache::read('navProjects'));
+				if (!Cache::read('navBlog')) {
+					$this->loadModel('Account');
+					$this->Account->Post->refreshNav();
+				}
+				$this->set('navBlog', Cache::read('navBlog'));
+				if (!Cache::read('navBookmarks')) {
+					$this->loadModel('Account');
+					$this->Account->Bookmark->refreshNav();
+				}
+				$this->set('navBookmarks', Cache::read('navBookmarks'));
+				if (!Cache::read('navGallery')) {
+					$this->loadModel('Account');
+					$this->Account->Album->refreshNav();
+				}
+				$this->set('navGallery', Cache::read('navGallery'));
 			}
 		}
 	}
@@ -228,8 +252,8 @@ class AppController extends Controller {
 /**
  * Added support for continuing localized urls
  *
- * @param string $url 
- * @param string $status 
+ * @param string $url
+ * @param string $status
  * @param string $exit  Sofer
  * @access public
  */
@@ -239,5 +263,5 @@ class AppController extends Controller {
 		}
 		parent::redirect($url, $status, $exit);
 	}
-	
+
 }

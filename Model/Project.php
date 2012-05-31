@@ -26,7 +26,7 @@ class Project extends AppModel {
 		),
 		'User',
 	);
-	
+
 	var $hasMany = array(
 		'Album',
 		'MediaItem',
@@ -39,13 +39,13 @@ class Project extends AppModel {
 	var $actsAs = array(
 		'Activity',
 	);
-	
+
 	/**
 	 * Retrieves a display-oriented record of a project full with api information
 	 *
-	 * @param string $state 
-	 * @param string $query 
-	 * @param string $results 
+	 * @param string $state
+	 * @param string $query
+	 * @param string $results
 	 * @return array $query | $results
 	 * @author Dean Sofer
 	 */
@@ -87,7 +87,7 @@ class Project extends AppModel {
 					));
 					$results['github'] = $this->find('all', array(
 						'conditions' => array(
-							'user' => $results['Project']['owner'], 
+							'user' => $results['Project']['owner'],
 							'repo' => $name,
 						),
 						'fields' => 'repos'
@@ -97,7 +97,7 @@ class Project extends AppModel {
 				case 'codaset':
 					$results['codaset'] = $this->find('all', array(
 						'conditions' => array(
-							'username' => $results['Project']['owner'], 
+							'username' => $results['Project']['owner'],
 							'project' => $name,
 						),
 						'fields' => 'projects',
@@ -105,7 +105,7 @@ class Project extends AppModel {
 					$results['blog'] = null;
 					/* DISABLING BECAUSE CODASET SUCKS $this->find('all', array(
 						'conditions' => array(
-							'username' => $results['Project']['owner'], 
+							'username' => $results['Project']['owner'],
 							'project' => $name,
 						),
 						'fields' => 'blog'
@@ -115,12 +115,12 @@ class Project extends AppModel {
 	        return $results;
 	    }
 	}
-	
+
 	/**
 	 * Convenience wrapper for full find type
 	 *
-	 * @param string $id 
-	 * @param string $cache 
+	 * @param string $id
+	 * @param string $cache
 	 * @return void
 	 * @author Dean Sofer
 	 */
@@ -132,7 +132,7 @@ class Project extends AppModel {
 		}
 		return $data;
 	}
-	
+
 	function scanGithub($account) {
 		$this->setDbConfig('github');
 		$projects = $this->find('all', array(
@@ -161,7 +161,7 @@ class Project extends AppModel {
 		}
 		return $count;
 	}
-	
+
 	function scanCodaset($account) {
 		$this->setDbConfig('codaset');
 		$projects = $this->find('all', array('conditions' => array('username' => $account['Account']['username']), 'fields' => 'projects'));
@@ -182,5 +182,10 @@ class Project extends AppModel {
 		}
 		return $i;
 	}
-	
+
+	public function refreshNav() {
+		$navProjects = $this->find('count', array('conditions' => array('Project.published' => true)));
+		Cache::write('navProjects', $navProjects);
+	}
+
 }
