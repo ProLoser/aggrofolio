@@ -73,3 +73,6 @@
 [submodule "Plugin/RememberMe"]
 	path = Plugin/RememberMe
 	url = git://github.com/voidet/remember_me.git
+[submodule "Plugin/Instagram"]
+	path = Plugin/Instagram
+	url = git://github.com/ProLoser/CakePHP-Instagram.git
