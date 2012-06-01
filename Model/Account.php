@@ -80,7 +80,8 @@ class Account extends AppModel {
 					$data['Account'] = array();
 				}
 				$data['Account']['username'] = $user['login'];
-				$data['Account']['email'] = $user['email'];
+				if (isset($user['email'))
+					$data['Account']['email'] = $user['email'];
 			break;
 			case 'linkedin';
 				$user = $this->find('all', array('path' => 'people/~', 'fields' => array('id')));
