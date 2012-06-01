@@ -11,6 +11,7 @@
 
 <h3>Admin</h3>
 <ul class="toggle">
+	<li class="icn_profile"><?php echo $this->Html->link('Importer', array('controller' => 'accounts', 'action' => 'importer')); ?></li>
 	<li class="icn_profile"><?php echo $this->Html->link('Users', array('controller' => 'users', 'action' => 'index')); ?></li>
 	<li class="icn_view_users"><?php echo $this->Html->link('Accounts', array('controller' => 'accounts', 'action' => 'index')); ?></li>
 	<li class="icn_edit_article"><?php echo $this->Html->link('Emails', array('controller' => 'contacts', 'action' => 'index')); ?></li>

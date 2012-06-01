@@ -16,7 +16,8 @@
 	?>
 </head>
 <body>
-
+	<h1>Timeline Importer</h1>
+	<?php echo $this->Html->link('/admin');?>
 	<?php echo $this->Session->flash(); ?>
 	<?php echo $this->Session->flash('email'); ?>
 	<?php echo $content_for_layout; ?>

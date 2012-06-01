@@ -24,6 +24,7 @@
 			<?php echo $this->Paginator->next();?>
 		</div>
 	</header>
+	<?php echo $this->Batch->create('Resume')?>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 		<th><?php echo $this->Paginator->sort('id');?></th>
@@ -32,9 +33,19 @@
 		<th><?php echo $this->Paginator->sort('purpose');?></th>
 		<th><?php echo $this->Paginator->sort('first_name');?></th>
 		<th><?php echo $this->Paginator->sort('last_name');?></th>
+		<th><?php echo $this->Paginator->sort('published');?></th>
 		<th class="actions"><?php echo __('Actions');?></th>
 	</tr>
 	<?php
+	echo $this->Batch->filter(array(
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		'published',
+	));
 	$i = 0;
 	foreach ($resumes as $resume):
 		$class = null;
@@ -49,12 +60,18 @@
 		<td><?php echo $resume['Resume']['purpose']; ?>&nbsp;</td>
 		<td><?php echo $resume['Resume']['first_name']; ?>&nbsp;</td>
 		<td><?php echo $resume['Resume']['last_name']; ?>&nbsp;</td>
+                <td><?php echo $resume['Resume']['published']; ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $resume['Resume']['id']), array('class' => 'view')); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $resume['Resume']['id']), array('class' => 'edit')); ?>
 			<?php echo $this->Html->link(__('Delete'), array('action' => 'delete', $resume['Resume']['id']), array('class' => 'delete'), sprintf(__('Are you sure you want to delete # %s?'), $resume['Resume']['id'])); ?>
 		</td>
 	</tr>
-<?php endforeach; ?>
+<?php endforeach; 
+echo $this->Batch->batch(array(
+	null,null,null,null,null,null,'published',
+));
+?>
 	</table>
+	<?php echo $this->Batch->end();?>
 </article>

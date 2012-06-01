@@ -21,7 +21,6 @@
 }
 div.timeline {
 	overflow: hidden;
-	min-height: 1000px;
 }
 div.timeline ul {
 	width: 25%;
