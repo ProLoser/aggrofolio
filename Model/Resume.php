@@ -120,8 +120,10 @@ class Resume extends AppModel {
 			foreach ($data['skills']['values'] as $i => $skill) {
 				$skills[$i]['uuid'] = $skill['id'];
 				$skills[$i]['name'] = $skill['skill']['name'];
-				$skills[$i]['years'] = $skill['years']['name'];
-				$skills[$i]['proficiency'] = $skill['proficiency']['name'];
+				if (isset($skill['years'))
+					$skills[$i]['years'] = $skill['years']['name'];
+				if (isset($skill['proficiency']))
+					$skills[$i]['proficiency'] = $skill['proficiency']['name'];
 				$skills[$i]['account_id'] = $account['Account']['id'];
 			}
 			$resume['ResumeSkill']['ResumeSkill'] = $this->saveAllIds($this->ResumeSkill, $skills);
@@ -151,9 +153,12 @@ class Resume extends AppModel {
 				if (isset($school['id'])) $schools[$i]['uuid'] = $school['id'];
 				$schools[$i]['field_of_study'] = $school['fieldOfStudy'];
 				$schools[$i]['name'] = $school['schoolName'];
-				$schools[$i]['activities'] = $school['activities'];
-				$schools[$i]['notes'] = $school['notes'];
-				$schools[$i]['degree'] = $school['degree'];
+				if (isset($school['activities']))
+					$schools[$i]['activities'] = $school['activities'];
+				if (isset($school['notes']))
+					$schools[$i]['notes'] = $school['notes'];
+				if (isset($school['degree']))
+					$schools[$i]['degree'] = $school['degree'];
 				if (isset($school['startDate']))
 					$schools[$i]['date_started'] = array_merge($date, $school['startDate']);
 				if (isset($school['endDate']))
@@ -179,11 +184,16 @@ class Resume extends AppModel {
 		}
 
 		if (!empty($data)) {
-			$resume['Resume']['summary'] = $data['summary'];
-			$resume['Resume']['specialties'] = $data['specialties'];
-			$resume['Resume']['associations'] = $data['associations'];
-			$resume['Resume']['honors'] = $data['honors'];
-			$resume['Resume']['interests'] = $data['interests'];
+			if (isset($data['summary']))
+				$resume['Resume']['summary'] = $data['summary'];
+			if (isset($data['specialties']))
+				$resume['Resume']['specialties'] = $data['specialties'];
+			if (isset($data['associations']))
+				$resume['Resume']['associations'] = $data['associations'];
+			if (isset($data['honors']))
+				$resume['Resume']['honors'] = $data['honors'];
+			if (isset($data['interests']))
+				$resume['Resume']['interests'] = $data['interests'];
 			$resume['Resume']['first_name'] = $data['firstName'];
 			$resume['Resume']['last_name'] = $data['lastName'];
 		}
