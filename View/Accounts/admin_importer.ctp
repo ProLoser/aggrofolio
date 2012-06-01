@@ -69,39 +69,103 @@
 
 	<div class="timeline">
 		<ul id="experience">
+
+		<?php if (!empty($this->request->data['ResumeSchool'])): ?>
+			<?php foreach ($this->request->data['ResumeSchool'] as $i => $school):
+				unset($schools[$school['id']]);
+			?>
+				<li>
+					<?php echo $this->Form->input("ResumeSchool.$i.id");?>
+					<?php echo $this->Form->input("ResumeSchool.$i.name"); ?>
+					<?php echo $this->Form->input("ResumeSchool.$i.published"); ?>
+					<?php echo $this->Html->link('[Edit]', array('controller' => 'resume_schools', 'action' => 'edit', $school['id']));?>
+				</li>
+			<?php endforeach ?>
+		<?php endif ?>
+
 		<?php foreach ($schools as $id => $school): ?>
-			<li><?php echo $school; ?> <?php echo $this->Html->link('[Edit]', array('controller' => 'resume_skills','action' => 'edit',$id));?></li>
+			<li><?php echo $school; ?> <?php echo $this->Html->link('[Edit]', array('controller' => 'resume_schools','action' => 'edit',$id));?></li>
 		<?php endforeach ?>
+
+		<?php if (!empty($this->request->data['ResumeEmployer'])): ?>
+			<?php foreach ($this->request->data['ResumeEmployer'] as $i => $work):
+				unset($works[$work['id']]);
+			?>
+				<li>
+					<?php echo $this->Form->input("ResumeEmployer.$i.id");?>
+					<?php echo $this->Form->input("ResumeEmployer.$i.name"); ?>
+					<?php echo $this->Form->input("ResumeEmployer.$i.published"); ?>
+					<?php echo $this->Html->link('[Edit]', array('controller' => 'resume_employers', 'action' => 'edit', $work['id']));?>
+				</li>
+			<?php endforeach ?>
+		<?php endif ?>
+
 		<?php foreach ($works as $id => $work): ?>
 			<li><?php echo $work; ?> <?php echo $this->Html->link('[Edit]', array('controller' => 'resume_employers','action' => 'edit',$id));?></li>
 		<?php endforeach ?>
+
 		</ul>
 		<ul id="projects">
+
 		<?php if (!empty($this->request->data['Project'])): ?>
-		<?php foreach ($this->request->data['Project'] as $i => $project):
-			unset($projects[$project['id']]);
-		?>
-			<li>
-				<?php echo $this->Form->input("Project.$i.id");?>
-				<?php echo $this->Form->input("Project.$i.name"); ?>
-				<?php echo $this->Form->input("Project.$i.published"); ?>
-				<?php echo $this->Html->link('[Edit]', array('controller' => 'projects', 'action' => 'edit', $project['id']));?>
-			</li>
-		<?php endforeach ?>
+			<?php foreach ($this->request->data['Project'] as $i => $project):
+				unset($projects[$project['id']]);
+			?>
+				<li>
+					<?php echo $this->Form->input("Project.$i.id");?>
+					<?php echo $this->Form->input("Project.$i.name"); ?>
+					<?php echo $this->Form->input("Project.$i.published"); ?>
+					<?php echo $this->Html->link('[Edit]', array('controller' => 'projects', 'action' => 'edit', $project['id']));?>
+				</li>
+			<?php endforeach ?>
 		<?php endif ?>
+
 		<?php foreach ($projects as $id => $project): ?>
 			<li><?php echo $project ?> <?php echo $this->Html->link('[Edit]', array('controller' => 'projects','action' => 'edit',$id));?></li>
 		<?php endforeach ?>
+
 		</ul>
+
 		<ul id="media">
+
+		<?php if (!empty($this->request->data['MediaItem'])): ?>
+			<?php foreach ($this->request->data['MediaItem'] as $i => $item):
+				unset($mediaItems[$item['id']]);
+			?>
+				<li>
+					<?php echo $this->Form->input("MediaItem.$i.id");?>
+					<?php echo $this->Form->input("MediaItem.$i.name"); ?>
+					<?php echo $this->Form->input("MediaItem.$i.published"); ?>
+					<?php echo $this->Html->link('[Edit]', array('controller' => 'media_items', 'action' => 'edit', $item['id']));?>
+				</li>
+			<?php endforeach ?>
+		<?php endif ?>
+
 		<?php foreach ($mediaItems as $id => $item): ?>
 			<li><?php echo $item; ?> <?php echo $this->Html->link('[Edit]', array('controller' => 'media_items','action' => 'edit',$id));?></li>
 		<?php endforeach ?>
+
 		</ul>
+
 		<ul id="posts">
+
+		<?php if (!empty($this->request->data['Post'])): ?>
+			<?php foreach ($this->request->data['Post'] as $i => $post):
+				unset($posts[$post['id']]);
+			?>
+				<li>
+					<?php echo $this->Form->input("Post.$i.id");?>
+					<?php echo $this->Form->input("Post.$i.name"); ?>
+					<?php echo $this->Form->input("Post.$i.published"); ?>
+					<?php echo $this->Html->link('[Edit]', array('controller' => 'posts', 'action' => 'edit', $post['id']));?>
+				</li>
+			<?php endforeach ?>
+		<?php endif ?>
+
 		<?php foreach ($posts as $id => $post): ?>
 			<li><?php echo $post; ?> <?php echo $this->Html->link('[Edit]', array('controller' => 'posts','action' => 'edit',$id));?></li>
 		<?php endforeach ?>
+
 		</ul>
 	</div>
 <?php echo $this->Form->end('Save Changes'); ?>

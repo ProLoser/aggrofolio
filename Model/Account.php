@@ -202,7 +202,8 @@ class Account extends AppModel {
 				'Album',
 				'Post',
 				'Project',
-				'Resume',
+				'ResumeEmployer',
+				'ResumeSchool',
 				'Bookmark',
 			);
 
@@ -215,7 +216,8 @@ class Account extends AppModel {
 				case 'github':
 					unset($results[0]['Album']);
 					unset($results[0]['Post']);
-					unset($results[0]['Resume']);
+					unset($results[0]['ResumeEmployer']);
+					unset($results[0]['ResumeSchool']);
 					unset($results[0]['Bookmark']);
 					break;
 
