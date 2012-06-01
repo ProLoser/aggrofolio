@@ -120,7 +120,7 @@ class Resume extends AppModel {
 			foreach ($data['skills']['values'] as $i => $skill) {
 				$skills[$i]['uuid'] = $skill['id'];
 				$skills[$i]['name'] = $skill['skill']['name'];
-				if (isset($skill['years'))
+				if (isset($skill['years']))
 					$skills[$i]['years'] = $skill['years']['name'];
 				if (isset($skill['proficiency']))
 					$skills[$i]['proficiency'] = $skill['proficiency']['name'];
