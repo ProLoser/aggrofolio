@@ -9,12 +9,18 @@ class ResumeEmployer extends AppModel {
 		'name' => array(
 			'rule' => 'notEmpty',
 			'message' => 'Please enter a valid name',
+			'required' => 'create',
 		),
 		'uuid' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
 				'message' => 'Please enter a numeric uuid',
-				'allowEmpty' => true
+				'allowEmpty' => true,
+			),
+			'isUnique' => array(
+				'rule' => array('isUnique'),
+				'message' => 'Uuid must be unique',
+				'allowEmpty' => true,
 			),
 		),
 	);
@@ -23,7 +29,7 @@ class ResumeEmployer extends AppModel {
 		'Account',
 		'User',
 	);
-	
+
 	var $hasMany = array(
 		'Project',
 		'PostRelationship' => array(

@@ -26,9 +26,8 @@ class ResumeSchool extends AppModel {
 		'name' => array(
 			'isUnique' => array(
 				'rule' => array('isUnique'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
+				'message' => 'Name must be unique',
+				'required' => 'create',
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
@@ -40,7 +39,7 @@ class ResumeSchool extends AppModel {
 		'Account',
 		'User',
 	);
-	
+
 	var $hasMany = array(
 		'Project',
 		'PostRelationship' => array(

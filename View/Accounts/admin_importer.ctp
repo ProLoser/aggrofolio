@@ -27,11 +27,10 @@ section#main {
 }
 div.timeline {
 	overflow: hidden;
-	height: 1000px;
+	min-height: 1000px;
 }
 div.timeline ul {
 	width: 25%;
-	height: 100%;
 	float: left;
 	margin: 10px 0;
 	padding: 0;
@@ -52,6 +51,7 @@ div.timeline li {
 	padding: 10px;
 	box-shadow: 0 0 10px rgba(0,0,0,.5);
 	text-align: center;
+	display: none;
 }
 .modal ul {
 	margin: 0;
@@ -61,7 +61,7 @@ div.timeline li {
 	display: inline-block;
 	margin: 10px;
 }
-.modal a {
+.modal li a {
 	background: no-repeat 50% 0;
 	display: inline-block;
 	padding-top: 40px;
@@ -120,8 +120,36 @@ div.timeline li {
 .modal .yelp a { background-image: url(<?= $base?>yelp.png); }
 .modal .youtube a { background-image: url(<?= $base?>youtube.png); }
 </style>
+
+<?php echo $this->Html->scriptStart(array('inline' => false)); ?>
+$(document).ready(function(){
+	$('#AccountPublished').change(function(e){
+		$('input:checkbox').attr('checked', $(this).is(':checked'));
+	});
+	$('#import').click(function(e){
+		e.preventDefault();
+		$('.modal').fadeIn();
+	});
+	$('.modal .close').click(function(e){
+		e.preventDefault();
+		$('.modal').fadeOut();
+	});
+});
+<?php echo $this->Html->scriptEnd(); ?>
+<?php echo $this->Form->create('Account'); ?>
 <header class="timeline">
-	<h2>Sections</h2>
+	<h2>
+		Sections <a href="#" id="import">[Import]</a>
+		<?php if (!empty($this->request->data)): ?>
+		 - Imported <?php echo $this->Form->value('Account.type');?> - <?php echo $this->Form->value('Account.username');?>
+		<?php endif ?>
+	</h2>
+
+	<?php if (!empty($this->request->data)): ?>
+		<?php echo $this->Form->input('Account.id'); ?>
+		<?php echo $this->Form->input('Account.published', array('label' => 'Auto-Publish New Content')); ?>
+	<?php endif ?>
+
 	<ul>
 		<li>Experience</li>
 		<li>Projects</li>
@@ -129,20 +157,9 @@ div.timeline li {
 		<li>Posts</li>
 	</ul>
 </header>
-<?php if (!empty($this->request->data)): ?>
+<?php if (empty($this->request->data)): ?>
 <div class="modal">
-	<h2>Scan Account</h2>
-	<div>
-		<?php echo $this->Form->create('Account'); ?>
-			<?php echo $this->Form->input('Account.id') ?>
-			<?php echo $this->Form->input('Account.published', array('label' => 'Auto-Publish New Content')); ?>
-			<?php debug($account); ?>
-		<?php echo $this->Form->end(); ?>
-	</div>
-</div>
-<?php else: ?>
-<div class="modal">
-	<h2>Select an Account</h2>
+	<h2>Select an Account <a href="#" class="close">[X]</a></h2>
 	<div>
 		<h3>Experience</h3>
 		<ul>
@@ -168,6 +185,7 @@ div.timeline li {
 			<li class="vimeo"><?php echo $this->Html->link('Vimeo', array('action' => 'connect', 'vimeo')); ?></li>
 			<li class="behance"><?php echo $this->Html->link('Behance', array('action' => 'connect', 'behance')); ?></li>
 			<li class="dribbble"><?php echo $this->Html->link('Dribble', array('action' => 'connect', 'dribbble')); ?></li>
+			<li class="photobucket"><?php echo $this->Html->link('Photobucket', array('action' => 'connect', 'photobucket')); ?></li>
 			<li class="forrst"><?php echo $this->Html->link('Forrst', array('action' => 'connect', 'forrst')); ?></li>
 		</ul>
 
@@ -188,28 +206,41 @@ div.timeline li {
 	</div>
 </div>
 <?php endif ?>
-<div class="timeline">
-	<ul id="experience">
-	<?php foreach ($schools as $id => $school): ?>
-		<li><?php echo $school; ?></li>
-	<?php endforeach ?>
-	<?php foreach ($works as $id => $work): ?>
-		<li><?php echo $work; ?></li>
-	<?php endforeach ?>
-	</ul>
-	<ul id="projects">
-	<?php foreach ($projects as $id => $project): ?>
-		<li><?php echo $project; ?></li>
-	<?php endforeach ?>
-	</ul>
-	<ul id="media">
-	<?php foreach ($mediaItems as $id => $item): ?>
-		<li><?php echo $item; ?></li>
-	<?php endforeach ?>
-	</ul>
-	<ul id="posts">
-	<?php foreach ($posts as $id => $post): ?>
-		<li><?php echo $post; ?></li>
-	<?php endforeach ?>
-	</ul>
-</div>
+
+	<div class="timeline">
+		<ul id="experience">
+		<?php foreach ($schools as $id => $school): ?>
+			<li><?php echo $school; ?> <?php echo $this->Html->link('[Edit]', array('controller' => 'resume_skills','action' => 'edit',$id));?></li>
+		<?php endforeach ?>
+		<?php foreach ($works as $id => $work): ?>
+			<li><?php echo $work; ?> <?php echo $this->Html->link('[Edit]', array('controller' => 'resume_employers','action' => 'edit',$id));?></li>
+		<?php endforeach ?>
+		</ul>
+		<ul id="projects">
+		<?php if (!empty($this->request->data['Project'])): ?>
+		<?php foreach ($this->request->data['Project'] as $i => $project):
+			unset($projects[$project['id']]);
+		?>
+			<li>
+				<?php echo $this->Form->hidden("Project.$i.id");?>
+				<?php echo $this->Form->input("Project.$i.name"); ?>
+				<?php echo $this->Form->input("Project.$i.published"); ?>
+			</li>
+		<?php endforeach ?>
+		<?php endif ?>
+		<?php foreach ($projects as $id => $project): ?>
+			<li><?php echo $project ?> <?php echo $this->Html->link('[Edit]', array('controller' => 'projects','action' => 'edit',$id));?></li>
+		<?php endforeach ?>
+		</ul>
+		<ul id="media">
+		<?php foreach ($mediaItems as $id => $item): ?>
+			<li><?php echo $item; ?> <?php echo $this->Html->link('[Edit]', array('controller' => 'media_items','action' => 'edit',$id));?></li>
+		<?php endforeach ?>
+		</ul>
+		<ul id="posts">
+		<?php foreach ($posts as $id => $post): ?>
+			<li><?php echo $post; ?> <?php echo $this->Html->link('[Edit]', array('controller' => 'posts','action' => 'edit',$id));?></li>
+		<?php endforeach ?>
+		</ul>
+	</div>
+<?php echo $this->Form->end(); ?>

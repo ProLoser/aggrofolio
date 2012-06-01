@@ -17,6 +17,7 @@ class Account extends AppModel {
 			'notempty' => array(
 				'rule' => array('notempty'),
 				'message' => 'Please specify a valid type',
+				'required' => 'create',
 			),
 		),
 	);
@@ -68,19 +69,20 @@ class Account extends AppModel {
 	 * @author Dean Sofer
 	 */
 	public function setup($provider, $tokens) {
-		$data['Account'] = array(
-			'api_key' => $tokens,
-			'type' => $provider,
-		);
+		$data['Account'] = array();
 		$this->setDbConfig($provider);
 		switch ($provider) {
 			case 'github':
-				$user = $this->find('all', array('fields' => 'user'));
+				$user = $this->find('all', array('fields' => 'users'));
+				$this->setDbConfig();
+				$data = $this->find('first', array('conditions' => array('type' => $provider, 'username' => $user['login'])));
 				$data['Account']['username'] = $user['login'];
 				$data['Account']['email'] = $user['email'];
 			break;
 			case 'linkedin';
 				$user = $this->find('all', array('path' => 'people/~', 'fields' => array('id')));
+				$this->setDbConfig();
+				$data = $this->find('first', array('conditions' => array('type' => $provider, 'username' => $user['id'])));
 				$data['Account']['username'] = $user['id'];
 			break;
 			case 'jsfiddle':
@@ -88,9 +90,10 @@ class Account extends AppModel {
 			case 'vimeo':
 			break;
 		}
-		$this->setDbConfig();
+		$data['Account']['api_key'] = $tokens;
+		$data['Account']['type'] = $provider;
 
-		$this->save($data);
+		return $this->save($data);
 	}
 
 	/**
@@ -110,9 +113,6 @@ class Account extends AppModel {
 			break;
 			case 'github':
 				return $this->Project->scanGithub($account);
-			break;
-			case 'codaset':
-				return $this->Project->scanCodaset($account);
 			break;
 			case 'flickr':
 				return $this->Album->scanFlickr($account);

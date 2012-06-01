@@ -41,8 +41,12 @@ class AccountsController extends AppController {
 	public function admin_callback($useDbConfig = null) {
 		$this->Oauth->useDbConfig = $useDbConfig;
 		$tokens = $this->Oauth->callback();
-		$this->Account->setup($useDbConfig, $tokens);
-		$this->redirect(array('action' => 'importer', $this->Account->id));
+		if ($this->Account->setup($useDbConfig, $tokens)) {
+			$this->redirect(array('action' => 'importer', $this->Account->id));
+		} else {
+			$this->Session->setFlash('There was an error');
+			$this->redirect(array('action' => 'importer'));
+		}
 	}
 
 	public function admin_scan($id = null) {

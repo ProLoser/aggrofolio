@@ -7,9 +7,10 @@ class Project extends AppModel {
 			'notempty' => array(
 				'rule' => array('notempty'),
 				'message' => 'Name must not be left empty',
+				'required' => 'create',
 			),
 		),
-		'cvs_url' => array(
+		'uuid' => array(
 			'rule' => 'isUnique',
 			'message' => 'This project url already exists',
 			'allowEmpty' => true,
@@ -92,24 +93,7 @@ class Project extends AppModel {
 						),
 						'fields' => 'repos'
 					));
-					break;
-				/* Farewell Codaset... It was good while it lasted
-				case 'codaset':
-					$results['codaset'] = $this->find('all', array(
-						'conditions' => array(
-							'username' => $results['Project']['owner'],
-							'project' => $name,
-						),
-						'fields' => 'projects',
-					));
-					$results['blog'] = null;
-					/* DISABLING BECAUSE CODASET SUCKS $this->find('all', array(
-						'conditions' => array(
-							'username' => $results['Project']['owner'],
-							'project' => $name,
-						),
-						'fields' => 'blog'
-					));*/
+				break;
 			}
 			$this->setDbConfig();
 	        return $results;
@@ -155,33 +139,16 @@ class Project extends AppModel {
 				'description' => $project['description'],
 				'owner' => $project['owner']['login'],
 				'url' => $project['homepage'],
+				'published' => $account['Account']['published'],
+				'uuid' => $project['id'],
 			));
 			$this->save($data);
 			$data['Project']['id'] = $this->id;
 			$account['Project'][] = $data['Project'];
+			// Add new skills while I'm here
+			$this->Account->ResumeSkill->save(array('ResumeSkill' => array('name' => $project['language'])));
 		}
 		return $account;
-	}
-
-	function scanCodaset($account) {
-		$this->setDbConfig('codaset');
-		$projects = $this->find('all', array('conditions' => array('username' => $account['Account']['username']), 'fields' => 'projects'));
-		$collabs = $this->find('all', array('conditions' => array('username' => $account['Account']['username']), 'fields' => 'collaborations'));
-		$projects = array_merge($projects, $collabs);
-		$this->setDbConfig();
-		$i = 0;
-		foreach ($projects as $project) {
-			$this->create();
-			$this->save(array('Project' => array(
-				'cvs_url' => $project['url'],
-				'account_id' => $account['Account']['id'],
-				'name' => $project['title'],
-				'description' => $project['description'],
-				'owner' => $project['owner']['login'],
-			)));
-			$i++;
-		}
-		return $i;
 	}
 
 	public function refreshNav() {

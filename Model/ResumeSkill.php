@@ -7,11 +7,16 @@ class ResumeSkill extends AppModel {
 		'name' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				'message' => 'Your custom message here',
+				'message' => 'Name field must not be empty',
+				'required' => 'create',
+			),
+			'isUnique' => array(
+				'rule' => 'isUnique',
+				'message' => 'Must be a unique skill',
 			),
 		),
 	);
-	
+
 	var $belongsTo = array(
 		'Account',
 		'ResumeSkillCategory',
@@ -21,7 +26,7 @@ class ResumeSkill extends AppModel {
 	var $hasAndBelongsToMany = array(
 		'Resume',
 	);
-	
+
 	var $proficiencies = array(
 		'expert'		=> 'Expert',
 		'advanced'		=> 'Advanced',
