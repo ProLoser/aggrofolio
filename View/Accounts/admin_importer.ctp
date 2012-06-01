@@ -10,6 +10,12 @@
 		<?php if (!empty($this->request->data)): ?>
 			<?php echo $this->Form->input('Account.id'); ?>
 			<?php echo $this->Form->input('Account.published', array('label' => 'Auto-Publish New Content')); ?>
+			<?php if (!empty($this->request->data['Resume'])):?>
+				<h3>Save the new Resume details</h3>
+				<?php echo $this->Form->input('Resume.id')?>
+				<?php echo $this->Form->input('Resume.published')?>
+				<?php echo $this->Form->input('Resume.purpose')?>
+			<?php endif; ?>
 		<?php endif ?>
 
 		<ul>
