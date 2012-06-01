@@ -1,8 +1,8 @@
 <?php
 class Project extends AppModel {
-	var $name = 'Project';
-	var $order = 'Project.name ASC';
-	var $validate = array(
+	public $name = 'Project';
+	public $order = 'Project.name ASC';
+	public $validate = array(
 		'name' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
@@ -17,7 +17,7 @@ class Project extends AppModel {
 		),
 	);
 	public $findMethods = array('full' => true);
-	var $belongsTo = array(
+	public $belongsTo = array(
 		'Account',
 		'ProjectCategory',
 		'ResumeEmployer',
@@ -28,7 +28,7 @@ class Project extends AppModel {
 		'User',
 	);
 
-	var $hasMany = array(
+	public $hasMany = array(
 		'Album',
 		'MediaItem',
 		'PostRelationship' => array(
@@ -37,7 +37,7 @@ class Project extends AppModel {
 		),
 	);
 
-	var $actsAs = array(
+	public $actsAs = array(
 		'Activity',
 	);
 
@@ -50,7 +50,7 @@ class Project extends AppModel {
 	 * @return array $query | $results
 	 * @author Dean Sofer
 	 */
-	function _findFull($state, $query, $results = array()) {
+	public function _findFull($state, $query, $results = array()) {
 	    if ($state == 'before') {
 			if (isset($query['id'])) {
 				$query['conditions']['Project.id'] = $query['id'];
@@ -108,7 +108,7 @@ class Project extends AppModel {
 	 * @return void
 	 * @author Dean Sofer
 	 */
-	function full($id, $cache = true) {
+	public function full($id, $cache = true) {
 		if ($cache) {
 			$data = $this->cache('full', array('id' => $id));
 		} else {
@@ -117,7 +117,7 @@ class Project extends AppModel {
 		return $data;
 	}
 
-	function scanGithub($account) {
+	public function scanGithub($account) {
 		$this->setDbConfig('github');
 		$projects = $this->find('all', array(
 			'fields' => 'repos'
@@ -142,9 +142,14 @@ class Project extends AppModel {
 				'published' => $account['Account']['published'],
 				'uuid' => $project['id'],
 			));
-			$this->save($data);
-			$data['Project']['id'] = $this->id;
-			$account['Project'][] = $data['Project'];
+			if ($this->save($data)) {
+				$data['Project']['id'] = $this->id;
+				$account['Project'][] = $data['Project'];
+			} else {
+				$data = $this->find('first', array('conditions' => array('uuid' => $project['id'])));
+				if ($data)
+					$account['Project'][] = $data['Project'];
+			}
 			// Add new skills while I'm here
 			$this->Account->ResumeSkill->save(array('ResumeSkill' => array('name' => $project['language'])));
 		}

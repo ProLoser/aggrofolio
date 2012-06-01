@@ -2,6 +2,7 @@
 class Account extends AppModel {
 	public $name = 'Account';
 	public $displayField = 'label';
+	public $findMethods = array('timeline' => true);
 	public $virtualFields = array(
 	    'label' => 'CONCAT(Account.type, " - ", Account.username)'
 	);
@@ -69,13 +70,15 @@ class Account extends AppModel {
 	 * @author Dean Sofer
 	 */
 	public function setup($provider, $tokens) {
-		$data['Account'] = array();
 		$this->setDbConfig($provider);
 		switch ($provider) {
 			case 'github':
 				$user = $this->find('all', array('fields' => 'users'));
 				$this->setDbConfig();
 				$data = $this->find('first', array('conditions' => array('type' => $provider, 'username' => $user['login'])));
+				if (!$data) {
+					$data['Account'] = array();
+				}
 				$data['Account']['username'] = $user['login'];
 				$data['Account']['email'] = $user['email'];
 			break;
@@ -83,6 +86,9 @@ class Account extends AppModel {
 				$user = $this->find('all', array('path' => 'people/~', 'fields' => array('id')));
 				$this->setDbConfig();
 				$data = $this->find('first', array('conditions' => array('type' => $provider, 'username' => $user['id'])));
+				if (!$data) {
+					$data['Account'] = array();
+				}
 				$data['Account']['username'] = $user['id'];
 			break;
 			case 'jsfiddle':
@@ -92,6 +98,7 @@ class Account extends AppModel {
 		}
 		$data['Account']['api_key'] = $tokens;
 		$data['Account']['type'] = $provider;
+		$data['Account']['user_id'] = Configure::read('owner');
 
 		return $this->save($data);
 	}
@@ -183,6 +190,48 @@ class Account extends AppModel {
 		}
 		$this->setDbConfig();
 		return $followers;
+	}
+
+	protected function _findTimeline($state, $query, $results = array()) {
+		if ($state == 'before') {
+			$id = $query['conditions'];
+			$query['conditions'] = array();
+			$query['limit'] = 1;
+			$query['conditions']['Account.id'] = $id;
+			$query['contain'] = array(
+				'Album',
+				'Post',
+				'Project',
+				'Resume',
+				'Bookmark',
+			);
+
+			if (!empty($query['operation'])) {
+				return $this->_findCount($state, $query, $results);
+			}
+			return $query;
+		} elseif (empty($query['operation']) && !empty($results)) {
+			switch ($results[0]['Account']['type']) {
+				case 'github':
+					unset($results[0]['Album']);
+					unset($results[0]['Post']);
+					unset($results[0]['Resume']);
+					unset($results[0]['Bookmark']);
+					break;
+
+				case 'linkedin':
+					unset($results[0]['Album']);
+					unset($results[0]['Post']);
+					unset($results[0]['Project']);
+					unset($results[0]['Bookmark']);
+					break;
+			}
+			$results = $results[0];
+		}
+		if (!empty($query['operation'])) {
+			return $this->_findCount($state, $query, $results);
+		}
+		return $results;
 	}
 }
 ?>

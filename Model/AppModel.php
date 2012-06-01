@@ -32,7 +32,7 @@
 	*/
 class AppModel extends Model {
 
-	var $recursive = -1;
+	public $recursive = -1;
 
 	public $actsAs = array(
 		'Linkable.Linkable', // TODO Possibly causing behavior errors when trying to bake
@@ -44,11 +44,11 @@ class AppModel extends Model {
 		* Adds translation to all validation messages
 		* Repairs a glitch in aliases used with virtual fields
 		*
-		* @param string $id 
-		* @param string $table 
-		* @param string $ds 
+		* @param string $id
+		* @param string $table
+		* @param string $ds
 		*/
-	function __construct($id = false, $table = null, $ds = null) {
+	public function __construct($id = false, $table = null, $ds = null) {
 		foreach ($this->validate as $field => $rules) {
 			if (isset($this->validate[$field]['message'])) {
 				$this->validate[$field]['message'] = __($this->validate[$field]['message']);
@@ -74,11 +74,11 @@ class AppModel extends Model {
 		*/
 	public function beforeValidate() {
 		// Makes the HABTM fields validateable
-		foreach($this->hasAndBelongsToMany as $alias => $options) { 
-			if (isset($this->data[$alias][$alias])) { 
-				$this->data[$this->alias][$alias] = $this->data[$alias][$alias]; 
-			} 
-		} 
+		foreach($this->hasAndBelongsToMany as $alias => $options) {
+			if (isset($this->data[$alias][$alias])) {
+				$this->data[$this->alias][$alias] = $this->data[$alias][$alias];
+			}
+		}
 	}
 
 	public function beforeFind($queryData) {
@@ -103,7 +103,7 @@ class AppModel extends Model {
 		* @param array $extra
 		* @return array
 		*/
-	function paginateCount($conditions = array(), $recursive = 0, $extra = array()) {
+	public function paginateCount($conditions = array(), $recursive = 0, $extra = array()) {
 		$parameters = compact('conditions');
 
 		if ($recursive != $this->recursive) {
@@ -129,7 +129,7 @@ class AppModel extends Model {
 		* @access protected
 		* @see Model::find()
 		*/
-	function _findCount($state, $query, $results = array()) {
+	public function _findCount($state, $query, $results = array()) {
 		if ($state == 'before' && isset($query['operation'])) {
 			$this->findQueryType = 'count';
 			if (!empty($query['fields']) && is_array($query['fields'])) {
@@ -147,8 +147,8 @@ class AppModel extends Model {
 	/**
 	 * Utility method to smoothly switch dbconfigs without woes
 	 *
-	 * @param string $source 
-	 * @param string $useTable 
+	 * @param string $source
+	 * @param string $useTable
 	 * @return void
 	 * @author Ceeram
 	 */

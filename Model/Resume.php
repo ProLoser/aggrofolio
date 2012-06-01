@@ -118,11 +118,11 @@ class Resume extends AppModel {
 
 		if (!empty($data['skills']['values'])) {
 			foreach ($data['skills']['values'] as $i => $skill) {
-				$skills[$i]['ResumeSkill']['uuid'] = $skill['id'];
-				$skills[$i]['ResumeSkill']['name'] = $skill['skill']['name'];
-				$skills[$i]['ResumeSkill']['years'] = $skill['years']['name'];
-				$skills[$i]['ResumeSkill']['proficiency'] = $skill['proficiency']['name'];
-				$skills[$i]['ResumeSkill']['account_id'] = $account['Account']['id'];
+				$skills[$i]['uuid'] = $skill['id'];
+				$skills[$i]['name'] = $skill['skill']['name'];
+				$skills[$i]['years'] = $skill['years']['name'];
+				$skills[$i]['proficiency'] = $skill['proficiency']['name'];
+				$skills[$i]['account_id'] = $account['Account']['id'];
 			}
 			$resume['ResumeSkill']['ResumeSkill'] = $this->saveAllIds($this->ResumeSkill, $skills);
 			$account['ResumeSkill'] = $skills;
@@ -208,10 +208,13 @@ class Resume extends AppModel {
 	 */
 	public function saveAllIds($Model, &$data) {
 		$ids = array();
-		foreach ($data as $row) {
+		foreach ($data as $i => $row) {
 			$Model->create();
-			$Model->save($row);
-			$ids[] = $row['id'] = $Model->id;
+			if ($Model->save($row)) {
+				$ids[] = $data[$i]['id'] = $Model->id;
+			} else {
+				unset($data[$i]);
+			}
 		}
 		return $ids;
 	}

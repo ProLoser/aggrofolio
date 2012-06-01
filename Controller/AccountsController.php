@@ -12,6 +12,13 @@ class AccountsController extends AppController {
 	);
 	public $paginate = array();
 
+	protected function _setTheme() {
+		parent::_setTheme();
+		if ($this->action === 'admin_importer') {
+			$this->theme = 'Timeline';
+		}
+	}
+
 	public function admin_test() {
 		$followers = $this->Account->getFollowers();
 		diebug($followers);
@@ -42,7 +49,7 @@ class AccountsController extends AppController {
 		$this->Oauth->useDbConfig = $useDbConfig;
 		$tokens = $this->Oauth->callback();
 		if ($this->Account->setup($useDbConfig, $tokens)) {
-			$this->redirect(array('action' => 'importer', $this->Account->id));
+			$this->redirect(array('action' => 'scan', $this->Account->id));
 		} else {
 			$this->Session->setFlash('There was an error');
 			$this->redirect(array('action' => 'importer'));
@@ -50,7 +57,12 @@ class AccountsController extends AppController {
 	}
 
 	public function admin_scan($id = null) {
-		return $this->Account->scan($id);
+		if ($this->Account->scan($id)) {
+			$this->Session->setFlash('Account was imported properly');
+		} else {
+			$this->Session->setFlash('There was an error importing the account. Please try again.');
+		}
+		$this->redirect(array('action' => 'importer', $id));
 	}
 
 	public function admin_importer($id = null) {
@@ -59,12 +71,18 @@ class AccountsController extends AppController {
 		$schools = $this->Account->ResumeSchool->find('list');
 		$mediaItems = $this->Account->MediaItem->find('list');
 		$posts = $this->Account->Post->find('list');
+		$accountTypes = $this->Account->types;
 		$account = array();
-		if ($id) {
-			$account = $this->Account->scan($id);
-			$this->request->data = $account;
+		if (!empty($this->request->data)) {
+			if ($this->Account->saveAssociated($this->request->data)) {
+				$this->Session->setFlash(__('The changes has been saved'));
+			} else {
+				$this->Session->setFlash(__('Changes could not be saved. Please, try again.'));
+			}
+		} elseif ($id) {
+			$this->request->data = $this->Account->find('timeline', array('conditions' => $id));
 		}
-		$this->set(compact('projects','works','schools','mediaItems','posts', 'account'));
+		$this->set(compact('projects','works','schools','mediaItems','posts', 'account', 'accountTypes'));
 	}
 
 	public function admin_index() {

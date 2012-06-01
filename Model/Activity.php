@@ -63,7 +63,7 @@ class Activity extends AppModel {
 		),
 		'User',
 	);
-	
+
 	public $actions = array(
 		'add' => 'Added',
 		'delete' => 'Deleted',
@@ -114,10 +114,7 @@ class Activity extends AppModel {
 					),
 				),
 			);
-			if (isset($this->belongsTo['User'])) {
-				$query['contain'][] = 'User';
-			}
-			
+
 			if (!empty($query['operation'])) {
 				return $this->_findCount($state, $query, $results);
 			}
