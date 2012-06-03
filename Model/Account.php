@@ -70,9 +70,9 @@ class Account extends AppModel {
 	 * @author Dean Sofer
 	 */
 	public function setup($provider, $tokens) {
-		$this->setDbConfig($provider);
 		switch ($provider) {
 			case 'github':
+				$this->setDbConfig($provider);
 				$user = $this->find('all', array('fields' => 'users'));
 				$this->setDbConfig();
 				$data = $this->find('first', array('conditions' => array('type' => $provider, 'username' => $user['login'])));
@@ -84,6 +84,7 @@ class Account extends AppModel {
 					$data['Account']['email'] = $user['email'];
 			break;
 			case 'linkedin';
+				$this->setDbConfig($provider);
 				$user = $this->find('all', array('path' => 'people/~', 'fields' => array('id')));
 				$this->setDbConfig();
 				$data = $this->find('first', array('conditions' => array('type' => $provider, 'username' => $user['id'])));
@@ -93,13 +94,11 @@ class Account extends AppModel {
 				$data['Account']['username'] = $user['id'];
 			break;
 			case 'flickr':
-				$user = $this->find('all', array('fields' => 'people'));
-				diebug($user);
-				$this->setDbConfig();
+				$data = $this->find('first', array('conditions' => array('type' => $provider, 'username' => $tokens['user_nsid'])));
 				if (!$data) {
 					$data['Account'] = array();
 				}
-				$data['Account']['username'] = $user['user_id'];
+				$data['Account']['username'] = $tokens['user_nsid'];
 			break;
 			case 'jsfiddle':
 			break;
@@ -109,7 +108,6 @@ class Account extends AppModel {
 		$data['Account']['api_key'] = $tokens;
 		$data['Account']['type'] = $provider;
 		$data['Account']['user_id'] = Configure::read('owner');
-
 		return $this->save($data);
 	}
 

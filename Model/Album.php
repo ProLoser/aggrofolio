@@ -82,10 +82,7 @@ class Album extends AppModel {
 
 	public function scanFlickr($account) {
 		$this->setDbConfig('flickr');
-		$albums = $this->find('all', array(
-			'fields' => 'sets',
-			'conditions' => array('user_id' => $account['Account']['username'])
-		));
+		$albums = $this->find('all', array('fields' => 'sets'));
 		$this->setDbConfig();
 		if (empty($albums)) {
 			return $account;

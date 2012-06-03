@@ -19,11 +19,6 @@ class AccountsController extends AppController {
 		}
 	}
 
-	public function admin_test() {
-		$followers = $this->Account->getFollowers();
-		diebug($followers);
-	}
-
 	public function admin_reset() {
 		$this->Session->delete('OAuth');
 		$this->Plate->flash('OAuth Session Reset');
@@ -43,6 +38,13 @@ class AccountsController extends AppController {
 		$this->Oauth->useDbConfig = $type;
 
 		$this->Oauth->connect(array('action' => 'index'), array('action' => 'callback', $type));
+	}
+
+	public function admin_test()
+	{
+		$this->Account->setDbConfig('flickr');
+		$data = $this->Account->find('all', array('fields' => 'people'));
+		diebug($data);
 	}
 
 	public function admin_callback($useDbConfig = null) {
@@ -70,6 +72,7 @@ class AccountsController extends AppController {
 		$works = $this->Account->ResumeEmployer->find('list');
 		$schools = $this->Account->ResumeSchool->find('list');
 		$mediaItems = $this->Account->MediaItem->find('list');
+		$albums = $this->Account->Album->find('list');
 		$posts = $this->Account->Post->find('list');
 		$accountTypes = $this->Account->types;
 		$account = array();
@@ -82,7 +85,7 @@ class AccountsController extends AppController {
 		} elseif ($id) {
 			$this->request->data = $this->Account->find('timeline', array('conditions' => $id));
 		}
-		$this->set(compact('projects','works','schools','mediaItems','posts', 'account', 'accountTypes'));
+		$this->set(compact('projects', 'works', 'schools', 'mediaItems', 'albums', 'posts', 'account', 'accountTypes'));
 	}
 
 	public function admin_index() {

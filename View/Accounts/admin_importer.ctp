@@ -132,6 +132,27 @@
 
 		</ul>
 
+		<ul id="albums">
+
+		<?php if (!empty($this->request->data['Album'])): ?>
+			<?php foreach ($this->request->data['Album'] as $i => $album):
+				unset($album[$album['id']]);
+			?>
+				<li>
+					<?php echo $this->Form->input("Album.$i.id");?>
+					<?php echo $this->Form->input("Album.$i.name"); ?>
+					<?php echo $this->Form->input("Album.$i.published"); ?>
+					<?php echo $this->Html->link('[Edit]', array('controller' => 'albums', 'action' => 'edit', $album['id']));?>
+				</li>
+			<?php endforeach ?>
+		<?php endif ?>
+
+		<?php foreach ($albums as $id => $album): ?>
+			<li><?php echo $album; ?> <?php echo $this->Html->link('[Edit]', array('controller' => 'albums','action' => 'edit',$id));?></li>
+		<?php endforeach ?>
+
+		</ul>
+
 		<ul id="media">
 
 		<?php if (!empty($this->request->data['MediaItem'])): ?>
