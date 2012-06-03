@@ -92,6 +92,15 @@ class Account extends AppModel {
 				}
 				$data['Account']['username'] = $user['id'];
 			break;
+			case 'flickr':
+				$user = $this->find('all', array('fields' => 'people'));
+				diebug($user);
+				$this->setDbConfig();
+				if (!$data) {
+					$data['Account'] = array();
+				}
+				$data['Account']['username'] = $user['user_id'];
+			break;
 			case 'jsfiddle':
 			break;
 			case 'vimeo':
