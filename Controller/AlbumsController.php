@@ -3,7 +3,7 @@ class AlbumsController extends AppController {
 
 	public $name = 'Albums';
 	public $paginate = array();
-	
+
 	function index() {
 		$this->paginate['conditions']['Album.published'] = true;
 		$this->paginate['contain']['MediaItem']['limit'] = 1;

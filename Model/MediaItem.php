@@ -48,11 +48,11 @@ class MediaItem extends AppModel {
 			),
 		),
 	);
-	
+
 
 	public function scan($albumId) {
 		$album = $this->Album->find('first', array(
-			'conditions' => array('Album.id' => $albumId), 
+			'conditions' => array('Album.id' => $albumId),
 			'contain' => array('Account'),
 		));
 		if ($album['Account']['type'] == 'deviantart') {
@@ -66,15 +66,15 @@ class MediaItem extends AppModel {
 		$mediaItems = $this->fetchDevArt($album['Account']['username'], $album['Album']['uuid']);
 		$count = 0;
 		if (!empty($mediaItems)) {
-			
+
 			App::uses('HttpSocket', 'Network/Http');
 			$socket = new HttpSocket();
-			
+
 			foreach ($mediaItems as $mediaItem) {
-			
+
 				$response = $socket->get('http://backend.deviantart.com/oembed', array('url' => $mediaItem['MediaItem']['link']));
 				$response = json_decode($response, true);
-				
+
 				$data['MediaItem'] = array(
 					'url' => $mediaItem['MediaItem']['link'],
 					'name' => $mediaItem['MediaItem']['Title'][0],
@@ -93,11 +93,11 @@ class MediaItem extends AppModel {
 		}
 		return $count;
 	}
-	
+
 	/**
 	 * Tricks the upload behavior into working with a file retrieved from a url instead of form POST
 	 *
-	 * @param string $url 
+	 * @param string $url
 	 * @return array $datao
 	 */
 	public function loadUrl($url) {
@@ -117,7 +117,7 @@ class MediaItem extends AppModel {
 		// finfo_close($finfo);
 		return $data;
 	}
-	
+
 	public function fetchDevArt($user, $albumId = null) {
 		$this->setDbConfig('rss');
 		$mediaItems = array();
@@ -137,7 +137,7 @@ class MediaItem extends AppModel {
 		$this->setDbConfig();
 		return $mediaItems;
 	}
-	
+
 	public function scanFlickr($album) {
 		$this->setDbConfig('flickr');
 		$options['fields'] = 'photos';
@@ -145,32 +145,35 @@ class MediaItem extends AppModel {
 			$options['conditions']['photoset_id'] = $album['Album']['uuid'];
 		}
 		$photos = $this->find('all', $options);
-		debug($photos);die;
-		if (isset($photos['photos'])) {
-			
-		}
 		$this->setDbConfig();
-		$count = 0;
 		if (!empty($photos)) {
 			foreach ($photos['photoset']['photo'] as $photo) {
 				$data['MediaItem'] = array(
-					'url' => sprintf('http://www.flickr.com/photos/%s/%s', $album['Account']['username'], $photo['id']),
 					'name' => $photo['title'],
 					'uuid' => $photo['id'],
 					'album_id' => $album['Album']['id'],
 					'attachment' => $this->loadUrl(sprintf('http://farm%s.static.flickr.com/%s/%s_%s.jpg', $photo['farm'], $photo['server'], $photo['id'], $photo['secret'])),
 					'published' => $album['Album']['published'],
 				);
+				if (!empty($album['Account'])) {
+					$data['MediaItem']['url'] = sprintf('http://www.flickr.com/photos/%s/%s', $album['Account']['username'], $photo['id']);
+				}
 				if (isset($album['Album']['project_id']))
 					$data['MediaItem']['project_id'] = $album['Album']['project_id'];
 				$this->create();
-				$this->save($data);
-				$count++;
+				if ($this->save($data)) {
+					$data['MediaItem']['id'] = $this->id;
+					$album['MediaItem'][] = $data['MediaItem'];
+				} else {
+					$data = $this->find('first', array('conditions' => array('uuid' => $data['Album']['uuid'])));
+					if ($data)
+						$album['MediaItem'][] = $data['MediaItem'];
+				}
 			}
 		}
-		return $count;
+		return $album;
 	}
-	
+
 	public function beforeSave($options = array()) {
 		if (!parent::beforeSave($options)) {
 			return false;

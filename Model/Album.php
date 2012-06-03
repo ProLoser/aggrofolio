@@ -84,25 +84,24 @@ class Album extends AppModel {
 		$this->setDbConfig('flickr');
 		$albums = $this->find('all', array('fields' => 'sets'));
 		$this->setDbConfig();
-		if (empty($albums)) {
-			return $account;
-		}
-		foreach ($albums['photosets']['photoset'] as $photoset) {
-			$data['Album'] = array(
-				'uuid' => $photoset['id'],
-				'name' => $photoset['title']['_content'],
-				'description' => $photoset['description']['_content'],
-				'account_id' => $account['Account']['id'],
-				'url' => sprintf('http://www.flickr.com/photos/%s/sets/%s', $account['Account']['username'], $photoset['id']),
-			);
-			$this->create();
-			if ($this->save($data)) {
-				$data['Album']['id'] = $this->id;
-				$account['Album'][] = $data['Album'];
-			} else {
-				$data = $this->find('first', array('conditions' => array('uuid' => $photoset['id'])));
-				if ($data)
+		if (!empty($albums)) {
+			foreach ($albums['photosets']['photoset'] as $photoset) {
+				$data['Album'] = array(
+					'uuid' => $photoset['id'],
+					'name' => $photoset['title']['_content'],
+					'description' => $photoset['description']['_content'],
+					'account_id' => $account['Account']['id'],
+					'url' => sprintf('http://www.flickr.com/photos/%s/sets/%s', $account['Account']['username'], $photoset['id']),
+				);
+				$this->create();
+				if ($this->save($data)) {
+					$data['Album']['id'] = $this->id;
 					$account['Album'][] = $data['Album'];
+				} else {
+					$data = $this->find('first', array('conditions' => array('uuid' => $data['Album']['uuid'])));
+					if ($data)
+						$account['Album'][] = $data['Album'];
+				}
 			}
 		}
 		return $account;

@@ -123,35 +123,33 @@ class Project extends AppModel {
 			'fields' => 'repos'
 		));
 		$this->setDbConfig();
-		if (empty($projects)) {
-			return $account;
-		}
-		$account['Project'] = array();
-		foreach ($projects as $project) {
-			$this->create();
-			if (strpos($project['homepage'], '://') === false) {
-				$project['homepage'] = 'http://' . $project['homepage'];
-			}
-			$data = array('Project' => array(
-				'cvs_url' => $project['html_url'],
-				'account_id' => $account['Account']['id'],
-				'name' => $project['name'],
-				'description' => $project['description'],
-				'owner' => $project['owner']['login'],
-				'url' => $project['homepage'],
-				'published' => $account['Account']['published'],
-				'uuid' => $project['id'],
-			));
-			if ($this->save($data)) {
-				$data['Project']['id'] = $this->id;
-				$account['Project'][] = $data['Project'];
-			} else {
-				$data = $this->find('first', array('conditions' => array('uuid' => $project['id'])));
-				if ($data)
+		if (!empty($projects)) {
+			foreach ($projects as $project) {
+				$this->create();
+				if (strpos($project['homepage'], '://') === false) {
+					$project['homepage'] = 'http://' . $project['homepage'];
+				}
+				$data = array('Project' => array(
+					'cvs_url' => $project['html_url'],
+					'account_id' => $account['Account']['id'],
+					'name' => $project['name'],
+					'description' => $project['description'],
+					'owner' => $project['owner']['login'],
+					'url' => $project['homepage'],
+					'published' => $account['Account']['published'],
+					'uuid' => $project['id'],
+				));
+				if ($this->save($data)) {
+					$data['Project']['id'] = $this->id;
 					$account['Project'][] = $data['Project'];
+				} else {
+					$data = $this->find('first', array('conditions' => array('uuid' => $data['Project']['uuid'])));
+					if ($data)
+						$account['Project'][] = $data['Project'];
+				}
+				// Add new skills while I'm here
+				$this->Account->ResumeSkill->save(array('ResumeSkill' => array('name' => $project['language'])));
 			}
-			// Add new skills while I'm here
-			$this->Account->ResumeSkill->save(array('ResumeSkill' => array('name' => $project['language'])));
 		}
 		return $account;
 	}
