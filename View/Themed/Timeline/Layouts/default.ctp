@@ -12,7 +12,8 @@
 		echo $this->Html->css(array(
 			'layout',
 		));
-		echo $styles_for_layout;
+		echo $this->fetch('meta');
+		echo $this->fetch('css');
 	?>
 </head>
 <body>
@@ -21,14 +22,14 @@
 	<?php echo $this->Html->link('View Site', '/');?>
 	<?php echo $this->Session->flash(); ?>
 	<?php echo $this->Session->flash('email'); ?>
-	<?php echo $content_for_layout; ?>
+	<?php echo $this->fetch('content'); ?>
 
 <?php
 	echo $this->Plate->lib('jquery', array('compressed' => true, 'fallback' => 'libs/jquery-1.6.1'));
 	echo $this->Html->script(array(
 		'script',
 	));
-	echo $scripts_for_layout;
+	echo $this->fetch('scripts');
 ?>
 </body>
 </html>

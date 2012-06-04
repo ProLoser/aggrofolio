@@ -41,7 +41,7 @@
 		'main'
 	));
 	#!# echo $this->AssetCompress->includeCss();
-	echo $styles_for_layout;
+	echo $this->fetch('css');
 ?>
 </head>
 <body>
@@ -56,7 +56,7 @@
 
 			<?php echo $this->Session->flash('auth'); ?>
 
-			<?php echo $content_for_layout; ?>
+			<?php echo $this->fetch('content'); ?>
 
 		</div>
 	</div>
@@ -67,7 +67,7 @@
 		'main'
 	));
 	#!# echo $this->AssetCompress->includeJs();
-	echo $scripts_for_layout;
+	echo $this->fetch('scripts');
 	echo $this->element('analytics', array('code' => 'UA-31891793-1', 'domain' => 'unfol.io'), array('plugin' => 'BakingPlate'));
 ?>
 </body>

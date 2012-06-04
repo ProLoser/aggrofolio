@@ -25,6 +25,6 @@
 </head>
 
 <body>
-	<?php echo $content_for_layout;?>
+	<?php echo $this->fetch('content');?>
 </body>
 </html>

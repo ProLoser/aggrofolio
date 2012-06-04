@@ -17,25 +17,25 @@
  */
 ?>
 <!doctype html>
-<?php echo $this->Plate->html(array('ie' => true)); ?> 
+<?php echo $this->Plate->html(array('ie' => true)); ?>
 <head>
-	<?php echo $this->Html->charset(); ?> 
+	<?php echo $this->Html->charset(); ?>
 	<title>
-		<?php echo $title_for_layout . ' | ' . $owner['Setting']['site_name']; ?> 
+		<?php echo $title_for_layout . ' | ' . $owner['Setting']['site_name']; ?>
 	</title>
-	
+
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	
+
 	<meta name="description" content="<?php if (!empty($description_for_layout)) echo $description_for_layout; ?>">
 	<meta name="keywords" content="<?php if (!empty($keywords_for_layout)) echo $keywords_for_layout; ?>">
 	<meta name="author" content="Cakephp with Baking Plate">
-	
+
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
-	<?php echo $this->Html->meta('favicon.ico', '/favicon.ico', array('type' => 'icon')); ?> 
-	<?php echo $this->Html->meta('favicon.ico', '/favicon.ico', array('type' => 'icon', 'rel' => 'shortcut icon')); ?> 
-	<?php echo $this->Html->meta('favicon.ico', '/favicon.ico', array('type' => 'icon', 'rel' => 'apple-touch-icon')); ?> 
-<?php 
+
+	<?php echo $this->Html->meta('favicon.ico', '/favicon.ico', array('type' => 'icon')); ?>
+	<?php echo $this->Html->meta('favicon.ico', '/favicon.ico', array('type' => 'icon', 'rel' => 'shortcut icon')); ?>
+	<?php echo $this->Html->meta('favicon.ico', '/favicon.ico', array('type' => 'icon', 'rel' => 'apple-touch-icon')); ?>
+<?php
 	echo $this->Html->css(array(
 	#!# $this->AssetCompress->css(array(
 		'/js/mylibs/fancybox/jquery.fancybox-1.3.4',
@@ -43,7 +43,7 @@
 		'/asset/css/style'
 	));
 	#!# echo $this->AssetCompress->includeCss();
-	echo $styles_for_layout;
+	echo $this->fetch('css');
 	echo $this->Html->script('libs/modernizr-1.7.min');
 ?>
 </head>
@@ -60,11 +60,11 @@
 
 			<?php echo $this->Session->flash('auth'); ?>
 
-			<?php echo $content_for_layout; ?>
+			<?php echo $this->fetch('content'); ?>
 
 		</div>
 	</div>
-<?php	
+<?php
 	echo $this->Plate->lib('jquery', array('compressed' => true, 'fallback' => 'libs/jquery-1.6.1'));
 	echo $this->Plate->lib('jqueryui', array('compressed' => true, 'fallback' => 'libs/jquery-ui-1.8.15.min'));
 	echo $this->Html->script(array(
@@ -80,7 +80,7 @@
 	echo $this->Plate->pngFix();
 	echo $this->Plate->analytics();
 	#!# echo $this->AssetCompress->includeJs();
-	echo $scripts_for_layout;
+	echo $this->fetch('scripts');
 	echo $this->element('analytics', array('code' => $owner['Setting']['google_analytics']), array('plugin' => 'BakingPlate'));
 ?>
 </body>

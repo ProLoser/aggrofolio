@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
-<?php echo $this->Plate->iecc('<html class="ie">', '<9'); ?> 
-<?php echo $this->Plate->iecc('<html>', false); ?> 
+<?php echo $this->Plate->iecc('<html class="ie">', '<9'); ?>
+<?php echo $this->Plate->iecc('<html>', false); ?>
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
@@ -15,7 +15,7 @@
 			'/js/mylibs/markitup/skins/simple/style',
 			'/js/mylibs/markitup/sets/default/style',
 		));
-		echo $styles_for_layout;
+		echo $this->fetch('css');
 		echo $this->Html->script('libs/modernizr-1.7.min');
 	?>
 </head>
@@ -23,13 +23,13 @@
 	<aside id="sidebar">
 		<?php echo $this->element('layout/navigation'); ?>
 	</aside>
-	
+
 	<section id="main">
-		
+
 		<?php echo $this->Session->flash(); ?>
 		<?php echo $this->Session->flash('email'); ?>
-		<?php echo $content_for_layout; ?>
-		
+		<?php echo $this->fetch('content'); ?>
+
 		<div class="spacer"></div>
 	</section>
 <?php
@@ -41,7 +41,7 @@
 		'mylibs/markitup/sets/default/set',
 		'script',
 	));
-	echo $scripts_for_layout;
+	echo $this->fetch('scripts');
 ?>
 </body>
 </html>
