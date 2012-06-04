@@ -21,10 +21,7 @@
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Created'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $contact['Contact']['created']; ?>
-			&nbsp;
-		</dd>
+		<td><?php echo $this->Time->niceShort($contact['Contact']['created']); ?>&nbsp;</td>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Subject'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $contact['Contact']['subject']; ?>

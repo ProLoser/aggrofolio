@@ -13,7 +13,7 @@
 		<h3>
 		<?php
 		echo $this->Paginator->counter(array(
-		'format' => __('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%')
+		'format' => __('Showing %start% to %end% out of %count% total')
 		));
 		?>		</h3>
 		<p class="paging">
@@ -53,7 +53,7 @@
 	?>
 	<tr<?php echo $class;?>>
 		<td><?php echo $contact['Contact']['id']; ?>&nbsp;</td>
-		<td><?php echo $contact['Contact']['created']; ?>&nbsp;</td>
+		<td><?php echo $this->Time->niceShort($contact['Contact']['created']); ?>&nbsp;</td>
 		<td><?php echo $contact['Contact']['subject']; ?>&nbsp;</td>
 		<td><?php echo $contact['Contact']['message']; ?>&nbsp;</td>
 		<td><?php echo $contact['Contact']['email']; ?>&nbsp;</td>
@@ -79,10 +79,8 @@
 			'name',
 			'phone',
 			'user_id' => array('empty' => '-- None --')
-		));?> 
-	</table>
-	<?php echo $this->Batch->end()?> 
-	<footer>
+		));?>	</table>
+	<?php echo $this->Batch->end()?>	<footer>
 		<h3>Records:</h3>
 		<p class="limit">
 			<?php echo $this->Paginator->limit(array(10,20,50,100));?>
