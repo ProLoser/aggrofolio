@@ -1,9 +1,9 @@
-<h1>New Comment at <a href="deansofer.com">DeanSofer.com</a>!</h1>
+<h1>New Comment at <?php echo $this->Html->link($owner['Setting']['site_name'], $this->Html->url('/', true))?>!</h1>
 <h3>
 	Post: 
 	<?php echo $this->Html->link(
 		$related[$comment['Comment']['foreign_model']]['subject'], 
-		array('controller' => 'posts', 'action' => 'view', $related[$comment['Comment']['foreign_model']]['id'], $related[$comment['Comment']['foreign_model']]['slug'])
+		$this->Html->url(array('controller' => 'posts', 'action' => 'view', $related[$comment['Comment']['foreign_model']]['id'], $related[$comment['Comment']['foreign_model']]['slug']), true)
 	)?>
 </h3>
 <p><strong>Commentor:</strong> <?php echo $this->Html->link($comment['Comment']['name'], 'mailto:'.$comment['Comment']['email']); ?></p>
