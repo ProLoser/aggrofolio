@@ -3,7 +3,7 @@
 </hgroup></header>
 <article class="bookmarks index">
 	<?php
-	function recurse($data, $recursive = false) {  
+	function recurse($data, $recursive = false) {
 		foreach ($data as $bookmarkCategory):?>
 		<?php if ($recursive): ?>
 			<h2><?php echo $bookmarkCategory['BookmarkCategory']['name']?></h2>

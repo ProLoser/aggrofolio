@@ -7,12 +7,11 @@
 		<p>Welcome </p>
 		<?php echo $this->Html->link('Logout', array('controller' => 'users', 'action' => 'logout'), array('title' => 'Logout', 'class' => 'logout'))?>
 	</div>
-</header> 
+</header>
 
 <h3>Admin</h3>
 <ul class="toggle">
 	<li class="icn_profile"><?php echo $this->Html->link('Importer', array('controller' => 'accounts', 'action' => 'importer')); ?></li>
-	<li class="icn_profile"><?php echo $this->Html->link('Users', array('controller' => 'users', 'action' => 'index')); ?></li>
 	<li class="icn_view_users"><?php echo $this->Html->link('Accounts', array('controller' => 'accounts', 'action' => 'index')); ?></li>
 	<li class="icn_edit_article"><?php echo $this->Html->link('Emails', array('controller' => 'contacts', 'action' => 'index')); ?></li>
 	<li class="icn_categories"><?php echo $this->Html->link('Settings', array('controller' => 'settings', 'action' => 'index')); ?></li>
@@ -48,7 +47,7 @@
 	<li class="icn_categories"><?php echo $this->Html->link('Schools', array('controller' => 'resume_schools', 'action' => 'index')); ?></li>
 	<li class="icn_categories"><?php echo $this->Html->link('Recommendations', array('controller' => 'resume_recommendations', 'action' => 'index')); ?></li>
 	<li class="icn_categories"><?php echo $this->Html->link('Skills', array('controller' => 'resume_skills', 'action' => 'index')); ?></li>
-	<li class="icn_categories"><?php echo $this->Html->link('Skill Categories', array('controller' => 'resume_skills_categories', 'action' => 'index')); ?></li>
+	<li class="icn_categories"><?php echo $this->Html->link('Skill Categories', array('controller' => 'resume_skill_categories', 'action' => 'index')); ?></li>
 </ul>
 
 <footer>

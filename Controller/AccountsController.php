@@ -74,6 +74,7 @@ class AccountsController extends AppController {
 		$mediaItems = $this->Account->MediaItem->find('list');
 		$albums = $this->Account->Album->find('list');
 		$posts = $this->Account->Post->find('list');
+		$accounts = $this->Account->find('all');
 		$accountTypes = $this->Account->types;
 		$account = array();
 		if (!empty($this->request->data)) {
@@ -85,7 +86,7 @@ class AccountsController extends AppController {
 		} elseif ($id) {
 			$this->request->data = $this->Account->find('timeline', array('conditions' => $id));
 		}
-		$this->set(compact('projects', 'works', 'schools', 'mediaItems', 'albums', 'posts', 'account', 'accountTypes'));
+		$this->set(compact('projects', 'works', 'schools', 'mediaItems', 'albums', 'posts', 'account', 'accounts', 'accountTypes'));
 	}
 
 	public function admin_index() {

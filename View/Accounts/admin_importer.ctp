@@ -28,6 +28,14 @@
 	<div class="modal">
 		<h2>Select an Account <a href="#" class="close">[X]</a></h2>
 		<div>
+			<?php if (!empty($accounts)): ?>
+				<h3>Existing Accounts</h3>
+				<ul>
+					<?php foreach ($accounts as $account): ?>
+						<li class="<?php echo $account['Account']['type']?>"><?php echo $this->Html->link($account['Account']['username'], array($account['Account']['id'])); ?></li>
+					<?php endforeach; ?>
+				</ul>
+			<?php endif ?>
 			<h3>Experience</h3>
 			<ul>
 				<li class="linkedin"><?php echo $this->Html->link('LinkedIn', array('action' => 'connect', 'linkedin')); ?></li>

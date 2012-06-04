@@ -22,21 +22,15 @@
 	<?php echo $this->Batch->create('PostCategory')?>	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id');?></th>
-			<th><?php echo $this->Paginator->sort('created');?></th>
-			<th><?php echo $this->Paginator->sort('modified');?></th>
 			<th><?php echo $this->Paginator->sort('name');?></th>
 			<th><?php echo $this->Paginator->sort('description');?></th>
-			<th><?php echo $this->Paginator->sort('parent_id');?></th>
 			<th class="actions"><?php echo __('Actions');?></th>
 	</tr>
 	<?php
 		echo $this->Batch->filter(array(
 			null,
-			null,
-			null,
 			'name',
 			'description',
-			'parent_id' => array('empty' => '-- None --')
 		));
 	$i = 0;
 	foreach ($postCategories as $postCategory):
@@ -47,11 +41,8 @@
 	?>
 	<tr<?php echo $class;?>>
 		<td><?php echo $postCategory['PostCategory']['id']; ?>&nbsp;</td>
-		<td><?php echo $postCategory['PostCategory']['created']; ?>&nbsp;</td>
-		<td><?php echo $postCategory['PostCategory']['modified']; ?>&nbsp;</td>
 		<td><?php echo $postCategory['PostCategory']['name']; ?>&nbsp;</td>
 		<td><?php echo $postCategory['PostCategory']['description']; ?>&nbsp;</td>
-		<td><?php echo $postCategory['PostCategory']['parent_id']; ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $postCategory['PostCategory']['id']), array('class' => 'view')); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $postCategory['PostCategory']['id']), array('class' => 'edit')); ?>
@@ -62,14 +53,11 @@
 	<?php endforeach;
 		echo $this->Batch->batch(array(
 			null,
-			null,
-			null,
 			'name',
 			'description',
-			'parent_id' => array('empty' => '-- None --')
-		));?> 
+		));?>
 	</table>
-	<?php echo $this->Batch->end()?> 
+	<?php echo $this->Batch->end()?>
 	<footer>
 		<div class="paging">
 			<?php echo $this->Paginator->prev('&laquo; ' . __('previous'), array('escape' => false), null, array('escape' => false, 'class'=>'disabled'));?>

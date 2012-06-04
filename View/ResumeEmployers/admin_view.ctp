@@ -1,19 +1,27 @@
-<h1><?php echo __('Resume Employer');?></h1>
-<ul class="actions">
-		<li><?php echo $this->Html->link(__('Edit Resume Employer'), array('action' => 'edit', $resumeEmployer['ResumeEmployer']['id'])); ?> </li>
+<article class="resumeEmployers view">
+	<header class="page-header">
+		<hgroup>
+			<h1><?php echo __('Resume Employer');?></h1>
+		</hgroup>
+		<?php echo $this->Plate->start('sidebar'); ?>
+		<ul>
+				<li><?php echo $this->Html->link(__('Edit Resume Employer'), array('action' => 'edit', $resumeEmployer['ResumeEmployer']['id'])); ?> </li>
 		<li><?php echo $this->Html->link(__('Delete Resume Employer'), array('action' => 'delete', $resumeEmployer['ResumeEmployer']['id']), null, sprintf(__('Are you sure you want to delete # %s?'), $resumeEmployer['ResumeEmployer']['id'])); ?> </li>
 		<li><?php echo $this->Html->link(__('List Resume Employers'), array('action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Resume Employer'), array('action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Accounts'), array('controller' => 'accounts', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Account'), array('controller' => 'accounts', 'action' => 'add'), array('class' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add'), array('class' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Post Relationships'), array('controller' => 'post_relationships', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Post Relationship'), array('controller' => 'post_relationships', 'action' => 'add'), array('class' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Projects'), array('controller' => 'projects', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Project'), array('controller' => 'projects', 'action' => 'add'), array('class' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Resumes'), array('controller' => 'resumes', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Resume'), array('controller' => 'resumes', 'action' => 'add'), array('class' => 'add')); ?> </li>
-</ul>
-<div class="resumeEmployers view">
+		</ul>
+		<?php echo $this->Plate->stop(); ?>
+	</header>
 	<dl><?php $i = 0; $class = ' class="altrow"';?>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Id'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
@@ -21,15 +29,9 @@
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Created'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $resumeEmployer['ResumeEmployer']['created']; ?>
-			&nbsp;
-		</dd>
+		<td><?php echo $this->Time->niceShort($resumeEmployer['ResumeEmployer']['created']); ?>&nbsp;</td>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Modified'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $resumeEmployer['ResumeEmployer']['modified']; ?>
-			&nbsp;
-		</dd>
+		<td><?php echo $this->Time->niceShort($resumeEmployer['ResumeEmployer']['modified']); ?>&nbsp;</td>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Name'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $resumeEmployer['ResumeEmployer']['name']; ?>
@@ -37,7 +39,7 @@
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Account'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $this->Html->link($resumeEmployer['Account']['type'], array('controller' => 'accounts', 'action' => 'view', $resumeEmployer['Account']['id']), array('class' => 'view')); ?>
+			<?php echo $this->Html->link($resumeEmployer['Account']['label'], array('controller' => 'accounts', 'action' => 'view', $resumeEmployer['Account']['id']), array('class' => 'view')); ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Uuid'); ?></dt>
@@ -51,28 +53,22 @@
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Date Started'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $resumeEmployer['ResumeEmployer']['date_started']; ?>
-			&nbsp;
-		</dd>
+		<td><?php echo $this->Time->timeAgoInWords($resumeEmployer['ResumeEmployer']['date_started']); ?>&nbsp;</td>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Date Ended'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $resumeEmployer['ResumeEmployer']['date_ended']; ?>
-			&nbsp;
-		</dd>
+		<td><?php echo $this->Time->timeAgoInWords($resumeEmployer['ResumeEmployer']['date_ended']); ?>&nbsp;</td>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Currently Employed'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $resumeEmployer['ResumeEmployer']['currently_employed']; ?>
+			<?php echo ($resumeEmployer['ResumeEmployer']['currently_employed']) ? __('Yes') : __('No'); ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Published'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $resumeEmployer['ResumeEmployer']['published']; ?>
+			<?php echo ($resumeEmployer['ResumeEmployer']['published']) ? __('Yes') : __('No'); ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Deleted'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $resumeEmployer['ResumeEmployer']['deleted']; ?>
+			<?php echo ($resumeEmployer['ResumeEmployer']['deleted']) ? __('Yes') : __('No'); ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('Summary'); ?></dt>
@@ -80,17 +76,22 @@
 			<?php echo $resumeEmployer['ResumeEmployer']['summary']; ?>
 			&nbsp;
 		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php echo __('User'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $this->Html->link($resumeEmployer['User']['name'], array('controller' => 'users', 'action' => 'view', $resumeEmployer['User']['id']), array('class' => 'view')); ?>
+			&nbsp;
+		</dd>
 	</dl>
-</div>
-<div class="related">
-	<div class="header">
-		<h1><?php echo __('Related Post Relationships');?></h1>
+</article>
+<article class="related">
+	<header>
+		<h3><?php echo __('Related Post Relationships');?></h3>
 		<ul>
 			<li><?php echo $this->Html->link(__('New Post Relationship'), array('controller' => 'post_relationships', 'action' => 'add'), array('class' => 'add'));?> </li>
 		</ul>
-	</div>
+	</header>
 	<?php if (!empty($resumeEmployer['PostRelationship'])):?>
-	<table cellpadding = "0" cellspacing = "0">
+	<table cellpadding="0" cellspacing="0">
 	<tr>
 		<th><?php echo __('Id'); ?></th>
 		<th><?php echo __('Post Id'); ?></th>
@@ -125,24 +126,26 @@
 	</table>
 <?php endif; ?>
 
-</div>
-<div class="related">
-	<div class="header">
-		<h1><?php echo __('Related Projects');?></h1>
+</article>
+<article class="related">
+	<header>
+		<h3><?php echo __('Related Projects');?></h3>
 		<ul>
 			<li><?php echo $this->Html->link(__('New Project'), array('controller' => 'projects', 'action' => 'add'), array('class' => 'add'));?> </li>
 		</ul>
-	</div>
+	</header>
 	<?php if (!empty($resumeEmployer['Project'])):?>
-	<table cellpadding = "0" cellspacing = "0">
+	<table cellpadding="0" cellspacing="0">
 	<tr>
 		<th><?php echo __('Id'); ?></th>
 		<th><?php echo __('Created'); ?></th>
 		<th><?php echo __('Modified'); ?></th>
 		<th><?php echo __('Name'); ?></th>
+		<th><?php echo __('Summary'); ?></th>
 		<th><?php echo __('Description'); ?></th>
 		<th><?php echo __('Hash Tag'); ?></th>
 		<th><?php echo __('Cvs Url'); ?></th>
+		<th><?php echo __('Bugs Url'); ?></th>
 		<th><?php echo __('Project Category Id'); ?></th>
 		<th><?php echo __('Published'); ?></th>
 		<th><?php echo __('Deleted'); ?></th>
@@ -150,6 +153,12 @@
 		<th><?php echo __('Owner'); ?></th>
 		<th><?php echo __('Resume Employer Id'); ?></th>
 		<th><?php echo __('Resume School Id'); ?></th>
+		<th><?php echo __('Url'); ?></th>
+		<th><?php echo __('Uuid'); ?></th>
+		<th><?php echo __('Primary Media Item Id'); ?></th>
+		<th><?php echo __('User Id'); ?></th>
+		<th><?php echo __('Date Started'); ?></th>
+		<th><?php echo __('Date Ended'); ?></th>
 		<th class="actions"><?php echo __('Actions');?></th>
 	</tr>
 	<?php
@@ -165,9 +174,11 @@
 			<td><?php echo $project['created'];?></td>
 			<td><?php echo $project['modified'];?></td>
 			<td><?php echo $project['name'];?></td>
+			<td><?php echo $project['summary'];?></td>
 			<td><?php echo $project['description'];?></td>
 			<td><?php echo $project['hash_tag'];?></td>
 			<td><?php echo $project['cvs_url'];?></td>
+			<td><?php echo $project['bugs_url'];?></td>
 			<td><?php echo $project['project_category_id'];?></td>
 			<td><?php echo $project['published'];?></td>
 			<td><?php echo $project['deleted'];?></td>
@@ -175,6 +186,12 @@
 			<td><?php echo $project['owner'];?></td>
 			<td><?php echo $project['resume_employer_id'];?></td>
 			<td><?php echo $project['resume_school_id'];?></td>
+			<td><?php echo $project['url'];?></td>
+			<td><?php echo $project['uuid'];?></td>
+			<td><?php echo $project['primary_media_item_id'];?></td>
+			<td><?php echo $project['user_id'];?></td>
+			<td><?php echo $project['date_started'];?></td>
+			<td><?php echo $project['date_ended'];?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'projects', 'action' => 'view', $project['id']), array('class' => 'view')); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'projects', 'action' => 'edit', $project['id']), array('class' => 'edit')); ?>
@@ -185,16 +202,16 @@
 	</table>
 <?php endif; ?>
 
-</div>
-<div class="related">
-	<div class="header">
-		<h1><?php echo __('Related Resumes');?></h1>
+</article>
+<article class="related">
+	<header>
+		<h3><?php echo __('Related Resumes');?></h3>
 		<ul>
 			<li><?php echo $this->Html->link(__('New Resume'), array('controller' => 'resumes', 'action' => 'add'), array('class' => 'add'));?> </li>
 		</ul>
-	</div>
+	</header>
 	<?php if (!empty($resumeEmployer['Resume'])):?>
-	<table cellpadding = "0" cellspacing = "0">
+	<table cellpadding="0" cellspacing="0">
 	<tr>
 		<th><?php echo __('Id'); ?></th>
 		<th><?php echo __('Created'); ?></th>
@@ -203,8 +220,10 @@
 		<th><?php echo __('Attachment File Name'); ?></th>
 		<th><?php echo __('Attachment File Size'); ?></th>
 		<th><?php echo __('Attachment Meta Type'); ?></th>
+		<th><?php echo __('Attachment Pdf File Name'); ?></th>
+		<th><?php echo __('Attachment Doc File Name'); ?></th>
 		<th><?php echo __('Content'); ?></th>
-		<th><?php echo __('Visible'); ?></th>
+		<th><?php echo __('Published'); ?></th>
 		<th><?php echo __('Objective'); ?></th>
 		<th><?php echo __('Summary'); ?></th>
 		<th><?php echo __('Specialties'); ?></th>
@@ -214,6 +233,7 @@
 		<th><?php echo __('First Name'); ?></th>
 		<th><?php echo __('Last Name'); ?></th>
 		<th><?php echo __('Account Id'); ?></th>
+		<th><?php echo __('User Id'); ?></th>
 		<th class="actions"><?php echo __('Actions');?></th>
 	</tr>
 	<?php
@@ -232,8 +252,10 @@
 			<td><?php echo $resume['attachment_file_name'];?></td>
 			<td><?php echo $resume['attachment_file_size'];?></td>
 			<td><?php echo $resume['attachment_meta_type'];?></td>
+			<td><?php echo $resume['attachment_pdf_file_name'];?></td>
+			<td><?php echo $resume['attachment_doc_file_name'];?></td>
 			<td><?php echo $resume['content'];?></td>
-			<td><?php echo $resume['visible'];?></td>
+			<td><?php echo $resume['published'];?></td>
 			<td><?php echo $resume['objective'];?></td>
 			<td><?php echo $resume['summary'];?></td>
 			<td><?php echo $resume['specialties'];?></td>
@@ -243,6 +265,7 @@
 			<td><?php echo $resume['first_name'];?></td>
 			<td><?php echo $resume['last_name'];?></td>
 			<td><?php echo $resume['account_id'];?></td>
+			<td><?php echo $resume['user_id'];?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'resumes', 'action' => 'view', $resume['id']), array('class' => 'view')); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'resumes', 'action' => 'edit', $resume['id']), array('class' => 'edit')); ?>
@@ -253,4 +276,4 @@
 	</table>
 <?php endif; ?>
 
-</div>
+</article>

@@ -4,7 +4,7 @@ class PostsController extends AppController {
 	var $name = 'Posts';
 	var $helpers = array('Time');
 	public $paginate = array();
-	
+
 	function index() {
 		if (isset($this->request->params['named']['category']))
 			$this->paginate['conditions']['Post.post_category_id'] = $this->request->params['named']['category'];
@@ -38,7 +38,7 @@ class PostsController extends AppController {
 			$this->redirect(array($id, $post['Post']['slug']));
 		}
 		$this->set('post', $post);
-		
+
 		$this->Comment;
 		$this->request->data['Comment'] = array(
 			'foreign_model' => 'Post',
@@ -62,12 +62,12 @@ class PostsController extends AppController {
 		$this->Post->recursive = 1;
 		$this->set('post', $this->Post->read(null, $id));
 	}
-	
+
 	function _setRelated() {
 		$models = $this->Post->PostRelationship->belongsTo;
 		unset($models['Post']);
 		$models = array_keys($models);
-		
+
 		foreach ($models as $model) {
 			$data = $this->Post->PostRelationship->{$model}->find('list');
 			$this->set(Inflector::variable(Inflector::tableize($model)), $data);
@@ -75,7 +75,7 @@ class PostsController extends AppController {
 		}
 		$this->set(compact('foreignModels'));
 	}
-	
+
 	function admin_related($model = null) {
 		if (empty($model))
 			die;
@@ -84,9 +84,9 @@ class PostsController extends AppController {
 			'conditions' => array('published' => true),
 			'order' => 'name',
 		)));
-		
+
 	}
-	
+
 	function admin_delete_related($id = null, $postId = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for post relationship'));
@@ -113,7 +113,7 @@ class PostsController extends AppController {
 		}
 		$this->_setRelated();
 		$this->set('postCategories', $this->Post->PostCategory->find('list'));
-		
+
 	}
 
 	function admin_edit($id = null) {

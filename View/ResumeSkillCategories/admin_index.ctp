@@ -25,21 +25,15 @@
 	<?php echo $this->Batch->create('ResumeSkillCategory')?>	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id');?></th>
-			<th><?php echo $this->Paginator->sort('created');?></th>
-			<th><?php echo $this->Paginator->sort('modified');?></th>
 			<th><?php echo $this->Paginator->sort('name');?></th>
 			<th><?php echo $this->Paginator->sort('description');?></th>
-			<th><?php echo $this->Paginator->sort('parent_id');?></th>
 			<th class="actions"><?php echo __('Actions');?></th>
 	</tr>
 	<?php
 		echo $this->Batch->filter(array(
 			null,
-			null,
-			null,
 			'name',
 			'description',
-			'parent_id' => array('empty' => '-- None --')
 		));
 	$i = 0;
 	foreach ($resumeSkillCategories as $resumeSkillCategory):
@@ -50,11 +44,8 @@
 	?>
 	<tr<?php echo $class;?>>
 		<td><?php echo $resumeSkillCategory['ResumeSkillCategory']['id']; ?>&nbsp;</td>
-		<td><?php echo $resumeSkillCategory['ResumeSkillCategory']['created']; ?>&nbsp;</td>
-		<td><?php echo $resumeSkillCategory['ResumeSkillCategory']['modified']; ?>&nbsp;</td>
 		<td><?php echo $resumeSkillCategory['ResumeSkillCategory']['name']; ?>&nbsp;</td>
 		<td><?php echo $resumeSkillCategory['ResumeSkillCategory']['description']; ?>&nbsp;</td>
-		<td><?php echo $resumeSkillCategory['ResumeSkillCategory']['parent_id']; ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $resumeSkillCategory['ResumeSkillCategory']['id']), array('class' => 'view')); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $resumeSkillCategory['ResumeSkillCategory']['id']), array('class' => 'edit')); ?>
@@ -65,14 +56,11 @@
 	<?php endforeach;
 		echo $this->Batch->batch(array(
 			null,
-			null,
-			null,
 			'name',
 			'description',
-			'parent_id' => array('empty' => '-- None --')
-		));?> 
+		));?>
 	</table>
-	<?php echo $this->Batch->end()?> 
+	<?php echo $this->Batch->end()?>
 	<footer>
 		<div class="paging">
 			<?php echo $this->Paginator->prev('&laquo; ' . __('previous'), array('escape' => false), null, array('escape' => false, 'class'=>'disabled'));?>

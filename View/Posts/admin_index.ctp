@@ -40,7 +40,7 @@
 	?>
 	<tr<?php echo $class;?>>
 		<td><?php echo $post['Post']['id']; ?>&nbsp;</td>
-		<td><?php echo $post['Post']['created']; ?>&nbsp;</td>
+		<td><?php echo $this->Time->niceShort($post['Post']['created']); ?>&nbsp;</td>
 		<td><?php echo $post['Post']['subject']; ?>&nbsp;</td>
 		<td><?php echo $post['Post']['slug']; ?>&nbsp;</td>
 		<td><?php echo $post['Post']['published']; ?>&nbsp;</td>

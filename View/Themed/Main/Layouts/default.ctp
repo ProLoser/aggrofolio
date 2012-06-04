@@ -46,7 +46,10 @@
 </head>
 <body>
 	<div id="container">
-		<?php echo $this->element('navigation'); ?>
+		<div id="header">
+			<h1>Unfol.io</h1>
+			<?php echo $this->element('navigation'); ?>
+		</div>
 		<div id="main">
 
 			<?php echo $this->Session->flash(); ?>
