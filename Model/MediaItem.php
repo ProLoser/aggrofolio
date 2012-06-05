@@ -50,11 +50,17 @@ class MediaItem extends AppModel {
 	);
 
 
-	public function scan($albumId) {
-		$album = $this->Album->find('first', array(
-			'conditions' => array('Album.id' => $albumId),
-			'contain' => array('Account'),
-		));
+	public function scan($ids = array()) {
+		if (!empty($ids['album'])) {
+			$album = $this->Album->find('first', array(
+				'conditions' => array('Album.id' => $ids['album']),
+				'contain' => array('Account'),
+			));
+		} elseif (!empty($ids['account'])) {
+			$album = $this->Account->find('first', array(
+				'conditions' => array('Account.id' => $ids['account']),
+			));
+		}
 		if ($album['Account']['type'] == 'deviantart') {
 			return $this->scanDevArtAlbum($album);
 		} elseif ($album['Account']['type'] == 'flickr') {
@@ -148,24 +154,27 @@ class MediaItem extends AppModel {
 		$this->setDbConfig();
 		if (!empty($photos)) {
 			foreach ($photos['photoset']['photo'] as $photo) {
+
 				$data['MediaItem'] = array(
 					'name' => $photo['title'],
 					'uuid' => $photo['id'],
-					'album_id' => $album['Album']['id'],
 					'attachment' => $this->loadUrl(sprintf('http://farm%s.static.flickr.com/%s/%s_%s.jpg', $photo['farm'], $photo['server'], $photo['id'], $photo['secret'])),
-					'published' => $album['Album']['published'],
 				);
 				if (!empty($album['Account'])) {
 					$data['MediaItem']['url'] = sprintf('http://www.flickr.com/photos/%s/%s', $album['Account']['username'], $photo['id']);
 				}
-				if (isset($album['Album']['project_id']))
+				if (!empty($album['Album'])) {
+					$data['MediaItem']['published'] = $album['Album']['published'];
+					$data['MediaItem']['album_id'] = $album['Album']['id'];
 					$data['MediaItem']['project_id'] = $album['Album']['project_id'];
+					$data['MediaItem']['account_id'] = $album['Album']['account_id'];
+				}
 				$this->create();
 				if ($this->save($data)) {
 					$data['MediaItem']['id'] = $this->id;
 					$album['MediaItem'][] = $data['MediaItem'];
 				} else {
-					$data = $this->find('first', array('conditions' => array('uuid' => $data['Album']['uuid'])));
+					$data = $this->find('first', array('conditions' => array('uuid' => $data['MediaItem']['uuid'])));
 					if ($data)
 						$album['MediaItem'][] = $data['MediaItem'];
 				}

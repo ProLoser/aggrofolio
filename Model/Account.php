@@ -208,10 +208,11 @@ class Account extends AppModel {
 			$query['conditions']['Account.id'] = $id;
 			$query['contain'] = array(
 				'Album',
-				'Post',
-				'Project',
-				'ResumeEmployer',
-				'ResumeSchool',
+				'MediaItem',
+				'Post' => array('order' => 'Post.modified DESC'),
+				'Project' => array('order' => 'Project.modified DESC'),
+				'ResumeEmployer' => array('order' => array('ResumeEmployer.currently_employed DESC', 'ResumeEmployer.date_ended DESC', 'ResumeEmployer.date_started DESC')),
+				'ResumeSchool' => array('order' => array('ResumeSchool.date_ended DESC', 'ResumeSchool.date_started DESC')),
 				'Bookmark',
 			);
 
@@ -234,6 +235,13 @@ class Account extends AppModel {
 					unset($results[0]['Post']);
 					unset($results[0]['Project']);
 					unset($results[0]['Bookmark']);
+					break;
+				case 'flickr':
+					unset($results[0]['Post']);
+					unset($results[0]['ResumeEmployer']);
+					unset($results[0]['ResumeSchool']);
+					unset($results[0]['Bookmark']);
+					unset($results[0]['Project']);
 					break;
 			}
 			$results = $results[0];

@@ -3,6 +3,11 @@ class MediaItemsController extends AppController {
 
 	var $name = 'MediaItems';
 	public $paginate = array();
+	public $components = array(
+		'Apis.Oauth' => array(
+			'flickr',
+		),
+	);
 
 	function album($albumId = null) {
 		if (!$albumId) {
@@ -24,15 +29,18 @@ class MediaItemsController extends AppController {
 		$projects = $this->MediaItem->Project->find('list');
 		$this->set(compact('albums', 'projects'));
 	}
-	
+
 	function admin_scan($albumId = null) {
-		if (!$albumId) {
+		if ($albumId) {
+			$this->request->params['named']['album'] = $albumId;
+		}
+		if (empty($this->request->params['named']['account']) && empty($this->request->params['named']['album'])) {
 			$this->Session->setFlash(__('Invalid album'));
 			$this->redirect(array('action' => 'index'));
 		}
-		$count = $this->MediaItem->scan($albumId);
-		$this->Session->setFlash(__($count . ' Media Item(s) Scanned'));
-		$this->redirect(array('action' => 'index'));
+		$album = $this->MediaItem->scan($this->request->params['named']);
+		$this->Session->setFlash(__('Media Item(s) Scanned'));
+		$this->redirect(array('controller' => 'accounts', 'action' => 'importer', $album['Account']['id']));
 	}
 
 	function admin_view($id = null) {
@@ -62,7 +70,7 @@ class MediaItemsController extends AppController {
 		$projects = $this->MediaItem->Project->find('list');
 		$this->set(compact('albums', 'projects'));
 	}
-	
+
 	function admin_batch() {
 		if (!empty($this->request->data)) {
 			foreach ($this->request->data['MediaItem']['attachment'] as $i => $item) {

@@ -3,6 +3,11 @@ class AlbumsController extends AppController {
 
 	public $name = 'Albums';
 	public $paginate = array();
+	public $components = array(
+		'Apis.Oauth' => array(
+			'flickr',
+		),
+	);
 
 	function index() {
 		$this->paginate['conditions']['Album.published'] = true;

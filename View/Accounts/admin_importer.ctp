@@ -150,13 +150,18 @@
 					<?php echo $this->Form->input("Album.$i.id");?>
 					<?php echo $this->Form->input("Album.$i.name"); ?>
 					<?php echo $this->Form->input("Album.$i.published"); ?>
+					<?php echo $this->Html->link('[Scan]', array('controller' => 'media_items', 'action' => 'scan', $album['id'])); ?>
 					<?php echo $this->Html->link('[Edit]', array('controller' => 'albums', 'action' => 'edit', $album['id']));?>
 				</li>
 			<?php endforeach ?>
 		<?php endif ?>
 
 		<?php foreach ($albums as $id => $album): ?>
-			<li><?php echo $album; ?> <?php echo $this->Html->link('[Edit]', array('controller' => 'albums','action' => 'edit',$id));?></li>
+			<li>
+				<?php echo $album; ?>
+				<?php echo $this->Html->link('[Scan]', array('controller' => 'media_items','action' => 'scan',$id));?>
+				<?php echo $this->Html->link('[Edit]', array('controller' => 'albums','action' => 'edit',$id));?>
+			</li>
 		<?php endforeach ?>
 
 		</ul>
