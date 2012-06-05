@@ -33,6 +33,13 @@ a {
 		@include box-shadow(inset 0 0 4px rgba($darkGreen, .5));
 		@include background(linear-gradient(top, darken($lightGreen, 5%), lighten($lightGreen, 5%)));
 	}
+	+ .button, input[type=button], input[type=submit], button {
+		@include border-top-left-radius(0);
+		@include border-bottom-left-radius(0);
+		margin-left: -7px;
+		padding-left: 2px;
+		@include box-shadow(0 0 2px rgba($darkGreen,.5), inset 1px 0 1px -1px rgba($darkGreen,.5));
+	}
 }
 body {
 	font-family: Helvetica;
