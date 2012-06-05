@@ -4,10 +4,10 @@ $(document).ready(function(){
 	});
 	$('#import').click(function(e){
 		e.preventDefault();
-		$('.modal').fadeIn();
+		$('.modal').addClass('active');
 	});
 	$('.modal .close').click(function(e){
 		e.preventDefault();
-		$('.modal').fadeOut();
+		$('.modal').removeClass('active');
 	});
 });

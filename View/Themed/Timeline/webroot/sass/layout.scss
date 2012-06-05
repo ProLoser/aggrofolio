@@ -1,0 +1,170 @@
+@import "compass/css3";
+
+$blue: #1F3140;
+$darkGreen: #455931;
+$green: #778C2A;
+$lightGreen: #C0D904;
+$white: #F2F2F2;
+
+* {
+	@include transition(all 200ms);
+	margin: 0;
+	padding: 0;
+}
+a {
+	color: $green;
+	text-decoration: none;
+	&:hover {
+		color: $lightGreen;
+	}
+}
+
+.button, input[type=button], input[type=submit], button {
+	@include border-radius(4px);
+	@include box-shadow(0 0 2px rgba($darkGreen,.5));
+	@include background(linear-gradient(top, lighten($lightGreen, 20%), $lightGreen));
+	font-size: 80%;
+	padding: 2px 5px;
+	border: 1px solid darken($lightGreen, 10%);
+	&:hover {
+		@include background(linear-gradient(top, lighten($lightGreen, 30%), lighten($lightGreen, 5%)));
+	}
+	&:active {
+		@include box-shadow(inset 0 0 4px rgba($darkGreen, .5));
+		@include background(linear-gradient(top, darken($lightGreen, 5%), lighten($lightGreen, 5%)));
+	}
+}
+body {
+	font-family: Helvetica;
+	background: lighten($blue,20%);
+	color: $white;
+}
+form {
+	color: #333;
+	text-shadow: 0 1px 2px #fff;
+	background: rgba($white,.9);
+	margin: 20px;
+	padding: 20px;
+	@include border-radius(4px);
+	border: 1px solid rgba(lighten($white, 10%),.9);
+	@include box-shadow(0,0,4px,4px,rgba(0,0,0,.5));
+}
+header.timeline {
+	position: fixed;
+	top: 0;
+	left: 0;
+	background: white;
+	width: 100%;
+	text-align: center;
+	a {
+		color: $lightGreen;
+	}
+}
+header.timeline ul {
+	overflow: hidden;
+	list-style: none;
+	margin: 10px 0;
+	padding: 0;
+}
+header.timeline li {
+	float: left;
+	width: 20%;
+	margin: 0;
+	padding: 0;
+}
+div.timeline {
+	overflow: hidden;
+}
+div.timeline ul {
+	width: 20%;
+	float: left;
+	margin: 10px 0;
+	padding: 0;
+	list-style: none;
+}
+div.timeline li {
+	margin: 10px 20px;
+}
+.modal {
+	position: fixed;
+	bottom: 100%;
+	left: 50%;
+	width: 500px;
+	margin-left: -260px;
+	background: white;
+	border-radius: 10px;
+	padding: 10px;
+	box-shadow: 0 0 10px rgba(0,0,0,.5);
+	text-align: center;
+	color: #333;
+	&.active {
+		bottom: 50%;
+		margin-bottom: -210px;
+	}
+}
+.modal ul {
+	margin: 0;
+	padding: 0;
+}
+.modal li {
+	display: inline-block;
+	margin: 10px;
+}
+.modal li a {
+	background: no-repeat 50% 0;
+	display: inline-block;
+	padding-top: 40px;
+	vertical-align: top;
+	min-width: 32px;
+}
+.modal h3 {
+	box-shadow:  0 0 15px -4px rgba(0, 0, 0, .5);
+	padding: 5px;
+}
+.modal div {
+	overflow: auto;
+	height: 330px;
+	padding: 10px 0;
+}
+
+/** ICONS **/
+.modal .aim a { background-image: url(../../../img/accounts/aim.png); }
+.modal .android a { background-image: url(../../../img/accounts/android.png); }
+.modal .aol a { background-image: url(../../../img/accounts/aol.png); }
+.modal .apple a { background-image: url(../../../img/accounts/apple.png); }
+.modal .asana a { background-image: url(../../../img/accounts/asana.png); }
+.modal .basecamp a { background-image: url(../../../img/accounts/basecamp.png); }
+.modal .behance a { background-image: url(../../../img/accounts/behance.png); }
+.modal .blogger a { background-image: url(../../../img/accounts/blogger.png); }
+.modal .codaset a { background-image: url(../../../img/accounts/codaset.png); }
+.modal .delicious a { background-image: url(../../../img/accounts/delicious.png); }
+.modal .deviantart a { background-image: url(../../../img/accounts/deviantart.png); }
+.modal .digg a { background-image: url(../../../img/accounts/digg.png); }
+.modal .dribbble a { background-image: url(../../../img/accounts/dribbble.png); }
+.modal .evernote a { background-image: url(../../../img/accounts/evernote.png); }
+.modal .facebook a { background-image: url(../../../img/accounts/facebook.png); }
+.modal .flickr a { background-image: url(../../../img/accounts/flickr-1.png); }
+.modal .foursquare a { background-image: url(../../../img/accounts/foursquare.png); }
+.modal .github a { background-image: url(../../../img/accounts/github.png); }
+.modal .gmail a { background-image: url(../../../img/accounts/gmail.png); }
+.modal .google a { background-image: url(../../../img/accounts/google.png); }
+.modal .googlebuzz a { background-image: url(../../../img/accounts/googlebuzz.png); }
+.modal .gtalk a { background-image: url(../../../img/accounts/gtalk.png); }
+.modal .jsfiddle a { background-image: url(../../../img/accounts/jsfiddle.png); }
+.modal .instagram a { background-image: url(../../../img/accounts/instagram.png); }
+.modal .lastfm a { background-image: url(../../../img/accounts/lastfm.png); }
+.modal .linkedin a { background-image: url(../../../img/accounts/linkedin.png); }
+.modal .pandora a { background-image: url(../../../img/accounts/pandora.png); }
+.modal .photobucket a { background-image: url(../../../img/accounts/photobucket.png); }
+.modal .picasa a { background-image: url(../../../img/accounts/picasa.png); }
+.modal .rss a { background-image: url(../../../img/accounts/rss.png); }
+.modal .skype a { background-image: url(../../../img/accounts/skype.png); }
+.modal .spotify a { background-image: url(../../../img/accounts/spotify.png); }
+.modal .stumbleupon a { background-image: url(../../../img/accounts/stumbleupon.png); }
+.modal .twitter a { background-image: url(../../../img/accounts/twitter.png); }
+.modal .tumblr a { background-image: url(../../../img/accounts/tumblr.png); }
+.modal .vimeo a { background-image: url(../../../img/accounts/vimeo.png); }
+.modal .wordpress a { background-image: url(../../../img/accounts/wordpress.png); }
+.modal .yahoo a { background-image: url(../../../img/accounts/yahoo.png); }
+.modal .yelp a { background-image: url(../../../img/accounts/yelp.png); }
+.modal .youtube a { background-image: url(../../../img/accounts/youtube.png); }
