@@ -56,7 +56,7 @@
 				unset($works[$work['id']]);
 			?>
 				<li>
-					<?php echo $this->Html->link('Edit', array('controller' => 'resume_employers', 'action' => 'edit', $work['id']));?>
+					<?php echo $this->Html->link('Edit', array('controller' => 'resume_employers', 'action' => 'edit', $work['id']), array('class' => 'button'));?>
 					<?php echo $this->Form->input("ResumeEmployer.$i.id");?>
 					<?php echo $this->Form->input("ResumeEmployer.$i.name"); ?>
 					<?php echo $this->Form->input("ResumeEmployer.$i.published"); ?>
