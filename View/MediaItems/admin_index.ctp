@@ -29,6 +29,7 @@
 		<th><?php echo $this->Paginator->sort('name');?></th>
 		<th><?php echo $this->Paginator->sort('album_id');?></th>
 		<th><?php echo $this->Paginator->sort('project_id');?></th>
+		<th><?php echo $this->Paginator->sort('attachment_file_name');?></th>
 		<th><?php echo $this->Paginator->sort('published');?></th>
 		<th class="actions"><?php echo __('Actions');?><?php echo $this->Batch->all();?></th>
 	</tr>
@@ -38,6 +39,7 @@
 			'name',
 			'album_id' => array('empty' => '-- None --'),
 			'project_id' => array('empty' => '-- None --'),
+			null,
 			'published',
 		));
 	$i = 0;
@@ -49,14 +51,17 @@
 	?>
 	<tr<?php echo $class;?>>
 		<td><?php echo $mediaItem['MediaItem']['id']; ?>&nbsp;</td>
-		<td><?php echo $this->Html->link($mediaItem['MediaItem']['name'], '/uploads/media/original-' . $mediaItem['MediaItem']['attachment_file_name'], array('title' => 'View Image')); ?>&nbsp;</td>
+		<td><?php echo $mediaItem['MediaItem']['name']; ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($mediaItem['Album']['name'], array('controller' => 'albums', 'action' => 'view', $mediaItem['Album']['id'])); ?>
 		</td>
 		<td>
 			<?php echo $this->Html->link($mediaItem['Project']['name'], array('controller' => 'project', 'action' => 'view', $mediaItem['Project']['id'])); ?>
 		</td>
-		<td><?php echo $mediaItem['MediaItem']['published']; ?>&nbsp;</td>
+		<td>
+			<?php echo $this->Html->image('/uploads/media/thumb-' . $mediaItem['MediaItem']['attachment_file_name']), '/uploads/media/original-' . $mediaItem['MediaItem']['attachment_file_name'], array('title' => 'View Image')); ?>
+		</td>
+		<td><?php echo $this->Html->link($mediaItem['MediaItem']['published']; ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $mediaItem['MediaItem']['id']), array('class' => 'view')); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $mediaItem['MediaItem']['id']), array('class' => 'edit')); ?>
@@ -70,6 +75,7 @@
 			'name',
 			'album_id' => array('empty' => '-- None --'),
 			'project_id' => array('empty' => '-- None --'),
+			null,
 			'published',
 		));?>
 	</table>
