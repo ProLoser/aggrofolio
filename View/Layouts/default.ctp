@@ -38,13 +38,10 @@
 <?php
 	echo $this->Html->css(array(
 	#!# $this->AssetCompress->css(array(
-		'/js/mylibs/fancybox/jquery.fancybox-1.3.4',
-		'/js/mylibs/qtip/jquery.qtip.min',
 		'/asset/css/style'
 	));
 	#!# echo $this->AssetCompress->includeCss();
 	echo $this->fetch('css');
-	echo $this->Html->script('libs/modernizr-1.7.min');
 ?>
 </head>
 <body>
@@ -69,12 +66,6 @@
 	echo $this->Plate->lib('jqueryui', array('compressed' => true, 'fallback' => 'libs/jquery-ui-1.8.15.min'));
 	echo $this->Html->script(array(
 	#!# $this->AssetCompress->script(array(
-		'mylibs/jquery.placeholder.min',
-		'mylibs/radmenu/jQuery.radmenu',
-		'mylibs/fancybox/jquery.mousewheel-3.0.4.pack',
-		'mylibs/fancybox/jquery.fancybox-1.3.4.pack',
-		'mylibs/qtip/jquery.qtip.min',
-		'plugins',
 		'/asset/js/script'
 	));
 	echo $this->Plate->pngFix();
