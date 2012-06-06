@@ -1,8 +1,8 @@
 /* Essentials */
 
-html, div, map, dt, isindex, form, header, aside, section, section, article, footer {  
-   display: block;  
-} 
+html, div, map, dt, isindex, form, header, aside, section, section, article, footer {
+   display: block;
+}
 
 html, body {
 height: 100%;
@@ -203,7 +203,7 @@ font-weight: bold;
 }
 
 #main > header div a:hover, #main > header ul a:hover {
-color: #222222;	
+color: #222222;
 }
 
 .divider {
@@ -838,6 +838,7 @@ display: block;
 float: left;
 width: 96%;
 margin: 0 10px;
+min-height: 300px;
 }
 
 .input textarea:focus {
