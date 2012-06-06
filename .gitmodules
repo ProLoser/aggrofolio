@@ -76,3 +76,6 @@
 [submodule "Plugin/Instagram"]
 	path = Plugin/Instagram
 	url = git://github.com/ProLoser/CakePHP-Instagram.git
+[submodule "Plugin/Thumbnails"]
+	path = Plugin/Thumbnails
+	url = git://github.com/ProLoser/ThumbnailsHelper-for-CakePHP.git

@@ -22,7 +22,6 @@
 	<tr>
 		<th><?php echo $this->Paginator->sort('id');?></th>
 		<th><?php echo $this->Paginator->sort('created');?></th>
-		<th><?php echo $this->Paginator->sort('modified');?></th>
 		<th><?php echo $this->Paginator->sort('email');?></th>
 		<th><?php echo $this->Paginator->sort('name');?></th>
 		<th><?php echo $this->Paginator->sort('role');?></th>
@@ -30,7 +29,6 @@
 	</tr>
 	<?php
 	echo $this->Batch->filter(array(
-		null,
 		null,
 		null,
 		'email',
@@ -46,10 +44,11 @@
 	?>
 	<tr<?php echo $class;?>>
 		<td><?php echo $user['User']['id']; ?>&nbsp;</td>
-		<td><?php echo $user['User']['created']; ?>&nbsp;</td>
-		<td><?php echo $user['User']['modified']; ?>&nbsp;</td>
+		<td><?php echo $this->Time->niceShort($user['User']['created']); ?>&nbsp;</td>
 		<td><?php echo $user['User']['email']; ?>&nbsp;</td>
-		<td><?php echo $user['User']['name']; ?>&nbsp;</td>
+		<?php $redirect = Router::url('/', true);
+				$redirect = str_replace($_SERVER['HTTP_HOST'], $user['User']['subdomain'] . '.' . $_SERVER['HTTP_HOST'], $redirect); ?>
+		<td><?php echo $this->Html->link($user['User']['name'], $redirect); ?>&nbsp;</td>
 		<td><?php echo $user['User']['role']; ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $user['User']['id']), array('class' => 'view')); ?>
@@ -62,13 +61,12 @@
 	echo $this->Batch->batch(array(
 		null,
 		null,
-		null,
 		'email',
 		'name',
 		'role',
-	));?> 
+	));?>
 	</table>
-	<?php echo $this->Batch->end()?> 
+	<?php echo $this->Batch->end()?>
 	<footer>
 		<h3>Records:</h3>
 		<p class="paging limit">

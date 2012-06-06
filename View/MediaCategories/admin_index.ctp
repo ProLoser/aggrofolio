@@ -2,8 +2,8 @@
 	<hgroup><h1><?php echo __('Media Categories');?></h1></hgroup>
 	<ul class="actions">
 		<li><?php echo $this->Html->link(__('New Media Category'), array('action' => 'add')); ?></li>
-			<li><?php echo $this->Html->link(__('List Albums'), array('controller' => 'albums', 'action' => 'index')); ?> </li>
-			<li><?php echo $this->Html->link(__('New Album'), array('controller' => 'albums', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Albums'), array('controller' => 'albums', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Album'), array('controller' => 'albums', 'action' => 'add')); ?> </li>
 	</ul>
 </header>
 <article class="mediaCategories index">

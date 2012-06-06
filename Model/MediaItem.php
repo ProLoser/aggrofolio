@@ -100,6 +100,17 @@ class MediaItem extends AppModel {
 		return $count;
 	}
 
+	public function download($url, $destination) {
+	    //Download images from remote server
+		$in =  fopen($inPath, "rb");
+		$out = fopen($outPath, "wb");
+		while ($chunk = fread($in,8192)) {
+			fwrite($out, $chunk, 8192);
+		}
+		fclose($in);
+		fclose($out);
+	}
+
 	/**
 	 * Tricks the upload behavior into working with a file retrieved from a url instead of form POST
 	 *

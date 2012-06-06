@@ -4,8 +4,9 @@
 	</hgroup>
 	<ul class="actions">
 		<li><?php echo $this->Html->link(__('New Media Item'), array('action' => 'add')); ?></li>
-			<li><?php echo $this->Html->link(__('List Albums'), array('controller' => 'albums', 'action' => 'index')); ?> </li>
-			<li><?php echo $this->Html->link(__('New Album'), array('controller' => 'albums', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('Upload Multiple Items'), array('action' => 'batch')); ?></li>
+		<li><?php echo $this->Html->link(__('List Albums'), array('controller' => 'albums', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Album'), array('controller' => 'albums', 'action' => 'add')); ?> </li>
 	</ul>
 </header>
 
@@ -70,7 +71,7 @@
 			'album_id' => array('empty' => '-- None --'),
 			'project_id' => array('empty' => '-- None --'),
 			'published',
-		));?> 
+		));?>
 	</table>
 	<?php echo $this->Batch->end()?>
 	<footer>
