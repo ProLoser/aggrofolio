@@ -39,6 +39,8 @@ class AppController extends Controller {
 		'Agro',
 		'Thumbnails.Thumbnail' => array(
 			'folder' => '/uploads/media/thumbnails',
+			'width' => 200,
+			'height' => 160,
 		),
 		'Html' => array('className' => 'BakingPlate.HtmlPlus'),
 		'Form' => array('className' => 'BakingPlate.FormPlus'),
