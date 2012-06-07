@@ -68,7 +68,7 @@
 			<section class="media">
 			<?php
 				echo $this->Html->link(
-					$this->Thumbnail->render('/uploads/media/original-' . $activity['MediaItem']['attachment_file_name'], array(), array('alt' => $activity['MediaItem']['name'])),
+					$this->Html->image('/uploads/media/thumb-' . $activity['MediaItem']['attachment_file_name'], array('alt' => $activity['MediaItem']['name'])),
 					'/uploads/media/original-' . $activity['MediaItem']['attachment_file_name'],
 					array('escape' => false, 'title' => $activity['MediaItem']['name'])
 				);
@@ -85,7 +85,7 @@
 					<li>
 					<?php
 						echo $this->Html->link(
-							$this->Thumbnail->render('/uploads/media/original-' . $item['MediaItem']['attachment_file_name'], array(), array('alt' => $item['MediaItem']['name'])),
+							$this->Html->image('/uploads/media/thumb-' . $item['MediaItem']['attachment_file_name'], array('alt' => $item['MediaItem']['name'])),
 							'/uploads/media/original-' . $item['MediaItem']['attachment_file_name'],
 							array('escape' => false, 'rel' => 'album-' . $activity['Album']['id'], 'title' => $item['MediaItem']['name'])
 
@@ -113,7 +113,7 @@
 								<li>
 								<?php
 									echo $this->Html->link(
-										$this->Thumbnail->render('/uploads/media/original-' . $item['MediaItem']['attachment_file_name'], array(), array('alt' => $item['MediaItem']['name'])),
+										$this->Html->image('/uploads/media/thumb-' . $item['MediaItem']['attachment_file_name'], array('alt' => $item['MediaItem']['name'])),
 										'/uploads/media/original-' . $item['MediaItem']['attachment_file_name'],
 										array('escape' => false, 'rel' => 'project-' . $activity['Project']['id'], 'title' => $item['MediaItem']['name'])
 									);
