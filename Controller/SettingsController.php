@@ -18,7 +18,7 @@ class SettingsController extends AppController{
 
 	function asset($key) {
 		$this->layout = 'ajax';
-		$setting = $this->Setting->cache('first');
+		$setting = $this->Setting->cache('first', array('conditions' => array('Setting.user_id' => Configure::read('owner'))));
 		if (!$setting) {
 			throw new NotFoundException();
 		}
