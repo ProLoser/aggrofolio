@@ -43,17 +43,23 @@ a {
 }
 body {
 	font-family: Helvetica;
-	background: lighten($blue,20%);
+	background: url('../img/dark_circles.png');
 	color: $white;
+}
+header {
+	text-align: center;
+	a {
+		margin: 0 10px;
+	}
 }
 form {
 	color: #333;
 	text-shadow: 0 1px 2px #fff;
-	background: rgba($white,.9);
+	background: rgba($white,.8);
 	margin: 20px;
 	padding: 20px;
 	@include border-radius(4px);
-	border: 1px solid rgba(lighten($white, 10%),.9);
+	border: 1px solid rgba(lighten($white, 10%),.8);
 	@include box-shadow(0,0,4px,4px,rgba(0,0,0,.5));
 }
 header.timeline {

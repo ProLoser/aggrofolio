@@ -17,13 +17,16 @@
 	?>
 </head>
 <body>
-	<h1>Timeline Importer</h1>
-	<?php echo $this->Html->link('Admin Home', '/admin');?>
-	<?php echo $this->Html->link('View Site', '/');?>
+	<header>
+		<h1>Timeline Importer</h1>
+		<?php echo $this->Html->link('Admin Home', '/admin');?>
+		<?php echo $this->Html->link('View Site', '/');?>
+	</header>
 	<?php echo $this->Session->flash(); ?>
 	<?php echo $this->Session->flash('email'); ?>
-	<?php echo $this->fetch('content'); ?>
-
+	<article>
+		<?php echo $this->fetch('content'); ?>
+	</article>
 <?php
 	echo $this->Plate->lib('jquery', array('compressed' => true, 'fallback' => 'libs/jquery-1.6.1'));
 	echo $this->Html->script(array(
