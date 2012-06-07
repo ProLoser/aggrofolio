@@ -37,6 +37,7 @@ class AppController extends Controller {
 		'Time',
 		'BakingPlate.Plate',
 		'Agro',
+		'Thumbnails.Thumbnail',
 		'Html' => array('className' => 'BakingPlate.HtmlPlus'),
 		'Form' => array('className' => 'BakingPlate.FormPlus'),
 		'Paginator' => array('className' => 'BakingPlate.PaginatorPlus'),
