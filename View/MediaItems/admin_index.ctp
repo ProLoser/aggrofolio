@@ -59,7 +59,7 @@
 			<?php echo $this->Html->link($mediaItem['Project']['name'], array('controller' => 'project', 'action' => 'view', $mediaItem['Project']['id'])); ?>
 		</td>
 		<td>
-			<?php echo $this->Html->link($this->Html->image('uploads/media/thumb-' . $mediaItem['MediaItem']['attachment_file_name']), '/uploads/media/original-' . $mediaItem['MediaItem']['attachment_file_name'], array('title' => 'View Image', 'escape' => false)); ?>
+			<?php echo $this->Html->link($this->Html->image('/uploads/media/thumb-' . $mediaItem['MediaItem']['attachment_file_name']), '/uploads/media/original-' . $mediaItem['MediaItem']['attachment_file_name'], array('title' => 'View Image', 'escape' => false)); ?>
 		</td>
 		<td><?php echo $mediaItem['MediaItem']['published']; ?>&nbsp;</td>
 		<td class="actions">
