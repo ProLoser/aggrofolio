@@ -13,8 +13,7 @@ $white: #F2F2F2;
 }
 
 body {
-	background: $white;
-	text-shadow: 0 1px 2px #fff;
+	background: url('../img/cartographer.png');
 	font-family: Helvetica;
 }
 nav {
@@ -37,13 +36,16 @@ nav {
 }
 #header {
 	h1 {
+		color: $white;
 		text-align: center;
 	}
 }
 #main {
 	@include border-radius(5px);
 	@include box-shadow(0 0 10px rgba(0,0,0,.5));
+	text-shadow: 0 1px 2px #fff;
 	padding: 20px;
+	background: $white;
 	h2 {
 		text-align: center;
 		margin: 0 0 10px;
@@ -56,12 +58,16 @@ a {
 		color: $lightGreen;
 	}
 }
+.submit {
+	text-align: center;
+}
 .button, input[type=button], input[type=submit], button {
 	@include border-radius(4px);
-	@include box-shadow(0 0 2px rgba($darkGreen,.5));
+	@include box-shadow(0 0 3px rgba($darkGreen,.6));
 	@include background(linear-gradient(top, lighten($lightGreen, 20%), $lightGreen));
-	padding: 5px 10px;
+	padding: 10px 20px;
 	border: 1px solid darken($lightGreen, 10%);
+	font-size: 130%;
 	&:hover {
 		@include background(linear-gradient(top, lighten($lightGreen, 30%), lighten($lightGreen, 5%)));
 	}
@@ -71,7 +77,7 @@ a {
 	}
 }
 .input {
-	margin: 5px 0;
+	margin: 10px 0;
 	label {
 		display: block;
 		float: left;
@@ -85,4 +91,9 @@ a {
 		width: 60%;
 		padding: 5px;
 	}
+}
+#subdomainExample {
+	font-size: 90%;
+	color: darken($lightGreen, 5%);
+	font-weight: bold;
 }

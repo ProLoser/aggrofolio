@@ -5,10 +5,7 @@
 	echo $this->Form->input('User.email');
 	echo $this->Form->input('User.password');
 	//echo $this->Form->input('confirmpassword');
-?>
-<p>Will show up as <strong><span id="subdomainExample">[yourname]</span>.unfol.io</strong></p>
-<?php
-	echo $this->Form->input('User.subdomain');
+	echo $this->Form->input('User.subdomain', array('after' => '<p id="subdomainExample"><span>[yourname]</span>.unfol.io</p>'));
 	echo $this->Form->input('Setting.site_name');
 	echo $this->Form->end('Register');
 ?>
