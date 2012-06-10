@@ -79,3 +79,6 @@
 [submodule "Plugin/Thumbnails"]
 	path = Plugin/Thumbnails
 	url = git://github.com/ProLoser/ThumbnailsHelper-for-CakePHP.git
+[submodule "Plugin/Vimeo"]
+	path = Plugin/Vimeo
+	url = git://github.com/ProLoser/CakePHP-Vimeo.git
