@@ -65,7 +65,7 @@ class AppController extends Controller {
 			),
 			'loginAction' => array('admin' => false, 'plugin' => null, 'controller' => 'users', 'action' => 'login'),
 			'logoutRedirect' => array('action' => 'login'),
-			'loginRedirect' => '/',
+			'loginRedirect' => '/admin',
 		),/**/
 		'RememberMe.RememberMe',
 		'Webservice.Webservice',
