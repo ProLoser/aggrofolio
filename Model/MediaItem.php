@@ -201,7 +201,7 @@ class MediaItem extends AppModel {
 	public function scanVimeo($album) {
 		$this->setDbConfig('vimeo');
 		$options['fields'] = 'videos';
-		$options['conditions']['summary_response'] = true;
+		$options['conditions']['full_response'] = true;
 		if (!empty($album['Album']['uuid'])) {
 			$options['conditions']['album_id'] = $album['Album']['uuid'];
 		}
