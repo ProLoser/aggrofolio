@@ -177,12 +177,14 @@ class MediaItem extends AppModel {
 				);
 				if (!empty($album['Account'])) {
 					$data['MediaItem']['url'] = sprintf('http://www.flickr.com/photos/%s/%s', $album['Account']['username'], $photo['id']);
+					$data['MediaItem']['account_id'] = $album['Account']['id'];
 				}
 				if (!empty($album['Album'])) {
 					$data['MediaItem']['published'] = $album['Album']['published'];
 					$data['MediaItem']['album_id'] = $album['Album']['id'];
 					$data['MediaItem']['project_id'] = $album['Album']['project_id'];
-					$data['MediaItem']['account_id'] = $album['Album']['account_id'];
+					if (empty($album['Account']))
+						$data['MediaItem']['account_id'] = $album['Album']['account_id'];
 				}
 				$this->create();
 				if ($this->save($data)) {
@@ -217,14 +219,18 @@ class MediaItem extends AppModel {
 					'modified' => $video['modified_date'],
 					'uuid' => $video['id'],
 				);
-				if (!empty($video['owner']['videosurl'])) {
-					$data['MediaItem']['url'] = $video['owner']['videosurl'];
+				if (!empty($video['urls'])) {
+					$data['MediaItem']['url'] = $video['urls']['url']['_content'];
+				}
+				if (!empty($album['Account'])) {
+					$data['MediaItem']['account_id'] = $album['Account']['id'];
 				}
 				if (!empty($album['Album'])) {
 					$data['MediaItem']['published'] = $album['Album']['published'];
 					$data['MediaItem']['album_id'] = $album['Album']['id'];
 					$data['MediaItem']['project_id'] = $album['Album']['project_id'];
-					$data['MediaItem']['account_id'] = $album['Album']['account_id'];
+					if (empty($album['Account']))
+						$data['MediaItem']['account_id'] = $album['Album']['account_id'];
 				}
 				$this->create();
 				if ($this->save($data)) {
