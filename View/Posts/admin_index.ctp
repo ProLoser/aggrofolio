@@ -26,11 +26,11 @@
 		<th><?php echo $this->Paginator->sort('id');?></th>
 		<th><?php echo $this->Paginator->sort('created');?></th>
 		<th><?php echo $this->Paginator->sort('subject');?></th>
-		<th><?php echo $this->Paginator->sort('slug');?></th>
 		<th><?php echo $this->Paginator->sort('published');?></th>
+		<th><?php echo $this->Paginator->sort('post_category_id');?></th>
 		<th class="actions"><?php echo __('Actions');?> <?php echo $this->Batch->all()?></th>
 	</tr>
-	<?php echo $this->Batch->filter(array(null, null, 'subject', 'slug', 'published'));
+	<?php echo $this->Batch->filter(array(null, null, 'subject', 'published', 'post_category_id'));
 	$i = 0;
 	foreach ($posts as $post):
 		$class = null;
@@ -41,9 +41,14 @@
 	<tr<?php echo $class;?>>
 		<td><?php echo $post['Post']['id']; ?>&nbsp;</td>
 		<td><?php echo $this->Time->niceShort($post['Post']['created']); ?>&nbsp;</td>
-		<td><?php echo $post['Post']['subject']; ?>&nbsp;</td>
-		<td><?php echo $post['Post']['slug']; ?>&nbsp;</td>
-		<td><?php echo $post['Post']['published']; ?>&nbsp;</td>
+		<td title="Slug: <?php echo $post['Post']['slug']; ?>">
+			<strong><?php echo $post['Post']['subject']; ?></strong>
+			<?php echo $this->Agro->truncate($post['Post']['body']);?>
+		</td>
+		<td><?php echo ($post['Post']['published']) ? 'Yes' : 'No'; ?>&nbsp;</td>
+		<td>
+			<?php echo $this->Html->link($postCategories[$post['Post']['post_category_id']], array('controller' => 'post_categories', 'action' => 'view', $post['Post']['post_category_id']));?>&nbsp;
+		</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $post['Post']['id']), array('class' => 'view')); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $post['Post']['id']), array('class' => 'edit')); ?>
@@ -52,7 +57,7 @@
 		</td>
 	</tr>
 <?php endforeach; ?>
-	<?php echo $this->Batch->batch(array(null, null, 'subject', 'slug', 'published'))?>
+	<?php echo $this->Batch->batch(array(null, null, 'subject', 'published', 'post_category_id'))?>
 	</table>
 	<?php echo $this->Batch->end()?>
 	<footer>

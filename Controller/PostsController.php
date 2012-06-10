@@ -2,7 +2,7 @@
 class PostsController extends AppController {
 
 	var $name = 'Posts';
-	var $helpers = array('Time');
+	var $helpers = array('Text');
 	public $paginate = array();
 
 	function index() {
@@ -51,7 +51,9 @@ class PostsController extends AppController {
 
 	function admin_index() {
 		$this->Post->recursive = 0;
-		$this->set('posts', $this->paginate());
+		$posts = $this->paginate();
+		$postCategories = $this->Post->PostCategory->find('list');
+		$this->set(compact('posts', 'postCategories'));
 	}
 
 	function admin_view($id = null) {
