@@ -213,7 +213,7 @@
 
 		<h3>Bookmarks</h3>
 		<ul>
-			<li class="jsfiddle"><?php echo $this->Html->link('JsFiddle', array('action' => 'connect', 'jsfiddle')); ?></li>
+			<li class="jsfiddle"><?php echo $this->Html->link('JsFiddle', array('action' => 'noauth', 'jsfiddle')); ?></li>
 			<li class="delicious"><?php echo $this->Html->link('Delicious', array('action' => 'connect', 'delicious')); ?></li>
 			<li class="stackoverflow"><?php echo $this->Html->link('Stack Overflow', array('action' => 'connect', 'stackoverflow')); ?></li>
 		</ul>

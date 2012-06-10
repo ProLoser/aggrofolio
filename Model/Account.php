@@ -69,7 +69,7 @@ class Account extends AppModel {
 	 * @return void
 	 * @author Dean Sofer
 	 */
-	public function setup($provider, $tokens) {
+	public function setup($provider, $tokens = null) {
 		switch ($provider) {
 			case 'github':
 				$this->setDbConfig($provider);
@@ -123,7 +123,8 @@ class Account extends AppModel {
 				$data['Account']['username'] = $user['user']['username'];
 			break;
 		}
-		$data['Account']['api_key'] = $tokens;
+		if (!empty($tokens))
+			$data['Account']['api_key'] = $tokens;
 		$data['Account']['type'] = $provider;
 		$data['Account']['user_id'] = Configure::read('owner');
 		return $this->save($data);

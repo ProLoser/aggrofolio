@@ -59,6 +59,15 @@ class AccountsController extends AppController {
 		}
 	}
 
+	public function admin_noauth($useDbConfig = null) {
+		if ($this->Account->setup($useDbConfig)) {
+			$this->redirect(array('action' => 'scan', $this->Account->id));
+		} else {
+			$this->Session->setFlash('There was an error');
+			$this->redirect(array('action' => 'importer'));
+		}
+	}
+
 	public function admin_scan($id = null) {
 		if ($this->Account->scan($id)) {
 			$this->Session->setFlash('Account was imported properly');
