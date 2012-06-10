@@ -103,6 +103,14 @@ class Account extends AppModel {
 			case 'jsfiddle':
 			break;
 			case 'vimeo':
+				$this->setDbConfig($provider);
+				$user = $this->find('all', array('fields' => 'test'));
+				$this->setDbConfig();
+				$data = $this->find('first', array('conditions' => array('type' => $provider, 'username' => $user['user']['username'])));
+				if (!$data) {
+					$data['Account'] = array();
+				}
+				$data['Account']['username'] = $user['user']['username'];
 			break;
 		}
 		$data['Account']['api_key'] = $tokens;
@@ -141,6 +149,9 @@ class Account extends AppModel {
 			break;
 			case 'blog':
 				return $this->Post->scanBlog($account);
+			break;
+			case 'vimeo':
+				return $this->Album->scanVimeo($account);
 			break;
 		}
 	}

@@ -107,6 +107,33 @@ class Album extends AppModel {
 		return $account;
 	}
 
+	public function scanVimeo($account) {
+		$this->setDbConfig('vimeo');
+		$albums = $this->find('all', array('fields' => 'albums'));
+		$this->setDbConfig();
+		if (!empty($albums['albums']['album'])) {
+			foreach ($albums['albums']['album'] as $album) {
+				$data['Album'] = array(
+					'uuid' => $album['id'],
+					'name' => $album['name'],
+					'description' => $album['description'],
+					'account_id' => $account['Account']['id'],
+					// 'url' => sprintf('http://www.flickr.com/photos/%s/sets/%s', $account['Account']['username'], $album['id']),
+				);
+				$this->create();
+				if ($this->save($data)) {
+					$data['Album']['id'] = $this->id;
+					$account['Album'][] = $data['Album'];
+				} else {
+					$data = $this->find('first', array('conditions' => array('uuid' => $data['Album']['uuid'])));
+					if ($data)
+						$account['Album'][] = $data['Album'];
+				}
+			}
+		}
+		return $account;
+	}
+
 	public function refreshNav() {
 		$navGallery = $this->find('count', array('conditions' => array('Album.published' => true)));
 		$navGallery += $this->MediaItem->find('count', array('conditions' => array('MediaItem.published' => true)));

@@ -8,6 +8,7 @@ class AccountsController extends AppController {
 			'github',
 			'flickr',
 			'twitter',
+			'vimeo',
 		),
 	);
 	public $paginate = array();

@@ -61,10 +61,13 @@ class MediaItem extends AppModel {
 				'conditions' => array('Account.id' => $ids['account']),
 			));
 		}
-		if ($album['Account']['type'] == 'deviantart') {
-			return $this->scanDevArtAlbum($album);
-		} elseif ($album['Account']['type'] == 'flickr') {
-			return $this->scanFlickr($album);
+		switch ($album['Account']['type']) {
+			case 'deviantart':
+				return $this->scanDevArtAlbum($album);
+			case 'flickr':
+				return $this->scanFlickr($album);
+			case 'vimeo':
+				return $this->scanVimeo($album);
 		}
 	}
 
@@ -173,6 +176,48 @@ class MediaItem extends AppModel {
 				);
 				if (!empty($album['Account'])) {
 					$data['MediaItem']['url'] = sprintf('http://www.flickr.com/photos/%s/%s', $album['Account']['username'], $photo['id']);
+				}
+				if (!empty($album['Album'])) {
+					$data['MediaItem']['published'] = $album['Album']['published'];
+					$data['MediaItem']['album_id'] = $album['Album']['id'];
+					$data['MediaItem']['project_id'] = $album['Album']['project_id'];
+					$data['MediaItem']['account_id'] = $album['Album']['account_id'];
+				}
+				$this->create();
+				if ($this->save($data)) {
+					$data['MediaItem']['id'] = $this->id;
+					$album['MediaItem'][] = $data['MediaItem'];
+				} else {
+					$data = $this->find('first', array('conditions' => array('uuid' => $data['MediaItem']['uuid'])));
+					if ($data)
+						$album['MediaItem'][] = $data['MediaItem'];
+				}
+			}
+		}
+		return $album;
+	}
+
+	public function scanVimeo($album) {
+		$this->setDbConfig('vimeo');
+		$options['fields'] = 'videos';
+		$options['conditions']['summary_response'] = true;
+		if (!empty($album['Album']['uuid'])) {
+			$options['conditions']['album_id'] = $album['Album']['uuid'];
+		}
+		$videos = $this->find('all', $options);
+		$this->setDbConfig();
+		if (!empty($videos['videos']['video'])) {
+			foreach ($videos['videos']['video'] as $video) {
+
+				$data['MediaItem'] = array(
+					'name' => $video['title'],
+					'description' => $video['description'],
+					'created' => $video['upload_date'],
+					'modified' => $video['modified_date'],
+					'uuid' => $video['id'],
+				);
+				if (!empty($video['owner']['videosurl'])) {
+					$data['MediaItem']['url'] = $video['owner']['videosurl'];
 				}
 				if (!empty($album['Album'])) {
 					$data['MediaItem']['published'] = $album['Album']['published'];
