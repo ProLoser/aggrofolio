@@ -25,14 +25,12 @@
 	<tr>
 			<th><?php echo $this->Paginator->sort('id');?></th>
 			<th><?php echo $this->Paginator->sort('name');?></th>
-			<th><?php echo $this->Paginator->sort('description');?></th>
 			<th class="actions"><?php echo __('Actions');?></th>
 	</tr>
 	<?php
 		echo $this->Batch->filter(array(
 			null,
 			'name',
-			'description',
 		));
 	$i = 0;
 	foreach ($mediaCategories as $mediaCategory):
@@ -43,8 +41,14 @@
 	?>
 	<tr<?php echo $class;?>>
 		<td><?php echo $mediaCategory['MediaCategory']['id']; ?>&nbsp;</td>
-		<td><?php echo $mediaCategory['MediaCategory']['name']; ?>&nbsp;</td>
-		<td><?php echo $mediaCategory['MediaCategory']['description']; ?>&nbsp;</td>
+		<td>
+			<strong><?php echo $mediaCategory['MediaCategory']['name']; ?></strong>
+			<?php if (!empty($mediaCategory['MediaCategory']['description'])): ?>
+				<br>
+				<?php echo $mediaCategory['MediaCategory']['description']; ?>
+			<?php endif ?>
+			&nbsp;
+		</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $mediaCategory['MediaCategory']['id']), array('class' => 'view')); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $mediaCategory['MediaCategory']['id']), array('class' => 'edit')); ?>
@@ -56,7 +60,6 @@
 		echo $this->Batch->batch(array(
 			null,
 			'name',
-			'description',
 		));?>
 	</table>
 	<?php echo $this->Batch->end()?>

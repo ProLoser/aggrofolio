@@ -76,6 +76,11 @@ class Post extends AppModel {
 		return true;
 	}
 
+	public function afterFind($results, $primary = false) {
+		$results = $this->sanitize($results);
+		return $results;
+	}
+
 	public function scanBlog($account) {
 		$this->setDbConfig('rss');
 		$this->feedUrl = $this->getRss($account['Account']['username']);

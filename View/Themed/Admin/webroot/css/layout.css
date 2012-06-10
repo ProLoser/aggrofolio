@@ -501,10 +501,21 @@ margin: 0;
 
 table td{
 margin: 0;
-padding: 0;
+padding: 15px 10px;
 border-bottom: 1px dotted #ccc;
 }
 
+table td strong {
+display: block;
+}
+table td p, table td pre {
+margin: 0;
+white-space: pre-wrap;       /* css-3 */
+white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+white-space: -pre-wrap;      /* Opera 4-6 */
+white-space: -o-pre-wrap;    /* Opera 7 */
+word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
 table th, table thead tr {
 height: 34px;
 background: url(../img/table_sorter_header.png) repeat-x;
@@ -512,9 +523,6 @@ text-align: left;
 text-indent: 10px;
 }
 
-table td {
-padding: 15px 10px;
-}
 td.actions a {
 margin-right: 3px;
 text-indent: -5000px;

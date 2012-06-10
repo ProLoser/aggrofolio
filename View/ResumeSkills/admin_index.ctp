@@ -24,7 +24,7 @@
 			<?php echo $this->Paginator->next();?>
 		</p>
 	</header>
-	<?php echo $this->Batch->create('ResumeSkill')?>	
+	<?php echo $this->Batch->create('ResumeSkill')?>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id');?></th>
@@ -57,7 +57,7 @@
 	?>
 	<tr<?php echo $class;?>>
 		<td><?php echo $resumeSkill['ResumeSkill']['id']; ?>&nbsp;</td>
-		<td><?php echo $resumeSkill['ResumeSkill']['created']; ?>&nbsp;</td>
+		<td><?php echo $this->Time->niceShort($resumeSkill['ResumeSkill']['created']); ?>&nbsp;</td>
 		<td><?php echo $resumeSkill['ResumeSkill']['name']; ?>&nbsp;</td>
 		<td><?php echo $resumeSkill['ResumeSkill']['uuid']; ?>&nbsp;</td>
 		<td>
@@ -85,9 +85,9 @@
 			'years',
 			'proficiency',
 			'resume_skill_category_id' => array('empty' => '-- None --'),
-		));?> 
+		));?>
 	</table>
-	<?php echo $this->Batch->end()?> 
+	<?php echo $this->Batch->end()?>
 	<footer>
 		<p class="paging">
 			<?php echo $this->Paginator->prev();?>

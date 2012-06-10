@@ -18,31 +18,23 @@
 		?>		</h3>
 		<p class="paging">
 			<?php echo $this->Paginator->prev('&laquo; ' . __('previous'), array('escape' => false), null, array('escape' => false, 'class'=>'disabled'));?>
-			<?php echo $this->Paginator->numbers();?>			<?php echo $this->Paginator->next(__('next') . ' &raquo;', array('escape' => false), null, array('escape' => false, 'class' => 'disabled'));?>
+			<?php echo $this->Paginator->numbers(array('separator' => ''));?>
+			<?php echo $this->Paginator->next(__('next') . ' &raquo;', array('escape' => false), null, array('escape' => false, 'class' => 'disabled'));?>
 		</p>
 	</header>
-	<?php echo $this->Batch->create('Contact')?>	<table cellpadding="0" cellspacing="0">
+	<?php echo $this->Batch->create('Contact')?>
+	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id');?></th>
 			<th><?php echo $this->Paginator->sort('created');?></th>
 			<th><?php echo $this->Paginator->sort('subject');?></th>
-			<th><?php echo $this->Paginator->sort('message');?></th>
-			<th><?php echo $this->Paginator->sort('email');?></th>
-			<th><?php echo $this->Paginator->sort('name');?></th>
-			<th><?php echo $this->Paginator->sort('phone');?></th>
-			<th><?php echo $this->Paginator->sort('user_id');?></th>
-			<th class="actions"><?php echo __('Actions');?></th>
+			<th class="actions"><?php echo __('Actions');?> <?php echo $this->Batch->all()?></th>
 	</tr>
 	<?php
 		echo $this->Batch->filter(array(
 			null,
-			null,
-			'subject',
-			'message',
-			'email',
 			'name',
-			'phone',
-			'user_id' => array('empty' => '-- None --')
+			'subject',
 		));
 	$i = 0;
 	foreach ($contacts as $contact):
@@ -53,14 +45,18 @@
 	?>
 	<tr<?php echo $class;?>>
 		<td><?php echo $contact['Contact']['id']; ?>&nbsp;</td>
-		<td><?php echo $this->Time->niceShort($contact['Contact']['created']); ?>&nbsp;</td>
-		<td><?php echo $contact['Contact']['subject']; ?>&nbsp;</td>
-		<td><?php echo $contact['Contact']['message']; ?>&nbsp;</td>
-		<td><?php echo $contact['Contact']['email']; ?>&nbsp;</td>
-		<td><?php echo $contact['Contact']['name']; ?>&nbsp;</td>
-		<td><?php echo $contact['Contact']['phone']; ?>&nbsp;</td>
+		<td valign="top">
+			<strong><?php echo $this->Html->link($contact['Contact']['name'], 'mailto:' . $contact['Contact']['email']); ?></strong>
+			<?php if (!empty($contact['Contact']['phone'])): ?>
+				Phone: <?php echo $contact['Contact']['phone']; ?><br>
+			<?php endif ?>
+			<?php echo $this->Time->niceShort($contact['Contact']['created']); ?>
+			&nbsp;
+		</td>
 		<td>
-			<?php echo $this->Html->link($contact['User']['name'], array('controller' => 'users', 'action' => 'view', $contact['User']['id'])); ?>
+			<strong><?php echo $contact['Contact']['subject']; ?></strong>
+			<pre><?php echo $contact['Contact']['message']; ?></pre>
+			&nbsp;
 		</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $contact['Contact']['id']), array('class' => 'view')); ?>
@@ -69,18 +65,10 @@
 			<?php echo $this->Batch->checkbox($contact['Contact']['id']); ?>
 		</td>
 	</tr>
-	<?php endforeach;
-		echo $this->Batch->batch(array(
-			null,
-			null,
-			'subject',
-			'message',
-			'email',
-			'name',
-			'phone',
-			'user_id' => array('empty' => '-- None --')
-		));?>	</table>
-	<?php echo $this->Batch->end()?>	<footer>
+	<?php endforeach; ?>
+	</table>
+	<?php echo $this->Batch->end()?>
+	<footer>
 		<h3>Records:</h3>
 		<p class="limit">
 			<?php echo $this->Paginator->limit(array(10,20,50,100));?>

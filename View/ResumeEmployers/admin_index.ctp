@@ -33,18 +33,16 @@
 	<tr>
 			<th><?php echo $this->Paginator->sort('id');?></th>
 			<th><?php echo $this->Paginator->sort('name');?></th>
-			<th><?php echo $this->Paginator->sort('title');?></th>
 			<th><?php echo $this->Paginator->sort('date_started');?></th>
 			<th><?php echo $this->Paginator->sort('date_ended');?></th>
 			<th><?php echo $this->Paginator->sort('currently_employed');?></th>
 			<th><?php echo $this->Paginator->sort('published');?></th>
-			<th class="actions"><?php echo __('Actions');?></th>
+			<th class="actions"><?php echo __('Actions');?> <?php echo $this->Batch->all()?></th>
 	</tr>
 	<?php
 		echo $this->Batch->filter(array(
 			null,
 			'name',
-			'title',
 			'date_started',
 			'date_ended',
 			'currently_employed',
@@ -59,10 +57,15 @@
 	?>
 	<tr<?php echo $class;?>>
 		<td><?php echo $resumeEmployer['ResumeEmployer']['id']; ?>&nbsp;</td>
-		<td><?php echo $resumeEmployer['ResumeEmployer']['name']; ?>&nbsp;</td>
-		<td><?php echo $resumeEmployer['ResumeEmployer']['title']; ?>&nbsp;</td>
-		<td><?php echo $this->Time->timeAgoInWords($resumeEmployer['ResumeEmployer']['date_started']); ?>&nbsp;</td>
-		<td><?php echo $this->Time->timeAgoInWords($resumeEmployer['ResumeEmployer']['date_ended']); ?>&nbsp;</td>
+		<td>
+			<strong><?php echo $resumeEmployer['ResumeEmployer']['name']; ?></strong>
+			<?php if (!empty($resumeEmployer['ResumeEmployer']['title'])): ?>
+				<?php echo $resumeEmployer['ResumeEmployer']['title']; ?>
+			<?php endif ?>
+			&nbsp;
+		</td>
+		<td><?php if (!empty($resumeEmployer['ResumeEmployer']['date_started'])) echo $this->Time->timeAgoInWords($resumeEmployer['ResumeEmployer']['date_started']); ?>&nbsp;</td>
+		<td><?php if (!empty($resumeEmployer['ResumeEmployer']['date_ended'])) echo $this->Time->timeAgoInWords($resumeEmployer['ResumeEmployer']['date_ended']); ?>&nbsp;</td>
 		<td><?php echo ($resumeEmployer['ResumeEmployer']['currently_employed']) ? __('Yes') : __('No'); ?>&nbsp;</td>
 		<td><?php echo ($resumeEmployer['ResumeEmployer']['published']) ? __('Yes') : __('No'); ?>&nbsp;</td>
 		<td class="actions">
@@ -76,7 +79,6 @@
 		echo $this->Batch->batch(array(
 			null,
 			'name',
-			'title',
 			'date_started',
 			'date_ended',
 			'currently_employed',

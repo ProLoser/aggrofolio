@@ -26,7 +26,6 @@
 			<th><?php echo $this->Paginator->sort('id');?></th>
 			<th><?php echo $this->Paginator->sort('created');?></th>
 			<th><?php echo $this->Paginator->sort('name');?></th>
-			<th><?php echo $this->Paginator->sort('description');?></th>
 			<th><?php echo $this->Paginator->sort('parent_id');?></th>
 			<th class="actions"><?php echo __('Actions');?></th>
 	</tr>
@@ -35,7 +34,6 @@
 		null,
 		null,
 		'name',
-		'description',
 		'parent_id' => array('empty' => '-- None --')
 	));
 	$i = 0;
@@ -47,10 +45,16 @@
 	?>
 	<tr<?php echo $class;?>>
 		<td><?php echo $bookmarkCategory['BookmarkCategory']['id']; ?>&nbsp;</td>
-		<td><?php echo $bookmarkCategory['BookmarkCategory']['created']; ?>&nbsp;</td>
-		<td><?php echo $bookmarkCategory['BookmarkCategory']['name']; ?>&nbsp;</td>
-		<td><?php echo $bookmarkCategory['BookmarkCategory']['description']; ?>&nbsp;</td>
-		<td><?php if (!empty($parents[$bookmarkCategory['BookmarkCategory']['parent_id']])) 
+		<td><?php echo $this->Time->niceShort($bookmarkCategory['BookmarkCategory']['created']); ?>&nbsp;</td>
+		<td>
+			<strong><?php echo $bookmarkCategory['BookmarkCategory']['name']; ?></strong>
+			<?php if (!empty($bookmarkCategory['BookmarkCategory']['description'])): ?>
+				<br>
+				<?php echo $bookmarkCategory['BookmarkCategory']['description']; ?>
+			<?php endif ?>
+			&nbsp;
+		</td>
+		<td><?php if (!empty($parents[$bookmarkCategory['BookmarkCategory']['parent_id']]))
 			echo $this->Html->link($parents[$bookmarkCategory['BookmarkCategory']['parent_id']], array('action' => 'view', $bookmarkCategory['BookmarkCategory']['parent_id'])); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $bookmarkCategory['BookmarkCategory']['id']), array('class' => 'view')); ?>
@@ -64,7 +68,6 @@
 		null,
 		null,
 		'name',
-		'description',
 		'parent_id' => array('empty' => '-- None --')
 	));?>
 	</table>
@@ -75,7 +78,7 @@
 		'format' => __('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%')
 		));
 		?></p>
-	
+
 		<p class="paging">
 			<?php echo $this->Paginator->prev();?>
 			<?php echo $this->Paginator->numbers(array('separator' => ''));?>

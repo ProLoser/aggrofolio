@@ -51,11 +51,11 @@ class Comment extends AppModel {
 			'conditions' => array('foreign_model' => 'Post'),
 		),
 	);
-	
+
 /**
  * Strips garbage before saving. I could do it on display but I decided to just reduce overhead in exchange for later versatility
  *
- * @param string $value 
+ * @param string $value
  * @return true
  */
 	public function beforeSave($options = array()) {
@@ -68,7 +68,7 @@ class Comment extends AppModel {
 		}
 		return true;
 	}
-	
+
 	public function afterSave($created) {
 		parent::afterSave($created);
 		if ($created) {
@@ -82,7 +82,12 @@ class Comment extends AppModel {
 				->template('comment')
 			    ->emailFormat('html')
 				->viewVars(array('comment' => $this->data, 'related' => $related))
-			    ->send();			
+			    ->send();
 		}
+	}
+
+	public function afterFind($results, $primary = false) {
+		$results = $this->sanitize($results);
+		return $results;
 	}
 }

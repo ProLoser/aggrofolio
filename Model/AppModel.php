@@ -171,4 +171,26 @@ class AppModel extends Model {
 			}
 		}
 	}
+
+	/**
+	 * Sanitizes all record fields from the Model::afterFind() method
+	 *
+	 * @param array $results results from Model::afterFind()
+	 **/
+	public function sanitize($results) {
+		if (isset($results[$this->alias])) {
+			foreach ($results[$this->alias] as $key => $value) {
+				if (!empty($results[$this->alias][$key]))
+					$results[$this->alias][$key] = Sanitize::html($value, array('remove' => true));
+			}
+		}
+		if (isset($results[0]) && isset($results[0][$this->alias])) {
+			foreach ($results as $i => $result) {
+				foreach ($result[$this->alias] as $key => $value) {
+					if (!empty($results[$i][$this->alias][$key]))
+						$results[$i][$this->alias][$key] = Sanitize::html($value, array('remove' => true));
+				}
+			}
+		}
+	}
 }

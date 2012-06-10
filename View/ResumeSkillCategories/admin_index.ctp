@@ -26,14 +26,12 @@
 	<tr>
 			<th><?php echo $this->Paginator->sort('id');?></th>
 			<th><?php echo $this->Paginator->sort('name');?></th>
-			<th><?php echo $this->Paginator->sort('description');?></th>
 			<th class="actions"><?php echo __('Actions');?></th>
 	</tr>
 	<?php
 		echo $this->Batch->filter(array(
 			null,
 			'name',
-			'description',
 		));
 	$i = 0;
 	foreach ($resumeSkillCategories as $resumeSkillCategory):
@@ -44,8 +42,14 @@
 	?>
 	<tr<?php echo $class;?>>
 		<td><?php echo $resumeSkillCategory['ResumeSkillCategory']['id']; ?>&nbsp;</td>
-		<td><?php echo $resumeSkillCategory['ResumeSkillCategory']['name']; ?>&nbsp;</td>
-		<td><?php echo $resumeSkillCategory['ResumeSkillCategory']['description']; ?>&nbsp;</td>
+		<td>
+			<strong><?php echo $resumeSkillCategory['ResumeSkillCategory']['name']; ?></strong>
+			<?php if (!empty($resumeSkillCategory['ResumeSkillCategory']['description'])): ?>
+				<br>
+				<?php echo $resumeSkillCategory['ResumeSkillCategory']['description']; ?>
+			<?php endif ?>
+			&nbsp;
+		</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $resumeSkillCategory['ResumeSkillCategory']['id']), array('class' => 'view')); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $resumeSkillCategory['ResumeSkillCategory']['id']), array('class' => 'edit')); ?>
@@ -57,7 +61,6 @@
 		echo $this->Batch->batch(array(
 			null,
 			'name',
-			'description',
 		));?>
 	</table>
 	<?php echo $this->Batch->end()?>

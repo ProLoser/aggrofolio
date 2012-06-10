@@ -24,14 +24,12 @@
 	<tr>
 			<th><?php echo $this->Paginator->sort('id');?></th>
 			<th><?php echo $this->Paginator->sort('name');?></th>
-			<th><?php echo $this->Paginator->sort('description');?></th>
 			<th class="actions"><?php echo __('Actions');?></th>
 	</tr>
 	<?php
 		echo $this->Batch->filter(array(
 			null,
 			'name',
-			'description',
 		));
 	$i = 0;
 	foreach ($projectCategories as $projectCategory):
@@ -42,8 +40,14 @@
 	?>
 	<tr<?php echo $class;?>>
 		<td><?php echo $projectCategory['ProjectCategory']['id']; ?>&nbsp;</td>
-		<td><?php echo $projectCategory['ProjectCategory']['name']; ?>&nbsp;</td>
-		<td><?php echo $projectCategory['ProjectCategory']['description']; ?>&nbsp;</td>
+		<td>
+			<strong><?php echo $projectCategory['ProjectCategory']['name']; ?></strong>
+			<?php if (!empty($projectCategory['ProjectCategory']['description'])): ?>
+				<br>
+				<?php echo $projectCategory['ProjectCategory']['description']; ?>
+			<?php endif ?>
+			&nbsp;
+		</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $projectCategory['ProjectCategory']['id']), array('class' => 'view')); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $projectCategory['ProjectCategory']['id']), array('class' => 'edit')); ?>
@@ -55,7 +59,6 @@
 		echo $this->Batch->batch(array(
 			null,
 			'name',
-			'description',
 		));?>
 	</table>
 	<?php echo $this->Batch->end()?>
