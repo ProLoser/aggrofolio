@@ -6,6 +6,7 @@ class AlbumsController extends AppController {
 	public $components = array(
 		'Apis.Oauth' => array(
 			'flickr',
+			'vimeo',
 		),
 	);
 
