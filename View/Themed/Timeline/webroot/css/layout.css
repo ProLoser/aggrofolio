@@ -163,6 +163,16 @@ div.timeline li {
   bottom: 50%;
   margin-bottom: -210px;
 }
+.modal .close {
+  float: right;
+  color: #ddd;
+  font-size: 100%;
+  line-height: 60%;
+  padding: 4px 5px;
+}
+.modal .close:hover {
+  color: #c0d904;
+}
 
 .modal ul {
   margin: 0;

@@ -173,7 +173,7 @@
 <?php echo $this->Form->end(); ?>
 
 <div class="modal">
-	<h2>Select an Account <a href="#" class="close button">Close</a></h2>
+	<h2>Select an Account <a href="#" class="close">⊗</a></h2>
 	<div>
 		<?php if (!empty($accounts)): ?>
 			<h3>Existing Accounts</h3>
