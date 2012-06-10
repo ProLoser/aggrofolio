@@ -240,7 +240,6 @@ class Account extends AppModel {
 					unset($results[0]['ResumeSchool']);
 					unset($results[0]['Bookmark']);
 					break;
-
 				case 'linkedin':
 					unset($results[0]['Album']);
 					unset($results[0]['Post']);
@@ -248,6 +247,7 @@ class Account extends AppModel {
 					unset($results[0]['Bookmark']);
 					break;
 				case 'flickr':
+				case 'vimeo':
 					unset($results[0]['Post']);
 					unset($results[0]['ResumeEmployer']);
 					unset($results[0]['ResumeSchool']);
