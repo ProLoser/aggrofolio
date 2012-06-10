@@ -18,6 +18,7 @@ class MediaItem extends AppModel {
 		'Album',
 		'Project',
 		'User',
+		'Account',
 	);
 
 	var $hasMany = array(
