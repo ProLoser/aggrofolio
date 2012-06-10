@@ -78,21 +78,27 @@ class Bookmark extends AppModel {
 			)
 		));
 		$this->setDbConfig();
-		$count = 0;
 		if (!empty($bookmarks)) {
 			foreach ($bookmarks as $bookmark) {
+				$this->create();
 				$data['Bookmark'] = array(
 					'name' => $bookmark['title'],
 					'url' => $bookmark['url'],
+					'uuid' => $bookmark['url'],
 					'description' => $bookmark['description'],
 					'account_id' => $account['Account']['id'],
 				);
-				$this->create();
-				$this->save($data);
-				$count++;
+				if ($this->save($data)) {
+					$data['Bookmark']['id'] = $this->id;
+					$account['Bookmark'][] = $data['Bookmark'];
+				} else {
+					$data = $this->find('first', array('conditions' => array('uuid' => $data['Bookmark']['uuid'])));
+					if ($data)
+						$account['Bookmark'][] = $data['Bookmark'];
+				}
 			}
 		}
-		return $count;
+		return $account;
 	}
 
 	public function refreshNav() {

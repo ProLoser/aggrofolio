@@ -101,6 +101,16 @@ class Account extends AppModel {
 				$data['Account']['username'] = $tokens['user_nsid'];
 			break;
 			case 'jsfiddle':
+				$this->setDbConfig($provider);
+				$user = $this->find('all', array('fields' => 'user'));
+				$this->setDbConfig();
+				if ($user) {
+					$data = $this->find('first', array('conditions' => array('type' => $provider, 'username' => $user)));
+					if (!$data) {
+						$data['Account'] = array();
+					}
+					$data['Account']['username'] = $user;
+				}
 			break;
 			case 'vimeo':
 				$this->setDbConfig($provider);
