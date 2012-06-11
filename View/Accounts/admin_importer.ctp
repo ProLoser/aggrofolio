@@ -1,7 +1,7 @@
 <?php echo $this->Form->create('Account'); ?>
 	<header class="timeline">
 		<h2>
-			Sections <a href="#" id="import" class="button">Import</a>
+			Sections <a href="#" id="import" class="icon-upload-alt button">Import</a>
 			<?php if (!empty($this->request->data)): ?>
 			 - Imported <?php echo $this->Form->value('Account.type');?> - <?php echo $this->Form->value('Account.username');?>
 			<?php echo $this->Form->submit('Save Changes', array('div' => false));?>
@@ -36,7 +36,7 @@
 				unset($schools[$school['id']]);
 			?>
 				<li>
-					<?php echo $this->Html->link('Edit', array('controller' => 'resume_schools', 'action' => 'edit', $school['id']), array('class' => 'button'));?>
+					<?php echo $this->Html->link('', array('controller' => 'resume_schools', 'action' => 'edit', $school['id']), array('class' => 'icon-pencil button'));?>
 					<?php echo $this->Form->input("ResumeSchool.$i.id");?>
 					<?php echo $this->Form->input("ResumeSchool.$i.name"); ?>
 					<?php echo $this->Form->input("ResumeSchool.$i.published"); ?>
@@ -46,7 +46,7 @@
 
 		<?php foreach ($schools as $id => $school): ?>
 			<li>
-				<?php echo $this->Html->link('Edit', array('controller' => 'resume_schools','action' => 'edit',$id), array('class' => 'button'));?>
+				<?php echo $this->Html->link('', array('controller' => 'resume_schools','action' => 'edit',$id), array('class' => 'icon-pencil button'));?>
 				<?php echo $school; ?>
 			</li>
 		<?php endforeach ?>
@@ -56,7 +56,7 @@
 				unset($works[$work['id']]);
 			?>
 				<li>
-					<?php echo $this->Html->link('Edit', array('controller' => 'resume_employers', 'action' => 'edit', $work['id']), array('class' => 'button'));?>
+					<?php echo $this->Html->link('', array('controller' => 'resume_employers', 'action' => 'edit', $work['id']), array('class' => 'icon-pencil button'));?>
 					<?php echo $this->Form->input("ResumeEmployer.$i.id");?>
 					<?php echo $this->Form->input("ResumeEmployer.$i.name"); ?>
 					<?php echo $this->Form->input("ResumeEmployer.$i.published"); ?>
@@ -66,7 +66,7 @@
 
 		<?php foreach ($works as $id => $work): ?>
 			<li>
-				<?php echo $this->Html->link('Edit', array('controller' => 'resume_employers','action' => 'edit',$id), array('class' => 'button'));?>
+				<?php echo $this->Html->link('', array('controller' => 'resume_employers','action' => 'edit',$id), array('class' => 'icon-pencil button'));?>
 				<?php echo $work; ?>
 			</li>
 		<?php endforeach ?>
@@ -79,7 +79,7 @@
 				unset($projects[$project['id']]);
 			?>
 				<li>
-					<?php echo $this->Html->link('Edit', array('controller' => 'projects', 'action' => 'edit', $project['id']), array('class' => 'button'));?>
+					<?php echo $this->Html->link('', array('controller' => 'projects', 'action' => 'edit', $project['id']), array('class' => 'icon-pencil button'));?>
 					<?php echo $this->Form->input("Project.$i.id");?>
 					<?php echo $this->Form->input("Project.$i.name"); ?>
 					<?php echo $this->Form->input("Project.$i.published"); ?>
@@ -89,7 +89,7 @@
 
 		<?php foreach ($projects as $id => $project): ?>
 			<li>
-				<?php echo $this->Html->link('Edit', array('controller' => 'projects','action' => 'edit',$id), array('class' => 'button'));?>
+				<?php echo $this->Html->link('', array('controller' => 'projects','action' => 'edit',$id), array('class' => 'icon-pencil button'));?>
 				<?php echo $project ?>
 			</li>
 		<?php endforeach ?>
@@ -103,7 +103,7 @@
 				unset($album[$album['id']]);
 			?>
 				<li>
-					<?php echo $this->Html->link('Edit', array('controller' => 'albums', 'action' => 'edit', $album['id']), array('class' => 'button'));?>
+					<?php echo $this->Html->link('', array('controller' => 'albums', 'action' => 'edit', $album['id']), array('class' => 'icon-pencil button'));?>
 					<?php echo $this->Html->link('Scan', array('controller' => 'media_items', 'action' => 'scan', $album['id']), array('class' => 'button')); ?>
 					<?php echo $this->Form->input("Album.$i.id");?>
 					<?php echo $this->Form->input("Album.$i.name"); ?>
@@ -114,7 +114,7 @@
 
 		<?php foreach ($albums as $id => $album): ?>
 			<li>
-				<?php echo $this->Html->link('Edit', array('controller' => 'albums','action' => 'edit',$id), array('class' => 'button'));?>
+				<?php echo $this->Html->link('', array('controller' => 'albums','action' => 'edit',$id), array('class' => 'icon-pencil button'));?>
 				<?php echo $this->Html->link('Scan', array('controller' => 'media_items','action' => 'scan',$id), array('class' => 'button'));?>
 				<?php echo $album; ?>
 			</li>
@@ -129,7 +129,7 @@
 				unset($mediaItems[$item['id']]);
 			?>
 				<li>
-					<?php echo $this->Html->link('Edit', array('controller' => 'media_items', 'action' => 'edit', $item['id']), array('class' => 'button'));?>
+					<?php echo $this->Html->link('', array('controller' => 'media_items', 'action' => 'edit', $item['id']), array('class' => 'icon-pencil button'));?>
 					<?php echo $this->Form->input("MediaItem.$i.id");?>
 					<?php echo $this->Form->input("MediaItem.$i.name"); ?>
 					<?php echo $this->Form->input("MediaItem.$i.published"); ?>
@@ -139,7 +139,7 @@
 
 		<?php foreach ($mediaItems as $id => $item): ?>
 			<li>
-				<?php echo $this->Html->link('Edit', array('controller' => 'media_items','action' => 'edit',$id), array('class' => 'button'));?>
+				<?php echo $this->Html->link('', array('controller' => 'media_items','action' => 'edit',$id), array('class' => 'icon-pencil button'));?>
 				<?php echo $item; ?>
 			</li>
 		<?php endforeach ?>
@@ -153,7 +153,7 @@
 				unset($posts[$post['id']]);
 			?>
 				<li>
-					<?php echo $this->Html->link('Edit', array('controller' => 'posts', 'action' => 'edit', $post['id']), array('class' => 'button'));?>
+					<?php echo $this->Html->link('', array('controller' => 'posts', 'action' => 'edit', $post['id']), array('class' => 'icon-pencil button'));?>
 					<?php echo $this->Form->input("Post.$i.id");?>
 					<?php echo $this->Form->input("Post.$i.name"); ?>
 					<?php echo $this->Form->input("Post.$i.published"); ?>
@@ -163,7 +163,7 @@
 
 		<?php foreach ($posts as $id => $post): ?>
 			<li>
-				<?php echo $this->Html->link('Edit', array('controller' => 'posts','action' => 'edit',$id), array('class' => 'button'));?>
+				<?php echo $this->Html->link('', array('controller' => 'posts','action' => 'edit',$id), array('class' => 'icon-pencil button'));?>
 				<?php echo $post; ?>
 			</li>
 		<?php endforeach ?>
@@ -173,7 +173,7 @@
 <?php echo $this->Form->end(); ?>
 
 <div class="modal">
-	<h2>Select an Account <a href="#" class="close">⊗</a></h2>
+	<h2>Select an Account <a href="#" class="close icon-remove-circle"></a></h2>
 	<div>
 		<?php if (!empty($accounts)): ?>
 			<h3>Existing Accounts</h3>

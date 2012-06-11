@@ -110,6 +110,8 @@ class Account extends AppModel {
 						$data['Account'] = array();
 					}
 					$data['Account']['username'] = $user;
+				} else {
+					return false;
 				}
 			break;
 			case 'vimeo':

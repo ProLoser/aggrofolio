@@ -10,6 +10,7 @@
 	<?php
 		echo $this->Html->meta('icon');
 		echo $this->Html->css(array(
+			'icons/font-awesome',
 			'layout',
 		));
 		echo $this->fetch('meta');
