@@ -1,4 +1,4 @@
-<h3><?php echo __('Edit Media Item'); ?></h3>
+<h1><?php echo __('Edit Media Item'); ?></h1>
 <ul class="actions">
 	<li><?php echo $this->Html->link(__('Delete'), array('action' => 'delete', $this->Form->value('MediaItem.id')), null, sprintf(__('Are you sure you want to delete # %s?'), $this->Form->value('MediaItem.id'))); ?></li>
 </ul>
