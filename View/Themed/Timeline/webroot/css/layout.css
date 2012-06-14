@@ -90,7 +90,7 @@ header a {
   margin: 0 10px;
 }
 
-form {
+form#AccountAdminImporterForm {
   color: #333;
   text-shadow: 0 1px 2px #fff;
   background: rgba(242, 242, 242, 0.8);
@@ -121,6 +121,7 @@ header.timeline ul {
   list-style: none;
   margin: 10px 0;
   padding: 0;
+  font-weight: bold;
 }
 
 header.timeline li {
@@ -146,61 +147,105 @@ div.timeline li {
   margin: 10px 20px;
 }
 
-.modal {
+.overlay {
+  background: rgba(0, 0, 0, 0.5);
   position: fixed;
-  bottom: 100%;
-  left: 50%;
-  width: 500px;
-  margin-left: -260px;
+  width: 100%;
+  height: 100%;
+  display: none;
+  top: 0;
+  left: 0;
+}
+.overlay.active {
+  display: block;
+}
+
+.modal {
+  display: table;
   background: white;
   border-radius: 10px;
   padding: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   text-align: center;
   color: #333;
+  width: 600px;
+  overflow: hidden;
+  margin: 20px auto;
 }
-.modal.active {
-  bottom: 50%;
-  margin-bottom: -210px;
+.modal > div {
+  display: table-cell;
+  vertical-align: middle;
 }
 .modal .close {
   float: right;
   color: #ddd;
-  font-size: 100%;
+  font-size: 140%;
   line-height: 60%;
   padding: 4px 5px;
 }
 .modal .close:hover {
   color: #c0d904;
 }
-
+.modal h3 {
+  box-shadow: 0 0 15px -4px rgba(0, 0, 0, 0.5);
+  padding: 5px;
+}
 .modal ul {
+  list-style: none;
+}
+.modal .overflow {
+  overflow: auto;
+  height: 330px;
+  padding: 10px 0;
+}
+.modal .overflow ul {
   margin: 0;
   padding: 0;
 }
-
-.modal li {
+.modal .overflow li {
   display: inline-block;
   margin: 10px;
 }
-
-.modal li a {
-  background: no-repeat 50% 0;
+.modal .overflow li a {
+  background-position: 50% 0;
+  background-repeat: no-repeat;
   display: inline-block;
   padding-top: 40px;
   vertical-align: top;
   min-width: 32px;
 }
-
-.modal h3 {
-  box-shadow: 0 0 15px -4px rgba(0, 0, 0, 0.5);
-  padding: 5px;
+.modal .target {
+  text-align: left;
 }
-
-.modal div {
-  overflow: auto;
-  height: 330px;
-  padding: 10px 0;
+.modal .target fieldset {
+  border: none;
+}
+.modal .target li {
+  display: inline-block;
+}
+.modal .target li a {
+  display: inline-block;
+}
+.modal .target .input {
+  margin: 5px 0;
+}
+.modal .target .input.checkbox label {
+  width: auto;
+}
+.modal .target .input.checkbox input {
+  width: auto;
+  margin-right: 5px;
+}
+.modal .target .input.date select {
+  width: auto;
+}
+.modal .target .input label {
+  width: 30%;
+  display: inline-block;
+  vertical-align: top;
+}
+.modal .target .input input, .modal .target .input textarea, .modal .target .input select {
+  width: 65%;
 }
 
 /** ICONS **/

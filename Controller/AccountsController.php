@@ -78,12 +78,12 @@ class AccountsController extends AppController {
 	}
 
 	public function admin_importer($id = null) {
-		$projects = $this->Account->Project->find('list');
-		$works = $this->Account->ResumeEmployer->find('list');
-		$schools = $this->Account->ResumeSchool->find('list');
-		$mediaItems = $this->Account->MediaItem->find('list');
-		$albums = $this->Account->Album->find('list');
-		$posts = $this->Account->Post->find('list');
+		$projects = $this->Account->Project->find('all');
+		$works = $this->Account->ResumeEmployer->find('all');
+		$schools = $this->Account->ResumeSchool->find('all');
+		$mediaItems = $this->Account->MediaItem->find('all');
+		$albums = $this->Account->Album->find('all');
+		$posts = $this->Account->Post->find('all');
 		$accounts = $this->Account->find('all');
 		$accountTypes = $this->Account->types;
 		$account = array();

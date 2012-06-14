@@ -7,7 +7,7 @@
 	<li class="project<?php if ($this->request->controller === 'projects') echo ' active'; ?>"><?php echo $this->Html->link('Projects', array('controller' => 'projects', 'action' => 'index'), array('id' => 'type-Project')); ?></li>
 <?php endif ?>
 <?php if ($navGallery): ?>
-	<li class="gallery<?php if ($this->request->controller === 'albums') echo ' active'; ?>"><?php echo $this->Html->link('Albums', array('controller' => 'albums', 'action' => 'index'), array('id' => 'type-Album')); ?></li>
+	<li class="gallery<?php if ($this->request->controller === 'albums') echo ' active'; ?>"><?php echo $this->Html->link('Media', array('controller' => 'albums', 'action' => 'index'), array('id' => 'type-Album')); ?></li>
 <?php endif ?>
 <?php if ($navBookmarks): ?>
 	<li class="bookmark<?php if ($this->request->controller === 'bookmarks') echo ' active'; ?>"><?php echo $this->Html->link('Bookmarks', array('controller' => 'bookmarks', 'action' => 'index'), array('id' => 'type-Bookmark')); ?></li>

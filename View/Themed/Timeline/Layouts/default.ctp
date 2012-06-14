@@ -28,6 +28,14 @@
 	<article>
 		<?php echo $this->fetch('content'); ?>
 	</article>
+<div class="overlay">
+<div class="modal">
+	<div>
+		<a href="#" class="close icon-remove-circle"></a>
+		<div class="target"></div>
+	</div>
+</div>
+</div>
 <?php
 	echo $this->Plate->lib('jquery', array('compressed' => true, 'fallback' => 'libs/jquery-1.6.1'));
 	echo $this->Html->script(array(

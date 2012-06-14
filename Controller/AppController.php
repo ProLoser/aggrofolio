@@ -211,13 +211,10 @@ class AppController extends Controller {
 	protected function _setTheme() {
 		if ($this->viewClass !== 'Webservice.Webservice') {
 			if ($this->Plate->prefix('admin')) {
-				$this->viewClass = 'Theme';
 				$this->theme = 'Admin';
 			} elseif ($this->Plate->prefix('manager')) {
-				$this->viewClass = 'Theme';
 				$this->theme = 'Manager';
 			} elseif (!Configure::read('owner')) {
-				$this->viewClass = 'Theme';
 				$this->theme = 'Main';
 			} else {
 				if (!Cache::read('navAccounts')) {
@@ -251,6 +248,12 @@ class AppController extends Controller {
 				}
 				$this->set('navGallery', Cache::read('navGallery'));
 			}
+			if ($this->RequestHandler->isAjax()) {
+				$this->theme = 'Timeline';
+				if ($this->action === 'admin_add') {
+					$this->view = 'admin_edit';
+				}
+			}
 		}
 	}
 
@@ -268,5 +271,4 @@ class AppController extends Controller {
 		}
 		parent::redirect($url, $status, $exit);
 	}
-
 }

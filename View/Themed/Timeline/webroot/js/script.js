@@ -4,10 +4,16 @@ $(document).ready(function(){
 	});
 	$('#import').click(function(e){
 		e.preventDefault();
-		$('.modal').addClass('active');
+		$('.overlay').addClass('active');
 	});
 	$('.modal .close').click(function(e){
 		e.preventDefault();
-		$('.modal').removeClass('active');
+		$('.overlay').removeClass('active');
+	});
+	$('.ajax').click(function(e){
+		e.preventDefault();
+		$('.modal .target').load($(this).attr('href'), function(response){
+			$('.overlay').addClass('active');
+		});
 	});
 });
