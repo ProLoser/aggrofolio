@@ -47,7 +47,10 @@
 		</td>
 		<td><?php echo ($post['Post']['published']) ? 'Yes' : 'No'; ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($postCategories[$post['Post']['post_category_id']], array('controller' => 'post_categories', 'action' => 'view', $post['Post']['post_category_id']));?>&nbsp;
+			<?php if (!empty($post['Post']['post_category_id'])): ?>
+				<?php echo $this->Html->link($postCategories[$post['Post']['post_category_id']], array('controller' => 'post_categories', 'action' => 'view', $post['Post']['post_category_id']));?>
+			<?php endif ?>
+			&nbsp;
 		</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $post['Post']['id']), array('class' => 'view')); ?>
