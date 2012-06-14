@@ -1,12 +1,14 @@
+<h1>
+	Sections
+	<?php echo $this->Html->link('<i class="icon-refresh icon-white"></i> Import', array('action' => 'index'), array('id' => 'import', 'class' => 'ajax btn btn-primary', 'escape' => false)); ?>
+</h1>
 <?php echo $this->Form->create('Account'); ?>
 	<header class="timeline">
-		<h2>
-			Sections <?php echo $this->Html->link('Import', array('action' => 'index'), array('id' => 'import', 'class' => 'ajax icon-plus-sign button')); ?>
-			<?php if (!empty($this->request->data)): ?>
-			 - Imported <?php echo $this->Form->value('Account.type');?> - <?php echo $this->Form->value('Account.username');?>
+
+		<?php if (!empty($this->request->data)): ?>
+			 Imported <?php echo $this->Form->value('Account.type');?> - <?php echo $this->Form->value('Account.username');?>
 			<?php echo $this->Form->submit('Save Changes', array('div' => false));?>
-			<?php endif ?>
-		</h2>
+		<?php endif ?>
 
 		<?php if (!empty($this->request->data)): ?>
 			<?php echo $this->Form->input('Account.id'); ?>
@@ -20,11 +22,36 @@
 		<?php endif ?>
 
 		<ul>
-			<li>Experience <?php echo $this->Html->link('', array('controller' => 'resume_employers', 'action' => 'add'), array('class' => 'ajax icon-plus button'));?></li>
-			<li>Projects <?php echo $this->Html->link('', array('controller' => 'projects', 'action' => 'add'), array('class' => 'ajax icon-plus button'));?></li>
-			<li>Albums <?php echo $this->Html->link('', array('controller' => 'albums', 'action' => 'add'), array('class' => 'ajax icon-plus button'));?></li>
-			<li>Media <?php echo $this->Html->link('', array('controller' => 'media_items', 'action' => 'add'), array('class' => 'ajax icon-plus button'));?></li>
-			<li>Posts <?php echo $this->Html->link('', array('controller' => 'posts', 'action' => 'add'), array('class' => 'ajax icon-plus button'));?></li>
+			<li>
+				<h3>
+					Experience
+					<?php echo $this->Html->link('<i class="icon-plus"></i>', array('controller' => 'resume_employers', 'action' => 'add'), array('class' => 'ajax btn', 'escape' => false));?>
+				</h3>
+			</li>
+			<li>
+				<h3>
+					Projects
+					<?php echo $this->Html->link('<i class="icon-plus"></i>', array('controller' => 'projects', 'action' => 'add'), array('class' => 'ajax btn', 'escape' => false));?>
+				</h3>
+			</li>
+			<li>
+				<h3>
+					Albums
+					<?php echo $this->Html->link('<i class="icon-plus"></i>', array('controller' => 'albums', 'action' => 'add'), array('class' => 'ajax btn', 'escape' => false));?>
+				</h3>
+			</li>
+			<li>
+				<h3>
+					Media
+					<?php echo $this->Html->link('<i class="icon-plus"></i>', array('controller' => 'media_items', 'action' => 'add'), array('class' => 'ajax btn', 'escape' => false));?>
+				</h3>
+			</li>
+			<li>
+				<h3>
+					Posts
+					<?php echo $this->Html->link('<i class="icon-plus"></i>', array('controller' => 'posts', 'action' => 'add'), array('class' => 'ajax btn', 'escape' => false));?>
+				</h3>
+			</li>
 		</ul>
 	</header>
 
@@ -77,9 +104,11 @@
 		<?php if (!empty($this->request->data['Project'])): ?>
 			<?php foreach ($this->request->data['Project'] as $i => $project):?>
 				<li>
-					<?php echo $this->Html->link('', array('controller' => 'projects', 'action' => 'delete', $project['id']), array('class' => 'icon-trash button'), 'Are you sure you want to delete this?');?>
-					<?php echo $this->Html->link('', array('controller' => 'projects', 'action' => 'edit', $project['id']), array('class' => 'ajax icon-pencil button'));?>
-					<?php echo $this->Html->link('', array('controller' => 'projects', 'action' => 'move', $project['id']), array('class' => 'icon-resize-vertical button')); ?>
+					<span class="btn-group">
+						<?php echo $this->Html->link('<i class="icon-trash"></i>', array('controller' => 'projects', 'action' => 'delete', $project['id']), array('class' => 'btn btn-mini', 'escape' => false), 'Are you sure you want to delete this?');?>
+						<?php echo $this->Html->link('<i class="icon-pencil"></i>', array('controller' => 'projects', 'action' => 'edit', $project['id']), array('class' => 'ajax btn btn-mini', 'escape' => false));?>
+						<?php echo $this->Html->link('<i class="icon-resize-vertical"></i>', array('controller' => 'projects', 'action' => 'move', $project['id']), array('class' => 'btn btn-mini', 'escape' => false)); ?>
+					</span>
 					<?php echo $this->Form->input("Project.$i.id");?>
 					<?php echo $this->Form->input("Project.$i.name"); ?>
 					<?php echo $this->Form->input("Project.$i.published"); ?>
@@ -89,9 +118,11 @@
 
 		<?php foreach ($projects as $id => $project): ?>
 			<li>
-				<?php echo $this->Html->link('', array('controller' => 'projects','action' => 'delete', $project['Project']['id']), array('class' => 'icon-trash button'), 'Are you sure you want to delete this?');?>
-				<?php echo $this->Html->link('', array('controller' => 'projects','action' => 'edit', $project['Project']['id']), array('class' => 'ajax icon-pencil button'));?>
-				<?php echo $this->Html->link('', array('controller' => 'projects', 'action' => 'move', $project['Project']['id']), array('class' => 'icon-resize-vertical button')); ?>
+				<span class="btn-group">
+					<?php echo $this->Html->link('<i class="icon-trash"></i>', array('controller' => 'projects','action' => 'delete', $project['Project']['id']), array('class' => 'btn btn-mini', 'escape' => false), 'Are you sure you want to delete this?');?>
+					<?php echo $this->Html->link('<i class="icon-pencil"></i>', array('controller' => 'projects','action' => 'edit', $project['Project']['id']), array('class' => 'ajax btn btn-mini', 'escape' => false));?>
+					<?php echo $this->Html->link('<i class="icon-resize-vertical"></i>', array('controller' => 'projects', 'action' => 'move', $project['Project']['id']), array('class' => 'btn btn-mini', 'escape' => false)); ?>
+				</span>
 				<?php echo $project['Project']['name'] ?>
 			</li>
 		<?php endforeach ?>

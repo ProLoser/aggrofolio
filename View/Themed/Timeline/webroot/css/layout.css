@@ -1,112 +1,17 @@
 * {
-  -moz-transition: all 200ms;
-  -webkit-transition: all 200ms;
-  -o-transition: all 200ms;
-  transition: all 200ms;
-  margin: 0;
-  padding: 0;
-}
-
-a {
-  color: #778c2a;
-  text-decoration: none;
-}
-a:hover {
-  color: #c0d904;
-}
-
-.button, input[type=button], input[type=submit], button {
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -o-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -khtml-border-radius: 4px;
-  border-radius: 4px;
-  -moz-box-shadow: 0 0 2px rgba(69, 89, 49, 0.5);
-  -webkit-box-shadow: 0 0 2px rgba(69, 89, 49, 0.5);
-  -o-box-shadow: 0 0 2px rgba(69, 89, 49, 0.5);
-  box-shadow: 0 0 2px rgba(69, 89, 49, 0.5);
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #e6fc47), color-stop(100%, #c0d904));
-  background: -webkit-linear-gradient(top, #e6fc47, #c0d904);
-  background: -moz-linear-gradient(top, #e6fc47, #c0d904);
-  background: -o-linear-gradient(top, #e6fc47, #c0d904);
-  background: -ms-linear-gradient(top, #e6fc47, #c0d904);
-  background: linear-gradient(top, #e6fc47, #c0d904);
-  font-size: 80%;
-  padding: 2px 5px;
-  border: 1px solid #94a703;
-}
-.button:hover, input[type=button]:hover, input[type=submit]:hover, button:hover {
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #edfd79), color-stop(100%, #d6f204));
-  background: -webkit-linear-gradient(top, #edfd79, #d6f204);
-  background: -moz-linear-gradient(top, #edfd79, #d6f204);
-  background: -o-linear-gradient(top, #edfd79, #d6f204);
-  background: -ms-linear-gradient(top, #edfd79, #d6f204);
-  background: linear-gradient(top, #edfd79, #d6f204);
-}
-.button:active, input[type=button]:active, input[type=submit]:active, button:active {
-  -moz-box-shadow: inset 0 0 4px rgba(69, 89, 49, 0.5);
-  -webkit-box-shadow: inset 0 0 4px rgba(69, 89, 49, 0.5);
-  -o-box-shadow: inset 0 0 4px rgba(69, 89, 49, 0.5);
-  box-shadow: inset 0 0 4px rgba(69, 89, 49, 0.5);
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #aac004), color-stop(100%, #d6f204));
-  background: -webkit-linear-gradient(top, #aac004, #d6f204);
-  background: -moz-linear-gradient(top, #aac004, #d6f204);
-  background: -o-linear-gradient(top, #aac004, #d6f204);
-  background: -ms-linear-gradient(top, #aac004, #d6f204);
-  background: linear-gradient(top, #aac004, #d6f204);
-}
-.button + .button, .button input[type=button], .button input[type=submit], .button button, input[type=button] + .button, input[type=button] input[type=button], input[type=button] input[type=submit], input[type=button] button, input[type=submit] + .button, input[type=submit] input[type=button], input[type=submit] input[type=submit], input[type=submit] button, button + .button, button input[type=button], button input[type=submit], button button {
-  -moz-border-radius-topleft: 0;
-  -webkit-border-top-left-radius: 0;
-  -o-border-top-left-radius: 0;
-  -ms-border-top-left-radius: 0;
-  -khtml-border-top-left-radius: 0;
-  border-top-left-radius: 0;
-  -moz-border-radius-bottomleft: 0;
-  -webkit-border-bottom-left-radius: 0;
-  -o-border-bottom-left-radius: 0;
-  -ms-border-bottom-left-radius: 0;
-  -khtml-border-bottom-left-radius: 0;
-  border-bottom-left-radius: 0;
-  margin-left: -7px;
-  padding-left: 2px;
-  -moz-box-shadow: 0 0 2px rgba(69, 89, 49, 0.5), inset 1px 0 1px -1px rgba(69, 89, 49, 0.5);
-  -webkit-box-shadow: 0 0 2px rgba(69, 89, 49, 0.5), inset 1px 0 1px -1px rgba(69, 89, 49, 0.5);
-  -o-box-shadow: 0 0 2px rgba(69, 89, 49, 0.5), inset 1px 0 1px -1px rgba(69, 89, 49, 0.5);
-  box-shadow: 0 0 2px rgba(69, 89, 49, 0.5), inset 1px 0 1px -1px rgba(69, 89, 49, 0.5);
+  -moz-transition-duration: 0.2s;
+  -webkit-transition-duration: 0.2s;
+  -o-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  -moz-transition-timing-function: ease;
+  -webkit-transition-timing-function: ease;
+  -o-transition-timing-function: ease;
+  transition-timing-function: ease;
 }
 
 body {
-  font-family: Helvetica;
-  background: url("../img/dark_circles.png");
-  color: #f2f2f2;
-}
-
-header {
-  text-align: center;
-}
-header a {
-  margin: 0 10px;
-}
-
-form#AccountAdminImporterForm {
-  color: #333;
-  text-shadow: 0 1px 2px #fff;
-  background: rgba(242, 242, 242, 0.8);
-  margin: 20px;
-  padding: 20px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -o-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -khtml-border-radius: 4px;
-  border-radius: 4px;
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  -moz-box-shadow: 0, 0, 4px, 4px, rgba(0, 0, 0, 0.5);
-  -webkit-box-shadow: 0, 0, 4px, 4px, rgba(0, 0, 0, 0.5);
-  -o-box-shadow: 0, 0, 4px, 4px, rgba(0, 0, 0, 0.5);
-  box-shadow: 0, 0, 4px, 4px, rgba(0, 0, 0, 0.5);
+  padding-top: 60px;
+  padding-bottom: 40px;
 }
 
 header.timeline {
@@ -147,264 +52,181 @@ div.timeline li {
   margin: 10px 20px;
 }
 
-.overlay {
-  background: rgba(0, 0, 0, 0.5);
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  display: none;
-  top: 0;
-  left: 0;
-}
-.overlay.active {
-  display: block;
-}
-
-.modal {
-  display: table;
-  background: white;
-  border-radius: 10px;
-  padding: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  text-align: center;
-  color: #333;
-  width: 600px;
-  overflow: hidden;
-  margin: 20px auto;
-}
-.modal > div {
-  display: table-cell;
-  vertical-align: middle;
-}
-.modal .close {
-  float: right;
-  color: #ddd;
-  font-size: 140%;
-  line-height: 60%;
-  padding: 4px 5px;
-}
-.modal .close:hover {
-  color: #c0d904;
-}
-.modal h3 {
-  box-shadow: 0 0 15px -4px rgba(0, 0, 0, 0.5);
-  padding: 5px;
-}
-.modal ul {
-  list-style: none;
-}
-.modal .overflow {
-  overflow: auto;
-  height: 330px;
-  padding: 10px 0;
-}
-.modal .overflow ul {
-  margin: 0;
-  padding: 0;
-}
-.modal .overflow li {
-  display: inline-block;
-  margin: 10px;
-}
-.modal .overflow li a {
-  background-position: 50% 0;
-  background-repeat: no-repeat;
-  display: inline-block;
-  padding-top: 40px;
-  vertical-align: top;
-  min-width: 32px;
-}
-.modal .target {
-  text-align: left;
-}
-.modal .target fieldset {
-  border: none;
-}
-.modal .target li {
-  display: inline-block;
-}
-.modal .target li a {
-  display: inline-block;
-}
-.modal .target .input {
-  margin: 5px 0;
-}
-.modal .target .input.checkbox label {
-  width: auto;
-}
-.modal .target .input.checkbox input {
-  width: auto;
-  margin-right: 5px;
-}
-.modal .target .input.date select {
-  width: auto;
-}
-.modal .target .input label {
-  width: 30%;
-  display: inline-block;
-  vertical-align: top;
-}
-.modal .target .input input, .modal .target .input textarea, .modal .target .input select {
-  width: 65%;
+.modal-body {
+  max-height: 400px;
 }
 
 /** ICONS **/
-.modal .aim a {
+.icons ul {
+  list-style: none;
+}
+.icons li {
+  display: inline-block;
+}
+.icons a {
+  display: inline-block;
+  height: 32px;
+  width: 32px;
+  text-indent: -5000px;
+  margin: 10px;
+}
+
+.icons .aim a {
   background-image: url(../../../img/accounts/aim.png);
 }
 
-.modal .android a {
+.icons .android a {
   background-image: url(../../../img/accounts/android.png);
 }
 
-.modal .aol a {
+.icons .aol a {
   background-image: url(../../../img/accounts/aol.png);
 }
 
-.modal .apple a {
+.icons .apple a {
   background-image: url(../../../img/accounts/apple.png);
 }
 
-.modal .asana a {
+.icons .asana a {
   background-image: url(../../../img/accounts/asana.png);
 }
 
-.modal .basecamp a {
+.icons .basecamp a {
   background-image: url(../../../img/accounts/basecamp.png);
 }
 
-.modal .behance a {
+.icons .behance a {
   background-image: url(../../../img/accounts/behance.png);
 }
 
-.modal .blogger a {
+.icons .blogger a {
   background-image: url(../../../img/accounts/blogger.png);
 }
 
-.modal .codaset a {
+.icons .codaset a {
   background-image: url(../../../img/accounts/codaset.png);
 }
 
-.modal .delicious a {
+.icons .delicious a {
   background-image: url(../../../img/accounts/delicious.png);
 }
 
-.modal .deviantart a {
+.icons .deviantart a {
   background-image: url(../../../img/accounts/deviantart.png);
 }
 
-.modal .digg a {
+.icons .digg a {
   background-image: url(../../../img/accounts/digg.png);
 }
 
-.modal .dribbble a {
+.icons .dribbble a {
   background-image: url(../../../img/accounts/dribbble.png);
 }
 
-.modal .evernote a {
+.icons .evernote a {
   background-image: url(../../../img/accounts/evernote.png);
 }
 
-.modal .facebook a {
+.icons .facebook a {
   background-image: url(../../../img/accounts/facebook.png);
 }
 
-.modal .flickr a {
+.icons .flickr a {
   background-image: url(../../../img/accounts/flickr-1.png);
 }
 
-.modal .foursquare a {
+.icons .foursquare a {
   background-image: url(../../../img/accounts/foursquare.png);
 }
 
-.modal .github a {
+.icons .github a {
   background-image: url(../../../img/accounts/github.png);
 }
 
-.modal .gmail a {
+.icons .gmail a {
   background-image: url(../../../img/accounts/gmail.png);
 }
 
-.modal .google a {
+.icons .google a {
   background-image: url(../../../img/accounts/google.png);
 }
 
-.modal .googlebuzz a {
+.icons .googlebuzz a {
   background-image: url(../../../img/accounts/googlebuzz.png);
 }
 
-.modal .gtalk a {
+.icons .gtalk a {
   background-image: url(../../../img/accounts/gtalk.png);
 }
 
-.modal .jsfiddle a {
+.icons .jsfiddle a {
   background-image: url(../../../img/accounts/jsfiddle.png);
 }
 
-.modal .instagram a {
+.icons .instagram a {
   background-image: url(../../../img/accounts/instagram.png);
 }
 
-.modal .lastfm a {
+.icons .lastfm a {
   background-image: url(../../../img/accounts/lastfm.png);
 }
 
-.modal .linkedin a {
+.icons .linkedin a {
   background-image: url(../../../img/accounts/linkedin.png);
 }
 
-.modal .pandora a {
+.icons .pandora a {
   background-image: url(../../../img/accounts/pandora.png);
 }
 
-.modal .photobucket a {
+.icons .photobucket a {
   background-image: url(../../../img/accounts/photobucket.png);
 }
 
-.modal .picasa a {
+.icons .picasa a {
   background-image: url(../../../img/accounts/picasa.png);
 }
 
-.modal .rss a {
+.icons .rss a {
   background-image: url(../../../img/accounts/rss.png);
 }
 
-.modal .skype a {
+.icons .skype a {
   background-image: url(../../../img/accounts/skype.png);
 }
 
-.modal .spotify a {
+.icons .spotify a {
   background-image: url(../../../img/accounts/spotify.png);
 }
 
-.modal .stumbleupon a {
+.icons .stumbleupon a {
   background-image: url(../../../img/accounts/stumbleupon.png);
 }
 
-.modal .twitter a {
+.icons .twitter a {
   background-image: url(../../../img/accounts/twitter.png);
 }
 
-.modal .tumblr a {
+.icons .tumblr a {
   background-image: url(../../../img/accounts/tumblr.png);
 }
 
-.modal .vimeo a {
+.icons .vimeo a {
   background-image: url(../../../img/accounts/vimeo.png);
 }
 
-.modal .wordpress a {
+.icons .wordpress a {
   background-image: url(../../../img/accounts/wordpress.png);
 }
 
-.modal .yahoo a {
+.icons .yahoo a {
   background-image: url(../../../img/accounts/yahoo.png);
 }
 
-.modal .yelp a {
+.icons .yelp a {
   background-image: url(../../../img/accounts/yelp.png);
 }
 
-.modal .youtube a {
+.icons .youtube a {
   background-image: url(../../../img/accounts/youtube.png);
 }
