@@ -1,9 +1,15 @@
-<h1><?php echo __('Edit Media Item'); ?></h1>
-<ul class="actions">
-	<li><?php echo $this->Html->link(__('Delete'), array('action' => 'delete', $this->Form->value('MediaItem.id')), null, sprintf(__('Are you sure you want to delete # %s?'), $this->Form->value('MediaItem.id'))); ?></li>
-</ul>
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal">×</button>
+	<h3>
+		<?php if (empty($this->data['MediaItem']['id'])): ?>
+			<?php echo __('Add Media Item'); ?>
+		<?php else: ?>
+			<?php echo __('Edit Media Item'); ?>
+		<?php endif ?>
+	</h3>
+</div>
 <?php
-echo $this->Form->create('MediaItem', array('type' => 'file'));
+echo $this->Form->create('MediaItem', array('type' => 'file', 'class' => 'modal-body'));
 	echo $this->Form->input('id');
 	echo $this->Form->input('name');
 	echo $this->Form->input('attachment', array('type' => 'file'));
@@ -11,8 +17,14 @@ echo $this->Form->create('MediaItem', array('type' => 'file'));
 	echo $this->Form->input('source');
 	echo $this->Form->input('description');
 	echo $this->Form->input('published');
-	echo $this->Form->input('uuid');
 	echo $this->Form->input('album_id', array('empty' => '-- Select One --'));
 	echo $this->Form->input('project_id', array('empty' => '-- None --'));
-echo $this->Form->end('Save');
+echo $this->Form->end();
 ?>
+<div class="modal-footer">
+<?php if (empty($this->data['MediaItem']['id'])): ?>
+	<?php echo $this->Html->link('<i class="icon-trash"></i>', array('action' => 'delete', $this->Form->value('MediaItem.id')), array('escape' => false, 'title' => 'remove', 'class' => 'pull-left btn'), sprintf(__('Are you sure you want to delete # %s?'), $this->Form->value('MediaItem.id'))); ?>
+<?php endif ?>
+	<a href="#" class="btn" data-dismiss="modal">Close</a>
+	<a href="#" class="btn btn-primary">Save changes</a>
+</div>

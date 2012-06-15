@@ -1,7 +1,11 @@
 <div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal">×</button>
 	<h3>
-		<?php echo __('Edit Project'); ?>
+		<?php if (empty($this->data['Project']['id'])): ?>
+			<?php echo __('Add Project'); ?>
+		<?php else: ?>
+			<?php echo __('Edit Project'); ?>
+		<?php endif ?>
 	</h3>
 </div>
 <?php echo $this->Form->create('Project', array('class' => 'modal-body')); ?>
@@ -15,7 +19,6 @@
 	echo $this->Form->input('bugs_url');
 	echo $this->Form->input('project_category_id', array('empty' => '-- None --'));
 	echo $this->Form->input('published');
-	echo $this->Form->input('account_id', array('empty' => '-- None --'));
 	echo $this->Form->input('owner');
 	echo $this->Form->input('resume_employer_id', array('empty' => '-- None --'));
 	echo $this->Form->input('resume_school_id', array('empty' => '-- None --'));

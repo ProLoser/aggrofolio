@@ -3,7 +3,7 @@ $(document).ready(function(){
 	i = 0;
 	$(".add-related").click(function(){
 		content = '<fieldset>\
-			<a href="#" class="cancel">Cancel</a>\
+			<a href="#" class="btn btn-error"><i class="icon-remove"></i> Cancel</a>\
 			<?php echo str_replace("\n", "\\\n", $this->Form->input('PostRelationship.@@.foreign_model', array(
 				'label' => 'Related Section', 'class' => 'model', 'empty' => '-- Select One --', 'div' => array('class' => 'input half select')
 			))) ?>\
