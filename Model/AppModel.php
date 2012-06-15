@@ -193,4 +193,16 @@ class AppModel extends Model {
 			}
 		}
 	}
+
+
+	/**
+	 * Toggles the published state of the record
+	 **/
+	public function publish($id) {
+		$this->id = $id;
+		$this->read();
+		if ($this->data[$this->alias]['user_id'] === Configure::read('owner')) {
+			return $this->saveField('published', !$this->data[$this->alias]['published']);
+		}
+	}
 }

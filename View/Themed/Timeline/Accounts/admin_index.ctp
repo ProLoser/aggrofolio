@@ -8,7 +8,7 @@
 		<ul>
 			<?php foreach ($accounts as $account): ?>
 				<li class="<?php echo $account['Account']['type']?>">
-					<?php echo $this->Html->link($account['Account']['username'], array($account['Account']['id']), array('title' => $account['Account']['username'], 'rel' => 'tooltip')); ?>
+					<?php echo $this->Html->link($account['Account']['username'] . ' ', array($account['Account']['id']), array('title' => $account['Account']['username'], 'rel' => 'tooltip')); ?>
 				</li>
 			<?php endforeach; ?>
 		</ul>

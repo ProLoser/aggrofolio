@@ -151,5 +151,9 @@ class PostsController extends AppController {
 		$this->Session->setFlash(__('Post was not deleted'));
 		$this->redirect(array('action' => 'index'));
 	}
+
+	public function admin_publish($id = null) {
+		$this->Post->publish($id);
+		$this->redirect(array('controller' => 'accounts', 'action' => 'importer'));
+	}
 }
-?>

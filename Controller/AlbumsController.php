@@ -102,5 +102,10 @@ class AlbumsController extends AppController {
 		$this->Session->setFlash(__('Album was not deleted'));
 		$this->redirect(array('action' => 'index'));
 	}
+
+	public function admin_publish($id = null) {
+		$this->Album->publish($id);
+		$this->redirect(array('controller' => 'accounts', 'action' => 'importer'));
+	}
 }
 ?>

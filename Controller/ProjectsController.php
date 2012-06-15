@@ -4,13 +4,13 @@ class ProjectsController extends AppController {
 	var $name = 'Projects';
 	var $helpers = array('Time');
 	var $components = array(
-		'Apis.Oauth' => array(	
+		'Apis.Oauth' => array(
 			//'codaset',
 			'github',
 		),
 	);
 	public $paginate = array();
-	
+
 	function index() {
 		$this->paginate['limit'] = 50;
 		$this->paginate['conditions']['Project.published'] = true;
@@ -99,6 +99,11 @@ class ProjectsController extends AppController {
 		}
 		$this->Session->setFlash(__('Project was not deleted'));
 		$this->redirect(array('action' => 'index'));
+	}
+
+	public function admin_publish($id = null) {
+		$this->Project->publish($id);
+		$this->redirect(array('controller' => 'accounts', 'action' => 'importer'));
 	}
 }
 ?>

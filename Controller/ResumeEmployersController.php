@@ -70,5 +70,10 @@ class ResumeEmployersController extends AppController {
 		$this->Session->setFlash(__('Resume employer was not deleted'));
 		$this->redirect(array('action' => 'index'));
 	}
+
+	public function admin_publish($id = null) {
+		$this->ResumeEmployer->publish($id);
+		$this->redirect(array('controller' => 'accounts', 'action' => 'importer'));
+	}
 }
 ?>

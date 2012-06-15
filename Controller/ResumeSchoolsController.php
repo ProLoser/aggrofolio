@@ -70,5 +70,10 @@ class ResumeSchoolsController extends AppController {
 		$this->Session->setFlash(__('Resume school was not deleted'));
 		$this->redirect(array('action' => 'index'));
 	}
+
+	public function admin_publish($id = null) {
+		$this->ResumeSchool->publish($id);
+		$this->redirect(array('controller' => 'accounts', 'action' => 'importer'));
+	}
 }
 ?>

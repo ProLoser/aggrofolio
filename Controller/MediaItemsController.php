@@ -135,5 +135,10 @@ class MediaItemsController extends AppController {
 		$this->Session->setFlash(__('Media item was not deleted'));
 		$this->redirect(array('action' => 'index'));
 	}
+
+	public function admin_publish($id = null) {
+		$this->MediaItem->publish($id);
+		$this->redirect(array('controller' => 'accounts', 'action' => 'importer'));
+	}
 }
 ?>

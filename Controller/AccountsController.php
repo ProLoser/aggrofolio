@@ -2,6 +2,9 @@
 class AccountsController extends AppController {
 
 	public $name = 'Accounts';
+	public $helpers = array(
+		'Timeline',
+	);
 	public $components = array(
 		'Apis.Oauth' => array(
 			'linkedin',

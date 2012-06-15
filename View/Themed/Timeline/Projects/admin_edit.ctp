@@ -22,9 +22,11 @@
 ?>
 <?php echo $this->Form->end();?>
 <div class="modal-footer">
+<?php if (!empty($this->data['Project']['id'])): ?>
 	<?php echo $this->Html->link('<i class="icon-eye-open"></i>', array('action' => 'view', $this->data['Project']['id']), array('class' => 'pull-left btn', 'escape' => false, 'title' => 'View')); ?>
 	<?php echo $this->Html->link('<i class="icon-trash"></i>', array('action' => 'delete', $this->Form->value('Project.id')), array('class' => 'pull-left btn', 'escape' => false), sprintf(__('Are you sure you want to delete # %s?'), $this->Form->value('Project.id'))); ?>
 	<?php echo $this->Html->link('<i class="icon-picture"></i>', array('controller' => 'media_items', 'action' => 'add', 'project' => $this->request->data['Project']['id']), array('class' => 'pull-left btn', 'escape' => false, 'title' => 'Attach Media')); ?>
+<?php endif ?>
 	<a href="#" class="btn" data-dismiss="modal">Close</a>
 	<a href="#" class="btn btn-primary">Save changes</a>
 </div>
