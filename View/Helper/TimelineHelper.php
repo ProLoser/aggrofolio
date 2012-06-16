@@ -24,28 +24,26 @@ class TimelineHelper extends AppHelper {
 	public function buttons($record, $model, $editing = false) {
 		$controller = Inflector::tableize($model);
 		$output = '';
-		$output .= '<span class="btn-group">';
-		$output .= $this->Html->link('<i class="icon-trash"></i>',
+		$output .= $this->Html->link('',
 			array('controller' => $controller, 'action' => 'delete', $record[$model]['id']),
-			array('class' => 'btn btn-mini', 'escape' => false, 'title' => __('Delete')), __('Are you sure you want to delete this?'));
+			array('class' => 'icon-trash', 'escape' => false, 'title' => __('Delete')), __('Are you sure you want to delete this?'));
 		if (!$editing) {
-			$output .= $this->Html->link('<i class="icon-pencil"></i>',
+			$output .= $this->Html->link('',
 				array('controller' => $controller, 'action' => 'edit', $record[$model]['id']),
-				array('class' => 'ajax btn btn-mini', 'escape' => false, 'title' => __('Edit')));
+				array('class' => 'ajax icon-pencil', 'escape' => false, 'title' => __('Edit')));
 		}
-		$output .= $this->Html->link('<i class="icon-resize-vertical"></i>',
+		$output .= $this->Html->link('',
 			array('action' => 'move', $record[$model]['id']),
-			array('class' => 'btn btn-mini', 'escape' => false, 'title' => __('Move')));
+			array('class' => 'icon-resize-vertical', 'escape' => false, 'title' => __('Move')));
 		if ($record[$model]['published']) {
-			$output .= $this->Html->link('<i class="icon-eye-open"></i>',
-				array('controller' => $controller, 'action' => 'publish', $model, $record[$model]['id']),
-				array('class' => 'btn btn-mini', 'escape' => false, 'title' => __('UnPublish')));
+			$output .= $this->Html->link('',
+				array('controller' => $controller, 'action' => 'publish', $record[$model]['id']),
+				array('class' => 'icon-eye-open', 'escape' => false, 'title' => __('UnPublish')));
 		} else {
-			$output .= $this->Html->link('<i class="icon-eye-close"></i>',
-				array('controller' => $controller, 'action' => 'publish', $model, $record[$model]['id']),
-				array('class' => 'btn btn-mini', 'escape' => false, 'title' => __('Publish')));
+			$output .= $this->Html->link('',
+				array('controller' => $controller, 'action' => 'publish', $record[$model]['id']),
+				array('class' => 'icon-eye-close', 'escape' => false, 'title' => __('Publish')));
 		}
-		$output .= '</span>';
 		return $output;
 	}
 }

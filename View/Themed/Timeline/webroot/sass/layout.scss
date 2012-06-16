@@ -11,6 +11,15 @@ $white: #F2F2F2;
 	@include transition-timing-function(ease);
 }
 
+.sidebar-nav {
+	overflow: hidden;
+	&.remove {
+		max-width: 0;
+		max-height: 0;
+		width: 0;
+	}
+}
+
 body {
 	padding-top: 60px;
 	padding-bottom: 40px;
@@ -47,14 +56,48 @@ div.timeline ul {
 div.timeline li {
 	margin: 10px 20px;
 }
-.modal-body {
-	max-height: 400px;
+form.modal-body {
+	margin: 0;
+	label {
+		margin-right: 20px;
+	}
+	.input {
+		margin-bottom: 9px;
+		input, select {
+			margin-bottom: 0;
+			width: 100%;
+			height: 26px;
+			box-sizing: border-box;
+			&[type=checkbox] {
+				width: auto;
+				height: 18px;
+			}
+		}
+	}
+	.input.text, .input.date, .input.select {
+		display: inline-block;
+		margin-right: 15px;
+		width: 250px;
+	}
+	.date select {
+		width: auto;
+		display: inline-block;
+		margin-right: 5px;
+		margin-left: 5px;
+	}
+	.textarea textarea {
+		width: 505px;
+	}
+	.related .input {
+		margin-right: 13px;
+	}
 }
 
 /** ICONS **/
 .icons {
 	ul {
 		list-style: none;
+		margin: 0 0 9px;
 	}
 	li {
 		display: inline-block;
@@ -65,6 +108,7 @@ div.timeline li {
 		width: 32px;
 		text-indent: -5000px;
 		margin: 10px;
+		background: no-repeat center;
 	}
 }
 .icons .aim a { background-image: url(../../../img/accounts/aim.png); }
@@ -83,6 +127,7 @@ div.timeline li {
 .icons .evernote a { background-image: url(../../../img/accounts/evernote.png); }
 .icons .facebook a { background-image: url(../../../img/accounts/facebook.png); }
 .icons .flickr a { background-image: url(../../../img/accounts/flickr-1.png); }
+.icons .forrst a { background-image: url(../../../img/accounts/forrst.png); }
 .icons .foursquare a { background-image: url(../../../img/accounts/foursquare.png); }
 .icons .github a { background-image: url(../../../img/accounts/github.png); }
 .icons .gmail a { background-image: url(../../../img/accounts/gmail.png); }

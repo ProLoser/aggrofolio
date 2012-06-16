@@ -3,23 +3,18 @@ $(document).ready(function(){
 	i = 0;
 	$(".add-related").click(function(){
 		content = '<fieldset>\
-			<a href="#" class="btn btn-error"><i class="icon-remove"></i> Cancel</a>\
 			<?php echo str_replace("\n", "\\\n", $this->Form->input('PostRelationship.@@.foreign_model', array(
-				'label' => 'Related Section', 'class' => 'model', 'empty' => '-- Select One --', 'div' => array('class' => 'input half select')
-			))) ?>\
+				'label' => '<a href="#" class="icon-remove"></a> Related Section', 'class' => 'model', 'empty' => '-- Select One --'))) ?>\
 			<?php echo str_replace("\n", "\\\n", $this->Form->input('PostRelationship.@@.foreign_key', array(
-				'label' => 'Related Item', 'type' => 'select', 'div' => array('class' => 'input half select')
-			))) ?>\
+				'label' => 'Related Item', 'type' => 'select'))) ?>\
 		</fieldset>';
 		content = content.replace(/@@/g, i);
 		$(".related").append(content).find("fieldset").slideDown(300);
 		i++;
 		return false;
 	});
-	$(".related .cancel").live("click", function(){
-		$(this).closest("fieldset").slideUp(300, function(){
-			$(this).remove();
-		});
+	$(".related .icon-remove").live("click", function(){
+		$(this).closest("fieldset").remove();
 		return false;
 	});
 	$(".related .model").live("change", function(){
@@ -35,5 +30,3 @@ $(document).ready(function(){
 	});
 });
 </script>
-
-<div class="related"></div>

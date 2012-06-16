@@ -18,7 +18,7 @@
 	echo $this->Form->input('Post.post_category_id', array('empty' => '-- None --'));
 ?>
 
-	<fieldset>
+	<fieldset class="related">
 		<h3>Relationship Tags</h3>
 		<?php if (!empty($this->request->data['PostRelationship'])): ?>
 		<ul>

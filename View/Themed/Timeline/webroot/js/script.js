@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	$('.btn[title]').tooltip();
+	$('a[title]').tooltip();
 	$('#AccountPublished').change(function(e){
 		$('input:checkbox').attr('checked', $(this).is(':checked'));
 	});
@@ -7,7 +7,7 @@ $(document).ready(function(){
 		e.preventDefault();
 		$('.modal').load($(this).attr('href'), function(response){
 			$('.modal').modal();
-			$('.modal .btn[title]').tooltip({placement:'bottom'});
+			$('.modal a[title]').tooltip({placement:'bottom'});
 		});
 	});
 });
