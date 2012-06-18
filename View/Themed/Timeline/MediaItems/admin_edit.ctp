@@ -22,7 +22,7 @@ echo $this->Form->create('MediaItem', array('type' => 'file', 'class' => 'modal-
 echo $this->Form->end();
 ?>
 <div class="modal-footer">
-<?php if (empty($this->data['MediaItem']['id'])): ?>
+<?php if (!empty($this->data['MediaItem']['id'])): ?>
 	<?php echo $this->Html->link('<i class="icon-trash"></i>', array('action' => 'delete', $this->Form->value('MediaItem.id')), array('escape' => false, 'title' => 'remove', 'class' => 'pull-left btn'), sprintf(__('Are you sure you want to delete # %s?'), $this->Form->value('MediaItem.id'))); ?>
 <?php endif ?>
 	<a href="#" class="btn" data-dismiss="modal">Close</a>

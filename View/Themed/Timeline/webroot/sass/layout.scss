@@ -11,6 +11,10 @@ $white: #F2F2F2;
 	@include transition-timing-function(ease);
 }
 
+.ng-cloak {
+	display: none;
+}
+
 .sidebar-nav {
 	overflow: hidden;
 	&.remove {

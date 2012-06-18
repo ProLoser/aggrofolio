@@ -15,7 +15,7 @@
 	echo $this->Form->input('Post.slug');
 	echo $this->Form->input('Post.body');
 	echo $this->Form->input('Post.published');
-	echo $this->Form->input('Post.post_category_id', array('empty' => '-- None --'));
+	echo $this->Form->input('Post.post_category_id', array('label' => 'Post Category '.$this->Html->link('<i class="icon-plus"></i>',array('controller' => 'post_categories', 'action' => 'add'),array('class' => 'ajax btn', 'escape' => false)), 'empty' => '-- None --'));
 ?>
 
 	<fieldset class="related">
@@ -38,7 +38,7 @@
 
 <div class="modal-footer">
 	<a href="#" class="add-related pull-left btn"><i class="icon-plus"></i> Add Related</a>
-<?php if (empty($this->data['Post']['id'])): ?>
+<?php if (!empty($this->data['Post']['id'])): ?>
 	<?php echo $this->Html->link('<i class="icon-trash"></i>', array('action' => 'delete', $this->Form->value('Post.id')), array('escape' => false, 'class' => 'pull-left btn', 'title' => __('Remove')), sprintf(__('Are you sure you want to delete # %s?'), $this->Form->value('Post.id'))); ?>
 	<?php echo $this->Html->link('<i class="icon-eye-open"></i>', array('action' => 'view', $this->Form->value('Post.id')), array('escape' => false, 'class' => 'pull-left btn', 'title' => __('View')));?>
 <?php endif ?>

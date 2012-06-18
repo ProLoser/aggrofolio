@@ -22,7 +22,7 @@ echo $this->Form->create('ResumeEmployer', array('class' => 'modal-body'));
 echo $this->Form->end();
 ?>
 <div class="modal-footer">
-<?php if (empty($this->data['ResumeEmployer']['id'])): ?>
+<?php if (!empty($this->data['ResumeEmployer']['id'])): ?>
 	<?php echo $this->Html->link('<i class="icon-trash"></i>', array('action' => 'delete', $this->Form->value('ResumeEmployer.id')), array('class' => 'btn pull-left', 'escape' => false, 'title' => 'remove'), sprintf(__('Are you sure you want to delete # %s?'), $this->Form->value('ResumeEmployer.id'))); ?>
 <?php endif ?>
 	<a href="#" class="btn" data-dismiss="modal">Close</a>

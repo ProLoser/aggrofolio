@@ -24,6 +24,7 @@ class TimelineHelper extends AppHelper {
 	public function buttons($record, $model, $editing = false) {
 		$controller = Inflector::tableize($model);
 		$output = '';
+		$output .= '<a ng-click="toggle(\''.$model.'\', \''.$record[$model]['id'].'\')" ng-show="resumeBuilder" ng-cloak class="ng-cloak" ng-class="{\'icon-arrow-left\':!resume[\''.$model.'\'][\''.$record[$model]['id'].'\'],\'icon-arrow-right\':resume[\''.$model.'\'][\''.$record[$model]['id'].'\']}" title="Toggle from Resume"></a>';
 		$output .= $this->Html->link('',
 			array('controller' => $controller, 'action' => 'delete', $record[$model]['id']),
 			array('class' => 'icon-trash', 'escape' => false, 'title' => __('Delete')), __('Are you sure you want to delete this?'));

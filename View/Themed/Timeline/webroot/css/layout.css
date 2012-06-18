@@ -9,6 +9,10 @@
   transition-timing-function: ease;
 }
 
+.ng-cloak {
+  display: none;
+}
+
 .sidebar-nav {
   overflow: hidden;
 }

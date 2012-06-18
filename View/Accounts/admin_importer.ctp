@@ -56,6 +56,9 @@
 	</header>
 
 	<div class="timeline">
+		<?php if (empty($schools) && empty($works) && empty($projects) && empty($posts) && empty($mediaItems)): ?>
+			<p>Click the <?php echo $this->Html->link('<i class="icon-refresh icon-white"></i> Import', array('action' => 'index'), array('id' => 'import', 'class' => 'ajax btn btn-primary', 'escape' => false)); ?> button to get started.</p>
+		<?php endif ?>
 		<ul id="experience">
 		<?php if (!empty($this->request->data['ResumeSchool'])): ?>
 			<?php foreach ($this->request->data['ResumeSchool'] as $i => $school):?>

@@ -14,6 +14,7 @@
 		echo $this->Html->css(array(
 			'bootstrap',
 			'bootstrap-responsive',
+			'/js/select2/select2',
 			'layout',
 		));
 		echo $this->fetch('css');
@@ -24,7 +25,7 @@
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
   </head>
-  <body>
+  <body ng-controller="Importer">
 
     <?php echo $this->element('navigation')?>
 
@@ -67,6 +68,7 @@
 		'bootstrap-carousel',
 		'bootstrap-typeahead',
 		'angular.min',
+		'select2/select2',
 		'script',
 	));
 	echo $this->fetch('scripts');
