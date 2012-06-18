@@ -37,6 +37,10 @@ class Project extends AppModel {
 		),
 	);
 
+	public $hasAndBelongsTo = array(
+		'ResumeSkill',
+	);
+
 	public $actsAs = array(
 		'Activity',
 	);

@@ -25,6 +25,7 @@ class ResumeSkill extends AppModel {
 
 	var $hasAndBelongsToMany = array(
 		'Resume',
+		'Project',
 	);
 
 	var $proficiencies = array(
