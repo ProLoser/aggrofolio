@@ -81,15 +81,18 @@ class AccountsController extends AppController {
 	}
 
 	public function admin_importer($id = null) {
-		$projects = $this->Account->Project->find('all');
-		$works = $this->Account->ResumeEmployer->find('all');
-		$schools = $this->Account->ResumeSchool->find('all');
-		$mediaItems = $this->Account->MediaItem->find('all');
-		$albums = $this->Account->Album->find('all');
-		$posts = $this->Account->Post->find('all');
-		$accounts = $this->Account->find('all');
-		$accountTypes = $this->Account->types;
-		$account = array();
+		if ($this->RequestHandler->isAjax()) {
+			$projects = $this->Account->Project->find('all');
+			$works = $this->Account->ResumeEmployer->find('all');
+			$schools = $this->Account->ResumeSchool->find('all');
+			$mediaItems = $this->Account->MediaItem->find('all');
+			$albums = $this->Account->Album->find('all');
+			$posts = $this->Account->Post->find('all');
+			$accounts = $this->Account->find('all');
+			$accountTypes = $this->Account->types;
+			$account = array();
+			$this->set(compact('projects', 'works', 'schools', 'mediaItems', 'albums', 'posts', 'account', 'accounts', 'accountTypes'));
+		}
 		if (!empty($this->request->data)) {
 			if ($this->Account->saveAssociated($this->request->data)) {
 				$this->Session->setFlash(__('The changes has been saved'));
@@ -99,7 +102,6 @@ class AccountsController extends AppController {
 		} elseif ($id) {
 			$this->request->data = $this->Account->find('timeline', array('conditions' => $id));
 		}
-		$this->set(compact('projects', 'works', 'schools', 'mediaItems', 'albums', 'posts', 'account', 'accounts', 'accountTypes'));
 	}
 
 	public function admin_index() {
