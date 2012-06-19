@@ -50,6 +50,11 @@ class PostsController extends AppController {
 	}
 
 	function admin_index() {
+		if ($this->viewClass === 'Json') {
+			$this->viewClass = 'Webservice.Webservice';
+			$this->set('posts', $this->Post->find('all'));
+			return;
+		}
 		$this->Post->recursive = 0;
 		$posts = $this->paginate();
 		$postCategories = $this->Post->PostCategory->find('list');

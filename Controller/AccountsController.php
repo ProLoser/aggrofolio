@@ -81,20 +81,6 @@ class AccountsController extends AppController {
 	}
 
 	public function admin_importer($id = null) {
-		if ($this->viewClass === 'Json') {
-	        $this->request->type(array('json' => 'application/json'));
-			$this->viewClass = 'Webservice.Webservice';
-			$projects = $this->Account->Project->find('all');
-			$works = $this->Account->ResumeEmployer->find('all');
-			$schools = $this->Account->ResumeSchool->find('all');
-			$mediaItems = $this->Account->MediaItem->find('all');
-			$albums = $this->Account->Album->find('all');
-			$posts = $this->Account->Post->find('all');
-			$accounts = $this->Account->find('all');
-			$accountTypes = $this->Account->types;
-			$account = array();
-			$this->set(compact('projects', 'works', 'schools', 'mediaItems', 'albums', 'posts', 'account', 'accounts', 'accountTypes'));
-		}
 		if (!empty($this->request->data)) {
 			if ($this->Account->saveAssociated($this->request->data)) {
 				$this->Session->setFlash(__('The changes has been saved'));
@@ -107,6 +93,12 @@ class AccountsController extends AppController {
 	}
 
 	public function admin_index() {
+		if ($this->viewClass === 'Json') {
+			$this->viewClass = 'Webservice.Webservice';
+			$this->set('accountTypes', $this->Account->types);
+			$this->set('accounts', $this->Account->find('all'));
+			return;
+		}
 		$this->Account->recursive = 0;
 		$accounts = $this->paginate();
 		$types = $this->Account->types;

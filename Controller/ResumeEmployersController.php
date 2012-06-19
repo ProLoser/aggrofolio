@@ -5,6 +5,11 @@ class ResumeEmployersController extends AppController {
 	public $paginate = array();
 
 	function admin_index() {
+		if ($this->viewClass === 'Json') {
+			$this->viewClass = 'Webservice.Webservice';
+			$this->set('works', $this->ResumeEmployer->find('all'));
+			return;
+		}
 		$this->ResumeEmployer->recursive = 0;
 		$resumeEmployers = $this->paginate();
 		$accounts = $this->ResumeEmployer->Account->find('list');

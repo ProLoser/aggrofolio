@@ -31,7 +31,26 @@ function Importer ($scope, $http) {
 		}
 	};
 	$scope.empty = $.isEmptyObject;
-	$http({ url: 'importer.json' }).success(function(data){
-		$scope.data = data;
+	$scope.data = {};
+	$http({ url: '/admin/projects.json' }).success(function(data){
+	  angular.extend($scope.data, data);
+	});
+	$http({ url: '/admin/albums.json' }).success(function(data){
+	  angular.extend($scope.data, data);
+	});
+	$http({ url: '/admin/media_items.json' }).success(function(data){
+	  angular.extend($scope.data, data);
+	});
+	$http({ url: '/admin/accounts.json' }).success(function(data){
+	  angular.extend($scope.data, data);
+	});
+	$http({ url: '/admin/resume_employers.json' }).success(function(data){
+	  angular.extend($scope.data, data);
+	});
+	$http({ url: '/admin/resume_schools.json' }).success(function(data){
+	  angular.extend($scope.data, data);
+	});
+	$http({ url: '/admin/posts.json' }).success(function(data){
+	  angular.extend($scope.data, data);
 	});
 }

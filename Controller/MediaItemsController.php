@@ -24,6 +24,11 @@ class MediaItemsController extends AppController {
 	}
 
 	function admin_index() {
+		if ($this->viewClass === 'Json') {
+			$this->viewClass = 'Webservice.Webservice';
+			$this->set('mediaItems', $this->MediaItem->find('all'));
+			return;
+		}
 		$this->MediaItem->recursive = 0;
 		$this->set('mediaItems', $this->paginate());
 		$albums = $this->MediaItem->Album->find('list');

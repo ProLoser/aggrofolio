@@ -5,6 +5,11 @@ class ResumeSchoolsController extends AppController {
 	public $paginate = array();
 
 	function admin_index() {
+		if ($this->viewClass === 'Json') {
+			$this->viewClass = 'Webservice.Webservice';
+			$this->set('schools', $this->ResumeSchool->find('all'));
+			return;
+		}
 		$this->ResumeSchool->recursive = 0;
 		$resumeSchools = $this->paginate();
 		$accounts = $this->ResumeSchool->Account->find('list');

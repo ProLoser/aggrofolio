@@ -29,6 +29,11 @@ class AlbumsController extends AppController {
 	}
 
 	function admin_index() {
+		if ($this->viewClass === 'Json') {
+			$this->viewClass = 'Webservice.Webservice';
+			$this->set('albums', $this->Album->find('all'));
+			return;
+		}
 		$this->Album->recursive = 0;
 		$albums = $this->paginate();
 		$accounts = $this->Album->Account->find('list');
