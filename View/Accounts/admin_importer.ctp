@@ -25,31 +25,31 @@
 			<li>
 				<h3>
 					Experience
-					<?php echo $this->Html->link('<i class="icon-plus"></i>', array('controller' => 'resume_employers', 'action' => 'add'), array('title' => 'Add', 'class' => 'ajax btn', 'escape' => false));?>
+					<?php echo $this->Html->link('<i class="icon-plus"></i>', array('controller' => 'resume_employers', 'action' => 'add'), array('class' => 'ajax btn', 'escape' => false));?>
 				</h3>
 			</li>
 			<li>
 				<h3>
 					Projects
-					<?php echo $this->Html->link('<i class="icon-plus"></i>', array('controller' => 'projects', 'action' => 'add'), array('title' => 'Add', 'class' => 'ajax btn', 'escape' => false));?>
+					<?php echo $this->Html->link('<i class="icon-plus"></i>', array('controller' => 'projects', 'action' => 'add'), array('class' => 'ajax btn', 'escape' => false));?>
 				</h3>
 			</li>
 			<li>
 				<h3>
 					Albums
-					<?php echo $this->Html->link('<i class="icon-plus"></i>', array('controller' => 'albums', 'action' => 'add'), array('title' => 'Add', 'class' => 'ajax btn', 'escape' => false));?>
+					<?php echo $this->Html->link('<i class="icon-plus"></i>', array('controller' => 'albums', 'action' => 'add'), array('class' => 'ajax btn', 'escape' => false));?>
 				</h3>
 			</li>
 			<li>
 				<h3>
 					Media
-					<?php echo $this->Html->link('<i class="icon-plus"></i>', array('controller' => 'media_items', 'action' => 'add'), array('title' => 'Add', 'class' => 'ajax btn', 'escape' => false));?>
+					<?php echo $this->Html->link('<i class="icon-plus"></i>', array('controller' => 'media_items', 'action' => 'add'), array('class' => 'ajax btn', 'escape' => false));?>
 				</h3>
 			</li>
 			<li>
 				<h3>
 					Posts
-					<?php echo $this->Html->link('<i class="icon-plus"></i>', array('controller' => 'posts', 'action' => 'add'), array('title' => 'Add', 'class' => 'ajax btn', 'escape' => false));?>
+					<?php echo $this->Html->link('<i class="icon-plus"></i>', array('controller' => 'posts', 'action' => 'add'), array('class' => 'ajax btn', 'escape' => false));?>
 				</h3>
 			</li>
 		</ul>
@@ -63,7 +63,8 @@
 				<a href="/admin/resume_employers/delete/{{work.ResumeEmployer.id}}" class="icon-trash" onclick="return confirm('Are you sure you want to delete this?');" data-original-title="Delete"></a>
 				<a href="/admin/resume_employers/edit/{{work.ResumeEmployer.id}}" class="ajax icon-pencil" data-original-title="Edit"></a>
 				<a href="/admin/accounts/move/{{work.ResumeEmployer.id}}" class="icon-resize-vertical" data-original-title="Move"></a>
-				<a href="/admin/resume_employers/publish/{{work.ResumeEmployer.id}}" class="icon-eye-close" data-original-title="Publish"></a>
+				<a ng-hide="work.ResumeEmployer.published" href="/admin/resume_employers/publish/{{work.ResumeEmployer.id}}" class="icon-eye-close" data-original-title="Publish"></a>
+				<a ng-show="work.ResumeEmployer.published" href="/admin/resume_employers/publish/{{work.ResumeEmployer.id}}" class="icon-eye-open" data-original-title="Un-Publish"></a>
 				{{work.ResumeEmployer.name}}
 			</li>
 			<li ng-repeat="(i, school) in data.schools">
@@ -71,7 +72,8 @@
 				<a href="/admin/resume_schools/delete/{{school.ResumeSchool.id}}" class="icon-trash" onclick="return confirm('Are you sure you want to delete this?');" data-original-title="Delete"></a>
 				<a href="/admin/resume_schools/edit/{{school.ResumeSchool.id}}" class="ajax icon-pencil" data-original-title="Edit"></a>
 				<a href="/admin/accounts/move/{{school.ResumeSchool.id}}" class="icon-resize-vertical" data-original-title="Move"></a>
-				<a href="/admin/resume_schools/publish/{{school.ResumeSchool.id}}" class="icon-eye-close" data-original-title="Publish"></a>
+				<a ng-hide="school.ResumeSchool.published" href="/admin/resume_schools/publish/{{school.ResumeSchool.id}}" class="icon-eye-close" data-original-title="Publish"></a>
+				<a ng-show="school.ResumeSchool.published" href="/admin/resume_schools/publish/{{school.ResumeSchool.id}}" class="icon-eye-open" data-original-title="Un-Publish"></a>
 				{{school.ResumeSchool.name}}
 			</li>
 		</ul>
@@ -81,7 +83,8 @@
 				<a href="/admin/projects/delete/{{project.Project.id}}" class="icon-trash" onclick="return confirm('Are you sure you want to delete this?');" data-original-title="Delete"></a>
 				<a href="/admin/projects/edit/{{project.Project.id}}" class="ajax icon-pencil" data-original-title="Edit"></a>
 				<a href="/admin/accounts/move/{{project.Project.id}}" class="icon-resize-vertical" data-original-title="Move"></a>
-				<a href="/admin/projects/publish/{{project.Project.id}}" class="icon-eye-close" data-original-title="Publish"></a>
+				<a ng-hide="project.Project.published" href="/admin/projects/publish/{{project.Project.id}}" class="icon-eye-close" data-original-title="Publish"></a>
+				<a ng-show="project.Project.published" href="/admin/projects/publish/{{project.Project.id}}" class="icon-eye-open" data-original-title="Un-Publish"></a>
 				{{project.Project.name}}
 			</li>
 		</ul>
@@ -92,7 +95,8 @@
 				<a href="/admin/albums/delete/{{album.Album.id}}" class="icon-trash" onclick="return confirm('Are you sure you want to delete this?');" data-original-title="Delete"></a>
 				<a href="/admin/albums/edit/{{album.Album.id}}" class="ajax icon-pencil" data-original-title="Edit"></a>
 				<a href="/admin/accounts/move/{{album.Album.id}}" class="icon-resize-vertical" data-original-title="Move"></a>
-				<a href="/admin/albums/publish/{{album.Album.id}}" class="icon-eye-close" data-original-title="Publish"></a>
+				<a ng-hide="album.Album.published" href="/admin/albums/publish/{{album.Album.id}}" class="icon-eye-close" data-original-title="Publish"></a>
+				<a ng-show="album.Album.published" href="/admin/albums/publish/{{album.Album.id}}" class="icon-eye-open" data-original-title="Un-Publish"></a>
 				{{album.Album.name}}
 			</li>
 		</ul>
@@ -103,7 +107,8 @@
 				<a href="/admin/media_items/delete/{{mediaItem.MediaItem.id}}" class="icon-trash" onclick="return confirm('Are you sure you want to delete this?');" data-original-title="Delete"></a>
 				<a href="/admin/media_items/edit/{{mediaItem.MediaItem.id}}" class="ajax icon-pencil" data-original-title="Edit"></a>
 				<a href="/admin/accounts/move/{{mediaItem.MediaItem.id}}" class="icon-resize-vertical" data-original-title="Move"></a>
-				<a href="/admin/media_items/publish/{{mediaItem.MediaItem.id}}" class="icon-eye-close" data-original-title="Publish"></a>
+				<a ng-hide="mediaItem.MediaItem.published" href="/admin/media_items/publish/{{mediaItem.MediaItem.id}}" class="icon-eye-close" data-original-title="Publish"></a>
+				<a ng-show="mediaItem.MediaItem.published" href="/admin/media_items/publish/{{mediaItem.MediaItem.id}}" class="icon-eye-open" data-original-title="Un-Publish"></a>
 				{{mediaItem.MediaItem.name}}
 			</li>
 		</ul>
@@ -114,7 +119,8 @@
 				<a href="/admin/posts/delete/{{post.Post.id}}" class="icon-trash" onclick="return confirm('Are you sure you want to delete this?');" data-original-title="Delete"></a>
 				<a href="/admin/posts/edit/{{post.Post.id}}" class="ajax icon-pencil" data-original-title="Edit"></a>
 				<a href="/admin/accounts/move/{{post.Post.id}}" class="icon-resize-vertical" data-original-title="Move"></a>
-				<a href="/admin/posts/publish/{{post.Post.id}}" class="icon-eye-close" data-original-title="Publish"></a>
+				<a ng-hide="post.Post.published" href="/admin/posts/publish/{{post.Post.id}}" class="icon-eye-close" data-original-title="Publish"></a>
+				<a ng-show="post.Post.published" href="/admin/posts/publish/{{post.Post.id}}" class="icon-eye-open" data-original-title="Un-Publish"></a>
 				{{post.Post.subject}}
 			</li>
 		</ul>

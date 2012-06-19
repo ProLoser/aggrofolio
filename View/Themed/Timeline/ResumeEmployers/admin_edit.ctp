@@ -12,7 +12,7 @@
 echo $this->Form->create('ResumeEmployer', array('class' => 'modal-body'));
 	echo $this->Form->input('id');
 	echo $this->Form->input('name');
-	echo $this->Form->input('title');
+	echo $this->Form->input('title', array('label' => 'Position Title'));
 	echo $this->Form->input('date_started');
 	echo $this->Form->input('date_ended');
 	echo $this->Form->input('currently_employed');
