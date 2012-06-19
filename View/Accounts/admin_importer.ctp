@@ -56,7 +56,7 @@
 	</header>
 
 	<div class="timeline">
-		<p ng-cloak class="ng-cloak" ng-show="empty(data.works) && empty(data.schools) && empty(data.albums) && empty(data.mediaItems) && empty(data.posts)">Click the <?php echo $this->Html->link('<i class="icon-refresh icon-white"></i> Import', array('action' => 'index'), array('id' => 'import', 'class' => 'ajax btn btn-primary', 'escape' => false)); ?> button to get started.</p>
+		<h3 ng-cloak class="well center ng-cloak" ng-show="empty(data.works) && empty(data.schools) && empty(data.albums) && empty(data.mediaItems) && empty(data.posts)">Click the <?php echo $this->Html->link('<i class="icon-refresh icon-white"></i> Import', array('action' => 'index'), array('id' => 'import', 'class' => 'ajax btn btn-primary', 'escape' => false)); ?> button to get started.</h3>
 		<ul id="experience">
 			<li ng-repeat="(i, work) in data.works">
 				<a ng-click="toggle('ResumeEmployer', work.ResumeEmployer.id)" ng-show="resumeBuilder" class="icon-arrow-left" ng-class="{'icon-arrow-left':!resume['ResumeEmployer'][work.ResumeEmployer.id],'icon-arrow-right':resume['ResumeEmployer'][work.ResumeEmployer.id]}" href="" style="display: none; " data-original-title="Toggle from Resume"></a>
