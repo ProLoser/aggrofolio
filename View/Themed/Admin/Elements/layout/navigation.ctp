@@ -9,7 +9,7 @@
 	</div>
 </header>
 
-<h3>Sysmte</h3>
+<h3>System</h3>
 <ul class="toggle">
 	<li class="icn_profile"><?php echo $this->Html->link('Importer', array('controller' => 'accounts', 'action' => 'importer')); ?></li>
 	<li class="icn_view_users"><?php echo $this->Html->link('Accounts', array('controller' => 'accounts', 'action' => 'index')); ?></li>
