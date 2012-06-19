@@ -17,7 +17,7 @@
 	echo $this->Form->input('hash_tag');
 	echo $this->Form->input('bugs_url');
 	echo $this->Form->input('published');
-	echo $this->Form->input('project_category_id', array('empty' => '-- None --'));
+	echo $this->Form->input('project_category_id', array('label' => 'Category ' . $this->Html->link('<i class="icon-plus"></i>', array('controller' => 'project_categories', 'action' => 'add'), array('escape' => false, 'class' => 'btn ajax')), 'empty' => '-- None --'));
 	echo $this->Form->input('resume_employer_id', array('empty' => '-- None --'));
 	echo $this->Form->input('resume_school_id', array('empty' => '-- None --'));
 ?>
