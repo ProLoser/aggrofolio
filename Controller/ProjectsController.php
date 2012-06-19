@@ -33,7 +33,7 @@ class ProjectsController extends AppController {
 	function admin_index() {
 		if ($this->viewClass === 'Json') {
 			$this->viewClass = 'Webservice.Webservice';
-			$this->set('projects', $this->Project->find('all'));
+			$this->set('projects', $this->Project->find('all', array('contain' => array('ResumeSkill'))));
 			return;
 		}
 		$this->Project->recursive = 0;

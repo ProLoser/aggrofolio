@@ -18,6 +18,11 @@ class ResumesController extends AppController {
 	}
 
 	function admin_index() {
+		if ($this->viewClass === 'Json') {
+			$this->viewClass = 'Webservice.Webservice';
+			$this->set('resumes', $this->Resume->find('list'));
+			return;
+		}
 		$this->Resume->recursive = 0;
 		$this->set('resumes', $this->paginate());
 	}

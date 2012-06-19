@@ -37,7 +37,7 @@ class Project extends AppModel {
 		),
 	);
 
-	public $hasAndBelongsTo = array(
+	public $hasAndBelongsToMany = array(
 		'ResumeSkill',
 	);
 

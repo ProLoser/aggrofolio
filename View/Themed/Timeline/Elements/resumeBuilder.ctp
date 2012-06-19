@@ -2,8 +2,14 @@
 <div class="well">
       <h3>
             Resume Builder
+			<a ng-hide="empty(resumes)" class="btn btn-primary" ng-click="resumeList=!resumeList">Edit</a>
       </h3>
-      <ul class="nav nav-list">
+	  <ul ng-show="resumeList" class="nav nav-list">
+	  	<li ng-repeat="(id, resume) in resumes">
+	  		<?php echo $this->Html->link('{{resume}}', array('controller' => 'resumes', 'action' => 'edit', '{{id}}')); ?>
+	  	</li>
+	  </ul>
+      <ul ng-hide="resumeList" class="nav nav-list">
             <li ng-hide="empty(resume['ResumeEmployer'])" class="nav-header">Employers</li>
             <li ng-repeat="(id, work) in resume['ResumeEmployer']">
                   <!-- <a title="Remove from Resume" class="icon-remove" ng-click="toggle('ResumeEmployer',id)"></a> -->

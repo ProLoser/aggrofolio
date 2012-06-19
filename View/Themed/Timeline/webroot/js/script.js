@@ -7,6 +7,10 @@ $(document).ready(function(){
 		e.preventDefault();
 		$('.modal').load($(this).attr('href'), function(response){
 			$('.modal').modal();
+    	$('.modal-footer .btn-primary').click(function(e){
+    	  e.preventDefault();
+        $(this).closest('div').prev('form').submit();
+    	});
 			// $('.modal .select select').select2({ width: '250px', allowClear: true});
 			$('.modal a[title]').tooltip({placement:'bottom'});
 		});
@@ -33,6 +37,9 @@ function Importer ($scope, $http) {
 	$scope.empty = $.isEmptyObject;
 	$scope.data = {};
 	$http({ url: '/admin/projects.json' }).success(function(data){
+	  angular.extend($scope.data, data);
+	});
+	$http({ url: '/admin/resumes.json' }).success(function(data){
 	  angular.extend($scope.data, data);
 	});
 	$http({ url: '/admin/albums.json' }).success(function(data){
