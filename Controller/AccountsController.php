@@ -81,7 +81,8 @@ class AccountsController extends AppController {
 	}
 
 	public function admin_importer($id = null) {
-		if ($this->RequestHandler->isAjax()) {
+		if ($this->viewClass === 'Json') {
+			$this->viewClass = 'Webservice.Webservice';
 			$projects = $this->Account->Project->find('all');
 			$works = $this->Account->ResumeEmployer->find('all');
 			$schools = $this->Account->ResumeSchool->find('all');

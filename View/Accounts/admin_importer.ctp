@@ -56,133 +56,67 @@
 	</header>
 
 	<div class="timeline">
-		<?php if (empty($schools) && empty($works) && empty($projects) && empty($posts) && empty($mediaItems)): ?>
-			<p>Click the <?php echo $this->Html->link('<i class="icon-refresh icon-white"></i> Import', array('action' => 'index'), array('id' => 'import', 'class' => 'ajax btn btn-primary', 'escape' => false)); ?> button to get started.</p>
-		<?php endif ?>
+		<p ng-cloak class="ng-cloak" ng-show="empty(data.works) && empty(data.schools) && empty(data.albums) && empty(data.mediaItems) && empty(data.posts)">Click the <?php echo $this->Html->link('<i class="icon-refresh icon-white"></i> Import', array('action' => 'index'), array('id' => 'import', 'class' => 'ajax btn btn-primary', 'escape' => false)); ?> button to get started.</p>
 		<ul id="experience">
-		<?php if (!empty($this->request->data['ResumeSchool'])): ?>
-			<?php foreach ($this->request->data['ResumeSchool'] as $i => $school):?>
-				<li>
-					<?php echo $this->Timeline->buttons($school, 'ResumeSchool', true); ?>
-					<?php echo $this->Form->input("ResumeSchool.$i.id");?>
-					<?php echo $this->Form->input("ResumeSchool.$i.name"); ?>
-					<?php echo $this->Form->input("ResumeSchool.$i.published"); ?>
-				</li>
-			<?php endforeach ?>
-		<?php endif ?>
-
-		<?php foreach ($schools as $school): ?>
-			<li>
-				<?php echo $this->Timeline->buttons($school, 'ResumeSchool'); ?>
-				<?php echo $school['ResumeSchool']['name']; ?>
+			<li ng-repeat="(i, work) in data.works">
+				<a ng-click="toggle('ResumeEmployer', work.ResumeEmployer.id)" ng-show="resumeBuilder" class="icon-arrow-left" ng-class="{'icon-arrow-left':!resume['ResumeEmployer'][work.ResumeEmployer.id],'icon-arrow-right':resume['ResumeEmployer'][work.ResumeEmployer.id]}" href="" style="display: none; " data-original-title="Toggle from Resume"></a>
+				<a href="/admin/resume_employers/delete/{{work.ResumeEmployer.id}}" class="icon-trash" onclick="return confirm('Are you sure you want to delete this?');" data-original-title="Delete"></a>
+				<a href="/admin/resume_employers/edit/{{work.ResumeEmployer.id}}" class="ajax icon-pencil" data-original-title="Edit"></a>
+				<a href="/admin/accounts/move/{{work.ResumeEmployer.id}}" class="icon-resize-vertical" data-original-title="Move"></a>
+				<a href="/admin/resume_employers/publish/{{work.ResumeEmployer.id}}" class="icon-eye-close" data-original-title="Publish"></a>
+				{{work.ResumeEmployer.name}}
 			</li>
-		<?php endforeach ?>
-
-		<?php if (!empty($this->request->data['ResumeEmployer'])): ?>
-			<?php foreach ($this->request->data['ResumeEmployer'] as $i => $work):?>
-				<li>
-					<?php echo $this->Timeline->buttons($work, 'ResumeEmployer', true); ?>
-					<?php echo $this->Form->input("ResumeEmployer.$i.id");?>
-					<?php echo $this->Form->input("ResumeEmployer.$i.name"); ?>
-					<?php echo $this->Form->input("ResumeEmployer.$i.published"); ?>
-				</li>
-			<?php endforeach ?>
-		<?php endif ?>
-
-		<?php foreach ($works as $id => $work): ?>
-			<li>
-				<?php echo $this->Timeline->buttons($work, 'ResumeEmployer'); ?>
-				<?php echo $work['ResumeEmployer']['name']; ?>
+			<li ng-repeat="(i, school) in data.schools">
+				<a ng-click="toggle('ResumeSchool', school.ResumeSchool.id)" ng-show="resumeBuilder" class="icon-arrow-left" ng-class="{'icon-arrow-left':!resume['ResumeSchool'][school.ResumeSchool.id],'icon-arrow-right':resume['ResumeSchool'][school.ResumeSchool.id]}" href="" style="display: none; " data-original-title="Toggle from Resume"></a>
+				<a href="/admin/resume_schools/delete/{{school.ResumeSchool.id}}" class="icon-trash" onclick="return confirm('Are you sure you want to delete this?');" data-original-title="Delete"></a>
+				<a href="/admin/resume_schools/edit/{{school.ResumeSchool.id}}" class="ajax icon-pencil" data-original-title="Edit"></a>
+				<a href="/admin/accounts/move/{{school.ResumeSchool.id}}" class="icon-resize-vertical" data-original-title="Move"></a>
+				<a href="/admin/resume_schools/publish/{{school.ResumeSchool.id}}" class="icon-eye-close" data-original-title="Publish"></a>
+				{{school.ResumeSchool.name}}
 			</li>
-		<?php endforeach ?>
-
 		</ul>
 		<ul id="projects">
-
-		<?php if (!empty($this->request->data['Project'])): ?>
-			<?php foreach ($this->request->data['Project'] as $i => $project):?>
-				<li>
-					<?php echo $this->Timeline->buttons($project, 'Project', true); ?>
-					<?php echo $this->Form->input("Project.$i.id");?>
-					<?php echo $this->Form->input("Project.$i.name"); ?>
-					<?php echo $this->Form->input("Project.$i.published"); ?>
-				</li>
-			<?php endforeach ?>
-		<?php endif ?>
-
-		<?php foreach ($projects as $id => $project): ?>
-			<li>
-				<?php echo $this->Timeline->buttons($project, 'Project'); ?>
-				<?php echo $project['Project']['name'] ?>
+			<li ng-repeat="(i, project) in data.projects">
+				<a ng-click="toggle('Project', project.Project.id)" ng-show="resumeBuilder" class="icon-arrow-left" ng-class="{'icon-arrow-left':!resume['Project'][project.Project.id],'icon-arrow-right':resume['Project'][project.Project.id]}" href="" style="display: none; " data-original-title="Toggle from Resume"></a>
+				<a href="/admin/projects/delete/{{project.Project.id}}" class="icon-trash" onclick="return confirm('Are you sure you want to delete this?');" data-original-title="Delete"></a>
+				<a href="/admin/projects/edit/{{project.Project.id}}" class="ajax icon-pencil" data-original-title="Edit"></a>
+				<a href="/admin/accounts/move/{{project.Project.id}}" class="icon-resize-vertical" data-original-title="Move"></a>
+				<a href="/admin/projects/publish/{{project.Project.id}}" class="icon-eye-close" data-original-title="Publish"></a>
+				{{project.Project.name}}
 			</li>
-		<?php endforeach ?>
-
 		</ul>
 
 		<ul id="albums">
-
-		<?php if (!empty($this->request->data['Album'])): ?>
-			<?php foreach ($this->request->data['Album'] as $i => $album):?>
-				<li>
-					<?php echo $this->Timeline->buttons($album, 'Album', true); ?>
-					<?php echo $this->Form->input("Album.$i.id");?>
-					<?php echo $this->Form->input("Album.$i.name"); ?>
-					<?php echo $this->Form->input("Album.$i.published"); ?>
-				</li>
-			<?php endforeach ?>
-		<?php endif ?>
-
-		<?php foreach ($albums as $id => $album): ?>
-			<li>
-				<?php echo $this->Timeline->buttons($album, 'Album'); ?>
-				<?php echo $album['Album']['name']; ?>
+			<li ng-repeat="(i, album) in data.albums">
+				<a ng-click="toggle('Album', album.Album.id)" ng-show="resumeBuilder" class="icon-arrow-left" ng-class="{'icon-arrow-left':!resume['Album'][album.Album.id],'icon-arrow-right':resume['Album'][album.Album.id]}" href="" style="display: none; " data-original-title="Toggle from Resume"></a>
+				<a href="/admin/albums/delete/{{album.Album.id}}" class="icon-trash" onclick="return confirm('Are you sure you want to delete this?');" data-original-title="Delete"></a>
+				<a href="/admin/albums/edit/{{album.Album.id}}" class="ajax icon-pencil" data-original-title="Edit"></a>
+				<a href="/admin/accounts/move/{{album.Album.id}}" class="icon-resize-vertical" data-original-title="Move"></a>
+				<a href="/admin/albums/publish/{{album.Album.id}}" class="icon-eye-close" data-original-title="Publish"></a>
+				{{album.Album.name}}
 			</li>
-		<?php endforeach ?>
-
 		</ul>
 
 		<ul id="media">
-
-		<?php if (!empty($this->request->data['MediaItem'])): ?>
-			<?php foreach ($this->request->data['MediaItem'] as $i => $item):?>
-				<li>
-					<?php echo $this->Timeline->buttons($item, 'MediaItem', true); ?>
-					<?php echo $this->Form->input("MediaItem.$i.id");?>
-					<?php echo $this->Form->input("MediaItem.$i.name"); ?>
-					<?php echo $this->Form->input("MediaItem.$i.published"); ?>
-				</li>
-			<?php endforeach ?>
-		<?php endif ?>
-
-		<?php foreach ($mediaItems as $id => $item): ?>
-			<li>
-				<?php echo $this->Timeline->buttons($item, 'MediaItem'); ?>
-				<?php echo $item['MediaItem']['name']; ?>
+			<li ng-repeat="(i, mediaItem) in data.mediaItems">
+				<a ng-click="toggle('MediaItem', mediaItem.id)" ng-show="resumeBuilder" class="icon-arrow-left" ng-class="{'icon-arrow-left':!resume['MediaItem'][mediaItem.MediaItem.id],'icon-arrow-right':resume['MediaItem'][mediaItem.MediaItem.id]}" href="" style="display: none; " data-original-title="Toggle from Resume"></a>
+				<a href="/admin/media_items/delete/{{mediaItem.MediaItem.id}}" class="icon-trash" onclick="return confirm('Are you sure you want to delete this?');" data-original-title="Delete"></a>
+				<a href="/admin/media_items/edit/{{mediaItem.MediaItem.id}}" class="ajax icon-pencil" data-original-title="Edit"></a>
+				<a href="/admin/accounts/move/{{mediaItem.MediaItem.id}}" class="icon-resize-vertical" data-original-title="Move"></a>
+				<a href="/admin/media_items/publish/{{mediaItem.MediaItem.id}}" class="icon-eye-close" data-original-title="Publish"></a>
+				{{mediaItem.MediaItem.name}}
 			</li>
-		<?php endforeach ?>
-
 		</ul>
 
 		<ul id="posts">
-
-		<?php if (!empty($this->request->data['Post'])): ?>
-			<?php foreach ($this->request->data['Post'] as $i => $post): ?>
-				<li>
-					<?php echo $this->Timeline->buttons($post, 'Post', true); ?>
-					<?php echo $this->Form->input("Post.$i.id");?>
-					<?php echo $this->Form->input("Post.$i.name"); ?>
-					<?php echo $this->Form->input("Post.$i.published"); ?>
-				</li>
-			<?php endforeach ?>
-		<?php endif ?>
-
-		<?php foreach ($posts as $id => $post): ?>
-			<li>
-				<?php echo $this->Timeline->buttons($post, 'Post'); ?>
-				<?php echo $post['Post']['subject']; ?>
+			<li ng-repeat="(i, post) in data.posts">
+				<a ng-click="toggle('Post', post.Post.id)" ng-show="resumeBuilder" class="icon-arrow-left" ng-class="{'icon-arrow-left':!resume['Post'][post.Post.id],'icon-arrow-right':resume['Project'][post.Post.id]}" href="" style="display: none; " data-original-title="Toggle from Resume"></a>
+				<a href="/admin/posts/delete/{{post.Post.id}}" class="icon-trash" onclick="return confirm('Are you sure you want to delete this?');" data-original-title="Delete"></a>
+				<a href="/admin/posts/edit/{{post.Post.id}}" class="ajax icon-pencil" data-original-title="Edit"></a>
+				<a href="/admin/accounts/move/{{post.Post.id}}" class="icon-resize-vertical" data-original-title="Move"></a>
+				<a href="/admin/posts/publish/{{post.Post.id}}" class="icon-eye-close" data-original-title="Publish"></a>
+				{{post.Post.subject}}
 			</li>
-		<?php endforeach ?>
-
 		</ul>
 	</div>
 <?php echo $this->Form->end(); ?>

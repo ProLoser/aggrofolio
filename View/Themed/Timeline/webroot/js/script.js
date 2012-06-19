@@ -13,7 +13,7 @@ $(document).ready(function(){
 	});
 });
 
-function Importer ($scope) {
+function Importer ($scope, $http) {
 	$scope.resume = {
 		'ResumeSchool' : {},
 		'ResumeEmployer' : {},
@@ -31,4 +31,7 @@ function Importer ($scope) {
 		}
 	};
 	$scope.empty = $.isEmptyObject;
+	$http({ url: 'importer.json' }).success(function(data){
+		$scope.data = data;
+	});
 }
