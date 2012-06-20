@@ -92,8 +92,8 @@ form.modal-body .input.text, form.modal-body .input.date, form.modal-body .input
 form.modal-body .date select {
   width: auto;
   display: inline-block;
-  margin-right: 5px;
-  margin-left: 5px;
+  margin-right: 4px;
+  margin-left: 4px;
 }
 form.modal-body .textarea textarea {
   width: 485px;
