@@ -25,7 +25,8 @@
 			<li>
 				<h3>
 					Experience
-					<?php echo $this->Html->link('<i class="icon-plus"></i>', array('controller' => 'resume_employers', 'action' => 'add'), array('class' => 'ajax btn', 'escape' => false));?>
+					<?php echo $this->Html->link('<i class="icon-plus"></i>', array('controller' => 'resume_employers', 'action' => 'add'), array('title' => 'Add Work', 'class' => 'ajax btn', 'escape' => false));?>
+					<?php echo $this->Html->link('<i class="icon-plus"></i>', array('controller' => 'resume_schools', 'action' => 'add'), array('title' => 'Add School', 'class' => 'ajax btn', 'escape' => false));?>
 				</h3>
 			</li>
 			<li>
@@ -59,7 +60,7 @@
 		<h3 ng-cloak class="well center ng-cloak" ng-show="empty(data.works) && empty(data.schools) && empty(data.albums) && empty(data.mediaItems) && empty(data.posts)">Click the <?php echo $this->Html->link('<i class="icon-refresh icon-white"></i> Import', array('action' => 'index'), array('id' => 'import', 'class' => 'ajax btn btn-primary', 'escape' => false)); ?> button to get started.</h3>
 		<ul id="experience">
 			<li ng-repeat="(i, work) in data.works">
-				<a ng-click="toggle('ResumeEmployer', work.ResumeEmployer.id)" ng-show="resumeBuilder" class="icon-arrow-left" ng-class="{'icon-arrow-left':!resume['ResumeEmployer'][work.ResumeEmployer.id],'icon-arrow-right':resume['ResumeEmployer'][work.ResumeEmployer.id]}" href="" style="display: none; " data-original-title="Toggle from Resume"></a>
+				<a ng-click="toggle('ResumeEmployer', work)" ng-show="resumeBuilder" class="icon-arrow-left" ng-class="{'icon-arrow-left':!resume['ResumeEmployer'][work.ResumeEmployer.id],'icon-arrow-right':resume['ResumeEmployer'][work.ResumeEmployer.id]}" href="" style="display: none; " data-original-title="Toggle from Resume"></a>
 				<a href="/admin/resume_employers/delete/{{work.ResumeEmployer.id}}" class="icon-trash" onclick="return confirm('Are you sure you want to delete this?');" data-original-title="Delete"></a>
 				<a href="/admin/resume_employers/edit/{{work.ResumeEmployer.id}}" class="ajax icon-pencil" data-original-title="Edit"></a>
 				<a href="/admin/accounts/move/{{work.ResumeEmployer.id}}" class="icon-resize-vertical" data-original-title="Move"></a>
@@ -68,7 +69,7 @@
 				{{work.ResumeEmployer.name}}
 			</li>
 			<li ng-repeat="(i, school) in data.schools">
-				<a ng-click="toggle('ResumeSchool', school.ResumeSchool.id)" ng-show="resumeBuilder" class="icon-arrow-left" ng-class="{'icon-arrow-left':!resume['ResumeSchool'][school.ResumeSchool.id],'icon-arrow-right':resume['ResumeSchool'][school.ResumeSchool.id]}" href="" style="display: none; " data-original-title="Toggle from Resume"></a>
+				<a ng-click="toggle('ResumeSchool', school)" ng-show="resumeBuilder" class="icon-arrow-left" ng-class="{'icon-arrow-left':!resume['ResumeSchool'][school.ResumeSchool.id],'icon-arrow-right':resume['ResumeSchool'][school.ResumeSchool.id]}" href="" style="display: none; " data-original-title="Toggle from Resume"></a>
 				<a href="/admin/resume_schools/delete/{{school.ResumeSchool.id}}" class="icon-trash" onclick="return confirm('Are you sure you want to delete this?');" data-original-title="Delete"></a>
 				<a href="/admin/resume_schools/edit/{{school.ResumeSchool.id}}" class="ajax icon-pencil" data-original-title="Edit"></a>
 				<a href="/admin/accounts/move/{{school.ResumeSchool.id}}" class="icon-resize-vertical" data-original-title="Move"></a>
@@ -79,7 +80,7 @@
 		</ul>
 		<ul id="projects">
 			<li ng-repeat="(i, project) in data.projects">
-				<a ng-click="toggle('Project', project.Project.id)" ng-show="resumeBuilder" class="icon-arrow-left" ng-class="{'icon-arrow-left':!resume['Project'][project.Project.id],'icon-arrow-right':resume['Project'][project.Project.id]}" href="" style="display: none; " data-original-title="Toggle from Resume"></a>
+				<a ng-click="toggle('Project', project)" ng-show="resumeBuilder" class="icon-arrow-left" ng-class="{'icon-arrow-left':!resume['Project'][project.Project.id],'icon-arrow-right':resume['Project'][project.Project.id]}" href="" style="display: none; " data-original-title="Toggle from Resume"></a>
 				<a href="/admin/projects/delete/{{project.Project.id}}" class="icon-trash" onclick="return confirm('Are you sure you want to delete this?');" data-original-title="Delete"></a>
 				<a href="/admin/projects/edit/{{project.Project.id}}" class="ajax icon-pencil" data-original-title="Edit"></a>
 				<a href="/admin/accounts/move/{{project.Project.id}}" class="icon-resize-vertical" data-original-title="Move"></a>
@@ -91,7 +92,7 @@
 
 		<ul id="albums">
 			<li ng-repeat="(i, album) in data.albums">
-				<a ng-click="toggle('Album', album.Album.id)" ng-show="resumeBuilder" class="icon-arrow-left" ng-class="{'icon-arrow-left':!resume['Album'][album.Album.id],'icon-arrow-right':resume['Album'][album.Album.id]}" href="" style="display: none; " data-original-title="Toggle from Resume"></a>
+				<a ng-click="toggle('Album', album)" ng-show="resumeBuilder" class="icon-arrow-left" ng-class="{'icon-arrow-left':!resume['Album'][album.Album.id],'icon-arrow-right':resume['Album'][album.Album.id]}" href="" style="display: none; " data-original-title="Toggle from Resume"></a>
 				<a href="/admin/albums/delete/{{album.Album.id}}" class="icon-trash" onclick="return confirm('Are you sure you want to delete this?');" data-original-title="Delete"></a>
 				<a href="/admin/albums/edit/{{album.Album.id}}" class="ajax icon-pencil" data-original-title="Edit"></a>
 				<a href="/admin/accounts/move/{{album.Album.id}}" class="icon-resize-vertical" data-original-title="Move"></a>
@@ -103,7 +104,7 @@
 
 		<ul id="media">
 			<li ng-repeat="(i, mediaItem) in data.mediaItems">
-				<a ng-click="toggle('MediaItem', mediaItem.id)" ng-show="resumeBuilder" class="icon-arrow-left" ng-class="{'icon-arrow-left':!resume['MediaItem'][mediaItem.MediaItem.id],'icon-arrow-right':resume['MediaItem'][mediaItem.MediaItem.id]}" href="" style="display: none; " data-original-title="Toggle from Resume"></a>
+				<a ng-click="toggle('MediaItem', mediaItem)" ng-show="resumeBuilder" class="icon-arrow-left" ng-class="{'icon-arrow-left':!resume['MediaItem'][mediaItem.MediaItem.id],'icon-arrow-right':resume['MediaItem'][mediaItem.MediaItem.id]}" href="" style="display: none; " data-original-title="Toggle from Resume"></a>
 				<a href="/admin/media_items/delete/{{mediaItem.MediaItem.id}}" class="icon-trash" onclick="return confirm('Are you sure you want to delete this?');" data-original-title="Delete"></a>
 				<a href="/admin/media_items/edit/{{mediaItem.MediaItem.id}}" class="ajax icon-pencil" data-original-title="Edit"></a>
 				<a href="/admin/accounts/move/{{mediaItem.MediaItem.id}}" class="icon-resize-vertical" data-original-title="Move"></a>
@@ -115,7 +116,7 @@
 
 		<ul id="posts">
 			<li ng-repeat="(i, post) in data.posts">
-				<a ng-click="toggle('Post', post.Post.id)" ng-show="resumeBuilder" class="icon-arrow-left" ng-class="{'icon-arrow-left':!resume['Post'][post.Post.id],'icon-arrow-right':resume['Project'][post.Post.id]}" href="" style="display: none; " data-original-title="Toggle from Resume"></a>
+				<a ng-click="toggle('Post', post)" ng-show="resumeBuilder" class="icon-arrow-left" ng-class="{'icon-arrow-left':!resume['Post'][post.Post.id],'icon-arrow-right':resume['Project'][post.Post.id]}" href="" style="display: none; " data-original-title="Toggle from Resume"></a>
 				<a href="/admin/posts/delete/{{post.Post.id}}" class="icon-trash" onclick="return confirm('Are you sure you want to delete this?');" data-original-title="Delete"></a>
 				<a href="/admin/posts/edit/{{post.Post.id}}" class="ajax icon-pencil" data-original-title="Edit"></a>
 				<a href="/admin/accounts/move/{{post.Post.id}}" class="icon-resize-vertical" data-original-title="Move"></a>

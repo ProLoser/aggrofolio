@@ -5,6 +5,11 @@ class ResumeSkillsController extends AppController {
 	public $paginate = array();
 
 	function admin_index() {
+		if ($this->viewClass === 'Json') {
+			$this->viewClass = 'Webservice.Webservice';
+			$this->set('skills', $this->ResumeSkill->find('all'));
+			return;
+		}
 		$this->ResumeSkill->recursive = 0;
 		$resumeSkills = $this->paginate();
 		$resumeSkillCategories = $this->ResumeSkill->ResumeSkillCategory->find('list');

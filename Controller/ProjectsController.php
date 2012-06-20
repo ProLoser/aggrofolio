@@ -67,7 +67,8 @@ class ProjectsController extends AppController {
 		$projectCategories = $this->Project->ProjectCategory->find('list');
 		$resumeEmployers = $this->Project->ResumeEmployer->find('list');
 		$resumeSchools = $this->Project->ResumeSchool->find('list');
-		$this->set(compact('accounts', 'projectCategories', 'resumeEmployers', 'resumeSchools'));
+		$resumeSkills = $this->Project->ResumeSkill->find('list');
+		$this->set(compact('accounts', 'projectCategories', 'resumeEmployers', 'resumeSchools', 'resumeSkills'));
 	}
 
 	function admin_edit($id = null) {
@@ -90,7 +91,8 @@ class ProjectsController extends AppController {
 		$projectCategories = $this->Project->ProjectCategory->find('list');
 		$resumeEmployers = $this->Project->ResumeEmployer->find('list');
 		$resumeSchools = $this->Project->ResumeSchool->find('list');
-		$this->set(compact('accounts', 'projectCategories', 'resumeEmployers', 'resumeSchools'));
+		$resumeSkills = $this->Project->ResumeSkill->find('list');
+		$this->set(compact('accounts', 'projectCategories', 'resumeEmployers', 'resumeSchools', 'resumeSkills'));
 	}
 
 	function admin_delete($id = null) {

@@ -72,12 +72,13 @@ form.modal-body label {
   margin-right: 20px;
 }
 form.modal-body .input {
+  vertical-align: top;
   margin-bottom: 9px;
 }
 form.modal-body .input input, form.modal-body .input select {
   margin-bottom: 0;
   width: 100%;
-  height: 26px;
+  min-height: 26px;
   box-sizing: border-box;
 }
 form.modal-body .input input[type=checkbox], form.modal-body .input select[type=checkbox] {
