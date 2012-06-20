@@ -13,10 +13,6 @@
   display: none;
 }
 
-.center {
-    text-align: center;
-}
-
 .sidebar-nav {
   overflow: hidden;
 }
@@ -91,7 +87,7 @@ form.modal-body .input input[type=checkbox], form.modal-body .input select[type=
 form.modal-body .input.text, form.modal-body .input.date, form.modal-body .input.select {
   display: inline-block;
   margin-right: 15px;
-  width: 250px;
+  width: 240px;
 }
 form.modal-body .date select {
   width: auto;
@@ -100,7 +96,7 @@ form.modal-body .date select {
   margin-left: 5px;
 }
 form.modal-body .textarea textarea {
-  width: 505px;
+  width: 485px;
 }
 form.modal-body .related .input {
   margin-right: 13px;

@@ -13,7 +13,7 @@
           <span class="caret"></span>
         </a>
         <ul class="dropdown-menu">
-          <li><?php echo $this->Html->link('Settings', array('controller' => 'settings', 'action' => 'index'));?></li>
+          <li><?php echo $this->Html->link('Settings', array('controller' => 'settings', 'action' => 'index'), array('class' => 'ajax'));?></li>
           <li class="divider"></li>
           <li><?php echo $this->Html->link('Sign Out', array('admin' => false, 'controller' => 'users', 'action' => 'logout'));?></li>
         </ul>
