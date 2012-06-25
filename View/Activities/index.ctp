@@ -29,6 +29,8 @@
 	<?php
 	foreach ($activities as $activity):
 		if (
+			( !empty($activity[$activity['Activity']['model']]) )
+			&&
 			( !isset($activity[$activity['Activity']['model']]['published']) || $activity[$activity['Activity']['model']]['published'] )
 			&&
 			( $activity['Activity']['model'] !== 'Album' || !empty($activity['Album']['MediaItem']) )
