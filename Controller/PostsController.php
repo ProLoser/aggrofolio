@@ -110,7 +110,6 @@ class PostsController extends AppController {
 	function admin_add() {
 		if (!empty($this->request->data)) {
 			$this->Post->create();
-			$this->request->data['Post']['user_id'] = $this->Auth->user('id');
 			if ($this->Post->saveAll($this->request->data)) {
 				$this->Session->setFlash(__('The post has been saved'));
 				$this->redirect(array('action' => 'view', $this->Post->id));

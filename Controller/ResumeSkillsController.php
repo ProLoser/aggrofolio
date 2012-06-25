@@ -28,7 +28,6 @@ class ResumeSkillsController extends AppController {
 	function admin_add() {
 		if (!empty($this->request->data)) {
 			$this->ResumeSkill->create();
-			$this->request->data['ResumeSkill']['user_id'] = $this->Auth->user('id');
 			if ($this->ResumeSkill->save($this->request->data)) {
 				$this->Session->setFlash(__('The resume skill has been saved'));
 				$this->redirect(array('action' => 'index'));

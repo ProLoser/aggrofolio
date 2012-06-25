@@ -117,7 +117,6 @@ class AccountsController extends AppController {
 	public function admin_add() {
 		if (!empty($this->request->data)) {
 			$this->Account->create();
-			$this->request->data['Account']['user_id'] = $this->Auth->user('id');
 			if ($this->Account->save($this->request->data)) {
 				$this->Session->setFlash(__('The account has been saved'));
 				if (in_array($this->request->data['Account']['type'], array('jsfiddle', 'deviantart', 'blog'))) {

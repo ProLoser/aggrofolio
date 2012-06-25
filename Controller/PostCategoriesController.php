@@ -22,7 +22,6 @@ class PostCategoriesController extends AppController {
 	function admin_add() {
 		if (!empty($this->request->data)) {
 			$this->PostCategory->create();
-			$this->request->data['PostCategory']['user_id'] = $this->Auth->user('id');
 			if ($this->PostCategory->save($this->request->data)) {
 				$this->Session->setFlash(__('The post category has been saved'));
 				$this->redirect(array('action' => 'index'));

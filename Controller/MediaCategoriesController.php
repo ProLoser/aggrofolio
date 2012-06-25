@@ -21,7 +21,6 @@ class MediaCategoriesController extends AppController {
 	function admin_add() {
 		if (!empty($this->request->data)) {
 			$this->MediaCategory->create();
-			$this->request->data['MediaCategory']['user_id'] = $this->Auth->user('id');
 			if ($this->MediaCategory->save($this->request->data)) {
 				$this->Session->setFlash(__('The media category has been saved'));
 				$this->redirect(array('action' => 'index'));

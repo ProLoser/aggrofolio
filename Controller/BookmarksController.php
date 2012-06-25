@@ -44,7 +44,6 @@ class BookmarksController extends AppController {
 		
 		if (!empty($this->request->data)) {
 			$this->Bookmark->create();
-			$this->request->data['Bookmark']['user_id'] = $this->Auth->user('id');
 			if ($this->Bookmark->save($this->request->data)) {
 				if (isset($this->request->params['named']['url'])) {
 					die('<center><h1>Bookmark Saved</h1></center><script>self.resizeTo(400,100);setTimeout(self.close, 2000)</script>');

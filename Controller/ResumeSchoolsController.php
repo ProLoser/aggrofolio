@@ -28,7 +28,6 @@ class ResumeSchoolsController extends AppController {
 	function admin_add() {
 		if (!empty($this->request->data)) {
 			$this->ResumeSchool->create();
-			$this->request->data['ResumeSchool']['user_id'] = $this->Auth->user('id');
 			if ($this->ResumeSchool->save($this->request->data)) {
 				$this->Session->setFlash(__('The resume school has been saved'));
 				$this->redirect(array('action' => 'index'));

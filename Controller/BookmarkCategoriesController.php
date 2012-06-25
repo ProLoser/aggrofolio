@@ -23,7 +23,6 @@ class BookmarkCategoriesController extends AppController {
 	function admin_add() {
 		if (!empty($this->request->data)) {
 			$this->BookmarkCategory->create();
-			$this->request->data['BookmarkCategory']['user_id'] = $this->Auth->user('id');
 			if ($this->BookmarkCategory->save($this->request->data)) {
 				$this->Session->setFlash(__('The bookmark category has been saved'));
 				$this->redirect(array('action' => 'index'));

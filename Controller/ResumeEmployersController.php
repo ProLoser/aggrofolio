@@ -28,7 +28,6 @@ class ResumeEmployersController extends AppController {
 	function admin_add() {
 		if (!empty($this->request->data)) {
 			$this->ResumeEmployer->create();
-			$this->request->data['ResumeEmployer']['user_id'] = $this->Auth->user('id');
 			if ($this->ResumeEmployer->save($this->request->data)) {
 				$this->Session->setFlash(__('The resume employer has been saved'));
 				$this->redirect(array('action' => 'index'));

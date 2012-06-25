@@ -59,7 +59,6 @@ class AlbumsController extends AppController {
 	function admin_add() {
 		if (!empty($this->request->data)) {
 			$this->Album->create();
-			$this->request->data['Album']['user_id'] = $this->Auth->user('id');
 			if ($this->Album->save($this->request->data)) {
 				$this->Session->setFlash(__('The album has been saved'));
 				$this->redirect(array('action' => 'index'));

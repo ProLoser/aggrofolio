@@ -21,7 +21,6 @@ class ProjectCategoriesController extends AppController {
 	function admin_add() {
 		if (!empty($this->request->data)) {
 			$this->ProjectCategory->create();
-			$this->request->data['ProjectCategory']['user_id'] = $this->Auth->user('id');
 			if ($this->ProjectCategory->save($this->request->data)) {
 				$this->Session->setFlash(__('The project category has been saved'));
 				$this->redirect(array('action' => 'index'));

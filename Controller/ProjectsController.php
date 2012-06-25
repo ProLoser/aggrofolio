@@ -55,7 +55,6 @@ class ProjectsController extends AppController {
 	function admin_add() {
 		if (!empty($this->request->data)) {
 			$this->Project->create();
-			$this->request->data['Project']['user_id'] = $this->Auth->user('id');
 			if ($this->Project->save($this->request->data)) {
 				$this->Session->setFlash(__('The project has been saved'));
 				$this->redirect(array('action' => 'view', $this->Project->id));
