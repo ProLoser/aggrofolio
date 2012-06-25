@@ -29,7 +29,7 @@
 	<?php
 	foreach ($activities as $activity):
 		if (
-			( !empty($activity[$activity['Activity']['model']]) )
+			( !empty($activity[$activity['Activity']['model']]['id']) )
 			&&
 			( !isset($activity[$activity['Activity']['model']]['published']) || $activity[$activity['Activity']['model']]['published'] )
 			&&
