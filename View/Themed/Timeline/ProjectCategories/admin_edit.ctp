@@ -6,9 +6,10 @@
 </div>
 <?php
 echo $this->Form->create('ProjectCategory', array('class' => 'modal-body'));
-	echo $this->Form->input('name');
-	echo $this->Form->input('description');
-	echo $this->Form->input('parent_id', array('empty' => '-- None --'));
+	echo $this->Form->input('ProjectCategory.id');
+	echo $this->Form->input('ProjectCategory.name');
+	echo $this->Form->input('ProjectCategory.parent_id', array('empty' => '-- None --'));
+	echo $this->Form->input('ProjectCategory.description');
 echo $this->Form->end();
 ?>
 <div class="modal-footer">

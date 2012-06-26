@@ -78,11 +78,14 @@ form.modal-body {
 				height: 18px;
 			}
 		}
-	}
-	.input.text, .input.date, .input.select {
-		display: inline-block;
-		margin-right: 15px;
-		width: 240px;
+		select {
+			width: 230px;
+		}
+		&.text, &.date, &.select {
+			display: inline-block;
+			margin-right: 15px;
+			width: 240px;
+		}
 	}
 	.date select {
 		width: auto;
@@ -96,6 +99,9 @@ form.modal-body {
 	.related .input {
 		margin-right: 13px;
 	}
+}
+.select2-drop {
+	z-index: 1100;
 }
 
 /** ICONS **/

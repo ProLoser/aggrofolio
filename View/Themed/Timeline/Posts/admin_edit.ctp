@@ -10,12 +10,12 @@
 </div>
 <?php echo $this->Form->create('Post', array('class' => 'modal-body')); ?>
 <?php
-	echo $this->Form->input('id');
+	echo $this->Form->input('Post.id');
 	echo $this->Form->input('Post.subject');
 	echo $this->Form->input('Post.slug');
 	echo $this->Form->input('Post.body');
 	echo $this->Form->input('Post.published');
-	echo $this->Form->input('Post.post_category_id', array('label' => 'Post Category '.$this->Html->link('',array('controller' => 'post_categories', 'action' => 'add'),array('class' => 'ajax icon-plus', 'escape' => false)), 'empty' => '-- None --'));
+	echo $this->Form->input('Post.post_category_id', array('label' => 'Post Category '.$this->Html->link('',array('controller' => 'post_categories', 'action' => 'add'),array('class' => 'ajax icon-plus', 'escape' => false)), 'empty' => true, 'data-placeholder' => '-- None --'));
 ?>
 
 	<fieldset class="related">

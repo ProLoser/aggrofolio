@@ -10,16 +10,16 @@
 </div>
 <?php echo $this->Form->create('Project', array('class' => 'modal-body form-horizontal')); ?>
 <?php
-	echo $this->Form->input('id');
-	echo $this->Form->input('name');
-	echo $this->Form->input('url');
-	echo $this->Form->input('description');
-	echo $this->Form->input('hash_tag');
-	echo $this->Form->input('bugs_url');
-	echo $this->Form->input('published');
-	echo $this->Form->input('project_category_id', array('label' => 'Category ' . $this->Html->link('', array('controller' => 'project_categories', 'action' => 'add'), array('escape' => false, 'class' => 'icon-plus ajax')), 'empty' => '-- None --'));
-	echo $this->Form->input('resume_employer_id', array('empty' => '-- None --'));
-	echo $this->Form->input('resume_school_id', array('empty' => '-- None --'));
+	echo $this->Form->input('Project.id');
+	echo $this->Form->input('Project.name');
+	echo $this->Form->input('Project.url');
+	echo $this->Form->input('Project.description');
+	echo $this->Form->input('Project.hash_tag');
+	echo $this->Form->input('Project.bugs_url');
+	echo $this->Form->input('Project.published');
+	echo $this->Form->input('Project.project_category_id', array('label' => 'Category ' . $this->Html->link('', array('controller' => 'project_categories', 'action' => 'add'), array('escape' => false, 'class' => 'icon-plus ajax')), 'empty' => true, 'data-placeholder' => '-- None --'));
+	echo $this->Form->input('Project.resume_employer_id', array('empty' => true, 'data-placeholder' => '-- None --'));
+	echo $this->Form->input('Project.resume_school_id', array('empty' => true, 'data-placeholder' => '-- None --'));
 	echo $this->Form->input('ResumeSkill.ResumeSkill');
 ?>
 <?php echo $this->Form->end();?>

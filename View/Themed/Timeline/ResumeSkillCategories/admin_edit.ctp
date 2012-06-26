@@ -6,8 +6,9 @@
 </div>
 <?php
 echo $this->Form->create('ResumeSkillCategory', array('class' => 'modal-body'));
-	echo $this->Form->input('name');
-	echo $this->Form->input('description');
+	echo $this->Form->input('ResumeSkillCategory.id');
+	echo $this->Form->input('ResumeSkillCategory.name');
+	echo $this->Form->input('ResumeSkillCategory.description');
 echo $this->Form->end();
 ?>
 <div class="modal-footer">

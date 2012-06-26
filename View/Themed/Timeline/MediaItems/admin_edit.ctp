@@ -10,15 +10,15 @@
 </div>
 <?php
 echo $this->Form->create('MediaItem', array('type' => 'file', 'class' => 'modal-body'));
-	echo $this->Form->input('id');
-	echo $this->Form->input('name');
-	echo $this->Form->input('attachment', array('type' => 'file'));
-	echo $this->Form->input('url');
-	echo $this->Form->input('source');
-	echo $this->Form->input('description');
-	echo $this->Form->input('published');
-	echo $this->Form->input('album_id', array('empty' => '-- Select One --'));
-	echo $this->Form->input('project_id', array('empty' => '-- None --'));
+	echo $this->Form->input('MediaItem.id');
+	echo $this->Form->input('MediaItem.name');
+	echo $this->Form->input('MediaItem.attachment', array('type' => 'file'));
+	echo $this->Form->input('MediaItem.url');
+	echo $this->Form->input('MediaItem.source');
+	echo $this->Form->input('MediaItem.description');
+	echo $this->Form->input('MediaItem.published');
+	echo $this->Form->input('MediaItem.album_id', array('empty' => true, 'data-placeholder' => '-- None --'));
+	echo $this->Form->input('MediaItem.project_id', array('empty' => true, 'data-placeholder' => '-- None --'));
 echo $this->Form->end();
 ?>
 <div class="modal-footer">

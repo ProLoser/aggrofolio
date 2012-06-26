@@ -6,9 +6,10 @@
 </div>
 <?php
 echo $this->Form->create('PostCategory', array('class' => 'modal-body'));
-	echo $this->Form->input('name');
-	echo $this->Form->input('description');
-	echo $this->Form->input('parent_id', array('empty' => '-- None --'));
+	echo $this->Form->input('PostCategory.id');
+	echo $this->Form->input('PostCategory.name');
+	echo $this->Form->input('PostCategory.parent_id', array('empty' => true, 'data-placeholder' => '-- None --'));
+	echo $this->Form->input('PostCategory.description');
 echo $this->Form->end();
 ?>
 <div class="modal-footer">

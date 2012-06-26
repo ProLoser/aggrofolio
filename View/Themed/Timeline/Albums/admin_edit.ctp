@@ -11,12 +11,12 @@
 
 <?php
 echo $this->Form->create('Album', array('class' => 'modal-body'));
-	echo $this->Form->input('id');
-	echo $this->Form->input('name');
-	echo $this->Form->input('description');
-	echo $this->Form->input('published');
-	echo $this->Form->input('media_category_id', array('label' => 'Category ' . $this->Html->link('', array('controller' => 'media_categories', 'action' => 'add'), array('escape' => false, 'class' => 'icon-plus ajax')), 'empty' => '-- None --'));
-	echo $this->Form->input('project_id', array('empty' => '-- None --'));
+	echo $this->Form->input('Album.id');
+	echo $this->Form->input('Album.name');
+	echo $this->Form->input('Album.published');
+	echo $this->Form->input('Album.description');
+	echo $this->Form->input('Album.media_category_id', array('label' => 'Category ' . $this->Html->link('', array('controller' => 'media_categories', 'action' => 'add'), array('escape' => false, 'class' => 'icon-plus ajax')), 'empty' => true, 'data-placeholder' => '-- None --'));
+	echo $this->Form->input('Album.project_id', array('empty' => true, 'data-placeholder' => '-- None --'));
 echo $this->Form->end();
 ?>
 <div class="modal-footer">

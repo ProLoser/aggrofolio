@@ -14,7 +14,7 @@
 		echo $this->Html->css(array(
 			'bootstrap',
 			'bootstrap-responsive',
-			'/js/select2/select2',
+			'/js/mylibs/select2/select2',
 			'layout',
 		));
 		echo $this->fetch('css');
@@ -68,7 +68,7 @@
 		'bootstrap-carousel',
 		'bootstrap-typeahead',
 		'angular.min',
-		'select2/select2',
+		'mylibs/select2/select2',
 		'script',
 	));
 	echo $this->fetch('scripts');

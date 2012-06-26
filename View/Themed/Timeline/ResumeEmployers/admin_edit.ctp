@@ -10,15 +10,15 @@
 </div>
 <?php
 echo $this->Form->create('ResumeEmployer', array('class' => 'modal-body'));
-	echo $this->Form->input('id');
-	echo $this->Form->input('name');
-	echo $this->Form->input('title', array('label' => 'Position Title'));
-	echo $this->Form->input('date_started');
-	echo $this->Form->input('date_ended');
-	echo $this->Form->input('currently_employed');
-	echo $this->Form->input('published');
-	echo $this->Form->input('deleted');
-	echo $this->Form->input('summary');
+	echo $this->Form->input('ResumeEmployer.id');
+	echo $this->Form->input('ResumeEmployer.name');
+	echo $this->Form->input('ResumeEmployer.title', array('label' => 'Position Title'));
+	echo $this->Form->input('ResumeEmployer.date_started');
+	echo $this->Form->input('ResumeEmployer.date_ended');
+	echo $this->Form->input('ResumeEmployer.currently_employed');
+	echo $this->Form->input('ResumeEmployer.published');
+	echo $this->Form->input('ResumeEmployer.deleted');
+	echo $this->Form->input('ResumeEmployer.summary');
 echo $this->Form->end();
 ?>
 <div class="modal-footer">

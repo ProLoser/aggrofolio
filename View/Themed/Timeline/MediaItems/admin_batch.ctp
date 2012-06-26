@@ -7,8 +7,8 @@
 <?php
 echo $this->Form->create('MediaItem', array('type' => 'file', 'class' => 'modal-body'));
 	echo $this->Form->input("MediaItem.published");
-	echo $this->Form->input("MediaItem.album_id", array('empty' => '-- Select One --'));
-	echo $this->Form->input("MediaItem.project_id", array('empty' => '-- None --'));
+	echo $this->Form->input("MediaItem.album_id", array('empty' => true, 'data-placeholder' => '-- None --'));
+	echo $this->Form->input("MediaItem.project_id", array('empty' => true, 'data-placeholder' => '-- None --'));
 	echo $this->Form->input("MediaItem.attachment.", array('label' => 'Attachment', 'type' => 'file', 'multiple'));
 echo $this->Form->end();
 ?>

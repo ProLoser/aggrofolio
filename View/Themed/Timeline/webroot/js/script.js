@@ -11,7 +11,7 @@ $(document).ready(function(){
 				e.preventDefault();
 				$(this).closest('div').prev('form').submit();
 			});
-			// $('.modal .select select').select2({ width: '250px', allowClear: true});
+			$('.modal .select select').select2({ width: '250px', allowClear: true});
 			$('.modal a[title]').tooltip({placement:'bottom'});
 		});
 	});
