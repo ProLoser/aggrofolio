@@ -9,12 +9,12 @@ echo $this->Form->create('Setting', array('class' => 'modal-body'));
 	echo $this->Form->input('Setting.id');
 	echo $this->Form->input('User.id');
 	echo $this->Form->input('Setting.site_name');
+	echo $this->Form->input('Setting.google_analytics', array('label' => 'Google Analytics Code (Optional)'));
 	echo $this->Form->input('User.name');
 	echo $this->Form->input('User.email');
 	//echo $this->Form->input('User.password');
 	echo $this->Form->input('Setting.css');
 	echo $this->Form->input('Setting.js');
-	echo $this->Form->input('Setting.google_analytics');
 echo $this->Form->end();
 ?>
 <div class="modal-footer">
