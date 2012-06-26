@@ -22,6 +22,8 @@
         <ul class="nav">
           <li><?php echo $this->Html->link('Old Admin', '/admin');?></li>
           <li><a ng-click="resumeBuilder=!resumeBuilder">Build a Resume</a></li>
+          <li><?php echo $this->Html->link('Contact Emails', array('controller' => 'contacts', 'action' => 'index'), array('class' => 'ajax'))?></li>
+          <li><?php echo $this->Html->link('Moderate Comments', array('controller' => 'comments', 'action' => 'index'), array('class' => 'ajax'))?></li>
         </ul>
       </div><!--/.nav-collapse -->
     </div>
