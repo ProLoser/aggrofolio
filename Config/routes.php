@@ -32,6 +32,7 @@ Router::connect('/asset/*', array('controller' => 'settings', 'action' => 'asset
 Router::connect('/paginated', array('controller' => 'activities', 'action' => 'paginated'));
 Router::connect('/login', array('controller' => 'users', 'action' => 'login'));
 Router::connect('/logout', array('controller' => 'users', 'action' => 'logout'));
+Router::connect('/contact', array('controller' => 'contacts', 'action' => 'index'));
 Router::connect('/admin', array('admin' => true, 'controller' => 'posts', 'action' => 'index'));
 
 Router::connect('/blog/*', array('controller' => 'posts'));
