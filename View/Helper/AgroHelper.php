@@ -77,7 +77,11 @@ class AgroHelper extends AppHelper {
 		'blog' => array(
 			'name' => 'Blog',
 			'url' => ':name',
-		)
+		),
+		'vimeo' => array(
+			'name' => 'Vimeo',
+			'url' => 'http://vimeo.com/:name',
+		),
 	);
 
 	/**
