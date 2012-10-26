@@ -62,6 +62,9 @@ class Comment extends AppModel {
 		if (!parent::beforeSave($options)) {
 			return false;
 		}
+		if (!empty($this->data['Comment']['website']) && strpos($this->data['Comment']['website'], 'http') !== 0) {
+			$this->data['Comment']['website'] = 'http://' . $this->data['Comment']['website'];
+		}
 		if (isset($this->data['Comment']['body'])) {
 			App::uses('Sanitize', 'Utility');
 			$this->data['Comment']['body'] = Sanitize::html($this->data['Comment']['body']);
