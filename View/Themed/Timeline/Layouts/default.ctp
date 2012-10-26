@@ -68,6 +68,7 @@
 		'bootstrap-carousel',
 		'bootstrap-typeahead',
 		'angular.min',
+		'mylibs/angular-ui/build/angular-ui',
 		'mylibs/select2/select2',
 		'script',
 	));

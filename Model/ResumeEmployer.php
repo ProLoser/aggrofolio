@@ -1,6 +1,7 @@
 <?php
 class ResumeEmployer extends AppModel {
 	var $name = 'ResumeEmployer';
+	var $order = 'ResumeEmployer.date_ended DESC';
 	var $displayField = 'label';
 	var $virtualFields = array(
 		'label' => 'CONCAT(ResumeEmployer.name, ": ", ResumeEmployer.title)'

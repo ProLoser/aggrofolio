@@ -49,16 +49,20 @@ header.timeline li {
 }
 div.timeline {
 	overflow: hidden;
-}
-div.timeline ul {
-	width: 20%;
-	float: left;
-	margin: 10px 0;
-	padding: 0;
-	list-style: none;
-}
-div.timeline li {
-	margin: 10px 20px;
+	ul {
+		width: 20%;
+		float: left;
+		margin: 10px 0;
+		padding: 0;
+		list-style: none;
+		position: relative;
+	}
+	li {
+		margin: 5px 0;
+		small {
+			display: block;
+		}
+	}
 }
 form.modal-body {
 	margin: 0;

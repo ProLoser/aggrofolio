@@ -68,8 +68,10 @@ class MediaItemsController extends AppController {
 			} else {
 				$this->Session->setFlash(__('The media item could not be saved. Please, try again.'));
 			}
-		} elseif (isset($this->request->params['named']['project'])) {
-			$this->request->data['MediaItem']['project_id'] = $this->request->params['named']['project'];
+		} elseif (!empty($this->request->params['named'])) {
+			foreach ($this->request->params['named'] as $model => $id) {
+				$this->request->data['MediaItem'][strtolower($model).'_id'] = $id;
+			}
 		}
 		$albums = $this->MediaItem->Album->find('list');
 		$projects = $this->MediaItem->Project->find('list');

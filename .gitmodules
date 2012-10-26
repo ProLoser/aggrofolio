@@ -82,3 +82,6 @@
 [submodule "Plugin/Vimeo"]
 	path = Plugin/Vimeo
 	url = git://github.com/ProLoser/CakePHP-Vimeo.git
+[submodule "webroot/js/mylibs/angular-ui"]
+	path = webroot/js/mylibs/angular-ui
+	url = git://github.com/angular-ui/angular-ui.git

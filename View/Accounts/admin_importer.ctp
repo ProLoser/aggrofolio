@@ -67,6 +67,7 @@
 				<a ng-hide="work.ResumeEmployer.published" href="/admin/resume_employers/publish/{{work.ResumeEmployer.id}}" class="icon-eye-close" data-original-title="Publish"></a>
 				<a ng-show="work.ResumeEmployer.published" href="/admin/resume_employers/publish/{{work.ResumeEmployer.id}}" class="icon-eye-open" data-original-title="Un-Publish"></a>
 				{{work.ResumeEmployer.name}}
+				<small>{{work.ResumeEmployer.date_started}} - {{work.ResumeEmployer.date_ended}}</small>
 			</li>
 			<li ng-repeat="(i, school) in data.schools">
 				<a ng-click="toggle('ResumeSchool', school)" ng-show="resumeBuilder" class="icon-arrow-left" ng-class="{'icon-arrow-left':!resume['ResumeSchool'][school.ResumeSchool.id],'icon-arrow-right':resume['ResumeSchool'][school.ResumeSchool.id]}" href="" style="display: none; " data-original-title="Toggle from Resume"></a>
@@ -76,6 +77,7 @@
 				<a ng-hide="school.ResumeSchool.published" href="/admin/resume_schools/publish/{{school.ResumeSchool.id}}" class="icon-eye-close" data-original-title="Publish"></a>
 				<a ng-show="school.ResumeSchool.published" href="/admin/resume_schools/publish/{{school.ResumeSchool.id}}" class="icon-eye-open" data-original-title="Un-Publish"></a>
 				{{school.ResumeSchool.name}}
+				<small>{{school.ResumeSchool.date_started}} - {{school.ResumeSchool.date_ended}}</small>
 			</li>
 		</ul>
 		<ul id="projects">

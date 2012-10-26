@@ -168,16 +168,16 @@ class AppController extends Controller {
 
 		if (!$this->Plate->prefix('admin')) {
 			$this->Auth->allow();
-		}
+		} else if ($this->Auth->user()) {
+			if ($this->Plate->prefix('admin') && $this->Auth->user('role') !== 'admin' && Configure::read('owner') !== $this->Auth->user('id')) {
+				$this->Session->setFlash('You are not the owner of this account');
+				$this->redirect('/');
+			}
 
-		if ($this->Plate->prefix('admin') && $this->Auth->user('role') !== 'admin' && Configure::read('owner') !== $this->Auth->user('id')) {
-			$this->Session->setFlash('You are not the owner of this account');
-			$this->redirect('/');
-		}
-
-		if ($this->Plate->prefix('manager') && $this->Auth->user('role') !== 'admin') {
-			$this->Session->setFlash('You do not have permission to access this section');
-			$this->redirect('/');
+			if ($this->Plate->prefix('manager') && $this->Auth->user('role') !== 'admin') {
+				$this->Session->setFlash('You do not have permission to access this section');
+				$this->redirect('/');
+			}
 		}
 	}
 
